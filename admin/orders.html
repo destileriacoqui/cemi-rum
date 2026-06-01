@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pickup Orders — Destilería Coquí</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <header class="admin-topbar">
+    <div>
+      <a class="admin-brand" href="/">Coquí</a>
+      <p>Private order dashboard</p>
+    </div>
+    <button class="admin-button admin-button-quiet" type="button" data-admin-logout>Log Out</button>
+  </header>
+  <main class="admin-page">
+    <section class="admin-heading">
+      <div>
+        <p class="admin-eyebrow">Staff Orders</p>
+        <h1>Pickup orders</h1>
+        <p class="admin-intro">Review requests, update their status, and contact customers.</p>
+      </div>
+      <button class="admin-button admin-button-primary" type="button" data-refresh-orders>Refresh Orders</button>
+    </section>
+
+    <section class="admin-toolbar" aria-label="Order tools">
+      <label class="admin-search">Search orders
+        <input type="search" data-order-search placeholder="Name, email, phone, or order number">
+      </label>
+      <div class="admin-filters" role="group" aria-label="Filter orders by status">
+        <button class="admin-filter is-active" type="button" data-filter="all">All</button>
+        <button class="admin-filter" type="button" data-filter="pending">Pending</button>
+        <button class="admin-filter" type="button" data-filter="ready">Ready for Pickup</button>
+        <button class="admin-filter" type="button" data-filter="completed">Picked Up</button>
+        <button class="admin-filter" type="button" data-filter="cancelled">Cancelled</button>
+      </div>
+    </section>
+
+    <p class="admin-message" data-admin-message aria-live="polite"></p>
+    <section class="admin-order-list" data-admin-orders aria-live="polite">
+      <div class="admin-loading">Loading orders...</div>
+    </section>
+  </main>
+  <script src="/admin/admin-orders.js"></script>
+</body>
+</html>

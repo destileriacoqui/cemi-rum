@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Staff Login — Destilería Coquí</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin-login-page">
+  <main class="admin-login-shell">
+    <section class="admin-login-panel">
+      <a class="admin-brand" href="/">Coquí</a>
+      <p class="admin-eyebrow">Private Staff Area</p>
+      <h1>Order login</h1>
+      <p class="admin-intro">Sign in to review pickup orders and contact customers.</p>
+      <form class="admin-form" data-admin-login>
+        <label>Name<input name="name" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="admin-button admin-button-primary" type="submit">Log In</button>
+      </form>
+      <p class="admin-message" data-admin-message aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="/admin/admin-login.js"></script>
+</body>
+</html>
