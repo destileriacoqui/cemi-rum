@@ -2,6 +2,7 @@ const Stripe = require('stripe');
 const catalog = require('../js/catalog');
 const { ivuFor } = require('./_ivu');
 const { identityPurpose, identitySession, requireVerifiedIdentity } = require('./_identity');
+const { siteUrl } = require('./_site-url');
 
 async function supabase(path, options = {}) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://autkqbfgniopxldszdur.supabase.co';
@@ -38,7 +39,7 @@ module.exports = async function handler(req, res) {
       const purpose = identityPurpose(req.body.purpose);
       const email = String(req.body.customer?.email || '').trim();
       if (!email || !email.includes('@')) throw new Error('Enter a valid email address before verifying your ID.');
-      const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
+      const origin = siteUrl();
       const verificationSession = await stripe.identity.verificationSessions.create({
         type: 'document',
         provided_details: { email },
@@ -82,7 +83,7 @@ module.exports = async function handler(req, res) {
         quantity: item.quantity, image: item.image, stripe_price_id: null
       })))
     });
-    const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
+    const origin = siteUrl();
     const params = {
       mode: 'payment',
       customer_email: customer.email,

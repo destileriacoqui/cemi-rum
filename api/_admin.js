@@ -11,8 +11,10 @@ function secureEqual(left, right) {
 }
 
 function secret() {
-  const value = process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD_2;
-  if (!value) throw new Error('Admin login is not configured yet.');
+  const value = process.env.ADMIN_SESSION_SECRET;
+  if (!value || value.length < 64) {
+    throw new Error('ADMIN_SESSION_SECRET must be configured with at least 64 characters.');
+  }
   return value;
 }
 

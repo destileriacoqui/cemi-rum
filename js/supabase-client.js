@@ -1,5 +1,9 @@
 (function () {
   const SESSION_KEY = 'coqui_supabase_session';
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  function assertUuid(value) {
+    if (!UUID_RE.test(value)) throw new Error('Invalid account identifier.');
+  }
   const memory = {};
   const storage = typeof window.localStorage !== 'undefined' ? window.localStorage : {
     getItem: key => memory[key] || null,
@@ -35,7 +39,9 @@
     return payload;
   }
   async function signup({ email, password, fullName, phone }) {
-    const redirect = encodeURIComponent(`${location.origin}/auth/callback`);
+    const cfg = await getConfig();
+    const base = cfg.siteUrl || location.origin;
+    const redirect = encodeURIComponent(`${base}/auth/callback`);
     const payload = await request(`/auth/v1/signup?redirect_to=${redirect}`, {
       method: 'POST',
       body: JSON.stringify({ email, password, data: { full_name: fullName, phone } })
@@ -47,7 +53,9 @@
     return payload;
   }
   async function resendSignupConfirmation(email) {
-    const redirect = encodeURIComponent(`${location.origin}/auth/callback`);
+    const cfg = await getConfig();
+    const base = cfg.siteUrl || location.origin;
+    const redirect = encodeURIComponent(`${base}/auth/callback`);
     return request(`/auth/v1/resend?redirect_to=${redirect}`, {
       method: 'POST',
       body: JSON.stringify({
@@ -61,9 +69,26 @@
     const query = new URLSearchParams(location.search);
     const error = params.get('error_description') || params.get('error') || query.get('error_description') || query.get('error');
     if (error) throw new Error(error);
-    const accessToken = params.get('access_token');
-    if (!accessToken) throw new Error('The confirmation link is invalid or has expired. Please log in or request a new confirmation email.');
     const cfg = await getConfig();
+    const tokenHash = query.get('token_hash');
+    const type = query.get('type') || 'signup';
+    if (tokenHash) {
+      const response = await fetch(`${cfg.supabaseUrl}/auth/v1/verify`, {
+        method: 'POST',
+        headers: { apikey: cfg.supabaseAnonKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token_hash: tokenHash, type })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.msg || payload.message || 'The confirmation link is invalid or has expired. Please request a new confirmation email from the signup page.');
+      if (payload.access_token) {
+        saveSession(payload);
+        history.replaceState({}, document.title, location.pathname);
+        await claimGuestOrders();
+        return payload;
+      }
+    }
+    const accessToken = params.get('access_token');
+    if (!accessToken) throw new Error('The confirmation link is invalid or has expired. Please request a new confirmation email from the signup page.');
     const response = await fetch(`${cfg.supabaseUrl}/auth/v1/user`, {
       headers: { apikey: cfg.supabaseAnonKey, Authorization: `Bearer ${accessToken}` }
     });
@@ -98,11 +123,13 @@
   async function profile() {
     const current = getSession();
     if (!current?.user?.id) return null;
+    assertUuid(current.user.id);
     const rows = await request(`/rest/v1/profiles?id=eq.${current.user.id}&select=*`);
     return rows[0] || null;
   }
   async function updateProfile(values) {
     const current = getSession();
+    assertUuid(current.user.id);
     return request(`/rest/v1/profiles?id=eq.${current.user.id}`, {
       method: 'PATCH', headers: { Prefer: 'return=representation' }, body: JSON.stringify(values)
     });
@@ -110,6 +137,7 @@
   async function orders() {
     const current = getSession();
     if (!current?.user?.id) return [];
+    assertUuid(current.user.id);
     return request(`/rest/v1/orders?user_id=eq.${current.user.id}&select=*,order_items(*)&order=created_at.desc`);
   }
   async function claimGuestOrders() {

@@ -1,6 +1,7 @@
 const Stripe = require('stripe');
 const { supabase } = require('./_supabase-admin');
 const { ivuFor } = require('./_ivu');
+const { siteUrl } = require('./_site-url');
 
 const tourTimes = new Set(['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:30 PM']);
 
@@ -41,7 +42,7 @@ module.exports = async function handler(req, res) {
         status: 'pending', payment_status: 'unpaid', subtotal, tax_total: taxTotal, total
       })
     });
-    const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
+    const origin = siteUrl();
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',

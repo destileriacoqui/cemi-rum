@@ -3,6 +3,7 @@ const catalog = require('../js/catalog');
 const { ivuFor } = require('./_ivu');
 const { requireVerifiedIdentity } = require('./_identity');
 const { sendOrderConfirmation } = require('./_order-email');
+const { siteUrl } = require('./_site-url');
 
 async function authenticatedUser(req) {
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, '');
@@ -149,7 +150,7 @@ module.exports = async function handler(req, res) {
     }
     if (!process.env.STRIPE_SECRET_KEY) throw new Error('Stripe server environment variables are not configured.');
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-    const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
+    const origin = siteUrl();
     const lineItems = items.map(item => ({
       quantity: item.quantity,
       price_data: { currency: 'usd', unit_amount: Math.round(item.price * 100), product_data: { name: item.name } }

@@ -2,16 +2,13 @@ const Stripe = require('stripe');
 const { requireAdmin } = require('../_admin');
 const { supabase } = require('../_supabase-admin');
 const { orderWithItems, sendOrderEmail } = require('../_order-email');
+const { siteUrl } = require('../_site-url');
 
 const allowedStatuses = new Set(['pending', 'ready', 'completed', 'cancelled']);
 const allowedTourStatuses = new Set(['pending', 'confirmed', 'completed', 'cancelled']);
 
 function pickupStatus(status) {
   return allowedStatuses.has(status) ? status : 'pending';
-}
-
-function origin(req) {
-  return `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
 }
 
 async function createPickupPaymentCheckout(req, orderId) {
@@ -64,8 +61,8 @@ async function createPickupPaymentCheckout(req, orderId) {
     customer_email: order.email,
     line_items: lineItems,
     metadata: { order_id: order.id, pickup_request_id: pickup.id, fulfillment_type: 'pickup' },
-    success_url: `${origin(req)}/pickup-confirmation?session_id={CHECKOUT_SESSION_ID}&pickup_request_id=${pickup.id}&paid=1`,
-    cancel_url: `${origin(req)}/admin/orders?payment=cancelled`
+    success_url: `${siteUrl()}/pickup-confirmation?session_id={CHECKOUT_SESSION_ID}&pickup_request_id=${pickup.id}&paid=1`,
+    cancel_url: `${siteUrl()}/admin/orders?payment=cancelled`
   });
   const updatedAt = new Date().toISOString();
   await supabase(`orders?id=eq.${encodeURIComponent(order.id)}`, {
@@ -83,8 +80,8 @@ module.exports = async function handler(req, res) {
   if (!requireAdmin(req, res)) return;
   try {
     if (req.method === 'GET') {
-      const orders = await supabase('orders?select=*,order_items(*),pickup_requests(*)&order=created_at.desc');
-      const tour_bookings = await supabase('tour_bookings?select=*&order=created_at.desc');
+      const orders = await supabase('orders?deleted_at=is.null&select=*,order_items(*),pickup_requests(*)&order=created_at.desc');
+      const tour_bookings = await supabase('tour_bookings?deleted_at=is.null&select=*&order=created_at.desc');
       return res.status(200).json({ orders, tour_bookings });
     }
     if (req.method === 'POST') {
@@ -145,14 +142,24 @@ module.exports = async function handler(req, res) {
     }
     if (req.method === 'DELETE') {
       const { order_id: orderId, tour_booking_id: tourBookingId } = req.body || {};
+      const deletedAt = new Date().toISOString();
       if (tourBookingId) {
-        await supabase(`tour_bookings?id=eq.${encodeURIComponent(tourBookingId)}`, { method: 'DELETE' });
-        return res.status(200).json({ deleted: true, tour_booking_id: tourBookingId });
+        await supabase(`tour_bookings?id=eq.${encodeURIComponent(tourBookingId)}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ deleted_at: deletedAt })
+        });
+        return res.status(200).json({ removed: true, tour_booking_id: tourBookingId });
       }
-      if (!orderId) return res.status(400).json({ error: 'Choose an order to delete.' });
-      await supabase(`pickup_requests?order_id=eq.${encodeURIComponent(orderId)}`, { method: 'DELETE' });
-      await supabase(`orders?id=eq.${encodeURIComponent(orderId)}`, { method: 'DELETE' });
-      return res.status(200).json({ deleted: true, order_id: orderId });
+      if (!orderId) return res.status(400).json({ error: 'Choose an order to remove.' });
+      await supabase(`pickup_requests?order_id=eq.${encodeURIComponent(orderId)}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ deleted_at: deletedAt })
+      });
+      await supabase(`orders?id=eq.${encodeURIComponent(orderId)}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ deleted_at: deletedAt })
+      });
+      return res.status(200).json({ removed: true, order_id: orderId });
     }
     res.status(405).json({ error: 'Method not allowed.' });
   } catch (error) {

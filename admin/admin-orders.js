@@ -107,7 +107,7 @@
           ${actionButton(order, 'cancelled', 'Cancel Order', 'admin-button-danger')}
           ${pickup && pickup.identity_verification_status !== 'verified' ? `<button class="admin-button" type="button" data-id-verified="${escape(order.id)}">Mark ID Checked</button>` : ''}
           ${pickup && order.payment_status !== 'paid' && status !== 'cancelled' ? `<button class="admin-button admin-button-email" type="button" data-pay-order="${escape(order.id)}">Open Secure Payment</button>` : ''}
-          <button class="admin-button admin-button-danger" type="button" data-delete-order="${escape(order.id)}">Delete Order</button>
+          <button class="admin-button admin-button-danger" type="button" data-remove-order="${escape(order.id)}">Remove Order</button>
           <div class="admin-email-controls">
             <label class="admin-email-template">Email template
               <select data-email-template>
@@ -164,7 +164,7 @@
           ${booking.status !== 'cancelled' ? `<button class="admin-button admin-button-danger" type="button" data-tour-status="cancelled" data-tour-id="${escape(booking.id)}">Cancel Tour</button>` : ''}
           <button class="admin-button admin-button-quiet" type="button" data-copy-email="${escape(booking.email)}">Copy Customer Email</button>
           <button class="admin-button admin-button-email" type="button" data-send-tour-email="${escape(booking.id)}">Send Tour Confirmation</button>
-          <button class="admin-button admin-button-danger" type="button" data-delete-tour="${escape(booking.id)}">Delete Tour</button>
+          <button class="admin-button admin-button-danger" type="button" data-remove-tour="${escape(booking.id)}">Remove Tour</button>
         </footer>
       </article>`;
   }
@@ -211,8 +211,8 @@
     const tourEmailButton = event.target.closest('[data-send-tour-email]');
     const identityButton = event.target.closest('[data-id-verified]');
     const payOrderButton = event.target.closest('[data-pay-order]');
-    const deleteOrderButton = event.target.closest('[data-delete-order]');
-    const deleteTourButton = event.target.closest('[data-delete-tour]');
+    const deleteOrderButton = event.target.closest('[data-remove-order]');
+    const deleteTourButton = event.target.closest('[data-remove-tour]');
     if (statusButton) {
       statusButton.disabled = true;
       setMessage('Updating order...');
@@ -258,15 +258,15 @@
       }
     }
     if (deleteOrderButton) {
-      if (!confirm('Delete this bottle order permanently? This cannot be undone.')) return;
+      if (!confirm('Remove this bottle order from the dashboard? The order history is retained and can be recovered.')) return;
       deleteOrderButton.disabled = true;
-      setMessage('Deleting order...');
+      setMessage('Removing order...');
       try {
         await api('/api/admin/orders', {
           method: 'DELETE',
-          body: JSON.stringify({ order_id: deleteOrderButton.dataset.deleteOrder })
+          body: JSON.stringify({ order_id: deleteOrderButton.dataset.removeOrder })
         });
-        setMessage('Order deleted.');
+        setMessage('Order removed from dashboard.');
         await loadOrders();
       } catch (error) {
         setMessage(error.message, true);
@@ -274,15 +274,15 @@
       }
     }
     if (deleteTourButton) {
-      if (!confirm('Delete this tour reservation permanently? This cannot be undone.')) return;
+      if (!confirm('Remove this tour reservation from the dashboard? The booking history is retained and can be recovered.')) return;
       deleteTourButton.disabled = true;
-      setMessage('Deleting tour...');
+      setMessage('Removing tour...');
       try {
         await api('/api/admin/orders', {
           method: 'DELETE',
-          body: JSON.stringify({ tour_booking_id: deleteTourButton.dataset.deleteTour })
+          body: JSON.stringify({ tour_booking_id: deleteTourButton.dataset.removeTour })
         });
-        setMessage('Tour reservation deleted.');
+        setMessage('Tour reservation removed from dashboard.');
         await loadOrders();
       } catch (error) {
         setMessage(error.message, true);

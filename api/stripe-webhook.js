@@ -41,6 +41,9 @@ async function confirmTourBooking(id, session) {
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).send('Method not allowed.');
   try {
+    if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
+      return res.status(503).send('Stripe webhook is not configured.');
+    }
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const body = await readBody(req);
     const event = stripe.webhooks.constructEvent(body, req.headers['stripe-signature'], process.env.STRIPE_WEBHOOK_SECRET);
