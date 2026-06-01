@@ -67,18 +67,32 @@ function renderEmail(order, template) {
 }
 
 function staffEmail(order) {
+  const pickup = Array.isArray(order.pickup_requests) ? order.pickup_requests[0] : null;
+  const identityMethod = pickup?.identity_verification_method || order.identity_verification_method;
+  const identityStatus = pickup?.identity_verification_status || order.identity_verification_status || 'not_required';
   return `<!doctype html>
     <html><body style="font-family:Arial,sans-serif;color:#1a1207">
       <h1>New ${escape(order.fulfillment_type)} bottle order</h1>
       <p><strong>Order:</strong> ${escape(order.id.slice(0, 8).toUpperCase())}</p>
+      <p><strong>Created:</strong> ${escape(new Date(order.created_at).toLocaleString('en-US'))}</p>
+      <p><strong>Order status:</strong> ${escape(order.status)}</p>
       <p><strong>Name:</strong> ${escape(order.customer_name)}</p>
       <p><strong>Email:</strong> ${escape(order.email)}</p>
       <p><strong>Phone:</strong> ${escape(order.phone || 'Not provided')}</p>
-      <p><strong>Payment:</strong> ${escape(paymentLabel(order))}</p>
+      <p><strong>Fulfillment:</strong> ${escape(order.fulfillment_type)}</p>
+      <p><strong>Payment method:</strong> ${escape(paymentLabel(order))}</p>
+      <p><strong>Payment status:</strong> ${escape(order.payment_status)}</p>
       <p><strong>Items:</strong></p>
       <ul>${(order.order_items || []).map(item => `<li>${escape(item.name)} &times; ${Number(item.quantity) || 1}</li>`).join('')}</ul>
       <p><strong>Express Pickup:</strong> ${order.express_pickup ? `Yes (${escape(money(order.express_pickup_fee))}, non-taxable)` : 'No'}</p>
+      ${pickup ? `<p><strong>Pickup date:</strong> ${escape(pickup.pickup_date || 'Not selected')}</p>
+      <p><strong>Pickup time:</strong> ${escape(pickup.pickup_time || 'Not selected')}</p>
+      <p><strong>Customer notes:</strong> ${escape(pickup.notes || 'No customer notes')}</p>` : ''}
+      <p><strong>ID check:</strong> ${escape(identityMethod === 'stripe_identity' ? 'Secure online verification' : identityMethod === 'in_person' ? 'Show ID in person' : 'Not applicable')}</p>
+      <p><strong>ID status:</strong> ${escape(identityStatus)}</p>
+      <p><strong>Subtotal:</strong> ${escape(money(order.subtotal))}</p>
       <p><strong>Puerto Rico IVU:</strong> ${escape(money(order.tax_total))}</p>
+      <p><strong>Shipping:</strong> ${escape(money(order.shipping_total))}</p>
       <p><strong>Total:</strong> ${escape(money(order.total))}</p>
     </body></html>`;
 }
@@ -104,7 +118,7 @@ async function sendResend(payload) {
 }
 
 async function orderWithItems(orderId) {
-  const orders = await supabase(`orders?id=eq.${encodeURIComponent(orderId)}&select=*,order_items(*)`);
+  const orders = await supabase(`orders?id=eq.${encodeURIComponent(orderId)}&select=*,order_items(*),pickup_requests(*)`);
   return orders[0] || null;
 }
 
