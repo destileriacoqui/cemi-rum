@@ -1,7 +1,7 @@
 const Stripe = require('stripe');
 const catalog = require('../js/catalog');
 const { ivuFor } = require('./_ivu');
-const { requireVerifiedIdentity } = require('./_identity');
+const { identityPurpose, identitySession, requireVerifiedIdentity } = require('./_identity');
 
 async function supabase(path, options = {}) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://autkqbfgniopxldszdur.supabase.co';
@@ -34,6 +34,23 @@ module.exports = async function handler(req, res) {
   try {
     if (!process.env.STRIPE_SECRET_KEY) throw new Error('Stripe server environment variables are not configured.');
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    if (req.body.action === 'create_identity') {
+      const purpose = identityPurpose(req.body.purpose);
+      const email = String(req.body.customer?.email || '').trim();
+      if (!email || !email.includes('@')) throw new Error('Enter a valid email address before verifying your ID.');
+      const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
+      const verificationSession = await stripe.identity.verificationSessions.create({
+        type: 'document',
+        provided_details: { email },
+        metadata: { purpose },
+        return_url: `${origin}/identity-return?purpose=${purpose}`
+      });
+      return res.status(200).json({ url: verificationSession.url, verification_session_id: verificationSession.id });
+    }
+    if (req.body.action === 'identity_status') {
+      const verificationSession = await identitySession(req.body.verification_session_id, req.body.purpose);
+      return res.status(200).json({ status: verificationSession.status, error: verificationSession.last_error?.reason || null });
+    }
     const requested = Array.isArray(req.body.items) ? req.body.items : [];
     const customer = req.body.customer || {};
     const items = requested.map(item => {

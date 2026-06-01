@@ -41,9 +41,9 @@
     message.classList.remove('is-error');
     message.textContent = 'Opening secure ID verification...';
     try {
-      const response = await fetch('/api/create-identity-verification-session', {
+      const response = await fetch('/api/create-checkout-session', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ purpose, items: cart.read(), customer: contact() })
+        body: JSON.stringify({ action: 'create_identity', purpose, items: cart.read(), customer: contact() })
       });
       const result = await responseJson(response);
       if (!response.ok) throw new Error(result.error || 'ID verification could not be started.');

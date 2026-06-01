@@ -35,10 +35,10 @@
     message.classList.remove('is-error');
     message.textContent = 'Checking your secure ID verification...';
     try {
-      const response = await fetch('/api/identity-verification-status', {
+      const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ purpose, verification_session_id: verificationSessionId })
+        body: JSON.stringify({ action: 'identity_status', purpose, verification_session_id: verificationSessionId })
       });
       const result = await responseJson(response);
       if (result.status === 'verified') {
