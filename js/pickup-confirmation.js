@@ -16,6 +16,14 @@
       <strong>${CoquiCart.money(item.price * item.quantity)}</strong>
     </article>`).join('');
   document.querySelector('[data-confirmation-subtotal]').textContent = CoquiCart.money(receipt.subtotal);
+  if (receipt.express_pickup) {
+    document.querySelector('[data-confirmation-express-row]').hidden = false;
+    document.querySelector('[data-confirmation-express]').textContent = CoquiCart.money(receipt.express_pickup_fee);
+    document.querySelector('[data-confirmation-express-note]').textContent = 'Express Pickup: requested for pickup in 1 day, subject to product availability.';
+  }
+  document.querySelector('[data-confirmation-identity]').textContent = receipt.identity_verification_method === 'stripe_identity'
+    ? 'ID verification: completed securely online.'
+    : 'ID verification: bring a valid photo ID when picking up your order.';
   document.querySelector('[data-confirmation-tax]').textContent = CoquiCart.money(receipt.tax_total);
   document.querySelector('[data-confirmation-total]').textContent = CoquiCart.money(receipt.total);
 })();

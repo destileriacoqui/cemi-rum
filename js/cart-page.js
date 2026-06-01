@@ -36,19 +36,26 @@
     render();
   });
   function contact() { return Object.fromEntries(new FormData(form)); }
-  document.querySelector('[data-shipping]')?.addEventListener('click', async () => {
+  async function startIdentityVerification(purpose) {
     if (!form.reportValidity()) return;
-    message.textContent = 'Opening secure checkout...';
+    message.classList.remove('is-error');
+    message.textContent = 'Opening secure ID verification...';
     try {
-      const token = window.CoquiSupabase.getSession()?.access_token;
-      const response = await fetch('/api/create-checkout-session', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
-        body: JSON.stringify({ items: cart.read(), customer: contact() })
+      const response = await fetch('/api/create-identity-verification-session', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ purpose, items: cart.read(), customer: contact() })
       });
       const result = await responseJson(response);
-      if (!response.ok) throw new Error(result.error || 'Checkout could not be started.');
+      if (!response.ok) throw new Error(result.error || 'ID verification could not be started.');
+      sessionStorage.setItem('coqui_identity_session_id', result.verification_session_id);
+      sessionStorage.setItem('coqui_identity_purpose', purpose);
+      sessionStorage.setItem('coqui_identity_cart', JSON.stringify(cart.read()));
+      sessionStorage.setItem('coqui_identity_customer', JSON.stringify(contact()));
       location.href = result.url;
     } catch (error) { message.textContent = error.message; message.classList.add('is-error'); }
+  }
+  document.querySelector('[data-shipping]')?.addEventListener('click', async () => {
+    await startIdentityVerification('shipping');
   });
   document.querySelector('[data-pickup]')?.addEventListener('click', () => {
     if (!form.reportValidity()) return;

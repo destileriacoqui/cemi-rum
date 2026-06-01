@@ -1,1 +1,52 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Confirm Pickup — Destilería Coquí</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/js/commerce-pages.css"></head><body><nav><a class="nav-logo" href="/">Coquí</a></nav><main class="page"><span class="eyebrow">Pickup Order</span><h1>Confirm your <em>pickup.</em></h1><p class="lede">Review your order and submit your request. No shipping fee will be added. Puerto Rico IVU is included below. We will contact you when your order is ready for pickup.</p><div class="pickup-layout"><section class="panel"><h2 class="section-title">Your bottles</h2><div data-pickup-items></div></section><aside class="panel"><h2 class="section-title">Pickup contact</h2><div class="detail-list" data-pickup-customer></div><div class="subtotal"><span>Subtotal</span><strong data-pickup-subtotal></strong></div><div class="subtotal subtotal-compact"><span>Puerto Rico IVU (11.5%)</span><strong data-pickup-tax></strong></div><div class="subtotal subtotal-compact"><span>Total</span><strong data-pickup-total></strong></div><button class="btn" data-submit-pickup>Submit Pickup Request</button><a class="btn secondary" href="/cart">Back to Cart</a><p class="message" data-pickup-message></p></aside></div></main><script src="/js/site-commerce.js"></script><script src="/js/supabase-client.js"></script><script src="/js/pickup-page.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Confirm Pickup — Destilería Coquí</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/js/commerce-pages.css">
+</head>
+<body>
+  <nav><a class="nav-logo" href="/">Coquí</a></nav>
+  <main class="page">
+    <span class="eyebrow">Pickup Order</span>
+    <h1>Confirm your <em>pickup.</em></h1>
+    <p class="lede">Review your order and submit your request. No shipping fee will be added. Puerto Rico IVU is included below. We will contact you when your order is ready for pickup.</p>
+    <div class="pickup-layout">
+      <section class="panel">
+        <h2 class="section-title">Your bottles</h2>
+        <div data-pickup-items></div>
+      </section>
+      <aside class="panel">
+        <h2 class="section-title">Pickup contact</h2>
+        <div class="detail-list" data-pickup-customer></div>
+        <section class="pickup-option">
+          <label class="option-check">
+            <input type="checkbox" data-express-pickup>
+            <span><strong>Express Pickup</strong><small>Pickup order in 1 day</small></span>
+          </label>
+          <p>Only if the product is available. If the product is out of stock, the Express Pickup fee will be refunded.</p>
+        </section>
+        <section class="pickup-option">
+          <h3>ID verification</h3>
+          <label class="option-radio"><input type="radio" name="identity_method" value="in_person" checked><span>Show a valid photo ID when you pick up your order</span></label>
+          <label class="option-radio"><input type="radio" name="identity_method" value="stripe_identity"><span>Verify securely online now</span></label>
+          <button class="btn secondary compact" type="button" data-start-pickup-identity>Verify ID Online</button>
+          <p class="identity-note" data-pickup-identity-status></p>
+        </section>
+        <div class="subtotal"><span>Subtotal</span><strong data-pickup-subtotal></strong></div>
+        <div class="subtotal subtotal-compact" data-express-row hidden><span>Express Pickup</span><strong data-pickup-express></strong></div>
+        <div class="subtotal subtotal-compact"><span>Puerto Rico IVU (11.5%)</span><strong data-pickup-tax></strong></div>
+        <div class="subtotal subtotal-compact"><span>Total</span><strong data-pickup-total></strong></div>
+        <button class="btn" data-submit-pickup>Submit Pickup Request</button>
+        <a class="btn secondary" href="/cart">Back to Cart</a>
+        <p class="message" data-pickup-message></p>
+      </aside>
+    </div>
+  </main>
+  <script src="/js/site-commerce.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/pickup-page.js"></script>
+</body>
+</html>

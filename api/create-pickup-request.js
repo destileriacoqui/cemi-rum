@@ -1,5 +1,6 @@
 const catalog = require('../js/catalog');
 const { ivuFor } = require('./_ivu');
+const { requireVerifiedIdentity } = require('./_identity');
 
 async function authenticatedUser(req) {
   const token = req.headers.authorization?.replace(/^Bearer\s+/i, '');
@@ -39,13 +40,24 @@ module.exports = async function handler(req, res) {
     if (!items.length) throw new Error('Your cart is empty.');
     const user = await authenticatedUser(req);
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const taxTotal = ivuFor(subtotal);
+    const expressPickup = Boolean(req.body.express_pickup);
+    const expressPickupFee = expressPickup ? items.reduce((sum, item) => sum + item.quantity, 0) * 5 : 0;
+    const taxTotal = ivuFor(subtotal + expressPickupFee);
+    const identityVerificationMethod = req.body.identity_verification_method === 'stripe_identity' ? 'stripe_identity' : 'in_person';
+    const verificationSession = identityVerificationMethod === 'stripe_identity'
+      ? await requireVerifiedIdentity(req.body.stripe_identity_verification_session_id, 'pickup')
+      : null;
+    const identityVerificationStatus = verificationSession ? verificationSession.status : 'pending';
     const [order] = await supabase('orders?select=id', {
       method: 'POST', headers: { Prefer: 'return=representation' },
       body: JSON.stringify({
         user_id: user?.id || null, customer_name: customer.full_name, email: customer.email,
         phone: customer.phone || null, fulfillment_type: 'pickup', status: 'pending',
-        payment_status: 'unpaid', subtotal, tax_total: taxTotal, shipping_total: 0, total: subtotal + taxTotal
+        payment_status: 'unpaid', subtotal, tax_total: taxTotal, shipping_total: 0,
+        express_pickup: expressPickup, express_pickup_fee: expressPickupFee,
+        identity_verification_method: identityVerificationMethod, identity_verification_status: identityVerificationStatus,
+        stripe_identity_verification_session_id: verificationSession?.id || null,
+        total: subtotal + expressPickupFee + taxTotal
       })
     });
     await supabase('order_items', {
@@ -59,12 +71,17 @@ module.exports = async function handler(req, res) {
       method: 'POST', headers: { Prefer: 'return=representation' },
       body: JSON.stringify({
         order_id: order.id, user_id: user?.id || null, customer_name: customer.full_name,
-        email: customer.email, phone: customer.phone || null, order_items: items, status: 'pending'
+        email: customer.email, phone: customer.phone || null, order_items: items, status: 'pending',
+        express_pickup: expressPickup, express_pickup_fee: expressPickupFee,
+        identity_verification_method: identityVerificationMethod, identity_verification_status: identityVerificationStatus,
+        stripe_identity_verification_session_id: verificationSession?.id || null
       })
     });
     res.status(200).json({
       pickup_request_id: pickup.id, order_id: order.id, status: 'pending',
-      customer, items, subtotal, tax_total: taxTotal, total: subtotal + taxTotal
+      customer, items, subtotal, express_pickup: expressPickup, express_pickup_fee: expressPickupFee,
+      identity_verification_method: identityVerificationMethod, identity_verification_status: identityVerificationStatus,
+      tax_total: taxTotal, total: subtotal + expressPickupFee + taxTotal
     });
   } catch (error) { res.status(400).json({ error: error.message }); }
 };

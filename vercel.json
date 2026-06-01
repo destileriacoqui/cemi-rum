@@ -66,6 +66,8 @@
     { "source": "/account/orders", "destination": "/account/orders.html" },
     { "source": "/pickup-checkout", "destination": "/pickup-checkout.html" },
     { "source": "/pickup-confirmation", "destination": "/pickup-confirmation.html" },
+    { "source": "/identity-return", "destination": "/identity-return.html" },
+    { "source": "/auth/callback", "destination": "/auth/callback.html" },
     { "source": "/tour-confirmation", "destination": "/tour-confirmation.html" },
     { "source": "/success", "destination": "/success.html" },
     { "source": "/cancel", "destination": "/cancel.html" },

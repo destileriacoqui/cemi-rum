@@ -63,13 +63,27 @@ git push -u origin main
 
 ## Stripe Integration
 
-Product pages add bottles to a shared cart. The shipping button calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. Puerto Rico IVU is charged at `11.5%` on taxable products. Shipping is a flat `$20` charge added once per shipped order, regardless of bottle quantity, and is excluded from the IVU taxable base. Pickup orders do not receive a shipping charge.
+Product pages add bottles to a shared cart. Shipping starts with Stripe-hosted ID verification and then calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. Shipping is a flat `$20` charge added once per shipped order, regardless of bottle quantity. Puerto Rico IVU is charged at `11.5%` on the taxable merchandise and shipping total.
+
+Pickup orders do not receive a shipping charge. Customers can choose Express Pickup for pickup in 1 day, subject to product availability, at `$5` per selected bottle. IVU applies to the Express Pickup fee. Customers can complete Stripe-hosted ID verification online or show a valid photo ID when they arrive. Staff can filter Express Pickup orders and ID checks in `/admin/orders`.
 
 The tours page lets visitors choose a date, time, paying adult count, and free child count. `/api/create-tour-checkout-session` saves the booking in Supabase and opens Stripe-hosted Checkout at `$45` per adult plus `11.5%` Puerto Rico IVU. Children under 18 are saved with the booking and are not charged. After payment, the customer sees `/tour-confirmation` and the `/api/stripe-webhook` endpoint confirms the booking.
 
 The Stripe secret key and webhook secret are Vercel server environment variables. They are never sent to the browser.
 
+Enable Stripe Identity in the Stripe Dashboard before launch. The site uses hosted document verification pages, so raw ID photos are not stored in this website or Supabase.
+
 Tour confirmation emails use Resend. The customer receives a confirmation, and `destileriacoqui07@gmail.com` plus `maria@prsugar.com` receive the booking contact details, date, time, and guest counts. Configure `RESEND_API_KEY` and `ADMIN_EMAIL_FROM` in Vercel before enabling real email delivery.
+
+## Customer account confirmation
+
+Supabase Auth must be configured with the deployed website URL:
+
+- **Site URL:** `https://cemi-rum.vercel.app`
+- **Redirect URL:** `https://cemi-rum.vercel.app/auth/callback`
+- Add the matching `/auth/callback` URL for the final custom domain when it is connected.
+
+The signup page requests `/auth/callback`, which saves the confirmed Supabase session and opens `/account`.
 
 ### Product catalog (25 products)
 
@@ -90,7 +104,7 @@ Tour confirmation emails use Resend. The customer receives a confirmation, and `
 - Does **not** have a custom checkout form
 - Does **not** store customer passwords; Supabase Auth handles account credentials
 - Stores only the customer details needed for accounts and order history in protected Supabase tables
-- Does **not** process payments — Stripe handles everything
+- Does **not** handle card details directly — Stripe handles payment pages and ID verification pages
 - Does **not** require any API keys on the frontend
 
 ---
@@ -105,10 +119,12 @@ Tour confirmation emails use Resend. The customer receives a confirmation, and `
 ├── cart.html           # Shared cart and fulfillment choices
 ├── login.html          # Supabase Auth login
 ├── signup.html         # Supabase Auth signup
+├── auth/callback.html  # Finishes Supabase email confirmation
 ├── account.html        # Customer profile
 ├── account/orders.html # Saved order history
 ├── api/                # Vercel server functions for config and Stripe
 ├── js/                 # Shared cart, account, and storefront scripts
+├── supabase/migrations # Database schema changes
 ├── historia.html       # Brand story
 ├── tours.html          # Distillery tours
 ├── plaza.html          # La Plaza event space

@@ -1,10 +1,11 @@
 const Stripe = require('stripe');
 const catalog = require('../js/catalog');
 const { ivuFor } = require('./_ivu');
+const { requireVerifiedIdentity } = require('./_identity');
 
 async function supabase(path, options = {}) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://autkqbfgniopxldszdur.supabase.co';
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!key) throw new Error('Supabase server environment variables are not configured.');
   const response = await fetch(`${url}/rest/v1/${path}`, {
     ...options,
@@ -44,14 +45,17 @@ module.exports = async function handler(req, res) {
     if (!customer.full_name || !customer.email) throw new Error('Name and email are required.');
     const user = await authenticatedUser(req);
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const taxTotal = ivuFor(subtotal);
     const shippingTotal = 20;
+    const taxTotal = ivuFor(subtotal + shippingTotal);
+    const verificationSession = await requireVerifiedIdentity(req.body.stripe_identity_verification_session_id, 'shipping');
     const [order] = await supabase('orders?select=id', {
       method: 'POST', headers: { Prefer: 'return=representation' },
       body: JSON.stringify({
         user_id: user?.id || null, customer_name: customer.full_name, email: customer.email,
         phone: customer.phone || null, fulfillment_type: 'shipping', subtotal,
-        tax_total: taxTotal, shipping_total: shippingTotal, total: subtotal + taxTotal + shippingTotal
+        tax_total: taxTotal, shipping_total: shippingTotal, total: subtotal + taxTotal + shippingTotal,
+        identity_verification_method: 'stripe_identity', identity_verification_status: verificationSession.status,
+        stripe_identity_verification_session_id: verificationSession.id
       })
     });
     await supabase('order_items', {

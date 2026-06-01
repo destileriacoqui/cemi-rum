@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ orders, tour_bookings });
     }
     if (req.method === 'PATCH') {
-      const { order_id: orderId, tour_booking_id: tourBookingId, status } = req.body || {};
+      const { order_id: orderId, tour_booking_id: tourBookingId, status, identity_verified: identityVerified } = req.body || {};
       if (tourBookingId) {
         if (!allowedTourStatuses.has(status)) return res.status(400).json({ error: 'Choose a valid tour status.' });
         await supabase(`tour_bookings?id=eq.${encodeURIComponent(tourBookingId)}`, {
@@ -25,6 +25,18 @@ module.exports = async function handler(req, res) {
           body: JSON.stringify({ status, updated_at: new Date().toISOString() })
         });
         return res.status(200).json({ tour_booking_id: tourBookingId, status });
+      }
+      if (orderId && identityVerified === true) {
+        const updatedAt = new Date().toISOString();
+        await supabase(`orders?id=eq.${encodeURIComponent(orderId)}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ identity_verification_status: 'verified', updated_at: updatedAt })
+        });
+        await supabase(`pickup_requests?order_id=eq.${encodeURIComponent(orderId)}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ age_verified: true, identity_verification_status: 'verified', updated_at: updatedAt })
+        });
+        return res.status(200).json({ order_id: orderId, identity_verification_status: 'verified' });
       }
       if (!orderId || !allowedStatuses.has(status)) {
         return res.status(400).json({ error: 'Choose a valid order status.' });

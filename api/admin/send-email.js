@@ -49,6 +49,7 @@ function renderEmail(order, template) {
           <p style="margin-top:0"><strong>Order ${escape(order.id.slice(0, 8).toUpperCase())}</strong></p>
           <ul>${items}</ul>
           <p><strong>Subtotal: ${escape(money(order.subtotal))}</strong></p>
+          ${order.express_pickup ? `<p><strong>Express Pickup: Yes (${escape(money(order.express_pickup_fee))})</strong></p>` : ''}
           <p><strong>Puerto Rico IVU (11.5%): ${escape(money(order.tax_total))}</strong></p>
           <p style="margin-bottom:0"><strong>Total: ${escape(money(order.total))}</strong></p>
         </div>

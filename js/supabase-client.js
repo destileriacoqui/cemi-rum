@@ -35,12 +35,37 @@
     return payload;
   }
   async function signup({ email, password, fullName, phone }) {
-    const payload = await request('/auth/v1/signup', {
+    const redirect = encodeURIComponent(`${location.origin}/auth/callback`);
+    const payload = await request(`/auth/v1/signup?redirect_to=${redirect}`, {
       method: 'POST',
       body: JSON.stringify({ email, password, data: { full_name: fullName, phone } })
     });
     if (payload.access_token) saveSession(payload);
     return payload;
+  }
+  async function completeEmailConfirmation() {
+    const params = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const error = params.get('error_description') || params.get('error');
+    if (error) throw new Error(error);
+    const accessToken = params.get('access_token');
+    if (!accessToken) throw new Error('The confirmation link is invalid or has expired. Please log in or request a new confirmation email.');
+    const cfg = await getConfig();
+    const response = await fetch(`${cfg.supabaseUrl}/auth/v1/user`, {
+      headers: { apikey: cfg.supabaseAnonKey, Authorization: `Bearer ${accessToken}` }
+    });
+    const user = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(user.message || 'Your confirmed account could not be opened.');
+    const expiresIn = Number(params.get('expires_in')) || 3600;
+    const session = {
+      access_token: accessToken,
+      refresh_token: params.get('refresh_token'),
+      token_type: params.get('token_type') || 'bearer',
+      expires_in: expiresIn,
+      expires_at: Math.floor(Date.now() / 1000) + expiresIn,
+      user
+    };
+    saveSession(session);
+    return session;
   }
   async function login({ email, password }) {
     const payload = await request('/auth/v1/token?grant_type=password', {
@@ -70,5 +95,5 @@
     if (!current?.user?.id) return [];
     return request(`/rest/v1/orders?user_id=eq.${current.user.id}&select=*,order_items(*)&order=created_at.desc`);
   }
-  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, login, logout, profile, updateProfile, orders };
+  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, completeEmailConfirmation, login, logout, profile, updateProfile, orders };
 })();
