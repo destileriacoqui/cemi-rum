@@ -21,6 +21,7 @@ input{width:100%;margin-top:.55rem;padding:1rem .9rem;border:.5px solid rgba(26,
 .cart-item img{width:5rem;height:6rem;object-fit:contain;background:var(--cream-mid)}.cart-item h2,.order-card h2{font:400 1.55rem var(--serif)}.cart-item button{border:0;background:none;color:var(--amber);font-size:.7rem;cursor:pointer}
 .qty{display:flex;align-items:center;gap:.7rem}.qty button{width:1.8rem;height:1.8rem;border:.5px solid rgba(26,18,7,.18)}
 .checkout-panel{margin-top:0}.subtotal{display:flex;justify-content:space-between;padding-bottom:1.2rem;border-bottom:.5px solid rgba(26,18,7,.12);font:400 1.35rem var(--serif)}
+.subtotal-compact{padding:1rem 0;font-size:1rem}.subtotal-compact span{font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
 .checkout-choice{padding-top:1.5rem}.checkout-choice+.checkout-choice{margin-top:1.5rem;border-top:.5px solid rgba(26,18,7,.1)}.checkout-choice h3{font:400 1.45rem var(--serif)}.checkout-choice p{margin-top:.45rem;color:var(--muted);font-size:.82rem}
 .checkout-choice .btn{width:100%}.empty-state{padding:2rem 0;color:var(--muted)}
 .account-nav{display:flex;gap:1rem;margin-top:2rem}.account-nav a{color:var(--amber);font-size:.72rem}

@@ -21,6 +21,8 @@
       <p><span>Time</span>${escape(booking.tour_time)}</p>
       <p><span>Adults</span>${escape(booking.adult_guests)}</p>
       <p><span>Children under 18</span>${escape(booking.child_guests)}</p>
+      <p><span>Subtotal</span>${escape(money(booking.subtotal))}</p>
+      <p><span>Puerto Rico IVU (11.5%)</span>${escape(money(booking.tax_total))}</p>
       <p><span>Total paid</span>${escape(money(booking.total))}</p>
       <p><span>Contact</span>${escape(booking.email)} · ${escape(booking.phone)}</p>`;
     message.textContent = payload.email_sent

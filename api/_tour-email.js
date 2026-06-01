@@ -30,6 +30,8 @@ function customerEmail(booking) {
           <p><strong>Time:</strong> ${escape(booking.tour_time)}</p>
           <p><strong>Adults:</strong> ${escape(booking.adult_guests)}</p>
           <p><strong>Children under 18:</strong> ${escape(booking.child_guests)}</p>
+          <p><strong>Subtotal:</strong> ${escape(money(booking.subtotal))}</p>
+          <p><strong>Puerto Rico IVU (11.5%):</strong> ${escape(money(booking.tax_total))}</p>
           <p style="margin-bottom:0"><strong>Total paid:</strong> ${escape(money(booking.total))}</p>
         </div>
         <p style="margin-top:28px;color:#7d6654">Destilería Coquí<br>Mayagüez, Puerto Rico<br>787-805-1000</p>
@@ -50,6 +52,8 @@ function staffEmail(booking) {
       <p><strong>Adults:</strong> ${escape(booking.adult_guests)}</p>
       <p><strong>Children under 18:</strong> ${escape(booking.child_guests)}</p>
       <p><strong>Total guests:</strong> ${escape(booking.guests)}</p>
+      <p><strong>Subtotal:</strong> ${escape(money(booking.subtotal))}</p>
+      <p><strong>Puerto Rico IVU (11.5%):</strong> ${escape(money(booking.tax_total))}</p>
       <p><strong>Total paid:</strong> ${escape(money(booking.total))}</p>
     </body></html>`;
 }

@@ -1,5 +1,6 @@
 const Stripe = require('stripe');
 const { supabase } = require('./_supabase-admin');
+const { ivuFor } = require('./_ivu');
 
 const tourTimes = new Set(['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:30 PM']);
 
@@ -27,7 +28,9 @@ module.exports = async function handler(req, res) {
     if (!tourTimes.has(tourTime)) throw new Error('Choose an available tour time.');
     if (adults < 1) throw new Error('Each booking needs at least one paying adult.');
     if (guests > 50) throw new Error('For groups larger than 50, please call 787-805-1000.');
-    const total = adults * 45;
+    const subtotal = adults * 45;
+    const taxTotal = ivuFor(subtotal);
+    const total = subtotal + taxTotal;
     const [booking] = await supabase('tour_bookings?select=*', {
       method: 'POST',
       headers: { Prefer: 'return=representation' },
@@ -35,7 +38,7 @@ module.exports = async function handler(req, res) {
         customer_name: customer.full_name, email: customer.email, phone: customer.phone,
         tour_date: tourDate, tour_time: tourTime, guests, adult_guests: adults,
         child_guests: children, notes: req.body.notes || null,
-        status: 'pending', payment_status: 'unpaid', total
+        status: 'pending', payment_status: 'unpaid', subtotal, tax_total: taxTotal, total
       })
     });
     const origin = `${req.headers['x-forwarded-proto'] || 'https'}://${req.headers.host}`;
@@ -49,6 +52,13 @@ module.exports = async function handler(req, res) {
           currency: 'usd',
           unit_amount: 4500,
           product_data: { name: 'Destilería Coquí Distillery Tour', description: `${tourDate} at ${tourTime}` }
+        }
+      }, {
+        quantity: 1,
+        price_data: {
+          currency: 'usd',
+          unit_amount: Math.round(taxTotal * 100),
+          product_data: { name: 'Puerto Rico IVU (11.5%)' }
         }
       }],
       metadata: { tour_booking_id: booking.id, fulfillment_type: 'tour' },

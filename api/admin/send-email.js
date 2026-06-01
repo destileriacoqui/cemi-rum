@@ -48,6 +48,8 @@ function renderEmail(order, template) {
         <div style="margin-top:28px;padding:20px;background:#fff;border:1px solid #e6dcc8">
           <p style="margin-top:0"><strong>Order ${escape(order.id.slice(0, 8).toUpperCase())}</strong></p>
           <ul>${items}</ul>
+          <p><strong>Subtotal: ${escape(money(order.subtotal))}</strong></p>
+          <p><strong>Puerto Rico IVU (11.5%): ${escape(money(order.tax_total))}</strong></p>
           <p style="margin-bottom:0"><strong>Total: ${escape(money(order.total))}</strong></p>
         </div>
         <p style="margin-top:28px;color:#7d6654">Destilería Coquí<br>Mayagüez, Puerto Rico<br>787-805-1000</p>

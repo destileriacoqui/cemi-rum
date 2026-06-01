@@ -3,6 +3,8 @@
   const itemsRoot = document.querySelector('[data-pickup-items]');
   const customerRoot = document.querySelector('[data-pickup-customer]');
   const subtotalRoot = document.querySelector('[data-pickup-subtotal]');
+  const taxRoot = document.querySelector('[data-pickup-tax]');
+  const totalRoot = document.querySelector('[data-pickup-total]');
   const message = document.querySelector('[data-pickup-message]');
   const submit = document.querySelector('[data-submit-pickup]');
   const escape = value => String(value || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -23,7 +25,11 @@
     <p><span>Name</span>${escape(customer.full_name)}</p>
     <p><span>Email</span>${escape(customer.email)}</p>
     <p><span>Phone</span>${escape(customer.phone || 'Not provided')}</p>`;
-  subtotalRoot.textContent = cart.money(cart.subtotal());
+  const subtotal = cart.subtotal();
+  const taxTotal = Math.round(subtotal * 0.115 * 100) / 100;
+  subtotalRoot.textContent = cart.money(subtotal);
+  taxRoot.textContent = cart.money(taxTotal);
+  totalRoot.textContent = cart.money(subtotal + taxTotal);
 
   async function responseJson(response) {
     const text = await response.text();

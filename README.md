@@ -63,9 +63,9 @@ git push -u origin main
 
 ## Stripe Integration
 
-Product pages add bottles to a shared cart. The shipping button calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. Shipping is a flat `$20` charge added once per shipped order, regardless of bottle quantity. Pickup orders do not receive a shipping charge.
+Product pages add bottles to a shared cart. The shipping button calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. Puerto Rico IVU is charged at `11.5%` on taxable products. Shipping is a flat `$20` charge added once per shipped order, regardless of bottle quantity, and is excluded from the IVU taxable base. Pickup orders do not receive a shipping charge.
 
-The tours page lets visitors choose a date, time, paying adult count, and free child count. `/api/create-tour-checkout-session` saves the booking in Supabase and opens Stripe-hosted Checkout at `$45` per adult. Children under 18 are saved with the booking and are not charged. After payment, the customer sees `/tour-confirmation` and the `/api/stripe-webhook` endpoint confirms the booking.
+The tours page lets visitors choose a date, time, paying adult count, and free child count. `/api/create-tour-checkout-session` saves the booking in Supabase and opens Stripe-hosted Checkout at `$45` per adult plus `11.5%` Puerto Rico IVU. Children under 18 are saved with the booking and are not charged. After payment, the customer sees `/tour-confirmation` and the `/api/stripe-webhook` endpoint confirms the booking.
 
 The Stripe secret key and webhook secret are Vercel server environment variables. They are never sent to the browser.
 

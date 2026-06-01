@@ -16,4 +16,6 @@
       <strong>${CoquiCart.money(item.price * item.quantity)}</strong>
     </article>`).join('');
   document.querySelector('[data-confirmation-subtotal]').textContent = CoquiCart.money(receipt.subtotal);
+  document.querySelector('[data-confirmation-tax]').textContent = CoquiCart.money(receipt.tax_total);
+  document.querySelector('[data-confirmation-total]').textContent = CoquiCart.money(receipt.total);
 })();

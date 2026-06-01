@@ -10,7 +10,9 @@
   }
 
   function updateTotal() {
-    total.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(adults() * 45);
+    const subtotal = adults() * 45;
+    const tax = Math.round(subtotal * 0.115 * 100) / 100;
+    total.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(subtotal + tax);
   }
 
   async function responseJson(response) {

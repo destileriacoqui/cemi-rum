@@ -84,6 +84,9 @@
             <h3>Order details</h3>
             <ul class="admin-items">${itemList(order)}</ul>
             <p><strong>Method:</strong> ${escape(order.fulfillment_type === 'pickup' ? 'Pickup' : 'Shipping')}</p>
+            <p><strong>Subtotal:</strong> ${escape(money(order.subtotal))}</p>
+            <p><strong>Puerto Rico IVU:</strong> ${escape(money(order.tax_total))}</p>
+            <p><strong>Shipping:</strong> ${escape(money(order.shipping_total))}</p>
             <p><strong>Payment:</strong> ${escape(label(order.payment_status))}</p>
           </section>
           <section>
@@ -137,6 +140,8 @@
             <p><strong>Adults:</strong> ${escape(booking.adult_guests)}</p>
             <p><strong>Children under 18:</strong> ${escape(booking.child_guests)}</p>
             <p><strong>Total guests:</strong> ${escape(booking.guests)}</p>
+            <p><strong>Subtotal:</strong> ${escape(money(booking.subtotal))}</p>
+            <p><strong>Puerto Rico IVU:</strong> ${escape(money(booking.tax_total))}</p>
           </section>
           <section>
             <h3>Payment & notes</h3>
