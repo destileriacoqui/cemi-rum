@@ -79,6 +79,8 @@ Order and tour confirmation emails use Resend. Bottle customers receive an order
 
 Add each Resend setting as its own Vercel environment variable. Do not paste multiple `NAME=value` pairs into one field.
 
+The private `/admin/orders` dashboard supports a second full-access staff login through `ADMIN_USERNAME_2` and `ADMIN_PASSWORD_2`. Staff can open Stripe-hosted Checkout for an unpaid pickup request and permanently delete bottle orders or tour reservations after an explicit confirmation.
+
 ## Customer account confirmation
 
 Supabase Auth must be configured with the deployed website URL:

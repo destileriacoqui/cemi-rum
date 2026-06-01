@@ -106,6 +106,8 @@
           ${actionButton(order, 'completed', 'Mark as Picked Up')}
           ${actionButton(order, 'cancelled', 'Cancel Order', 'admin-button-danger')}
           ${pickup && pickup.identity_verification_status !== 'verified' ? `<button class="admin-button" type="button" data-id-verified="${escape(order.id)}">Mark ID Checked</button>` : ''}
+          ${pickup && order.payment_status !== 'paid' && status !== 'cancelled' ? `<button class="admin-button admin-button-email" type="button" data-pay-order="${escape(order.id)}">Open Secure Payment</button>` : ''}
+          <button class="admin-button admin-button-danger" type="button" data-delete-order="${escape(order.id)}">Delete Order</button>
           <div class="admin-email-controls">
             <label class="admin-email-template">Email template
               <select data-email-template>
@@ -162,6 +164,7 @@
           ${booking.status !== 'cancelled' ? `<button class="admin-button admin-button-danger" type="button" data-tour-status="cancelled" data-tour-id="${escape(booking.id)}">Cancel Tour</button>` : ''}
           <button class="admin-button admin-button-quiet" type="button" data-copy-email="${escape(booking.email)}">Copy Customer Email</button>
           <button class="admin-button admin-button-email" type="button" data-send-tour-email="${escape(booking.id)}">Send Tour Confirmation</button>
+          <button class="admin-button admin-button-danger" type="button" data-delete-tour="${escape(booking.id)}">Delete Tour</button>
         </footer>
       </article>`;
   }
@@ -207,6 +210,9 @@
     const tourStatusButton = event.target.closest('[data-tour-status]');
     const tourEmailButton = event.target.closest('[data-send-tour-email]');
     const identityButton = event.target.closest('[data-id-verified]');
+    const payOrderButton = event.target.closest('[data-pay-order]');
+    const deleteOrderButton = event.target.closest('[data-delete-order]');
+    const deleteTourButton = event.target.closest('[data-delete-tour]');
     if (statusButton) {
       statusButton.disabled = true;
       setMessage('Updating order...');
@@ -235,6 +241,52 @@
       } catch (error) {
         setMessage(error.message, true);
         identityButton.disabled = false;
+      }
+    }
+    if (payOrderButton) {
+      payOrderButton.disabled = true;
+      setMessage('Opening secure payment...');
+      try {
+        const result = await api('/api/admin/orders', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'create_pickup_payment_checkout', order_id: payOrderButton.dataset.payOrder })
+        });
+        location.href = result.checkout_url;
+      } catch (error) {
+        setMessage(error.message, true);
+        payOrderButton.disabled = false;
+      }
+    }
+    if (deleteOrderButton) {
+      if (!confirm('Delete this bottle order permanently? This cannot be undone.')) return;
+      deleteOrderButton.disabled = true;
+      setMessage('Deleting order...');
+      try {
+        await api('/api/admin/orders', {
+          method: 'DELETE',
+          body: JSON.stringify({ order_id: deleteOrderButton.dataset.deleteOrder })
+        });
+        setMessage('Order deleted.');
+        await loadOrders();
+      } catch (error) {
+        setMessage(error.message, true);
+        deleteOrderButton.disabled = false;
+      }
+    }
+    if (deleteTourButton) {
+      if (!confirm('Delete this tour reservation permanently? This cannot be undone.')) return;
+      deleteTourButton.disabled = true;
+      setMessage('Deleting tour...');
+      try {
+        await api('/api/admin/orders', {
+          method: 'DELETE',
+          body: JSON.stringify({ tour_booking_id: deleteTourButton.dataset.deleteTour })
+        });
+        setMessage('Tour reservation deleted.');
+        await loadOrders();
+      } catch (error) {
+        setMessage(error.message, true);
+        deleteTourButton.disabled = false;
       }
     }
     if (emailButton) {

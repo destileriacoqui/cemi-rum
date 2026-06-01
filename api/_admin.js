@@ -11,7 +11,7 @@ function secureEqual(left, right) {
 }
 
 function secret() {
-  const value = process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD;
+  const value = process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD_2;
   if (!value) throw new Error('Admin login is not configured yet.');
   return value;
 }
@@ -51,11 +51,19 @@ function verifySession(req) {
   }
 }
 
+function adminAccounts() {
+  return [
+    { username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD },
+    { username: process.env.ADMIN_USERNAME_2, password: process.env.ADMIN_PASSWORD_2 }
+  ].filter(account => account.username && account.password);
+}
+
 function credentialsMatch(username, password) {
-  if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
+  const accounts = adminAccounts();
+  if (!accounts.length) {
     throw new Error('Admin login is not configured yet.');
   }
-  return secureEqual(username, process.env.ADMIN_USERNAME) && secureEqual(password, process.env.ADMIN_PASSWORD);
+  return accounts.find(account => secureEqual(username, account.username) && secureEqual(password, account.password))?.username || null;
 }
 
 function setSessionCookie(res, username) {

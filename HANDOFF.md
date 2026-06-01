@@ -106,6 +106,8 @@ This confirms Express Pickup is excluded from IVU.
   - Mark as Picked Up
   - Cancel Order
   - Mark ID Checked
+  - Open Secure Payment for an unpaid pickup request
+  - Permanently delete a bottle order or tour reservation after confirmation
 - `Copy Customer Email` was removed
 - Email template selector and `Send Email to Customer` button are grouped together
 - Status changes send customer pickup-ready, picked-up, or cancellation emails when Resend is configured
@@ -168,6 +170,8 @@ orders@prsugar.com
 destileriacoqui07@gmail.com
 maria@prsugar.com
 ```
+
+`orders@prsugar.com` was added to tour staff recipients on June 1, 2026 (commit `44d3c42`), matching the bottle-order staff recipient list.
 
 ### Account Confirmation Emails
 
@@ -265,6 +269,8 @@ STRIPE_SECRET_KEY=...
 STRIPE_WEBHOOK_SECRET=...
 ADMIN_USERNAME=jessica
 ADMIN_PASSWORD=...
+ADMIN_USERNAME_2=...
+ADMIN_PASSWORD_2=...
 ADMIN_SESSION_SECRET=...
 RESEND_API_KEY=...
 ADMIN_EMAIL_FROM=Destilería Coquí <orders@prsugar.com>
@@ -272,6 +278,8 @@ ADMIN_EMAIL_REPLY_TO=orders@prsugar.com
 ```
 
 Never expose service role, Stripe secret, webhook secret, Resend key, or admin password in frontend code.
+
+`ADMIN_USERNAME_2` and `ADMIN_PASSWORD_2` create a second full-access staff login. Both staff accounts use the same protected dashboard and permissions.
 
 ## Stripe
 
