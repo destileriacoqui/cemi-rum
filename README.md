@@ -73,7 +73,7 @@ The Stripe secret key and webhook secret are Vercel server environment variables
 
 Enable Stripe Identity in the Stripe Dashboard before launch. The site uses hosted document verification pages, so raw ID photos are not stored in this website or Supabase.
 
-Order and tour confirmation emails use Resend. Bottle customers receive an order confirmation, pickup updates can be sent automatically from the admin dashboard status buttons, and tour customers receive a paid-booking confirmation. `orders@prsugar.com`, `destileriacoqui07@gmail.com`, and `maria@prsugar.com` receive new bottle-order details. Configure `RESEND_API_KEY`, `ADMIN_EMAIL_FROM=Destilería Coquí <orders@prsugar.com>`, and `ADMIN_EMAIL_REPLY_TO=orders@prsugar.com` in Vercel before enabling real email delivery. Supabase Auth account-confirmation emails use the custom SMTP settings in the Supabase dashboard.
+Order and tour confirmation emails use Resend. Bottle customers receive an order confirmation, pickup updates can be sent automatically from the admin dashboard status buttons, and tour customers receive a paid-booking confirmation. `orders@prsugar.com`, `destileriacoqui07@gmail.com`, and `maria@prsugar.com` receive new bottle-order and tour-booking details. Configure `RESEND_API_KEY`, `ADMIN_EMAIL_FROM=Destilería Coquí <orders@prsugar.com>`, and `ADMIN_EMAIL_REPLY_TO=orders@prsugar.com` in Vercel before enabling real email delivery. Supabase Auth account-confirmation emails use the custom SMTP settings in the Supabase dashboard.
 
 ## Customer account confirmation
 
