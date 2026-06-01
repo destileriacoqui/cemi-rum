@@ -48,6 +48,7 @@ c6fd153 Refresh optimized storefront asset URLs
 - Required Stripe Identity verification before shipping checkout
 - Flat shipping fee: `$20` once per shipped order, regardless of bottle quantity
 - Puerto Rico IVU: `11.5%`
+- Shipping fee is separate and excluded from IVU
 - Shipping checkout and Stripe keys remain server-side
 
 ### Pickup Orders
@@ -220,6 +221,7 @@ Applied Supabase migrations:
 ```text
 supabase/migrations/20260601111500_add_express_pickup_identity_and_security.sql
 supabase/migrations/20260601124500_add_pickup_payment_choice_and_order_emails.sql
+supabase/migrations/20260601201500_document_non_taxable_shipping.sql
 ```
 
 Main tables:
