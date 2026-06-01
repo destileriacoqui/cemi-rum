@@ -7,8 +7,8 @@ Updated: June 1, 2026
 - Repository: `https://github.com/destileriacoqui/cemi-rum`
 - Branch: `main`
 - Production site: `https://cemi-rum.vercel.app`
-- Latest deployed commit: `1ecd26d` (`Document tour staff email recipients`)
-- Latest Vercel deployment: `dpl_3NSvmCGEetYTr59f7NfQYYWq7HZh`
+- Latest deployed code commit: `49ae601` (`Exclude flat shipping from Puerto Rico IVU`)
+- Latest verified Vercel deployment: `dpl_6moikcgykSKPgWVd2raPZENVuzsj`
 - Deployment state checked after push: `READY`
 - Supabase project: `autkqbfgniopxldszdur`
 - Vercel project: `prj_Tqp4zZdhSn0HllZnyZzwS85amrX3`
