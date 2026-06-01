@@ -88,8 +88,8 @@
             <p><strong>Puerto Rico IVU:</strong> ${escape(money(order.tax_total))}</p>
             <p><strong>Shipping:</strong> ${escape(money(order.shipping_total))}</p>
             <p><strong>Express Pickup:</strong> ${pickup?.express_pickup ? 'Yes' : 'No'}</p>
-            ${pickup?.express_pickup ? `<p><strong>Express fee:</strong> ${escape(money(pickup.express_pickup_fee))}</p><p><strong>Target:</strong> Pickup order in 1 day, subject to availability</p>` : ''}
-            <p><strong>Payment choice:</strong> ${escape((pickup?.payment_method || order.payment_method) === 'pay_in_store' ? 'Pay in store' : (order.payment_status === 'paid' ? 'Paid online with Stripe' : 'Pay online with Stripe'))}</p>
+            ${pickup?.express_pickup ? `<p><strong>Express fee (non-taxable):</strong> ${escape(money(pickup.express_pickup_fee))}</p><p><strong>Target:</strong> Pickup order in 1 day, subject to availability</p>` : ''}
+            <p><strong>Payment method:</strong> ${escape((pickup?.payment_method || order.payment_method) === 'pay_in_store' ? 'Pay in person at pickup' : (order.payment_status === 'paid' ? 'Paid online' : 'Pay online now'))}</p>
             <p><strong>Payment:</strong> ${escape(label(order.payment_status))}</p>
           </section>
           <section>
@@ -106,16 +106,17 @@
           ${actionButton(order, 'completed', 'Mark as Picked Up')}
           ${actionButton(order, 'cancelled', 'Cancel Order', 'admin-button-danger')}
           ${pickup && pickup.identity_verification_status !== 'verified' ? `<button class="admin-button" type="button" data-id-verified="${escape(order.id)}">Mark ID Checked</button>` : ''}
-          <button class="admin-button admin-button-quiet" type="button" data-copy-email="${escape(order.email)}">Copy Customer Email</button>
-          <label class="admin-email-template">Email template
-            <select data-email-template>
-              <option value="received" ${emailTemplate === 'received' ? 'selected' : ''}>Order received</option>
-              <option value="ready" ${emailTemplate === 'ready' ? 'selected' : ''}>Ready for pickup</option>
-              <option value="picked_up" ${emailTemplate === 'picked_up' ? 'selected' : ''}>Picked up confirmation</option>
-              <option value="cancelled" ${emailTemplate === 'cancelled' ? 'selected' : ''}>Cancelled order</option>
-            </select>
-          </label>
-          <button class="admin-button admin-button-email" type="button" data-send-email="${escape(order.id)}">Send Email to Customer</button>
+          <div class="admin-email-controls">
+            <label class="admin-email-template">Email template
+              <select data-email-template>
+                <option value="received" ${emailTemplate === 'received' ? 'selected' : ''}>Order received</option>
+                <option value="ready" ${emailTemplate === 'ready' ? 'selected' : ''}>Ready for pickup</option>
+                <option value="picked_up" ${emailTemplate === 'picked_up' ? 'selected' : ''}>Picked up confirmation</option>
+                <option value="cancelled" ${emailTemplate === 'cancelled' ? 'selected' : ''}>Cancelled order</option>
+              </select>
+            </label>
+            <button class="admin-button admin-button-email" type="button" data-send-email="${escape(order.id)}">Send Email to Customer</button>
+          </div>
         </footer>
       </article>`;
   }
@@ -202,15 +203,10 @@
 
   root.addEventListener('click', async event => {
     const statusButton = event.target.closest('[data-status]');
-    const copyButton = event.target.closest('[data-copy-email]');
     const emailButton = event.target.closest('[data-send-email]');
     const tourStatusButton = event.target.closest('[data-tour-status]');
     const tourEmailButton = event.target.closest('[data-send-tour-email]');
     const identityButton = event.target.closest('[data-id-verified]');
-    if (copyButton) {
-      await navigator.clipboard.writeText(copyButton.dataset.copyEmail);
-      setMessage('Customer email copied.');
-    }
     if (statusButton) {
       statusButton.disabled = true;
       setMessage('Updating order...');

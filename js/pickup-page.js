@@ -8,6 +8,7 @@
   const express = document.querySelector('[data-express-pickup]');
   const expressRoot = document.querySelector('[data-pickup-express]');
   const expressRow = document.querySelector('[data-express-row]');
+  const onlineIdentityActions = document.querySelector('[data-online-identity-actions]');
   const identityStatus = document.querySelector('[data-pickup-identity-status]');
   const message = document.querySelector('[data-pickup-message]');
   const submit = document.querySelector('[data-submit-pickup]');
@@ -67,6 +68,11 @@
     document.querySelector('[name=identity_method][value=stripe_identity]').checked = true;
     identityStatus.textContent = 'ID verified securely online.';
   }
+  function renderIdentity() {
+    onlineIdentityActions.hidden = document.querySelector('[name=identity_method]:checked').value !== 'stripe_identity';
+  }
+  document.querySelectorAll('[name=identity_method]').forEach(input => input.addEventListener('change', renderIdentity));
+  renderIdentity();
 
   async function responseJson(response) {
     const text = await response.text();
@@ -97,7 +103,7 @@
     try {
       const token = window.CoquiSupabase.getSession()?.access_token;
       const identityVerificationMethod = document.querySelector('[name=identity_method]:checked').value;
-      if (identityVerificationMethod === 'stripe_identity' && !verifiedSessionId()) throw new Error('Verify your ID securely online before submitting, or choose to show your ID at pickup.');
+      if (identityVerificationMethod === 'stripe_identity' && !verifiedSessionId()) throw new Error('Verify your ID securely online before submitting, or choose to show your ID in person.');
       const response = await fetch('/api/create-pickup-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },

@@ -36,8 +36,8 @@
     ? 'ID verification: completed securely online.'
     : 'ID verification: bring a valid photo ID when picking up your order.';
   document.querySelector('[data-confirmation-payment]').textContent = receipt.payment_method === 'pay_now'
-    ? 'Payment: paid securely online with Stripe. Your Stripe receipt has been sent by email.'
-    : 'Payment: pay in store when picking up your order.';
+    ? 'Payment method: Paid online. Your Stripe receipt has been sent by email.'
+    : 'Payment method: Pay in person at pickup.';
   if (receipt.payment_method === 'pay_now') {
     document.querySelector('[data-confirmation-lede]').textContent = 'Your payment is confirmed and your pickup order has been submitted. You will receive an email or text message when your order is ready for pickup.';
   }

@@ -1,6 +1,6 @@
 const { supabase } = require('./_supabase-admin');
 
-const staffRecipients = ['destileriacoqui07@gmail.com', 'maria@prsugar.com'];
+const staffRecipients = ['orders@prsugar.com', 'destileriacoqui07@gmail.com', 'maria@prsugar.com'];
 
 const templates = {
   received: {
@@ -36,8 +36,8 @@ function money(value) {
 }
 
 function paymentLabel(order) {
-  if (order.payment_method === 'pay_in_store') return 'Pay in store';
-  return order.payment_status === 'paid' ? 'Paid online with Stripe' : 'Pay online with Stripe';
+  if (order.payment_method === 'pay_in_store') return 'Pay in person at pickup';
+  return order.payment_status === 'paid' ? 'Paid online' : 'Pay online now';
 }
 
 function renderEmail(order, template) {
@@ -56,7 +56,7 @@ function renderEmail(order, template) {
           <ul>${items}</ul>
           <p><strong>Payment:</strong> ${escape(paymentLabel(order))}</p>
           <p><strong>Subtotal:</strong> ${escape(money(order.subtotal))}</p>
-          ${order.express_pickup ? `<p><strong>Express Pickup:</strong> Yes (${escape(money(order.express_pickup_fee))})</p>` : ''}
+          ${order.express_pickup ? `<p><strong>Express Pickup:</strong> Yes (${escape(money(order.express_pickup_fee))}, non-taxable)</p>` : ''}
           <p><strong>Puerto Rico IVU (11.5%):</strong> ${escape(money(order.tax_total))}</p>
           ${Number(order.shipping_total) ? `<p><strong>Shipping:</strong> ${escape(money(order.shipping_total))}</p>` : ''}
           <p style="margin-bottom:0"><strong>Total:</strong> ${escape(money(order.total))}</p>
@@ -77,7 +77,7 @@ function staffEmail(order) {
       <p><strong>Payment:</strong> ${escape(paymentLabel(order))}</p>
       <p><strong>Items:</strong></p>
       <ul>${(order.order_items || []).map(item => `<li>${escape(item.name)} &times; ${Number(item.quantity) || 1}</li>`).join('')}</ul>
-      <p><strong>Express Pickup:</strong> ${order.express_pickup ? `Yes (${escape(money(order.express_pickup_fee))})` : 'No'}</p>
+      <p><strong>Express Pickup:</strong> ${order.express_pickup ? `Yes (${escape(money(order.express_pickup_fee))}, non-taxable)` : 'No'}</p>
       <p><strong>Puerto Rico IVU:</strong> ${escape(money(order.tax_total))}</p>
       <p><strong>Total:</strong> ${escape(money(order.total))}</p>
     </body></html>`;
