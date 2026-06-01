@@ -11,6 +11,7 @@
   const identityStatus = document.querySelector('[data-pickup-identity-status]');
   const message = document.querySelector('[data-pickup-message]');
   const submit = document.querySelector('[data-submit-pickup]');
+  const paymentMethod = () => document.querySelector('[name=payment_method]:checked').value;
   const escape = value => String(value || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const customer = (() => {
     try { return JSON.parse(sessionStorage.getItem('coqui_pickup_customer')) || {}; }
@@ -33,7 +34,7 @@
   const expressFee = () => express.checked ? items.reduce((sum, item) => sum + item.quantity, 0) * 5 : 0;
   function renderTotals() {
     const fee = expressFee();
-    const taxTotal = Math.round((subtotal + fee) * 0.115 * 100) / 100;
+    const taxTotal = Math.round(subtotal * 0.115 * 100) / 100;
     subtotalRoot.textContent = cart.money(subtotal);
     expressRoot.textContent = cart.money(fee);
     expressRow.hidden = !fee;
@@ -44,6 +45,20 @@
   express.checked = sessionStorage.getItem('coqui_pickup_express') === 'yes';
   express.addEventListener('change', renderTotals);
   renderTotals();
+  function renderPayment() {
+    submit.textContent = paymentMethod() === 'pay_now' ? 'Continue to Secure Payment' : 'Submit Pickup Request';
+    sessionStorage.setItem('coqui_pickup_payment_method', paymentMethod());
+  }
+  const savedPaymentMethod = sessionStorage.getItem('coqui_pickup_payment_method');
+  if (savedPaymentMethod) {
+    const savedPayment = document.querySelector(`[name=payment_method][value="${savedPaymentMethod}"]`);
+    if (savedPayment) savedPayment.checked = true;
+  }
+  document.querySelectorAll('[name=payment_method]').forEach(input => input.addEventListener('change', renderPayment));
+  renderPayment();
+  if (new URLSearchParams(location.search).get('payment') === 'cancelled') {
+    message.textContent = 'Stripe payment was cancelled. Your cart is still here so you can try again or choose to pay in store.';
+  }
 
   const verifiedSessionId = () => sessionStorage.getItem('coqui_identity_verified_purpose') === 'pickup'
     ? sessionStorage.getItem('coqui_identity_verified_session_id')
@@ -88,6 +103,7 @@
         headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
         body: JSON.stringify({
           items, customer, express_pickup: express.checked,
+          payment_method: paymentMethod(),
           identity_verification_method: identityVerificationMethod,
           stripe_identity_verification_session_id: verifiedSessionId()
         })
@@ -95,6 +111,7 @@
       const result = await responseJson(response);
       if (!response.ok) throw new Error(result.error || 'Your pickup request could not be submitted.');
       sessionStorage.setItem('coqui_pickup_receipt', JSON.stringify(result));
+      if (result.checkout_url) return location.href = result.checkout_url;
       cart.clear();
       location.href = '/pickup-confirmation';
     } catch (error) {

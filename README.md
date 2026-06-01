@@ -65,7 +65,7 @@ git push -u origin main
 
 Product pages add bottles to a shared cart. Shipping starts with Stripe-hosted ID verification and then calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. Shipping is a flat `$20` charge added once per shipped order, regardless of bottle quantity. Puerto Rico IVU is charged at `11.5%` on the taxable merchandise and shipping total.
 
-Pickup orders do not receive a shipping charge. Customers can choose Express Pickup for pickup in 1 day, subject to product availability, at `$5` per selected bottle. IVU applies to the Express Pickup fee. Customers can complete Stripe-hosted ID verification online or show a valid photo ID when they arrive. Staff can filter Express Pickup orders and ID checks in `/admin/orders`.
+Pickup orders do not receive a shipping charge. Customers can choose Express Pickup for pickup in 1 day, subject to product availability, at `$5` per selected bottle. The Express Pickup fee is displayed separately and is excluded from the IVU calculation. Customers can choose to pay in store or continue to Stripe-hosted Checkout immediately. They can complete Stripe-hosted ID verification online or show a valid photo ID when they arrive. Staff can filter Express Pickup orders and ID checks in `/admin/orders`.
 
 The tours page lets visitors choose a date, time, paying adult count, and free child count. `/api/create-tour-checkout-session` saves the booking in Supabase and opens Stripe-hosted Checkout at `$45` per adult plus `11.5%` Puerto Rico IVU. Children under 18 are saved with the booking and are not charged. After payment, the customer sees `/tour-confirmation` and the `/api/stripe-webhook` endpoint confirms the booking.
 
@@ -73,7 +73,7 @@ The Stripe secret key and webhook secret are Vercel server environment variables
 
 Enable Stripe Identity in the Stripe Dashboard before launch. The site uses hosted document verification pages, so raw ID photos are not stored in this website or Supabase.
 
-Tour confirmation emails use Resend. The customer receives a confirmation, and `destileriacoqui07@gmail.com` plus `maria@prsugar.com` receive the booking contact details, date, time, and guest counts. Configure `RESEND_API_KEY` and `ADMIN_EMAIL_FROM` in Vercel before enabling real email delivery.
+Order and tour confirmation emails use Resend. Bottle customers receive an order confirmation, pickup updates can be sent automatically from the admin dashboard status buttons, and tour customers receive a paid-booking confirmation. `destileriacoqui07@gmail.com` plus `maria@prsugar.com` receive new bottle-order and tour-booking details. Configure `RESEND_API_KEY` and `ADMIN_EMAIL_FROM` in Vercel before enabling real email delivery. Set optional `ADMIN_EMAIL_REPLY_TO` when customer replies should go to a separate inbox. Supabase Auth account-confirmation emails use the custom SMTP settings in the Supabase dashboard.
 
 ## Customer account confirmation
 

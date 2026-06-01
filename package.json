@@ -12,7 +12,7 @@
     "serve": "^14.2.3"
   },
   "engines": {
-    "node": ">=18"
+    "node": "24.x"
   },
   "dependencies": {
     "stripe": "^18.5.0"

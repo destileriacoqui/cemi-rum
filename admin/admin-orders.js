@@ -89,6 +89,7 @@
             <p><strong>Shipping:</strong> ${escape(money(order.shipping_total))}</p>
             <p><strong>Express Pickup:</strong> ${pickup?.express_pickup ? 'Yes' : 'No'}</p>
             ${pickup?.express_pickup ? `<p><strong>Express fee:</strong> ${escape(money(pickup.express_pickup_fee))}</p><p><strong>Target:</strong> Pickup order in 1 day, subject to availability</p>` : ''}
+            <p><strong>Payment choice:</strong> ${escape((pickup?.payment_method || order.payment_method) === 'pay_in_store' ? 'Pay in store' : (order.payment_status === 'paid' ? 'Paid online with Stripe' : 'Pay online with Stripe'))}</p>
             <p><strong>Payment:</strong> ${escape(label(order.payment_status))}</p>
           </section>
           <section>
@@ -214,11 +215,11 @@
       statusButton.disabled = true;
       setMessage('Updating order...');
       try {
-        await api('/api/admin/orders', {
+        const result = await api('/api/admin/orders', {
           method: 'PATCH',
           body: JSON.stringify({ order_id: statusButton.dataset.orderId, status: statusButton.dataset.status })
         });
-        setMessage('Order status updated.');
+        setMessage(result.email?.sent ? 'Order status updated and customer email sent.' : 'Order status updated.');
         await loadOrders();
       } catch (error) {
         setMessage(error.message, true);

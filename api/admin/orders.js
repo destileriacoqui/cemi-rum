@@ -1,5 +1,6 @@
 const { requireAdmin } = require('../_admin');
 const { supabase } = require('../_supabase-admin');
+const { orderWithItems, sendOrderEmail } = require('../_order-email');
 
 const allowedStatuses = new Set(['pending', 'ready', 'completed', 'cancelled']);
 const allowedTourStatuses = new Set(['pending', 'confirmed', 'completed', 'cancelled']);
@@ -50,7 +51,20 @@ module.exports = async function handler(req, res) {
         method: 'PATCH',
         body: JSON.stringify({ status: pickupStatus(status), updated_at: updatedAt })
       });
-      return res.status(200).json({ order_id: orderId, status });
+      let email = { sent: false };
+      const template = status === 'ready' ? 'ready' : status === 'completed' ? 'picked_up' : status === 'cancelled' ? 'cancelled' : null;
+      if (template) {
+        try {
+          const order = await orderWithItems(orderId);
+          if (order) {
+            const result = await sendOrderEmail(order, template);
+            email = { sent: true, id: result.id };
+          }
+        } catch (error) {
+          email = { sent: false, reason: error.message };
+        }
+      }
+      return res.status(200).json({ order_id: orderId, status, email });
     }
     res.status(405).json({ error: 'Method not allowed.' });
   } catch (error) {

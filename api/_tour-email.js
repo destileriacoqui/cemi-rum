@@ -65,7 +65,10 @@ async function sendResend(payload) {
       Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({
+      ...payload,
+      ...(process.env.ADMIN_EMAIL_REPLY_TO ? { reply_to: process.env.ADMIN_EMAIL_REPLY_TO } : {})
+    })
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(result.message || 'Tour confirmation email could not be sent.');

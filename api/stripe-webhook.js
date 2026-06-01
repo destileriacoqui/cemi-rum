@@ -1,6 +1,7 @@
 const Stripe = require('stripe');
 const { supabase } = require('./_supabase-admin');
 const { sendTourConfirmation } = require('./_tour-email');
+const { sendOrderConfirmation } = require('./_order-email');
 
 async function readBody(req) {
   const chunks = [];
@@ -46,6 +47,7 @@ module.exports = async function handler(req, res) {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
       const orderId = session.metadata?.order_id;
+      const pickupRequestId = session.metadata?.pickup_request_id;
       const tourBookingId = session.metadata?.tour_booking_id;
       if (orderId) {
         await updateOrder(orderId, {
@@ -55,6 +57,19 @@ module.exports = async function handler(req, res) {
           shipping_total: (session.total_details?.amount_shipping || 0) / 100,
           total: (session.amount_total || 0) / 100
         });
+        if (pickupRequestId) {
+          await supabase(`pickup_requests?id=eq.${encodeURIComponent(pickupRequestId)}`, {
+            method: 'PATCH',
+            body: JSON.stringify({
+              payment_status: session.payment_status === 'paid' ? 'paid' : session.payment_status,
+              stripe_session_id: session.id,
+              updated_at: new Date().toISOString()
+            })
+          });
+        }
+        if (session.payment_status === 'paid') {
+          try { await sendOrderConfirmation(orderId); } catch (_) {}
+        }
       }
       if (tourBookingId && session.payment_status === 'paid') await confirmTourBooking(tourBookingId, session);
     }
