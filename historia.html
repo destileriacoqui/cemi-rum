@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — Destilería Coquí</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #F7F2E8;
+      --cream-mid:  #EFE8D8;
+      --cream-dark: #E7DAC9;
+      --ink:        #1A1207;
+      --amber:      #8C3F16;
+      --gold:       #C49348;
+      --brown:      #60422E;
+      --muted:      #7D6654;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "kern" 1, "liga" 1;
+    }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 200;
+      padding: 2.25rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.55s ease, padding 0.45s ease, box-shadow 0.45s ease;
+    }
+    nav.scrolled {
+      background: rgba(247,242,232,0.97);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      padding: 1.25rem 4rem;
+      box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; transition: color 0.55s ease;
+    }
+    nav.scrolled .nav-logo { color: var(--ink); }
+    .nav-links { display: flex; gap: 2.75rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(247,242,232,0.75);
+      text-decoration: none; transition: color 0.45s ease;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    nav.scrolled .nav-links a:hover { color: var(--ink); }
+    .nav-links a[aria-current="page"] { color: var(--gold); opacity: 1; }
+    nav.scrolled .nav-links a[aria-current="page"] { color: var(--amber); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100dvh;
+      display: grid; grid-template-columns: 55% 45%;
+      overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 25%;
+      will-change: transform;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(115deg, rgba(14,7,2,0.92) 0%, rgba(14,7,2,0.5) 50%, rgba(14,7,2,0.1) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 10; grid-column: 1;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 5rem 8rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.6rem; font-weight: 400; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2.25rem;
+      display: flex; align-items: center; gap: 1.25rem; opacity: 0.9;
+    }
+    .hero-eyebrow::before { content: ''; width: 2.2rem; height: 0.5px; background: var(--gold); opacity: 0.8; }
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(4.5rem, 9vw, 10.5rem);
+      font-weight: 200; color: var(--cream);
+      line-height: 0.88; letter-spacing: -0.04em;
+      margin-bottom: 2.75rem;
+    }
+    .hero-h1 em { font-style: italic; color: var(--gold); display: block; }
+    .hero-sub {
+      font-size: 0.88rem; font-weight: 300;
+      color: rgba(247,242,232,0.5); max-width: 42ch; line-height: 1.9;
+    }
+
+    /* ─── SECTION UTILITIES ───────────────────────────── */
+    .eyebrow {
+      font-size: 0.58rem; font-weight: 400; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--amber); display: inline-flex; align-items: center; gap: 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+    .eyebrow::after { content: ''; width: 3rem; height: 0.5px; background: var(--amber); opacity: 0.65; flex-shrink: 0; }
+    .h2 {
+      font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 5.5rem);
+      font-weight: 300; line-height: 1.02; letter-spacing: -0.03em; color: var(--ink);
+    }
+    .h2 em { font-style: italic; color: var(--amber); }
+    .body-text { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.9; max-width: 52ch; }
+
+    /* ─── FOUNDATION ──────────────────────────────────── */
+    .foundation {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 86dvh;
+    }
+    .foundation-visual { position: relative; overflow: hidden; }
+    .foundation-visual img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 28%;
+      filter: sepia(10%) contrast(1.04) brightness(0.88);
+      transition: transform 1.4s cubic-bezier(0.16,1,0.3,1);
+      will-change: transform;
+    }
+    .foundation-visual:hover img { transform: scale(1.03); }
+    .foundation-text {
+      padding: 9rem 5.5rem 9rem 7rem;
+      display: flex; flex-direction: column; justify-content: center;
+      border-left: 0.5px solid rgba(26,18,7,0.07);
+    }
+    .foundation-pull {
+      font-family: var(--serif); font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+      font-weight: 200; font-style: italic; color: var(--brown);
+      line-height: 1.5; margin: 2.75rem 0;
+      padding: 2.25rem 0;
+      border-top: 0.5px solid rgba(196,147,72,0.45);
+      border-bottom: 0.5px solid rgba(196,147,72,0.45);
+    }
+    .foundation-body { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.92; max-width: 52ch; }
+    .foundation-body + .foundation-body { margin-top: 1.35rem; }
+    .foundation-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      margin-top: 4rem; border-top: 0.5px solid rgba(26,18,7,0.1);
+    }
+    .fstat {
+      padding: 2rem 0 2rem;
+      border-right: 0.5px solid rgba(26,18,7,0.1);
+      padding-right: 2rem;
+    }
+    .fstat:nth-child(even) { border-right: none; padding-left: 2rem; padding-right: 0; }
+    .fstat:nth-child(n+3) { border-top: 0.5px solid rgba(26,18,7,0.1); }
+    .fstat-num {
+      font-family: var(--serif); font-size: clamp(2.2rem, 3vw, 3.2rem);
+      font-weight: 200; color: var(--ink); letter-spacing: -0.025em; line-height: 1; display: block;
+    }
+    .fstat-label {
+      font-size: 0.57rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.5rem; display: block;
+    }
+
+    /* ─── PROCESS ─────────────────────────────────────── */
+    .process { background: var(--cream-mid); padding: 14rem 0 12rem; }
+    .process-head {
+      max-width: 1300px; margin: 0 auto; padding: 0 5rem 8rem;
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 6rem; align-items: end;
+    }
+    .process-h2 {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6.5vw, 7rem);
+      font-weight: 200; color: var(--ink);
+      line-height: 0.91; letter-spacing: -0.04em;
+    }
+    .process-h2 em { font-style: italic; color: var(--amber); }
+    .process-intro {
+      font-size: 0.87rem; font-weight: 300;
+      color: var(--muted); line-height: 1.92;
+    }
+    .process-steps {
+      display: grid; grid-template-columns: 1.8fr 1fr 1.4fr;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+    }
+    .process-step {
+      padding: 5rem 3.75rem 4.5rem;
+      border-right: 0.5px solid rgba(26,18,7,0.1);
+    }
+    .process-step:last-child { border-right: none; }
+    .process-step:first-child { padding-left: 5rem; }
+    .step-num {
+      font-family: var(--serif); font-size: 7.5rem; font-weight: 200;
+      color: rgba(26,18,7,0.055); line-height: 1; letter-spacing: -0.03em;
+      display: block; margin-bottom: -2rem;
+    }
+    .step-title {
+      font-family: var(--serif); font-size: clamp(1.5rem, 1.9vw, 2rem);
+      font-weight: 300; color: var(--ink);
+      margin-bottom: 1.25rem; line-height: 1.15; letter-spacing: -0.015em;
+    }
+    .step-body { font-size: 0.83rem; font-weight: 300; color: var(--muted); line-height: 1.92; }
+
+    /* ─── ISLAND QUOTE ────────────────────────────────── */
+    .island {
+      position: relative; min-height: 86dvh;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .island-bg { position: absolute; inset: 0; }
+    .island-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .island-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(14,7,2,0.92) 0%, rgba(14,7,2,0.0) 60%);
+    }
+    .island-text {
+      position: relative; z-index: 10;
+      padding: 6rem 6rem 6rem 8rem; max-width: 620px;
+    }
+    .island-label {
+      font-size: 0.58rem; font-weight: 400; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2.25rem;
+      display: flex; align-items: center; gap: 1rem; opacity: 0.88;
+    }
+    .island-label::after { content: ''; width: 2.5rem; height: 0.5px; background: var(--gold); opacity: 0.65; }
+    .island-quote {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.2vw, 4.4rem);
+      font-weight: 200; font-style: italic; color: var(--cream);
+      line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 2.5rem;
+    }
+    .island-attr { font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); opacity: 0.82; }
+
+    /* ─── ARCHIVE ─────────────────────────────────────── */
+    .archive { padding: 14rem 0 12rem; }
+    .archive-inner { max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+    .archive-header { margin-bottom: 7rem; }
+    .archive-h2 {
+      font-family: var(--serif);
+      font-size: clamp(3.8rem, 7vw, 8rem);
+      font-weight: 200; line-height: 0.89; letter-spacing: -0.04em; color: var(--ink);
+      max-width: 16ch;
+    }
+    .archive-h2 em { font-style: italic; display: block; color: var(--amber); }
+    .archive-sub {
+      font-size: 0.87rem; font-weight: 300; color: var(--muted);
+      line-height: 1.9; max-width: 50ch;
+      margin-top: 3.25rem; padding-top: 2.75rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+    }
+    .archive-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.85fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .arch-wrap { overflow: hidden; display: block; }
+    .arch-img {
+      width: 100%; object-fit: cover; display: block;
+      filter: sepia(8%) contrast(1.03);
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .arch-wrap:hover .arch-img { transform: scale(1.03); }
+    .arch-1 { grid-column:1; grid-row:1/3; }
+    .arch-1 .arch-img { aspect-ratio: 3/4; height: 100%; }
+    .arch-2 { grid-column:2; grid-row:1; margin-top: 5rem; }
+    .arch-2 .arch-img { aspect-ratio: 4/3; }
+    .arch-3 { grid-column:3; grid-row:1; }
+    .arch-3 .arch-img { aspect-ratio: 5/4; }
+    .arch-4 { grid-column:2/4; grid-row:2; }
+    .arch-4 .arch-img { aspect-ratio: 16/7; }
+
+    /* ─── CTA ─────────────────────────────────────────── */
+    .cta-band {
+      background: var(--cream-dark);
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      padding: 10rem 5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 4rem;
+    }
+    .cta-text {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.5vw, 4.75rem);
+      font-weight: 200; color: var(--ink);
+      line-height: 1.06; letter-spacing: -0.035em;
+    }
+    .cta-text em { font-style: italic; color: var(--amber); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: var(--amber); color: var(--cream);
+      padding: 1.1rem 2.75rem; font-family: var(--sans);
+      font-size: 0.67rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer; white-space: nowrap;
+      transition: background 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.15s ease;
+      box-shadow: inset 0 1px 0 rgba(255,218,130,0.14), inset 0 -1px 0 rgba(0,0,0,0.14);
+    }
+    .btn-primary:hover { background: #712F0F; }
+    .btn-primary:active { transform: translateY(1px); }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 4rem 4rem 3.5rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
+    .footer-links { display: flex; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ─── REVEAL ──────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(1.4rem); } to { opacity: 1; transform: none; } }
+    .reveal { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+    .d1 { animation-delay: 0.12s; } .d2 { animation-delay: 0.24s; }
+    .d3 { animation-delay: 0.36s; } .d4 { animation-delay: 0.48s; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.5rem 2.5rem; }
+      nav.scrolled { padding: 1.1rem 2.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 0 2.5rem 6.5rem; }
+      .foundation { grid-template-columns: 1fr; }
+      .foundation-visual { min-height: 52dvh; }
+      .foundation-text { padding: 6rem 2.5rem; }
+      .process-head { grid-template-columns: 1fr; gap: 2.5rem; padding: 0 2.5rem 6rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-step { border-right: none; border-top: 0.5px solid rgba(26,18,7,0.1); padding: 3.5rem 2.5rem; }
+      .process-step:first-child { border-top: none; padding-left: 2.5rem; }
+      .island-text { padding: 4rem 2.5rem; max-width: 100%; }
+      .island-bg::after { background: rgba(14,7,2,0.76); }
+      .archive-inner { padding: 0 2.5rem; }
+      .cta-band { flex-direction: column; align-items: flex-start; padding: 8rem 2.5rem; }
+      footer { flex-direction: column; gap: 2.25rem; padding: 3.25rem 2.5rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero { min-height: 86dvh; }
+      .archive { padding: 8rem 0; }
+      .archive-grid { grid-template-columns: 1fr 1fr; }
+      .arch-1 { grid-column:1; grid-row:1; }
+      .arch-1 .arch-img { aspect-ratio: 4/3; height: auto; }
+      .arch-2 { grid-column:2; grid-row:1; margin-top: 0; }
+      .arch-3 { grid-column:1/3; grid-row:2; }
+      .arch-4 { grid-column:1/3; grid-row:3; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Coquí</a>
+    <ul class="nav-links">
+      <li><a href="historia.html" aria-current="page">Our Story</a></li>
+      <li><a href="ron.html">Our Rums</a></li>
+      <li><a href="plaza.html">Plaza</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="index.html#eventos">Events</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="img/campo-hombre.jpg" alt="Sugarcane harvest in Puerto Rico" fetchpriority="high">
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Destilería Coquí &nbsp;·&nbsp; Est. 2006</p>
+      <h1 class="hero-h1">
+        Our<br>
+        <em>Story.</em>
+      </h1>
+      <p class="hero-sub">
+        Two founders, one conviction, and a mission to bring Puerto Rico's centuries-old
+        spirit tradition into the light — legally, proudly, from Mayag&#xFC;ez.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── FOUNDATION ────────────────────────────────────── -->
+  <section class="foundation">
+    <div class="foundation-visual">
+      <img
+        src="img/campo-mujer.jpg"
+        alt="Harvesting sugarcane in Puerto Rico — the heart of Pitorro"
+        loading="lazy"
+      >
+    </div>
+    <div class="foundation-text">
+      <p class="eyebrow reveal">The Beginning</p>
+      <h2 class="h2 reveal d1" style="font-size:clamp(2.6rem,4.5vw,5rem);">Born from a<br>tradition <em>forgotten.</em></h2>
+      <blockquote class="foundation-pull reveal d2">
+        "Pitorro was always made here — in every barrio,
+        in every family's backyard. We simply refused
+        to let that tradition disappear."
+      </blockquote>
+      <p class="foundation-body reveal d2">
+        In 2006, H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed; in Mayag&#xFC;ez,
+        Puerto Rico — with a mission as bold as it was clear: to legalize and dignify the island's
+        centuries-old tradition of Ron Ca&#xf1;a, the handmade sugarcane spirit that Puerto Ricans
+        have always known as Pitorro.
+      </p>
+      <p class="foundation-body reveal d3" style="margin-top:1.35rem;">
+        Before Coquí, Pitorro existed only in the shadows — homemade, untaxed, and technically
+        illegal. H&#xe9;ctor Augusto and Mar&#xed;a Cristina fought to change that. They built
+        Puerto Rico's largest artisan distillery, trademarked Pitorro&#xAE;, and brought the island's
+        most beloved spirit into the light.
+      </p>
+      <div class="foundation-stats">
+        <div class="fstat reveal d2">
+          <span class="fstat-num">2006</span>
+          <span class="fstat-label">Year of founding</span>
+        </div>
+        <div class="fstat reveal d3">
+          <span class="fstat-num">50<span style="font-size:1.4rem;font-weight:200;">k+</span></span>
+          <span class="fstat-label">Cases produced per year</span>
+        </div>
+        <div class="fstat reveal d3">
+          <span class="fstat-num">1<span style="font-size:1.4rem;font-weight:200;">st</span></span>
+          <span class="fstat-label">To legally produce Pitorro&#xAE; in PR</span>
+        </div>
+        <div class="fstat reveal d4">
+          <span class="fstat-num">#1</span>
+          <span class="fstat-label">Largest artisan distillery in Puerto Rico</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESS ──────────────────────────────────────── -->
+  <section class="process">
+    <div class="process-head">
+      <div>
+        <p class="eyebrow reveal" style="color:var(--gold);opacity:0.88;">
+          <span style="display:inline-flex;align-items:center;gap:1.25rem;">
+            The Process
+            <span style="display:inline-block;width:3rem;height:0.5px;background:var(--gold);opacity:0.5;flex-shrink:0;"></span>
+          </span>
+        </p>
+        <h2 class="process-h2 reveal d1">Made by hand,<br><em>not by machine.</em></h2>
+      </div>
+      <div>
+        <p class="process-intro reveal d2">
+          Every bottle from Destiler&#xed;a Coqu&#xed; is distilled the traditional way — using
+          methods handed down through Puerto Rican culture for generations. Our distillery
+          in Mayag&#xFC;ez is where heritage meets craft, where Pitorro became legal, and where
+          the island's character is poured into every batch.
+        </p>
+      </div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="step-num reveal">01</span>
+        <h3 class="step-title reveal d1">The Vision</h3>
+        <p class="step-body reveal d2">
+          H&#xe9;ctor Augusto and Mar&#xed;a Cristina didn't set out to build a rum company.
+          They set out to preserve a culture. Pitorro had been made in Puerto Rican homes
+          for centuries — they simply gave it a home it could be proud of.
+        </p>
+      </div>
+      <div class="process-step">
+        <span class="step-num reveal">02</span>
+        <h3 class="step-title reveal d1">The Distillation</h3>
+        <p class="step-body reveal d2">
+          From Ron Ca&#xf1;a to Ron Coqu&#xed;&#x2122; Blanco, every spirit is distilled using
+          sugarcane-based recipes. Our Pitorro&#xAE; line follows the traditional island method —
+          bold, full-bodied, and crafted with the character that made it legendary.
+        </p>
+      </div>
+      <div class="process-step">
+        <span class="step-num reveal">03</span>
+        <h3 class="step-title reveal d1">The Craft</h3>
+        <p class="step-body reveal d2">
+          We are the largest artisan distillery in Puerto Rico — yet every bottle
+          is still made with the attention it deserves. That tension between scale and
+          soul is what drives us. It keeps us honest.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ARCHIVE ───────────────────────────────────────── -->
+  <section class="archive">
+    <div class="archive-inner">
+      <div class="archive-header">
+        <h2 class="archive-h2 reveal">
+          Nearly twenty years<br>
+          <em>of proving them wrong.</em>
+        </h2>
+        <p class="archive-sub reveal d2">
+          Two founders. A tradition worth fighting for. From the first legal bottle of
+          Pitorro&#xAE; to 50,000 cases a year — Coqu&#xed; was never built to be a factory.
+          It was built to be an answer.
+        </p>
+      </div>
+      <div class="archive-grid">
+        <div class="arch-wrap arch-1 reveal">
+          <img class="arch-img" src="https://picsum.photos/seed/coquiher1/600/820" alt="Founders at Destileria Coqui in Mayaguez, Puerto Rico" loading="lazy">
+        </div>
+        <div class="arch-wrap arch-2 reveal d1">
+          <img class="arch-img" src="https://picsum.photos/seed/coquiher2/600/440" alt="Distillery production floor, Mayaguez" loading="lazy">
+        </div>
+        <div class="arch-wrap arch-3 reveal d2">
+          <img class="arch-img" src="https://picsum.photos/seed/coquiher3/600/510" alt="Pitorro bottling at Destileria Coqui" loading="lazy">
+        </div>
+        <div class="arch-wrap arch-4 reveal d3">
+          <img class="arch-img" src="https://picsum.photos/seed/coquiher4/1200/520" alt="Destileria Coqui distillery in Mayaguez, Puerto Rico" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ───────────────────────────────────────────── -->
+  <div class="cta-band reveal">
+    <p class="cta-text">
+      Ready to taste<br>
+      <em>what history made?</em>
+    </p>
+    <a href="ron.html" class="btn-primary">
+      Explore Our Rum
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-logo">Destilería Coquí</span>
+    <p class="footer-copy">
+      &copy; 2026 Destiler&#xed;a Coqu&#xed; &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
+      Drink responsibly. Must be of legal drinking age.
+    </p>
+    <ul class="footer-links">
+      <li><a href="historia.html">Our Story</a></li>
+      <li><a href="ron.html">Our Rums</a></li>
+      <li><a href="plaza.html">Plaza</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('main-nav');
+    const heroEl = document.querySelector('.hero');
+    const onScroll = () => { nav.classList.toggle('scrolled', window.scrollY > heroEl.offsetHeight * 0.72); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const heroImg = document.querySelector('.hero-bg img');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight * 1.2 && heroImg)
+        heroImg.style.transform = `translateY(${window.scrollY * 0.24}px)`;
+    }, { passive: true });
+  </script>
+  <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->
+  <script>
+  (function(){
+    var nav=document.querySelector('nav'); if(!nav||document.querySelector('.nav-toggle')) return;
+    var s=document.createElement('style');
+    s.textContent=".nav-toggle{display:none;width:2.25rem;height:2rem;background:none;border:none;cursor:pointer;flex-direction:column;justify-content:center;align-items:flex-end;gap:5px;padding:0;}"+
+      ".nav-toggle span{display:block;width:1.6rem;height:1.5px;background:currentColor;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .25s ease;}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(2){opacity:0;}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
+      ".mobile-menu{position:fixed;inset:0;z-index:600;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
+      ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
+      ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a:hover{color:#C49348;}"+
+      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
+      "body.menu-open{overflow:hidden;}"+
+      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
+    document.head.appendChild(s);
+    var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
+    var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['tours.html','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
+    var m=document.createElement('div');m.className='mobile-menu';
+    var h='<button class="mobile-menu-close" aria-label="Close menu">&#10005;</button>';
+    links.forEach(function(l){h+='<a href="'+l[0]+'">'+l[1]+'</a>';});
+    m.innerHTML=h;document.body.appendChild(m);
+    function close(){m.classList.remove('open');document.body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');}
+    btn.addEventListener('click',function(){m.classList.add('open');document.body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');});
+    m.querySelector('.mobile-menu-close').addEventListener('click',close);
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
+  })();
+  </script>
+</body>
+</html>

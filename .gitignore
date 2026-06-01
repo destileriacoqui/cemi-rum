@@ -1,0 +1,41 @@
+# ── Dependencies ──────────────────────────────────────────────
+node_modules/
+
+# ── Environment variables (NEVER commit these) ────────────────
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.staging
+
+# ── Build outputs ─────────────────────────────────────────────
+dist/
+build/
+out/
+.next/
+
+# ── Vercel CLI ────────────────────────────────────────────────
+.vercel/
+
+# ── npm ───────────────────────────────────────────────────────
+.npm/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+Thumbs.db
+
+# ── Editors ───────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.swp
+*.sln

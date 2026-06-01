@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Destilería Coquí</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    sup { font-size: 0.48em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+    :root {
+      --cream:      #F7F2E8;
+      --cream-mid:  #EFE8D8;
+      --cream-dark: #E7DAC9;
+      --ink:        #1A1207;
+      --amber:      #8C3F16;
+      --gold:       #C49348;
+      --muted:      #7D6654;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 200;
+      padding: 1.5rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,242,232,0.96);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.75rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.4s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a[aria-current="page"] { color: var(--amber); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      min-height: 100dvh;
+      padding-top: 5rem;
+    }
+
+    /* Left: sticky bottle column */
+    .hero-img-col {
+      position: sticky; top: 0;
+      height: 100dvh;
+      background: var(--cream-mid);
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-img-col::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(196,147,72,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bottle {
+      width: auto; max-width: 68%;
+      height: 85vh;
+      object-fit: contain;
+      filter: drop-shadow(0 30px 80px rgba(26,18,7,0.16));
+      transition: transform 1.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero-img-col:hover .hero-bottle { transform: scale(1.025) translateY(-10px); }
+
+    /* Right: scrolling info */
+    .hero-info-col {
+      display: flex; flex-direction: column;
+      padding: 0 5rem 0 4.5rem;
+      justify-content: center;
+      min-height: 100dvh;
+    }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; margin-bottom: 4rem;
+      transition: color 0.3s ease;
+    }
+    .back-link:hover { color: var(--ink); }
+    .back-link svg { transition: transform 0.3s ease; }
+    .back-link:hover svg { transform: translateX(-4px); }
+
+    .product-eyebrow {
+      font-size: 0.54rem; letter-spacing: 0.36em; text-transform: uppercase;
+      color: var(--amber); display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.75rem; opacity: 0.9;
+    }
+    .product-eyebrow::before { content: ''; width: 2.5rem; height: 0.5px; background: var(--amber); }
+
+    .product-name {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 5.5rem);
+      font-weight: 200; color: var(--ink);
+      line-height: 0.95; letter-spacing: -0.045em;
+      margin-bottom: 2.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.88rem; font-weight: 300; color: var(--muted);
+      line-height: 2; max-width: 48ch;
+      border-left: 2px solid var(--cream-dark);
+      padding-left: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Specs row */
+    .specs-row {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      padding-top: 2rem; margin-bottom: 3.5rem;
+      gap: 0;
+    }
+    .spec { border-right: 0.5px solid rgba(26,18,7,0.1); padding-right: 1.75rem; }
+    .spec:nth-child(2) { padding: 0 1.75rem; }
+    .spec:last-child { border-right: none; padding-left: 1.75rem; padding-right: 0; }
+    .spec-label {
+      font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); display: block; margin-bottom: 0.45rem; opacity: 0.75;
+    }
+    .spec-val {
+      font-family: var(--serif); font-size: 1.45rem; font-weight: 200;
+      color: var(--ink); line-height: 1.1;
+    }
+    .spec-val.price { color: var(--amber); font-size: 1.75rem; }
+    .spec-val.style { font-size: 0.85rem; font-weight: 300; font-family: var(--sans); letter-spacing: 0; color: var(--muted); }
+
+    /* ── TASTING SECTION ──────────────────────────── */
+    .tasting-section {
+      padding: 5rem 4.5rem 5rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      background: var(--cream);
+      max-width: 100%;
+    }
+    .tasting-inner { max-width: 540px; }
+    .tasting-heading {
+      font-family: var(--serif); font-size: 2.2rem; font-weight: 200;
+      color: var(--ink); letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .tasting-sub {
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+    }
+    .tasting-notes { display: flex; flex-direction: column; gap: 1.5rem; }
+    .tasting-row { display: flex; align-items: center; gap: 1.5rem; }
+    .tasting-label {
+      font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); width: 9rem; flex-shrink: 0;
+    }
+    .tasting-track { flex: 1; height: 1px; background: rgba(26,18,7,0.1); position: relative; }
+    .tasting-fill {
+      position: absolute; top: 0; left: 0; height: 100%;
+      background: linear-gradient(to right, var(--amber), var(--gold));
+      width: 0; transition: width 1.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .tasting-num {
+      font-family: var(--serif); font-size: 0.9rem; color: var(--gold);
+      width: 2.5rem; text-align: right;
+    }
+
+    /* ── CTA BAND ─────────────────────────────────── */
+    .cta-band {
+      padding: 5rem 4.5rem;
+      background: var(--cream-mid);
+      display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .cta-text-head {
+      font-family: var(--serif); font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      font-weight: 200; color: var(--ink); letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+    .cta-text-sub { font-size: 0.78rem; color: var(--muted); }
+    .btn-amber {
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: var(--amber); color: var(--cream);
+      padding: 1.1rem 2.75rem;
+      font-family: var(--sans); font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.35s ease;
+    }
+    .btn-amber:hover { background: #712F0F; }
+
+    /* ── STRIPE BUY BUTTON ─────────────────────────── */
+    .btn-buy {
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: var(--ink); color: var(--cream);
+      padding: 1.1rem 2.75rem;
+      font-family: var(--sans); font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.35s ease, transform 0.15s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.2);
+    }
+    .btn-buy:hover { background: #2e1c0e; }
+    .btn-buy:active { transform: translateY(1px); }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem;
+    }
+
+    /* ── NOT FOUND ────────────────────────────────── */
+    .not-found {
+      min-height: 100dvh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 4rem 2rem;
+    }
+    .not-found h1 {
+      font-family: var(--serif); font-size: 3.5rem; font-weight: 200;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .not-found p { color: var(--muted); margin-bottom: 2.5rem; }
+    .not-found a {
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--amber); text-decoration: none;
+    }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--cream);
+      padding: 4rem 4rem 3.5rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
+    .footer-links { display: flex; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 1000px) {
+      nav { padding: 1.5rem 2.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: unset; }
+      .hero-img-col { position: relative; height: 60vw; min-height: 320px; max-height: 520px; }
+      .hero-bottle { height: 90%; max-width: 55%; }
+      .hero-info-col { padding: 3.5rem 2.5rem 4rem; min-height: unset; }
+      .back-link { margin-bottom: 2.5rem; }
+      .tasting-section { padding: 4rem 2.5rem; }
+      .cta-band { padding: 4rem 2.5rem; flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; gap: 2rem; padding: 3rem 2.5rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero-info-col { padding: 2.5rem 1.5rem 3rem; }
+      .specs-row { grid-template-columns: 1fr 1fr; }
+      .spec:last-child { grid-column: 1 / -1; border-right: none; border-top: 0.5px solid rgba(26,18,7,0.1); padding: 1.5rem 0 0; margin-top: 0.5rem; }
+      .tasting-section { padding: 3rem 1.5rem; }
+      .cta-band { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Coqu&#xED;</a>
+    <ul class="nav-links">
+      <li><a href="historia.html">Our Story</a></li>
+      <li><a href="ron.html" aria-current="page">Our Rums</a></li>
+      <li><a href="plaza.html">Plaza</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="index.html#eventos">Events</a></li>
+    </ul>
+  </nav>
+
+  <div id="page-root"></div>
+
+  <footer>
+    <span class="footer-logo">Destiler&#xED;a Coqu&#xED;</span>
+    <p class="footer-copy">
+      &copy; 2026 Destiler&#xED;a Coqu&#xED; &mdash; Mayag&#xFC;ez, Puerto Rico.<br>
+      Drink responsibly. Must be of legal drinking age.
+    </p>
+    <ul class="footer-links">
+      <li><a href="historia.html">Our Story</a></li>
+      <li><a href="ron.html">Our Rums</a></li>
+      <li><a href="plaza.html">Plaza</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const PRODUCTS = {
+      'ron-blanco': {
+        name: 'Ron Coquí™ Blanco', type: 'White Rum', abv: '39% ABV', price: '$13', style: 'Smooth & Clean',
+        img: 'img/ron-blanco.png',
+        desc: 'Our flagship white rum — distilled from pure Puerto Rican sugarcane and crafted for everyday enjoyment. Crisp, clean, and endlessly versatile. The base of countless island cocktails and a staple in Puerto Rican homes.',
+        notes: [{ label:'Sugarcane', pct:90 },{ label:'Light Citrus', pct:72 },{ label:'Vanilla', pct:65 },{ label:'Floral', pct:58 },{ label:'Clean Finish', pct:84 }]
+      },
+      'ron-limon': {
+        name: 'Ron Coquí™ Limón', type: 'Citrus Rum', abv: '30% ABV', price: '$14', style: 'Citrus-Forward',
+        img: 'img/ron-limon.png',
+        desc: 'The bright personality of Puerto Rican limón captured in a bottle. Our Blanco base infused with the natural zest of island citrus — light, refreshing, and made for warm weather.',
+        notes: [{ label:'Fresh Lemon', pct:94 },{ label:'Citrus Zest', pct:91 },{ label:'Light Cane', pct:67 },{ label:'Floral', pct:73 },{ label:'Crisp Finish', pct:80 }]
+      },
+      'pitorro-blanco': {
+        name: 'Pitorro<sup>®</sup> Blanco', type: 'Traditional Pitorro', abv: '39% ABV', price: '$19', style: 'Bold & Authentic',
+        img: 'img/pitorro-blanco.png',
+        desc: 'Puerto Rico\'s legendary moonshine, made legal. We fought to formalize the island\'s centuries-old tradition of Ron Caña and called it Pitorro<sup>®</sup>. Raw, bold, and unmistakably Puerto Rican — distilled the same way families have done it for generations.',
+        notes: [{ label:'Raw Cane', pct:88 },{ label:'Earthy', pct:76 },{ label:'Tropical Fruit', pct:69 },{ label:'Bold Spirit', pct:83 },{ label:'Mineral', pct:61 }]
+      },
+      'pitorro-coco-35': {
+        name: 'Pitorro<sup>®</sup> de Coco', type: 'Coconut Pitorro · 35%', abv: '35% ABV', price: '$25', style: 'Tropical & Rich',
+        img: 'img/pitorro-coco-35.png',
+        desc: 'Our Pitorro Blanco meets the lush sweetness of real Puerto Rican coconut. Rich, warm, and tropical through and through. Serve chilled or over ice — it needs nothing else.',
+        notes: [{ label:'Fresh Coconut', pct:93 },{ label:'Sweet Cane', pct:86 },{ label:'Tropical', pct:91 },{ label:'Vanilla', pct:74 },{ label:'Smooth Finish', pct:79 }]
+      },
+      'pitorro-coco-15': {
+        name: 'Pitorro<sup>®</sup> Coco', type: 'Coconut Pitorro · 15%', abv: '15% ABV', price: '$19', style: 'Light & Tropical',
+        img: 'img/pitorro-coco-15.png',
+        desc: 'A lighter, more approachable coconut Pitorro. All the tropical sweetness of fresh Puerto Rican coconut with a gentler spirit — easy to enjoy any time of day.',
+        notes: [{ label:'Fresh Coconut', pct:89 },{ label:'Sweetness', pct:84 },{ label:'Light Cane', pct:72 },{ label:'Tropical', pct:88 },{ label:'Soft Finish', pct:82 }]
+      },
+      'pitorro-cafe': {
+        name: 'Pitorro<sup>®</sup> Café', type: 'Coffee Pitorro', abv: '35% ABV', price: '$19', style: 'Dark & Aromatic',
+        img: 'img/pitorro-cafe.png',
+        desc: 'Puerto Rico\'s two great traditions in a single bottle. Our traditional Pitorro infused with locally-sourced Puerto Rican coffee — bold, aromatic, and deeply satisfying. For the coffee lover who runs bold.',
+        notes: [{ label:'PR Coffee', pct:95 },{ label:'Dark Roast', pct:89 },{ label:'Cane Sugar', pct:72 },{ label:'Caramel', pct:80 },{ label:'Warm Spice', pct:67 }]
+      },
+      'pitorro-tamarindo': {
+        name: 'Pitorro<sup>®</sup> Tamarindo', type: 'Tamarind Pitorro', abv: '35% ABV', price: '$25', style: 'Tropical & Tart',
+        img: 'img/pitorro-tamarindo.png',
+        desc: 'Tangy tamarind and traditional Pitorro — a bold, tart combination that\'s distinctly Caribbean. Lively on the palate with a long, earthy finish that lingers beautifully.',
+        notes: [{ label:'Tamarind', pct:92 },{ label:'Sweet-Tart', pct:87 },{ label:'Tropical', pct:78 },{ label:'Raw Cane', pct:71 },{ label:'Long Finish', pct:76 }]
+      },
+      'pitorro-parcha': {
+        name: 'Pitorro<sup>®</sup> Parcha', type: 'Passion Fruit Pitorro', abv: '35% ABV', price: '$25', style: 'Bright & Fruity',
+        img: 'img/pitorro-parcha.png',
+        desc: 'Parcha — Puerto Rico\'s passion fruit — in every drop. Bright, aromatic, and tropical through and through. One of the most vibrant spirits in our lineup.',
+        notes: [{ label:'Passion Fruit', pct:96 },{ label:'Tropical', pct:91 },{ label:'Floral', pct:80 },{ label:'Sweet Cane', pct:73 },{ label:'Vibrant Finish', pct:85 }]
+      },
+      'pitorro-pina': {
+        name: 'Pitorro<sup>®</sup> Piña', type: 'Pineapple Pitorro', abv: '35% ABV', price: '$25', style: 'Sweet & Tropical',
+        img: 'img/pitorro-pina.png',
+        desc: 'The sweetness of fresh pineapple and the kick of traditional Pitorro in perfect balance. A tropical combination that\'s hard to resist and impossible to put down.',
+        notes: [{ label:'Fresh Pineapple', pct:94 },{ label:'Tropical', pct:90 },{ label:'Sweet Cane', pct:78 },{ label:'Floral', pct:69 },{ label:'Juicy Finish', pct:83 }]
+      },
+      'pitorro-fresa': {
+        name: 'Pitorro<sup>®</sup> Fresa', type: 'Strawberry Pitorro', abv: '35% ABV', price: '$25', style: 'Fresh & Fruity',
+        img: 'img/pitorro-fresa.png',
+        desc: 'Ripe strawberry infused into Puerto Rico\'s legendary spirit. Fresh, fruity, and unmistakably island — a crowd-pleaser that holds its own.',
+        notes: [{ label:'Fresh Strawberry', pct:92 },{ label:'Fruity', pct:88 },{ label:'Sweetness', pct:82 },{ label:'Light Cane', pct:72 },{ label:'Berry Finish', pct:85 }]
+      },
+      'pitorro-frutas': {
+        name: 'Pitorro<sup>®</sup> Frutas', type: 'Mixed Fruit Pitorro', abv: '35% ABV', price: '$25', style: 'Tropical Blend',
+        img: 'img/pitorro-frutas.png',
+        desc: 'A tropical medley of island fruits captured in traditional Pitorro. Layered, vibrant, and endlessly refreshing — the spirit of Puerto Rico\'s fruit stands in every sip.',
+        notes: [{ label:'Mixed Fruits', pct:91 },{ label:'Tropical', pct:88 },{ label:'Sweetness', pct:79 },{ label:'Floral', pct:72 },{ label:'Layered Finish', pct:81 }]
+      },
+      'blend-coco-pina': {
+        name: 'Coco Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Tropical Fusion',
+        img: 'img/blend-coco-pina.png',
+        desc: 'Coconut and pineapple — Puerto Rico\'s tropical duo, blended perfectly with traditional Pitorro. Light, refreshing, and impossible to resist on a warm island afternoon.',
+        notes: [{ label:'Coconut', pct:90 },{ label:'Pineapple', pct:88 },{ label:'Tropical', pct:92 },{ label:'Sweetness', pct:80 },{ label:'Refreshing Finish', pct:85 }]
+      },
+      'blend-coco-almendra': {
+        name: 'Coco Almendra', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Smooth & Nutty',
+        img: 'img/blend-coco-almendra.png',
+        desc: 'The creaminess of coconut with a warm almond finish. A smooth, indulgent blend that drinks beautifully on its own or over ice.',
+        notes: [{ label:'Coconut', pct:88 },{ label:'Almond', pct:84 },{ label:'Creamy', pct:82 },{ label:'Sweet Cane', pct:74 },{ label:'Warm Finish', pct:79 }]
+      },
+      'blend-fresa-pina': {
+        name: 'Fresa / Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Fruity & Bright',
+        img: 'img/blend-fresa-pina.png',
+        desc: 'Strawberry and pineapple — two island fruits in one vibrant, fruity blend. Bright on the nose, refreshing on the palate, and easy on everything.',
+        notes: [{ label:'Strawberry', pct:90 },{ label:'Pineapple', pct:87 },{ label:'Fruity', pct:88 },{ label:'Sweetness', pct:83 },{ label:'Bright Finish', pct:85 }]
+      },
+      'blend-jengibre-coco': {
+        name: 'Jengibre Coco', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Spiced & Tropical',
+        img: 'img/blend-jengibre-coco.png',
+        desc: 'The warmth of ginger meeting the sweetness of tropical coconut in a beautifully balanced blend. Spiced enough to intrigue, smooth enough to keep you coming back.',
+        notes: [{ label:'Ginger', pct:88 },{ label:'Coconut', pct:83 },{ label:'Warm Spice', pct:85 },{ label:'Tropical', pct:78 },{ label:'Spiced Finish', pct:82 }]
+      },
+      'blend-mango-pina': {
+        name: 'Mango / Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Sweet & Tropical',
+        img: 'img/blend-mango-pina.png',
+        desc: 'Juicy mango and bright pineapple in a sweet tropical Caribbean blend. Sunshine in a bottle — this one practically drinks itself.',
+        notes: [{ label:'Mango', pct:93 },{ label:'Pineapple', pct:88 },{ label:'Sweet Tropical', pct:91 },{ label:'Floral', pct:72 },{ label:'Juicy Finish', pct:86 }]
+      },
+      'blend-coco-fresa-pina': {
+        name: 'Coco, Fresa y Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Tropical Trio',
+        img: 'img/blend-coco-fresa-pina.png',
+        desc: 'Coconut, strawberry, and pineapple together — three island flavors in one indulgent, layered blend. Complex for a 15%, and one of our most beloved.',
+        notes: [{ label:'Coconut', pct:87 },{ label:'Strawberry', pct:84 },{ label:'Pineapple', pct:86 },{ label:'Tropical', pct:91 },{ label:'Complex Finish', pct:82 }]
+      },
+      'carjakers': {
+        name: "Carjaker's Rum", type: 'Overproof Rum', abv: '60% ABV', price: '$36', style: '120 Proof',
+        img: 'img/carjakers.png',
+        desc: 'Not for the faint-hearted. Distilled and bottled at 120 proof — Puerto Rico\'s most powerful rum. Intensely raw with a fierce, full-bodied heat. Use sparingly in cocktails, or test your character straight.',
+        notes: [{ label:'Intense Cane', pct:97 },{ label:'Raw Spirit', pct:94 },{ label:'Black Pepper', pct:82 },{ label:'Tropical Heat', pct:88 },{ label:'Bold Finish', pct:96 }]
+      },
+      'caneca-blanco': {
+        name: 'Caneca Ron Coquí™ Blanco', type: 'Caneca', abv: '39% ABV', price: '$3.25', style: 'Smooth & Clean',
+        img: 'img/caneca-blanco.png',
+        desc: 'Our flagship white rum in a convenient caneca format. Same crisp, clean spirit — perfect for single servings and on-the-go enjoyment.',
+        notes: [{ label:'Sugarcane', pct:90 },{ label:'Light Citrus', pct:72 },{ label:'Vanilla', pct:65 },{ label:'Floral', pct:58 },{ label:'Clean Finish', pct:84 }]
+      },
+      'caneca-limon': {
+        name: 'Caneca Ron Coquí™ Limón', type: 'Caneca', abv: '30% ABV', price: '$4', style: 'Citrus-Forward',
+        img: 'img/caneca-limon.png',
+        desc: 'Our citrus-forward Ron Coquí Limón in a convenient caneca format. The bright personality of Puerto Rican limón — light, refreshing, and ready to go.',
+        notes: [{ label:'Fresh Lemon', pct:94 },{ label:'Citrus Zest', pct:91 },{ label:'Light Cane', pct:67 },{ label:'Floral', pct:73 },{ label:'Crisp Finish', pct:80 }]
+      },
+      'mini-blanco': {
+        name: 'Pitorro<sup>®</sup> Miniature Blanco', type: 'Miniature', abv: '39% ABV', price: '$3.25', style: 'Bold & Authentic',
+        img: 'img/mini-blanco.png',
+        desc: 'Puerto Rico\'s legendary moonshine in a pocket-sized miniature. Same bold, authentic spirit — perfect for sampling or gifting.',
+        notes: [{ label:'Raw Cane', pct:88 },{ label:'Earthy', pct:76 },{ label:'Tropical Fruit', pct:69 },{ label:'Bold Spirit', pct:83 },{ label:'Mineral', pct:61 }]
+      },
+      'mini-coco': {
+        name: 'Pitorro<sup>®</sup> Miniature Coco', type: 'Miniature', abv: '15% ABV', price: '$3.25', style: 'Light & Tropical',
+        img: 'img/mini-coco.png',
+        desc: 'Our tropical coconut Pitorro in a pocket-sized miniature. Sweet, smooth, and impossibly easy to enjoy.',
+        notes: [{ label:'Fresh Coconut', pct:89 },{ label:'Sweetness', pct:84 },{ label:'Light Cane', pct:72 },{ label:'Tropical', pct:88 },{ label:'Soft Finish', pct:82 }]
+      },
+      'mini-parcha': {
+        name: 'Pitorro<sup>®</sup> Miniature Parcha', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Bright & Fruity',
+        img: 'img/mini-parcha.png',
+        desc: 'Puerto Rico\'s passion fruit Pitorro in a pocket-sized miniature. Bright, aromatic, and tropical — a taste of the island.',
+        notes: [{ label:'Passion Fruit', pct:96 },{ label:'Tropical', pct:91 },{ label:'Floral', pct:80 },{ label:'Sweet Cane', pct:73 },{ label:'Vibrant Finish', pct:85 }]
+      },
+      'mini-tamarindo': {
+        name: 'Pitorro<sup>®</sup> Miniature Tamarindo', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Tropical & Tart',
+        img: 'img/mini-tamarindo.png',
+        desc: 'Our tangy tamarind Pitorro in a pocket-sized miniature. Bold, tart, and distinctly Caribbean.',
+        notes: [{ label:'Tamarind', pct:92 },{ label:'Sweet-Tart', pct:87 },{ label:'Tropical', pct:78 },{ label:'Raw Cane', pct:71 },{ label:'Long Finish', pct:76 }]
+      },
+      'mini-cafe': {
+        name: 'Pitorro<sup>®</sup> Miniature Café', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Dark & Aromatic',
+        img: 'img/mini-cafe.png',
+        desc: 'Puerto Rico\'s coffee and Pitorro tradition in a pocket-sized miniature. Bold, aromatic, and deeply satisfying.',
+        notes: [{ label:'PR Coffee', pct:95 },{ label:'Dark Roast', pct:89 },{ label:'Cane Sugar', pct:72 },{ label:'Caramel', pct:80 },{ label:'Warm Spice', pct:67 }]
+      }
+    };
+
+    // ─── STRIPE PAYMENT LINKS ────────────────────────────────────────────────
+    // Live Stripe Payment Links — each redirects to Stripe-hosted checkout.
+    // To update a link: Stripe Dashboard → Payment Links → find product → copy URL.
+    const STRIPE_URLS = {
+      'ron-blanco':           'https://buy.stripe.com/00wdRa4rYbMbbSt4n86oo0p',
+      'ron-limon':            'https://buy.stripe.com/14A7sM0bI17x4q1cTE6oo0q',
+      'pitorro-blanco':       'https://buy.stripe.com/aFa8wQgaG4jJcWx4n86oo0r',
+      'pitorro-coco-35':      'https://buy.stripe.com/bJe28s7EabMbaOpg5Q6oo0s',
+      'pitorro-coco-15':      'https://buy.stripe.com/5kQ4gA8Ie6rR5u53j46oo0t',
+      'pitorro-cafe':         'https://buy.stripe.com/00w00k2jQbMb1dP2f06oo0u',
+      'pitorro-tamarindo':    'https://buy.stripe.com/5kQcN69Mi17xcWx4n86oo0v',
+      'pitorro-parcha':       'https://buy.stripe.com/8x228sbUqdUj4q15rc6oo0w',
+      'pitorro-pina':         'https://buy.stripe.com/9B628se2y17x9Kl9Hs6oo0x',
+      'pitorro-fresa':        'https://buy.stripe.com/6oUdRabUqg2r2hT1aW6oo0y',
+      'pitorro-frutas':       'https://buy.stripe.com/bJebJ20bI2bB4q12f06oo0z',
+      'blend-coco-pina':      'https://buy.stripe.com/aFafZi9Mi9E3g8J5rc6oo0A',
+      'blend-coco-almendra':  'https://buy.stripe.com/4gM8wQ1fM5nN4q17zk6oo0B',
+      'blend-fresa-pina':     'https://buy.stripe.com/8x23cw2jQg2r1dPcTE6oo0C',
+      'blend-jengibre-coco':  'https://buy.stripe.com/dRm8wQ8Ie6rRe0B4n86oo0D',
+      'blend-mango-pina':     'https://buy.stripe.com/9B67sM0bI3fF09L2f06oo0E',
+      'blend-coco-fresa-pina':'https://buy.stripe.com/7sY28sgaG9E3e0BbPA6oo0F',
+      'carjakers':            'https://buy.stripe.com/eVqdRa3nUaI7bSt6vg6oo0G',
+      'caneca-blanco':        'https://buy.stripe.com/6oUeVegaGdUj8GhaLw6oo0H',
+      'caneca-limon':         'https://buy.stripe.com/3cI28s5w29E3f4FaLw6oo0I',
+      'mini-blanco':          'https://buy.stripe.com/4gM5kE9Mi9E38GhdXI6oo0J',
+      'mini-coco':            'https://buy.stripe.com/eVqbJ28Ie3fF1dP9Hs6oo0K',
+      'mini-parcha':          'https://buy.stripe.com/14A5kE7Ea9E309L8Do6oo0L',
+      'mini-tamarindo':       'https://buy.stripe.com/5kQaEY7Ea8zZ09LcTE6oo0M',
+      'mini-cafe':            'https://buy.stripe.com/fZufZi8IebMb7Cd4n86oo0N'
+    };
+    // ─────────────────────────────────────────────────────────────────────────
+
+    const id = new URLSearchParams(window.location.search).get('id');
+    const p  = PRODUCTS[id];
+    const checkoutUrl = STRIPE_URLS[id] || '#';
+    const root = document.getElementById('page-root');
+
+    if (!p) {
+      document.title = 'Not Found — Destilería Coquí';
+      root.innerHTML = `
+        <div class="not-found">
+          <h1>Spirit not found.</h1>
+          <p>That product doesn't exist in our lineup.</p>
+          <a href="ron.html">← Back to Our Rums</a>
+        </div>`;
+    } else {
+      document.title = p.name + ' — Destilería Coquí';
+
+      root.innerHTML = `
+        <section class="hero">
+          <div class="hero-img-col">
+            <img class="hero-bottle" src="${p.img}" alt="${p.name}">
+          </div>
+          <div class="hero-info-col">
+            <a href="ron.html" class="back-link">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Our Rums
+            </a>
+            <span class="product-eyebrow">${p.type}</span>
+            <h1 class="product-name">${p.name}</h1>
+            <p class="product-desc">${p.desc}</p>
+            <div class="specs-row">
+              <div class="spec">
+                <span class="spec-label">Alcohol</span>
+                <span class="spec-val">${p.abv}</span>
+              </div>
+              <div class="spec">
+                <span class="spec-label">Price</span>
+                <span class="spec-val price">${p.price}</span>
+              </div>
+              <div class="spec">
+                <span class="spec-label">Style</span>
+                <span class="spec-val style">${p.style}</span>
+              </div>
+            </div>
+            <div class="hero-actions">
+              <a href="${checkoutUrl}" class="btn-buy" target="_blank" rel="noopener noreferrer">
+                Buy Online
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                  <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="tours.html" class="btn-amber">
+                Visit Distillery
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                  <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="tasting-section">
+          <div class="tasting-inner">
+            <h2 class="tasting-heading">Tasting Profile</h2>
+            <p class="tasting-sub">Flavor intensity — handcrafted in Mayagüez, Puerto Rico</p>
+            <div class="tasting-notes" id="tastingNotes">
+              ${p.notes.map(n => `
+                <div class="tasting-row">
+                  <span class="tasting-label">${n.label}</span>
+                  <div class="tasting-track"><div class="tasting-fill" data-w="${n.pct}%"></div></div>
+                  <span class="tasting-num">${n.pct}</span>
+                </div>`).join('')}
+            </div>
+          </div>
+        </section>
+
+        <div class="cta-band">
+          <div>
+            <p class="cta-text-head">Ready to order?</p>
+            <p class="cta-text-sub">Order online or visit us at the distillery in Mayag&#xFC;ez, Puerto Rico.</p>
+          </div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="${checkoutUrl}" class="btn-buy" target="_blank" rel="noopener noreferrer">
+              Buy Online
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="tours.html" class="btn-amber">
+              Plan a Visit
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>`;
+
+      // Animate tasting bars when they scroll into view
+      const notesEl = document.getElementById('tastingNotes');
+      const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          notesEl.querySelectorAll('.tasting-fill').forEach(bar => { bar.style.width = bar.dataset.w; });
+          obs.disconnect();
+        }
+      }, { threshold: 0.2 });
+      obs.observe(notesEl);
+    }
+  </script>
+  <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->
+  <script>
+  (function(){
+    var nav=document.querySelector('nav'); if(!nav||document.querySelector('.nav-toggle')) return;
+    var s=document.createElement('style');
+    s.textContent=".nav-toggle{display:none;width:2.25rem;height:2rem;background:none;border:none;cursor:pointer;flex-direction:column;justify-content:center;align-items:flex-end;gap:5px;padding:0;}"+
+      ".nav-toggle span{display:block;width:1.6rem;height:1.5px;background:currentColor;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .25s ease;}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(2){opacity:0;}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
+      ".mobile-menu{position:fixed;inset:0;z-index:600;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
+      ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
+      ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a:hover{color:#C49348;}"+
+      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
+      "body.menu-open{overflow:hidden;}"+
+      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
+    document.head.appendChild(s);
+    var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
+    var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['tours.html','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
+    var m=document.createElement('div');m.className='mobile-menu';
+    var h='<button class="mobile-menu-close" aria-label="Close menu">&#10005;</button>';
+    links.forEach(function(l){h+='<a href="'+l[0]+'">'+l[1]+'</a>';});
+    m.innerHTML=h;document.body.appendChild(m);
+    function close(){m.classList.remove('open');document.body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');}
+    btn.addEventListener('click',function(){m.classList.add('open');document.body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');});
+    m.querySelector('.mobile-menu-close').addEventListener('click',close);
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
+  })();
+  </script>
+</body>
+</html>

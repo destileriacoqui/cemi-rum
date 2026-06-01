@@ -1,0 +1,17 @@
+{
+  "name": "destileria-coqui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Destilería Coquí — official website. Static HTML/CSS/JS site.",
+  "scripts": {
+    "dev": "serve . --listen 4242",
+    "start": "serve . --listen 4242",
+    "build": "echo 'Static site — no build step required.'"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

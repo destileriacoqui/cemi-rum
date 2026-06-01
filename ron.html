@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestro Ron — Destilería Coquí</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    sup { font-size: 0.48em; vertical-align: super; font-weight: 400; letter-spacing: 0; }
+
+    :root {
+      --cream:       #F7F2E8;
+      --cream-mid:   #EFE8D8;
+      --cream-dark:  #E7DAC9;
+      --ink:         #1A1207;
+      --amber:       #8C3F16;
+      --gold:        #C49348;
+      --brown:       #60422E;
+      --muted:       #7D6654;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "kern" 1, "liga" 1;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      padding: 1.5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(247,242,232,0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      transition: color 0.55s ease;
+    }
+    .nav-links { display: flex; gap: 2.75rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.45s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a[aria-current="page"] { color: var(--amber); opacity: 1; }
+
+    /* ─── CATALOG ─────────────────────────────────────── */
+    .catalog {
+      background: var(--cream);
+      padding: 12rem 0 14rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .catalog-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 4rem; position: relative; z-index: 2;
+    }
+    .catalog-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: end; margin-bottom: 5.5rem;
+    }
+    .catalog-eyebrow {
+      font-size: 0.58rem; font-weight: 400; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); display: inline-flex; align-items: center; gap: 1.25rem;
+      margin-bottom: 2.25rem; opacity: 0.85;
+    }
+    .catalog-eyebrow::after { content: ''; width: 3rem; height: 0.5px; background: var(--gold); opacity: 0.65; flex-shrink: 0; }
+    .catalog-h2 {
+      font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 5.5rem);
+      font-weight: 200; color: var(--ink); line-height: 1.02; letter-spacing: -0.035em;
+    }
+    .catalog-h2 em { font-style: italic; color: var(--amber); }
+    .catalog-sub {
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--muted); line-height: 1.9; max-width: 46ch;
+    }
+    .catalog-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+    }
+
+    /* ─── CATEGORY DIVIDERS ──────────────────────────── */
+    .catalog-category {
+      grid-column: 1 / -1;
+      padding: 4rem 0 1.75rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      margin-top: 1.5rem;
+    }
+    .catalog-category:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .catalog-category-label {
+      font-family: var(--serif); font-size: 1.9rem; font-weight: 200; letter-spacing: -0.01em;
+      color: var(--amber); display: flex; align-items: center; gap: 1.75rem; opacity: 1;
+    }
+    .catalog-category-label::after { content: ''; flex: 1; height: 0.5px; background: var(--amber); opacity: 0.3; }
+
+    /* ─── PRODUCT CARDS ───────────────────────────────── */
+    .prod-card { display: block; position: relative; overflow: hidden; cursor: pointer; background: transparent; text-decoration: none; color: inherit; }
+    .prod-card:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+    .prod-img-wrap { position: relative; overflow: hidden; aspect-ratio: 3/4; background: transparent; }
+    .prod-img {
+      width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block;
+      padding: 0.5rem 1.5rem 0;
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+      filter: drop-shadow(0 8px 24px rgba(26,18,7,0.10));
+    }
+    .prod-card:hover .prod-img { transform: scale(1.04); }
+    [data-product="pitorro-coco-35"] .prod-img { object-fit: cover; padding: 0; }
+    .prod-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(247,242,232,0.98) 0%, rgba(247,242,232,0.72) 42%, rgba(247,242,232,0) 68%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.75rem 1.65rem;
+      transform: translateY(62%);
+      transition: transform 0.58s cubic-bezier(0.16,1,0.3,1);
+    }
+    .prod-card:hover .prod-overlay { transform: translateY(0); }
+    .prod-overlay-name {
+      font-family: var(--serif); font-size: 1.35rem; font-weight: 300;
+      color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.45rem;
+    }
+    .prod-overlay-teaser {
+      font-size: 0.72rem; font-weight: 300;
+      color: var(--muted); line-height: 1.75; margin-bottom: 1rem;
+    }
+    .prod-overlay-hint {
+      font-size: 0.52rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--amber); display: flex; align-items: center; gap: 0.6rem; opacity: 0.9;
+    }
+    .prod-base-strip {
+      padding: 1.2rem 0 0;
+      display: flex; justify-content: space-between; align-items: baseline;
+    }
+    .prod-base-name {
+      font-family: var(--serif); font-size: 1.05rem; font-weight: 300;
+      color: var(--ink); letter-spacing: -0.01em;
+    }
+    .prod-base-type { font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.75; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--cream);
+      padding: 4rem 4rem 3.5rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
+    .footer-links { display: flex; gap: 2.5rem; list-style: none; }
+    .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ─── REVEAL ──────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(1.4rem); } to { opacity: 1; transform: none; } }
+    .reveal { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+    .d1 { animation-delay: 0.12s; } .d2 { animation-delay: 0.24s; }
+    .d3 { transition-delay: 0.34s; } .d4 { transition-delay: 0.46s; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1100px) {
+      nav { padding: 1.5rem 2.5rem; }
+      .catalog-inner { padding: 0 2.5rem; }
+      .catalog-header { grid-template-columns: 1fr; gap: 2.5rem; }
+      .catalog-grid { grid-template-columns: repeat(2,1fr); }
+      footer { flex-direction: column; gap: 2.25rem; padding: 3.25rem 2.5rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .catalog { padding: 9rem 0 11rem; }
+      .catalog-grid { grid-template-columns: repeat(2,1fr); gap: 0.75rem; }
+    }
+    @media (max-width: 520px) {
+      .catalog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">Coqu&#xED;</a>
+    <ul class="nav-links">
+      <li><a href="historia.html">Our Story</a></li>
+      <li><a href="ron.html" aria-current="page">Our Rums</a></li>
+      <li><a href="plaza.html">Plaza</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="index.html#eventos">Events</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── CATALOG ──────────────────────────────────────── -->
+  <section class="catalog" id="ron">
+    <div class="catalog-inner">
+
+      <div class="catalog-header">
+        <div>
+          <p class="catalog-eyebrow reveal">18 Spirits</p>
+          <h1 class="catalog-h2 reveal d1">Rum, Pitorro<br>&amp; beyond.<br><em>All Puerto Rico.</em></h1>
+        </div>
+        <p class="catalog-sub reveal d2">
+          From our flagship Ron Coqu&#xED; white rum to the island's legendary Pitorro —
+          now legal — every bottle is distilled by hand in Mayag&#xFC;ez. Eighteen spirits,
+          each carrying the flavors and traditions of Puerto Rico in every sip.
+        </p>
+      </div>
+
+      <div class="catalog-grid">
+
+        <!-- ── Ron Coquí™ ──────────────────────────────── -->
+        <div class="catalog-category">
+          <span class="catalog-category-label">Ron Coqu&#xED;&#x2122;</span>
+        </div>
+
+        <a href="producto.html?id=ron-blanco" class="prod-card reveal" data-product="ron-blanco">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/ron-blanco.png" alt="Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Ron Coqu&#xED;&#x2122; Blanco</p>
+              <p class="prod-overlay-teaser">Puerto Rico's everyday rum. Clean, smooth, unmistakably island.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Ron Coqu&#xED;&#x2122; Blanco</span>
+            <span class="prod-base-type">White Rum</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=ron-limon" class="prod-card reveal d1" data-product="ron-limon">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/ron-limon.png" alt="Ron Coqu&#xED;&#x2122; Lim&#xF3;n" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Ron Coqu&#xED;&#x2122; Lim&#xF3;n</p>
+              <p class="prod-overlay-teaser">Bright citrus rum with the natural zest of Puerto Rican lim&#xF3;n.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Ron Coqu&#xED;&#x2122; Lim&#xF3;n</span>
+            <span class="prod-base-type">Citrus Rum</span>
+          </div>
+        </a>
+
+        <!-- ── Pitorro® Original ────────────────────────── -->
+        <div class="catalog-category">
+          <span class="catalog-category-label">Pitorro<sup>®</sup> Original</span>
+        </div>
+
+        <a href="producto.html?id=pitorro-blanco" class="prod-card reveal" data-product="pitorro-blanco">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-blanco.png" alt="Pitorro&#xAE; Blanco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Blanco</p>
+              <p class="prod-overlay-teaser">Puerto Rico's legendary moonshine. Now legal, still wild.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Blanco</span>
+            <span class="prod-base-type">Traditional Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-coco-35" class="prod-card reveal d1" data-product="pitorro-coco-35">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-coco-35.png" alt="Pitorro&#xAE; de Coco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> de Coco</p>
+              <p class="prod-overlay-teaser">The island's boldest spirit meets pure Puerto Rican coconut. 35% ABV.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> de Coco</span>
+            <span class="prod-base-type">Coconut Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-coco-15" class="prod-card reveal d2" data-product="pitorro-coco-15">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-coco-15.png" alt="Pitorro&#xAE; Coco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Coco</p>
+              <p class="prod-overlay-teaser">All the tropical sweetness of coconut, lighter on the spirit. 15% ABV.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Coco</span>
+            <span class="prod-base-type">Coconut Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-cafe" class="prod-card reveal" data-product="pitorro-cafe">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-cafe.png" alt="Pitorro&#xAE; Caf&#xe9;" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Caf&#xe9;</p>
+              <p class="prod-overlay-teaser">Bold Puerto Rican coffee meets the island's traditional spirit.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Caf&#xe9;</span>
+            <span class="prod-base-type">Coffee Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-tamarindo" class="prod-card reveal d1" data-product="pitorro-tamarindo">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-tamarindo.png" alt="Pitorro&#xAE; Tamarindo" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Tamarindo</p>
+              <p class="prod-overlay-teaser">Tangy tamarind and traditional Pitorro — bold, tart, distinctly Caribbean.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Tamarindo</span>
+            <span class="prod-base-type">Tamarind Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-parcha" class="prod-card reveal d2" data-product="pitorro-parcha">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-parcha.png" alt="Pitorro&#xAE; Parcha" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Parcha</p>
+              <p class="prod-overlay-teaser">Parcha — Puerto Rico's passion fruit — in every drop.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Parcha</span>
+            <span class="prod-base-type">Passion Fruit Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-pina" class="prod-card reveal" data-product="pitorro-pina">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-pina.png" alt="Pitorro&#xAE; Pi&#xF1;a" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Pi&#xF1;a</p>
+              <p class="prod-overlay-teaser">The sweetness of fresh pineapple, the kick of traditional Pitorro.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Pi&#xF1;a</span>
+            <span class="prod-base-type">Pineapple Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-fresa" class="prod-card reveal d1" data-product="pitorro-fresa">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-fresa.png" alt="Pitorro&#xAE; Fresa" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Fresa</p>
+              <p class="prod-overlay-teaser">Ripe strawberry infused into Puerto Rico's legendary spirit.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Fresa</span>
+            <span class="prod-base-type">Strawberry Pitorro</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=pitorro-frutas" class="prod-card reveal d2" data-product="pitorro-frutas">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/pitorro-frutas.png" alt="Pitorro&#xAE; Frutas" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro<sup>®</sup> Frutas</p>
+              <p class="prod-overlay-teaser">A tropical medley of island fruits captured in traditional Pitorro.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro<sup>®</sup> Frutas</span>
+            <span class="prod-base-type">Mixed Fruit Pitorro</span>
+          </div>
+        </a>
+
+        <!-- ── Pitorro® Blends ──────────────────────────── -->
+        <div class="catalog-category">
+          <span class="catalog-category-label">Pitorro<sup>®</sup> Blends</span>
+        </div>
+
+        <a href="producto.html?id=blend-coco-pina" class="prod-card reveal" data-product="blend-coco-pina">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/blend-coco-pina.png" alt="Pitorro&#xAE; Blends Coco Pi&#xF1;a" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Coco Pi&#xF1;a</p>
+              <p class="prod-overlay-teaser">Coconut and pineapple — Puerto Rico's tropical duo, blended perfectly.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Coco Pi&#xF1;a</span>
+            <span class="prod-base-type">Pitorro Blend</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=blend-coco-almendra" class="prod-card reveal d1" data-product="blend-coco-almendra">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/blend-coco-almendra.png" alt="Pitorro&#xAE; Blends Coco Almendra" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Coco Almendra</p>
+              <p class="prod-overlay-teaser">The creaminess of coconut with a warm almond finish.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Coco Almendra</span>
+            <span class="prod-base-type">Pitorro Blend</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=blend-fresa-pina" class="prod-card reveal d2" data-product="blend-fresa-pina">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/blend-fresa-pina.png" alt="Pitorro&#xAE; Blends Fresa Pi&#xF1;a" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Fresa / Pi&#xF1;a</p>
+              <p class="prod-overlay-teaser">Strawberry and pineapple — two island fruits in one vibrant blend.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Fresa / Pi&#xF1;a</span>
+            <span class="prod-base-type">Pitorro Blend</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=blend-jengibre-coco" class="prod-card reveal" data-product="blend-jengibre-coco">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/blend-jengibre-coco.png" alt="Pitorro&#xAE; Blends Jengibre Coco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Jengibre Coco</p>
+              <p class="prod-overlay-teaser">The warmth of ginger meeting the sweetness of tropical coconut.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Jengibre Coco</span>
+            <span class="prod-base-type">Pitorro Blend</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=blend-mango-pina" class="prod-card reveal d1" data-product="blend-mango-pina">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/blend-mango-pina.png" alt="Pitorro&#xAE; Blends Mango Pi&#xF1;a" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Mango / Pi&#xF1;a</p>
+              <p class="prod-overlay-teaser">Juicy mango and bright pineapple in a sweet tropical blend.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Mango / Pi&#xF1;a</span>
+            <span class="prod-base-type">Pitorro Blend</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=blend-coco-fresa-pina" class="prod-card reveal d2" data-product="blend-coco-fresa-pina">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/blend-coco-fresa-pina.png" alt="Pitorro&#xAE; Blends Coco Fresa Pi&#xF1;a" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Coco, Fresa y Pi&#xF1;a</p>
+              <p class="prod-overlay-teaser">Coconut, strawberry, and pineapple — three island flavors, one bold blend.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Coco, Fresa y Pi&#xF1;a</span>
+            <span class="prod-base-type">Pitorro Blend</span>
+          </div>
+        </a>
+
+        <!-- ── Carjaker's ───────────────────────────────── -->
+        <div class="catalog-category">
+          <span class="catalog-category-label">Carjaker&#x27;s</span>
+        </div>
+
+        <a href="producto.html?id=carjakers" class="prod-card reveal" data-product="carjakers">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/carjakers.png" alt="Carjaker's Rum" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Carjaker&#x27;s Rum</p>
+              <p class="prod-overlay-teaser">120 proof. Puerto Rico's most powerful rum. Not for the faint-hearted.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Carjaker&#x27;s Rum</span>
+            <span class="prod-base-type">Overproof Rum · 120 Proof</span>
+          </div>
+        </a>
+
+        <!-- ── Canecas ─────────────────────────────────── -->
+        <div class="catalog-category">
+          <span class="catalog-category-label">Canecas</span>
+        </div>
+
+        <a href="producto.html?id=caneca-blanco" class="prod-card reveal" data-product="caneca-blanco">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/caneca-blanco.png" alt="Caneca Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Caneca Ron Coqu&#xED;&#x2122; Blanco</p>
+              <p class="prod-overlay-teaser">Our flagship white rum in a convenient single-serve caneca.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Caneca Ron Coqu&#xED;&#x2122; Blanco</span>
+            <span class="prod-base-type">Caneca &middot; 39% ABV</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=caneca-limon" class="prod-card reveal d1" data-product="caneca-limon">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/caneca-limon.png" alt="Caneca Ron Coqu&#xED;&#x2122; Lim&#xF3;n" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Caneca Ron Coqu&#xED;&#x2122; Lim&#xF3;n</p>
+              <p class="prod-overlay-teaser">Citrus-forward Ron Coquí Limón in a convenient caneca.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Caneca Ron Coqu&#xED;&#x2122; Lim&#xF3;n</span>
+            <span class="prod-base-type">Caneca &middot; 30% ABV</span>
+          </div>
+        </a>
+
+        <!-- ── Pitorro® Miniatures ─────────────────────── -->
+        <div class="catalog-category">
+          <span class="catalog-category-label">Pitorro<sup>&#xAE;</sup> Miniatures</span>
+        </div>
+
+        <a href="producto.html?id=mini-blanco" class="prod-card reveal" data-product="mini-blanco">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/mini-blanco.png" alt="Pitorro&#xAE; Miniature Blanco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro&#xAE; Miniature Blanco</p>
+              <p class="prod-overlay-teaser">Pocket-sized legendary moonshine. Perfect for sampling or gifting.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro&#xAE; Miniature Blanco</span>
+            <span class="prod-base-type">Miniature &middot; 39% ABV</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=mini-coco" class="prod-card reveal d1" data-product="mini-coco">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/mini-coco.png" alt="Pitorro&#xAE; Miniature Coco" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro&#xAE; Miniature Coco</p>
+              <p class="prod-overlay-teaser">Tropical coconut Pitorro in a pocket-sized miniature.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro&#xAE; Miniature Coco</span>
+            <span class="prod-base-type">Miniature &middot; 15% ABV</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=mini-parcha" class="prod-card reveal d2" data-product="mini-parcha">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/mini-parcha.png" alt="Pitorro&#xAE; Miniature Parcha" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro&#xAE; Miniature Parcha</p>
+              <p class="prod-overlay-teaser">Passion fruit Pitorro miniature. Bright and tropical.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro&#xAE; Miniature Parcha</span>
+            <span class="prod-base-type">Miniature &middot; 35% ABV</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=mini-tamarindo" class="prod-card reveal" data-product="mini-tamarindo">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/mini-tamarindo.png" alt="Pitorro&#xAE; Miniature Tamarindo" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro&#xAE; Miniature Tamarindo</p>
+              <p class="prod-overlay-teaser">Tangy tamarind Pitorro miniature. Bold and Caribbean.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro&#xAE; Miniature Tamarindo</span>
+            <span class="prod-base-type">Miniature &middot; 35% ABV</span>
+          </div>
+        </a>
+
+        <a href="producto.html?id=mini-cafe" class="prod-card reveal d1" data-product="mini-cafe">
+          <div class="prod-img-wrap">
+            <img class="prod-img" src="img/mini-cafe.png" alt="Pitorro&#xAE; Miniature Caf&#xE9;" loading="lazy">
+            <div class="prod-overlay">
+              <p class="prod-overlay-name">Pitorro&#xAE; Miniature Caf&#xE9;</p>
+              <p class="prod-overlay-teaser">Coffee and Pitorro tradition in a pocket-sized miniature.</p>
+              <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
+            </div>
+          </div>
+          <div class="prod-base-strip">
+            <span class="prod-base-name">Pitorro&#xAE; Miniature Caf&#xE9;</span>
+            <span class="prod-base-type">Miniature &middot; 35% ABV</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-logo">Destiler&#xED;a Coqu&#xED;</span>
+    <p class="footer-copy">
+      &copy; 2026 Destiler&#xED;a Coqu&#xED; &mdash; Mayag&#xFC;ez, Puerto Rico.<br>
+      Drink responsibly. Must be of legal drinking age.
+    </p>
+    <ul class="footer-links">
+      <li><a href="historia.html">Our Story</a></li>
+      <li><a href="ron.html">Our Rums</a></li>
+      <li><a href="plaza.html">Plaza</a></li>
+      <li><a href="tours.html">Tours</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->
+  <script>
+  (function(){
+    var nav=document.querySelector('nav'); if(!nav||document.querySelector('.nav-toggle')) return;
+    var s=document.createElement('style');
+    s.textContent=".nav-toggle{display:none;width:2.25rem;height:2rem;background:none;border:none;cursor:pointer;flex-direction:column;justify-content:center;align-items:flex-end;gap:5px;padding:0;}"+
+      ".nav-toggle span{display:block;width:1.6rem;height:1.5px;background:currentColor;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .25s ease;}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(2){opacity:0;}"+
+      ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
+      ".mobile-menu{position:fixed;inset:0;z-index:600;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
+      ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
+      ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a:hover{color:#C49348;}"+
+      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
+      "body.menu-open{overflow:hidden;}"+
+      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
+    document.head.appendChild(s);
+    var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
+    var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['tours.html','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
+    var m=document.createElement('div');m.className='mobile-menu';
+    var h='<button class="mobile-menu-close" aria-label="Close menu">&#10005;</button>';
+    links.forEach(function(l){h+='<a href="'+l[0]+'">'+l[1]+'</a>';});
+    m.innerHTML=h;document.body.appendChild(m);
+    function close(){m.classList.remove('open');document.body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');}
+    btn.addEventListener('click',function(){m.classList.add('open');document.body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');});
+    m.querySelector('.mobile-menu-close').addEventListener('click',close);
+    m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
+  })();
+  </script>
+</body>
+</html>
