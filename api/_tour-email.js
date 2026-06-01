@@ -1,6 +1,6 @@
 const { supabase } = require('./_supabase-admin');
 
-const staffRecipients = ['destileriacoqui07@gmail.com', 'maria@prsugar.com'];
+const staffRecipients = ['orders@prsugar.com', 'destileriacoqui07@gmail.com', 'maria@prsugar.com'];
 
 function escape(value) {
   return String(value || '').replace(/[&<>"']/g, character => ({
