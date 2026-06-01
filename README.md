@@ -63,9 +63,13 @@ git push -u origin main
 
 ## Stripe Integration
 
-Product pages add bottles to a shared cart. The shipping button calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. The `/api/stripe-webhook` endpoint updates saved orders after payment confirmation.
+Product pages add bottles to a shared cart. The shipping button calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. Shipping is a flat `$20` charge added once per shipped order, regardless of bottle quantity. Pickup orders do not receive a shipping charge.
+
+The tours page lets visitors choose a date, time, paying adult count, and free child count. `/api/create-tour-checkout-session` saves the booking in Supabase and opens Stripe-hosted Checkout at `$45` per adult. Children under 18 are saved with the booking and are not charged. After payment, the customer sees `/tour-confirmation` and the `/api/stripe-webhook` endpoint confirms the booking.
 
 The Stripe secret key and webhook secret are Vercel server environment variables. They are never sent to the browser.
+
+Tour confirmation emails use Resend. The customer receives a confirmation, and `destileriacoqui07@gmail.com` plus `maria@prsugar.com` receive the booking contact details, date, time, and guest counts. Configure `RESEND_API_KEY` and `ADMIN_EMAIL_FROM` in Vercel before enabling real email delivery.
 
 ### Product catalog (25 products)
 

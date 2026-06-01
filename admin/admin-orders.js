@@ -4,6 +4,7 @@
   const search = document.querySelector('[data-order-search]');
   const filters = [...document.querySelectorAll('[data-filter]')];
   let orders = [];
+  let tours = [];
   let activeFilter = 'all';
 
   const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({
@@ -14,6 +15,7 @@
   const label = value => ({
     pending: 'Pending',
     submitted: 'Pending',
+    confirmed: 'Tour Confirmed',
     ready: 'Ready for Pickup',
     completed: 'Picked Up',
     cancelled: 'Cancelled'
@@ -109,22 +111,73 @@
       </article>`;
   }
 
+  function renderTour(booking) {
+    const status = booking.status || 'pending';
+    return `
+      <article class="admin-order" data-tour-card="${escape(booking.id)}">
+        <header class="admin-order-header">
+          <div>
+            <span class="admin-status admin-status-${escape(status)}">${escape(label(status))}</span>
+            <h2>Tour ${escape(booking.id.slice(0, 8).toUpperCase())}</h2>
+            <p>Created ${escape(date(booking.created_at))}</p>
+          </div>
+          <strong class="admin-total">${escape(money(booking.total))}</strong>
+        </header>
+        <div class="admin-order-grid">
+          <section>
+            <h3>Customer</h3>
+            <p><strong>${escape(booking.customer_name)}</strong></p>
+            <p><a href="mailto:${escape(booking.email)}">${escape(booking.email)}</a></p>
+            <p><a href="tel:${escape(booking.phone)}">${escape(booking.phone || 'No phone number')}</a></p>
+          </section>
+          <section>
+            <h3>Tour details</h3>
+            <p><strong>Date:</strong> ${escape(booking.tour_date)}</p>
+            <p><strong>Time:</strong> ${escape(booking.tour_time)}</p>
+            <p><strong>Adults:</strong> ${escape(booking.adult_guests)}</p>
+            <p><strong>Children under 18:</strong> ${escape(booking.child_guests)}</p>
+            <p><strong>Total guests:</strong> ${escape(booking.guests)}</p>
+          </section>
+          <section>
+            <h3>Payment & notes</h3>
+            <p><strong>Payment:</strong> ${escape(label(booking.payment_status))}</p>
+            <p><strong>Email confirmation:</strong> ${escape(label(booking.confirmation_email_status))}</p>
+            <p><strong>Notes:</strong> ${escape(booking.notes || 'No customer notes')}</p>
+          </section>
+        </div>
+        <footer class="admin-order-actions">
+          ${booking.status !== 'completed' ? `<button class="admin-button admin-button-primary" type="button" data-tour-status="completed" data-tour-id="${escape(booking.id)}">Mark Tour Complete</button>` : ''}
+          ${booking.status !== 'cancelled' ? `<button class="admin-button admin-button-danger" type="button" data-tour-status="cancelled" data-tour-id="${escape(booking.id)}">Cancel Tour</button>` : ''}
+          <button class="admin-button admin-button-quiet" type="button" data-copy-email="${escape(booking.email)}">Copy Customer Email</button>
+          <button class="admin-button admin-button-email" type="button" data-send-tour-email="${escape(booking.id)}">Send Tour Confirmation</button>
+        </footer>
+      </article>`;
+  }
+
   function render() {
     const query = search.value.trim().toLowerCase();
     const visible = orders.filter(order => {
       const searchable = [order.id, order.customer_name, order.email, order.phone].join(' ').toLowerCase();
       return (activeFilter === 'all' || statusOf(order) === activeFilter) && searchable.includes(query);
     });
-    root.innerHTML = visible.length
-      ? visible.map(renderOrder).join('')
-      : '<div class="admin-empty"><h2>No matching orders</h2><p>Try a different filter or search term.</p></div>';
+    const visibleTours = tours.filter(booking => {
+      const searchable = [booking.id, booking.customer_name, booking.email, booking.phone].join(' ').toLowerCase();
+      return (activeFilter === 'all' || booking.status === activeFilter) && searchable.includes(query);
+    });
+    root.innerHTML = `
+      <h2 class="admin-list-heading">Bottle orders</h2>
+      ${visible.length ? visible.map(renderOrder).join('') : '<div class="admin-empty"><p>No matching bottle orders.</p></div>'}
+      <h2 class="admin-list-heading">Tour reservations</h2>
+      ${visibleTours.length ? visibleTours.map(renderTour).join('') : '<div class="admin-empty"><p>No matching tour reservations.</p></div>'}`;
   }
 
   async function loadOrders() {
     root.innerHTML = '<div class="admin-loading">Loading orders...</div>';
     setMessage('');
     try {
-      orders = (await api('/api/admin/orders')).orders || [];
+      const payload = await api('/api/admin/orders');
+      orders = payload.orders || [];
+      tours = payload.tour_bookings || [];
       render();
     } catch (error) {
       setMessage(error.message, true);
@@ -135,6 +188,8 @@
     const statusButton = event.target.closest('[data-status]');
     const copyButton = event.target.closest('[data-copy-email]');
     const emailButton = event.target.closest('[data-send-email]');
+    const tourStatusButton = event.target.closest('[data-tour-status]');
+    const tourEmailButton = event.target.closest('[data-send-tour-email]');
     if (copyButton) {
       await navigator.clipboard.writeText(copyButton.dataset.copyEmail);
       setMessage('Customer email copied.');
@@ -169,6 +224,37 @@
         setMessage(error.message, true);
       } finally {
         emailButton.disabled = false;
+      }
+    }
+    if (tourStatusButton) {
+      tourStatusButton.disabled = true;
+      setMessage('Updating tour...');
+      try {
+        await api('/api/admin/orders', {
+          method: 'PATCH',
+          body: JSON.stringify({ tour_booking_id: tourStatusButton.dataset.tourId, status: tourStatusButton.dataset.tourStatus })
+        });
+        setMessage('Tour status updated.');
+        await loadOrders();
+      } catch (error) {
+        setMessage(error.message, true);
+        tourStatusButton.disabled = false;
+      }
+    }
+    if (tourEmailButton) {
+      tourEmailButton.disabled = true;
+      setMessage('Sending tour confirmation...');
+      try {
+        await api('/api/admin/send-tour-confirmation', {
+          method: 'POST',
+          body: JSON.stringify({ tour_booking_id: tourEmailButton.dataset.sendTourEmail })
+        });
+        setMessage('Tour confirmation sent.');
+        await loadOrders();
+      } catch (error) {
+        setMessage(error.message, true);
+      } finally {
+        tourEmailButton.disabled = false;
       }
     }
   });

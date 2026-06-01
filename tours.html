@@ -184,6 +184,36 @@
       font-size: 0.86rem; color: var(--ink); line-height: 1.7;
     }
     .selected-info strong { font-weight: 500; }
+    .booking-panel {
+      display: none; margin-top: 2rem; padding: 2.5rem;
+      border: 0.5px solid rgba(26,18,7,0.14); background: #fff;
+    }
+    .booking-panel.visible { display: block; }
+    .booking-title {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; line-height: 1; letter-spacing: -0.025em;
+    }
+    .booking-copy { max-width: 60ch; margin-top: 0.85rem; color: var(--muted); font-size: 0.86rem; }
+    .booking-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+    .booking-grid .wide { grid-column: 1 / -1; }
+    .booking-grid label {
+      display: grid; gap: 0.45rem; color: var(--muted);
+      font-size: 0.54rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .booking-grid input, .booking-grid select, .booking-grid textarea {
+      width: 100%; min-height: 3.2rem; border: 0.5px solid rgba(26,18,7,0.2);
+      background: var(--cream); color: var(--ink); padding: 0.8rem 0.9rem;
+      font: 300 0.9rem var(--sans);
+    }
+    .booking-grid textarea { min-height: 6.5rem; resize: vertical; }
+    .booking-summary {
+      display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+      margin-top: 1.5rem; padding-top: 1.25rem; border-top: 0.5px solid rgba(26,18,7,0.12);
+    }
+    .booking-summary span { color: var(--muted); font-size: 0.8rem; }
+    .booking-summary strong { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; }
+    .booking-message { min-height: 1.4rem; margin-top: 0.9rem; color: var(--muted); font-size: 0.82rem; }
+    .booking-message.error { color: #9b2918; }
 
     /* ─── SECTION 3: PRICING + INFO ───────────────────── */
     .info {
@@ -268,6 +298,9 @@
       .nav-links { display: none; }
       .dates-top { flex-direction: column; gap: 2.5rem; align-items: flex-start; }
       .cal-avail { display: none; }
+      .booking-panel { padding: 1.4rem; }
+      .booking-grid { grid-template-columns: 1fr; }
+      .booking-grid .wide { grid-column: auto; }
     }
   </style>
 </head>
@@ -353,8 +386,48 @@
       <div class="cal-grid" id="calGrid"></div>
 
       <div class="selected-info" id="selectedInfo">
-        <p><strong id="selectedDateLabel"></strong> &mdash; <span id="selectedDateNote">Call <a href="tel:+17878051000" style="color:var(--amber)">787-805-1000</a> to confirm availability and reserve your spot.</span></p>
+        <p><strong id="selectedDateLabel"></strong> &mdash; <span id="selectedDateNote">Continue below to choose a time and reserve your visit.</span></p>
       </div>
+      <section class="booking-panel" id="bookingPanel" aria-labelledby="bookingTitle">
+        <h2 class="booking-title" id="bookingTitle">Reserve your tour.</h2>
+        <p class="booking-copy">Adults are $45 each. Children under 18 enter free with a paying adult. Your card payment is completed securely through Stripe.</p>
+        <form id="tourBookingForm">
+          <input type="hidden" name="tour_date" id="tourDate">
+          <div class="booking-grid">
+            <label>Tour time
+              <select name="tour_time" required>
+                <option value="">Choose a time</option>
+                <option>9:30 AM</option>
+                <option>11:00 AM</option>
+                <option>1:30 PM</option>
+                <option>3:00 PM</option>
+                <option>4:30 PM</option>
+              </select>
+            </label>
+            <label>Adults, $45 each
+              <input type="number" name="adult_guests" min="1" max="50" value="1" required>
+            </label>
+            <label>Children under 18, free
+              <input type="number" name="child_guests" min="0" max="50" value="0" required>
+            </label>
+            <label>Name
+              <input name="full_name" autocomplete="name" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>Phone
+              <input name="phone" autocomplete="tel" required>
+            </label>
+            <label class="wide">Notes for our team, optional
+              <textarea name="notes"></textarea>
+            </label>
+          </div>
+          <div class="booking-summary"><span>Tour total</span><strong id="tourTotal">$45.00</strong></div>
+          <button class="btn-book" type="submit">Continue to Secure Payment</button>
+          <p class="booking-message" id="tourBookingMessage" aria-live="polite"></p>
+        </form>
+      </section>
     </div>
   </section>
 
@@ -370,8 +443,8 @@
           Ron Coqu&#xed;&#x2122; expressions, and access to our distillery shop.
           No hidden fees.
         </p>
-        <a href="tel:+17878051000" class="btn-book">
-          Call to Reserve
+        <a href="#bookingPanel" class="btn-book">
+          Book Online
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
             <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -386,7 +459,7 @@
           </div>
           <div class="info-item">
             <span class="info-label">Reservations</span>
-            <span class="info-val">Call 787-805-1000 to reserve. Tours run Monday through Saturday, subject to availability.</span>
+            <span class="info-val">Choose a date, time, and group size online. Tours run Monday through Saturday, subject to availability.</span>
           </div>
           <div class="info-item">
             <span class="info-label">Hours</span>
@@ -483,6 +556,13 @@
       const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
       lbl.textContent = days[date.getDay()] + ', ' + MONTHS[date.getMonth()] + ' ' + day + ', ' + date.getFullYear();
       info.classList.add('visible');
+      document.getElementById('tourDate').value = [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, '0'),
+        String(date.getDate()).padStart(2, '0')
+      ].join('-');
+      document.getElementById('bookingPanel').classList.add('visible');
+      document.getElementById('bookingPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     document.getElementById('prevMonth').addEventListener('click', () => {
@@ -496,6 +576,7 @@
 
     renderCalendar();
   </script>
+  <script src="/js/tour-booking.js"></script>
   <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->
   <script>
   (function(){

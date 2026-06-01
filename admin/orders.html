@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pickup Orders — Destilería Coquí</title>
+  <title>Orders & Tours — Destilería Coquí</title>
   <link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
@@ -18,8 +18,8 @@
     <section class="admin-heading">
       <div>
         <p class="admin-eyebrow">Staff Orders</p>
-        <h1>Pickup orders</h1>
-        <p class="admin-intro">Review requests, update their status, and contact customers.</p>
+        <h1>Orders & tours</h1>
+        <p class="admin-intro">Review pickup requests and paid tour reservations, update their status, and contact customers.</p>
       </div>
       <button class="admin-button admin-button-primary" type="button" data-refresh-orders>Refresh Orders</button>
     </section>
@@ -31,6 +31,7 @@
       <div class="admin-filters" role="group" aria-label="Filter orders by status">
         <button class="admin-filter is-active" type="button" data-filter="all">All</button>
         <button class="admin-filter" type="button" data-filter="pending">Pending</button>
+        <button class="admin-filter" type="button" data-filter="confirmed">Tour Confirmed</button>
         <button class="admin-filter" type="button" data-filter="ready">Ready for Pickup</button>
         <button class="admin-filter" type="button" data-filter="completed">Picked Up</button>
         <button class="admin-filter" type="button" data-filter="cancelled">Cancelled</button>

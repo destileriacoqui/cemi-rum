@@ -2,6 +2,7 @@ const { requireAdmin } = require('../_admin');
 const { supabase } = require('../_supabase-admin');
 
 const allowedStatuses = new Set(['pending', 'ready', 'completed', 'cancelled']);
+const allowedTourStatuses = new Set(['pending', 'confirmed', 'completed', 'cancelled']);
 
 function pickupStatus(status) {
   return allowedStatuses.has(status) ? status : 'pending';
@@ -12,10 +13,19 @@ module.exports = async function handler(req, res) {
   try {
     if (req.method === 'GET') {
       const orders = await supabase('orders?select=*,order_items(*),pickup_requests(*)&order=created_at.desc');
-      return res.status(200).json({ orders });
+      const tour_bookings = await supabase('tour_bookings?select=*&order=created_at.desc');
+      return res.status(200).json({ orders, tour_bookings });
     }
     if (req.method === 'PATCH') {
-      const { order_id: orderId, status } = req.body || {};
+      const { order_id: orderId, tour_booking_id: tourBookingId, status } = req.body || {};
+      if (tourBookingId) {
+        if (!allowedTourStatuses.has(status)) return res.status(400).json({ error: 'Choose a valid tour status.' });
+        await supabase(`tour_bookings?id=eq.${encodeURIComponent(tourBookingId)}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ status, updated_at: new Date().toISOString() })
+        });
+        return res.status(200).json({ tour_booking_id: tourBookingId, status });
+      }
       if (!orderId || !allowedStatuses.has(status)) {
         return res.status(400).json({ error: 'Choose a valid order status.' });
       }

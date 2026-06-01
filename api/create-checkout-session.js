@@ -43,11 +43,13 @@ module.exports = async function handler(req, res) {
     if (!customer.full_name || !customer.email) throw new Error('Name and email are required.');
     const user = await authenticatedUser(req);
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const shippingTotal = 20;
     const [order] = await supabase('orders?select=id', {
       method: 'POST', headers: { Prefer: 'return=representation' },
       body: JSON.stringify({
         user_id: user?.id || null, customer_name: customer.full_name, email: customer.email,
-        phone: customer.phone || null, fulfillment_type: 'shipping', subtotal, total: subtotal
+        phone: customer.phone || null, fulfillment_type: 'shipping', subtotal,
+        shipping_total: shippingTotal, total: subtotal + shippingTotal
       })
     });
     await supabase('order_items', {
@@ -66,11 +68,17 @@ module.exports = async function handler(req, res) {
         quantity: item.quantity,
         price_data: { currency: 'usd', unit_amount: Math.round(item.price * 100), product_data: { name: item.name } }
       })),
+      shipping_options: [{
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: { amount: shippingTotal * 100, currency: 'usd' },
+          display_name: 'Flat-rate shipping'
+        }
+      }],
       metadata: { order_id: order.id, fulfillment_type: 'shipping' },
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}&order_id=${order.id}&type=shipping`,
       cancel_url: `${origin}/cancel`
     };
-    if (process.env.STRIPE_SHIPPING_RATE_ID) params.shipping_options = [{ shipping_rate: process.env.STRIPE_SHIPPING_RATE_ID }];
     const session = await stripe.checkout.sessions.create(params);
     if (process.env.SUPABASE_SERVICE_ROLE_KEY) {
       await supabase(`orders?id=eq.${order.id}`, { method: 'PATCH', body: JSON.stringify({ stripe_session_id: session.id }) });

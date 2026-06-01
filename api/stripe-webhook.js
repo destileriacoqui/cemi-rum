@@ -1,4 +1,6 @@
 const Stripe = require('stripe');
+const { supabase } = require('./_supabase-admin');
+const { sendTourConfirmation } = require('./_tour-email');
 
 async function readBody(req) {
   const chunks = [];
@@ -18,6 +20,23 @@ async function updateOrder(id, values) {
   if (!response.ok) throw new Error('Order update failed.');
 }
 
+async function confirmTourBooking(id, session) {
+  await supabase(`tour_bookings?id=eq.${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      status: 'confirmed',
+      payment_status: session.payment_status === 'paid' ? 'paid' : session.payment_status,
+      stripe_session_id: session.id,
+      total: (session.amount_total || 0) / 100,
+      updated_at: new Date().toISOString()
+    })
+  });
+  const bookings = await supabase(`tour_bookings?id=eq.${id}&select=*`);
+  if (bookings[0]) {
+    try { await sendTourConfirmation(bookings[0]); } catch (_) {}
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).send('Method not allowed.');
   try {
@@ -27,6 +46,7 @@ module.exports = async function handler(req, res) {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
       const orderId = session.metadata?.order_id;
+      const tourBookingId = session.metadata?.tour_booking_id;
       if (orderId) {
         await updateOrder(orderId, {
           status: 'submitted',
@@ -36,6 +56,7 @@ module.exports = async function handler(req, res) {
           total: (session.amount_total || 0) / 100
         });
       }
+      if (tourBookingId && session.payment_status === 'paid') await confirmTourBooking(tourBookingId, session);
     }
     res.status(200).json({ received: true });
   } catch (error) { res.status(400).send(`Webhook error: ${error.message}`); }
