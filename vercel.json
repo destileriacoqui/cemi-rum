@@ -30,7 +30,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action https://buy.stripe.com https://checkout.stripe.com"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self'; connect-src 'self' https://autkqbfgniopxldszdur.supabase.co; frame-ancestors 'none'; base-uri 'self'; form-action https://buy.stripe.com https://checkout.stripe.com"
         }
       ]
     },
@@ -58,6 +58,15 @@
     { "source": "/historia", "destination": "/historia.html" },
     { "source": "/tours",    "destination": "/tours.html" },
     { "source": "/producto", "destination": "/producto.html" },
-    { "source": "/plaza",    "destination": "/plaza.html" }
+    { "source": "/plaza",    "destination": "/plaza.html" },
+    { "source": "/cart",     "destination": "/cart.html" },
+    { "source": "/login",    "destination": "/login.html" },
+    { "source": "/signup",   "destination": "/signup.html" },
+    { "source": "/account",  "destination": "/account.html" },
+    { "source": "/account/orders", "destination": "/account/orders.html" },
+    { "source": "/pickup-checkout", "destination": "/pickup-checkout.html" },
+    { "source": "/pickup-confirmation", "destination": "/pickup-confirmation.html" },
+    { "source": "/success", "destination": "/success.html" },
+    { "source": "/cancel", "destination": "/cancel.html" }
   ]
 }

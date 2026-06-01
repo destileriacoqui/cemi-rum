@@ -282,6 +282,50 @@
     }
     .plaza-space-body { font-size: 0.84rem; font-weight: 300; color: var(--muted); line-height: 1.9; }
 
+    /* ─── PRIVATE EVENTS ─────────────────────────────── */
+    .private-events {
+      background: var(--ink); color: var(--cream);
+      padding: 10rem 4rem;
+    }
+    .private-events-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      gap: 8rem; align-items: center;
+    }
+    .private-events .eyebrow { color: var(--gold); }
+    .private-events .eyebrow::after { background: var(--gold); }
+    .private-events-h2 {
+      font-family: var(--serif); font-size: clamp(3.3rem,6vw,7rem);
+      font-weight: 300; line-height: 0.92; letter-spacing: -0.045em;
+      color: var(--cream); margin-bottom: 2rem;
+    }
+    .private-events-h2 em { color: var(--gold); }
+    .private-events-body {
+      color: rgba(247,242,232,0.62); font-size: 0.9rem;
+      line-height: 1.95; max-width: 52ch;
+    }
+    .private-events-list {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-top: 0.5px solid rgba(247,242,232,0.14);
+    }
+    .private-event-detail {
+      padding: 1.65rem 1rem 1.65rem 0;
+      border-bottom: 0.5px solid rgba(247,242,232,0.14);
+    }
+    .private-event-detail:nth-child(even) { padding-left: 1.25rem; border-left: 0.5px solid rgba(247,242,232,0.14); }
+    .private-event-label {
+      display: block; color: var(--gold); font-size: 0.54rem;
+      letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.55rem;
+    }
+    .private-event-value { color: rgba(247,242,232,0.78); font-size: 0.83rem; line-height: 1.7; }
+    .private-events-call {
+      display: inline-flex; align-items: center; gap: 1rem; margin-top: 2.25rem;
+      color: var(--cream); text-decoration: none; font-size: 0.68rem;
+      font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: gap 0.35s cubic-bezier(0.16,1,0.3,1), color 0.3s ease;
+    }
+    .private-events-call:hover { color: var(--gold); gap: 1.5rem; }
+
     /* ─── SPACE GALLERY ───────────────────────────────── */
     .plaza-gallery {
       display: grid;
@@ -372,6 +416,8 @@
       .plaza-space:last-child { border-bottom: none; }
       .plaza-gallery { grid-template-columns: 1fr 1fr; padding: 7rem 2.5rem 9rem; }
       .gallery-item:nth-child(3) { display: none; }
+      .private-events { padding: 7rem 2.5rem; }
+      .private-events-inner { grid-template-columns: 1fr; gap: 4rem; }
       .visit-cta { padding: 7rem 2.5rem; }
       .visit-cta-inner { grid-template-columns: 1fr; gap: 4rem; }
       footer { flex-direction: column; gap: 2.25rem; padding: 3.25rem 2.5rem; text-align: center; }
@@ -387,6 +433,9 @@
       .gallery-item:nth-child(2) { margin-top: 0; }
       .gallery-item:nth-child(3) { display: block; margin-top: 0; }
       .gallery-item img { aspect-ratio: 16/9 !important; }
+      .private-events { padding: 6rem 1.75rem; }
+      .private-events-list { grid-template-columns: 1fr; }
+      .private-event-detail:nth-child(even) { padding-left: 0; border-left: none; }
     }
   </style>
 </head>
@@ -408,24 +457,23 @@
   <section class="page-hero">
     <div class="page-hero-bg">
       <img
-        src="https://picsum.photos/seed/coquiplaza01/1920/1080"
-        alt="Destileria Coqui distillery, Mayaguez, Puerto Rico"
+        src="img/coqui-plaza-bar.png"
+        alt="Coquí Plaza bar in Mayagüez, Puerto Rico"
         fetchpriority="high"
       >
     </div>
     <div class="page-hero-content">
       <div class="page-hero-left">
-        <p class="page-hero-eyebrow">Mayag&#xFC;ez, Puerto Rico &nbsp;·&nbsp; The Distillery</p>
+        <p class="page-hero-eyebrow">Mayag&#xFC;ez, Puerto Rico &nbsp;·&nbsp; Coqu&#xed; Plaza</p>
         <h1 class="page-hero-h1">
-          The
-          <em>Distillery.</em>
+          Coqu&#xed;
+          <em>Plaza.</em>
         </h1>
       </div>
       <div class="page-hero-right">
         <p class="page-hero-sub">
-          Where Pitorro&#xAE; is made and where you can see it happen. Our distillery
-          in Mayag&#xFC;ez is open to visitors Monday through Saturday &#x2014; come walk
-          the production floor, taste the spirits, and bring a bottle home.
+          A place to gather, taste, and make memories in Mayag&#xFC;ez. Visit us for
+          guided experiences, special events, and a closer look at the world of Coqu&#xed;.
         </p>
         <div class="page-hero-scroll" aria-hidden="true">
           <div class="scroll-line"></div>
@@ -440,52 +488,13 @@
     <div class="plaza-intro-inner">
       <div>
         <p class="eyebrow reveal">La Plaza</p>
-        <h2 class="h2 reveal d1" style="font-size:clamp(3rem,5.5vw,5.8rem);">Three spaces.<br><em>One story.</em></h2>
+        <h2 class="h2 reveal d1" style="font-size:clamp(3rem,5.5vw,5.8rem);">Come for a taste.<br><em>Stay for the moment.</em></h2>
       </div>
       <div>
         <p class="body-text reveal d2">
-          Destiler&#xed;a Coqu&#xed; is open to all. Walk the production floor where Pitorro&#xAE;
-          is distilled, visit the tasting room where the full lineup is poured,
-          and stop at our shop before you leave. Each space gives you a different
-          piece of what makes this place special.
+          Coqu&#xed; Plaza is our home for visitors. Join a guided tasting, discover the
+          bottles made in Mayag&#xFC;ez, and watch for special gatherings throughout the year.
         </p>
-      </div>
-    </div>
-
-    <!-- Panoramic image with pins -->
-    <div class="plaza-panorama reveal">
-      <img
-        class="plaza-panorama-img"
-        src="https://picsum.photos/seed/coquiplaza01/1800/700"
-        alt="Destileria Coqui distillery panoramic view, Mayaguez"
-        loading="lazy"
-      >
-      <div class="plaza-panorama-tint"></div>
-
-      <div class="plaza-pin" style="left:27%;top:42%;">
-        <div class="plaza-pin-dot"></div>
-        <div class="plaza-pin-ring"></div>
-        <div class="plaza-pin-ring r2"></div>
-        <div class="plaza-pin-label">La Sala de Cata</div>
-      </div>
-
-      <div class="plaza-pin" style="left:51%;top:58%;">
-        <div class="plaza-pin-dot"></div>
-        <div class="plaza-pin-ring"></div>
-        <div class="plaza-pin-ring r2"></div>
-        <div class="plaza-pin-label">El Jardín</div>
-      </div>
-
-      <div class="plaza-pin" style="left:75%;top:36%;">
-        <div class="plaza-pin-dot"></div>
-        <div class="plaza-pin-ring"></div>
-        <div class="plaza-pin-ring r2"></div>
-        <div class="plaza-pin-label">La Casa del Alambique</div>
-      </div>
-
-      <div class="plaza-panorama-caption">
-        <span class="plaza-panorama-title">Coquí Plaza</span>
-        <span class="plaza-panorama-sub">Mayag&#xFC;ez &nbsp;·&nbsp; Puerto Rico</span>
       </div>
     </div>
 
@@ -493,21 +502,18 @@
     <div class="plaza-spaces">
       <div class="plaza-space reveal">
         <span class="plaza-space-num">I</span>
-        <h3 class="plaza-space-name">La Sala de Cata</h3>
+        <h3 class="plaza-space-name">Guided Tastings</h3>
         <p class="plaza-space-body">
-          Sit down with our full spirits lineup. From Ron Coqu&#xed;&#x2122; Blanco to
-          Pitorro&#xAE; de Coco and Carjaker's overproof rum &#x2014; our staff walks you
-          through each expression. Available to all visitors during opening hours.
-          Children under 18 are welcome; tasting is for adults only.
+          Discover the flavors and stories behind our spirits with a guided tasting.
+          Children under 18 are welcome with a paying adult; tasting is for adults only.
         </p>
       </div>
       <div class="plaza-space reveal d1">
         <span class="plaza-space-num">II</span>
-        <h3 class="plaza-space-name">The Production Floor</h3>
+        <h3 class="plaza-space-name">Events &amp; Gatherings</h3>
         <p class="plaza-space-body">
-          See how Pitorro&#xAE; and Ron Coqu&#xed;&#x2122; are made from the inside. Walk through
-          active distillation equipment, the bottling line, and the quality control
-          station. Our team is on hand to answer every question. This is the real thing.
+          Coqu&#xed; Plaza brings people together for tastings, celebrations, and special
+          moments. Follow our events calendar for upcoming gatherings in Mayag&#xFC;ez.
         </p>
       </div>
       <div class="plaza-space reveal d2">
@@ -525,15 +531,52 @@
   <!-- ─── SPACE GALLERY ─────────────────────────────────── -->
   <div class="plaza-gallery">
     <div class="gallery-item reveal">
-      <img src="https://picsum.photos/seed/coquiplaza02/600/750" alt="La Sala de Cata — interior tasting room" loading="lazy">
+      <img src="img/pitorro-playa.jpg" alt="Destilería Coquí bottles on the coast" loading="lazy">
     </div>
     <div class="gallery-item reveal d1">
-      <img src="https://picsum.photos/seed/coquiplaza03/600/750" alt="El Jardín — the estate garden terrace" loading="lazy">
+      <img src="img/barricas-coqui.webp" alt="Destilería Coquí aging barrels" loading="lazy">
     </div>
     <div class="gallery-item reveal d2">
-      <img src="https://picsum.photos/seed/coquiplaza04/600/750" alt="La Casa del Alambique — the still house interior" loading="lazy">
+      <img src="img/event-taste-of-rum.jpg" alt="Destilería Coquí tasting gathering" loading="lazy">
     </div>
   </div>
+
+  <!-- ─── PRIVATE EVENTS ───────────────────────────────── -->
+  <section class="private-events">
+    <div class="private-events-inner">
+      <div>
+        <p class="eyebrow reveal">Private Events</p>
+        <h2 class="private-events-h2 reveal d1">Bring your people.<br><em>We will set the table.</em></h2>
+        <p class="private-events-body reveal d2">
+          Coqu&#xed; Plaza is available for private gatherings in Mayag&#xFC;ez. From birthdays
+          and family celebrations to company outings and tasting nights, our team can help
+          shape an experience around your group.
+        </p>
+        <a class="private-events-call reveal d3" href="tel:+17878051000">
+          Call 787-805-1000 to plan your event
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="private-events-list reveal d2">
+        <div class="private-event-detail">
+          <span class="private-event-label">Capacity</span>
+          <span class="private-event-value">Up to 100 guests</span>
+        </div>
+        <div class="private-event-detail">
+          <span class="private-event-label">Experiences</span>
+          <span class="private-event-value">Guided tastings for adult guests</span>
+        </div>
+        <div class="private-event-detail">
+          <span class="private-event-label">Gatherings</span>
+          <span class="private-event-value">Birthdays, company events, and celebrations</span>
+        </div>
+        <div class="private-event-detail">
+          <span class="private-event-label">Food</span>
+          <span class="private-event-value">Ask our team about food-friendly event options</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ─── VISIT CTA ─────────────────────────────────────── -->
   <section class="visit-cta">
@@ -631,5 +674,6 @@
     window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
   })();
   </script>
+  <script src="/js/site-commerce.js"></script>
 </body>
 </html>

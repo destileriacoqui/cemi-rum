@@ -291,6 +291,73 @@
     .home-feature-cta svg { transition: transform 0.38s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; position: relative; }
     .home-feature-cta:hover svg { transform: translateX(6px); }
 
+    /* ─── HOME HERITAGE: alternating editorial grid ──── */
+    .heritage-grid {
+      --barrel-x: 0px; --barrel-y: 0px; --barrel-rx: 0deg; --barrel-ry: 0deg;
+      position: relative; overflow: hidden; background: #F2E6D2;
+      padding: clamp(6rem, 10vw, 11rem) clamp(1.75rem, 6vw, 7rem);
+    }
+    .heritage-grid::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.48;
+      background: radial-gradient(circle at 86% 15%, rgba(196,147,72,0.19), transparent 25%),
+        radial-gradient(circle at 10% 82%, rgba(140,63,22,0.12), transparent 29%);
+    }
+    .heritage-inner { position: relative; z-index: 1; max-width: 1380px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-rows: auto auto; gap: clamp(3.5rem, 8vw, 8rem) clamp(3.5rem, 8vw, 9rem); align-items: center; }
+    .heritage-copy { padding: 1rem 0; }
+    .heritage-kicker { display: block; color: var(--amber); font-size: 0.58rem; letter-spacing: 0.34em; text-transform: uppercase; margin-bottom: 1.6rem; }
+    .heritage-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.2vw, 7.5rem); font-weight: 300; line-height: 0.88; color: var(--ink); letter-spacing: -0.055em; max-width: 8ch; margin-bottom: 2.5rem; }
+    .heritage-title em { color: var(--amber); }
+    .heritage-body { color: #6D5541; font-size: 0.92rem; line-height: 1.95; max-width: 47ch; margin-bottom: 2rem; }
+    .heritage-quote { font-family: var(--serif); font-size: clamp(1.35rem, 2vw, 1.85rem); line-height: 1.2; color: var(--brown); max-width: 20ch; margin-bottom: 2.25rem; }
+    .heritage-link { display: inline-flex; align-items: center; gap: 0.85rem; color: var(--amber); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transform-origin: left center; transition: gap 0.35s cubic-bezier(0.16,1,0.3,1), color 0.3s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .heritage-link:hover { gap: 1.4rem; color: #682D11; transform: scale(1.12); }
+    .heritage-photo { position: relative; min-height: clamp(25rem, 36vw, 33rem); overflow: hidden; }
+    .heritage-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 34%; filter: sepia(13%) saturate(0.88) contrast(1.04); transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+    .heritage-photo:hover img { transform: scale(1.04); }
+    .heritage-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26,18,7,0.12), transparent 32%); }
+    .heritage-stamp { position: absolute; z-index: 2; right: 1.4rem; bottom: 1.4rem; width: 7rem; aspect-ratio: 1; border: 1px solid rgba(247,242,232,0.78); border-radius: 50%; display: grid; place-items: center; color: var(--cream); text-align: center; font-family: var(--serif); font-size: 1.35rem; line-height: 0.86; transform: rotate(-10deg); text-shadow: 0 1px 9px rgba(0,0,0,0.35); }
+    .heritage-stamp small { display: block; font-family: var(--sans); font-size: 0.36rem; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.4rem; }
+    .barrel-frame { position: relative; min-height: clamp(25rem, 39vw, 35rem); display: grid; place-items: center; overflow: visible; isolation: isolate; }
+    .barrel-frame::before { content: none; }
+    .barrel-frame::after { content: none; }
+    .barrel-orbit { position: absolute; width: 88%; aspect-ratio: 1; border: 0.75px solid rgba(140,63,22,0.38); border-radius: 50%; }
+    .barrel-orbit::after { content: ''; position: absolute; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--gold); top: 18%; right: 13%; box-shadow: 0 0 0 7px rgba(196,147,72,0.13); }
+    .barrel-object { position: relative; z-index: 2; width: min(92%, 34rem); aspect-ratio: 1.22; transform: translate3d(var(--barrel-x), var(--barrel-y), 0) rotateX(var(--barrel-rx)) rotateY(var(--barrel-ry)) rotate(-3deg); transition: transform 0.75s cubic-bezier(0.16,1,0.3,1); will-change: transform; filter: drop-shadow(0 1.35rem 1.3rem rgba(96,66,46,0.24)); }
+    .barrel-object img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; border: 1px solid rgba(196,147,72,0.48); }
+    .rum-copy { padding: 1rem 0; }
+    .rum-title { font-family: var(--serif); font-size: clamp(3.4rem, 5.6vw, 6.7rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.052em; color: var(--ink); max-width: 9ch; margin-bottom: 2.25rem; }
+    .rum-title em { color: var(--amber); }
+    .rum-facts { display: grid; gap: 1rem; margin: 2.25rem 0; }
+    .rum-fact { padding-top: 1rem; border-top: 0.5px solid rgba(96,66,46,0.24); color: var(--brown); font-size: 0.76rem; letter-spacing: 0.11em; text-transform: uppercase; }
+
+    /* ─── HOME BARREL CELLAR: dedicated interactive stage ─── */
+    .cellar-feature {
+      --cellar-x: 0px; --cellar-y: 0px; --cellar-rx: 0deg; --cellar-ry: 0deg;
+      position: relative; min-height: 94dvh; overflow: hidden; color: var(--cream);
+      background: #171311;
+    }
+    .barrel-wall { position: absolute; inset: -3rem; display: grid; grid-template-columns: repeat(7, minmax(8rem, 1fr)); gap: clamp(1rem, 2vw, 2.5rem); align-content: center; opacity: 0.38; transform: rotate(-3deg) scale(1.06); }
+    .wall-barrel { position: relative; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(196,147,72,0.36); background: radial-gradient(circle, rgba(96,66,46,0.56) 0 18%, rgba(26,18,7,0.82) 19% 24%, rgba(96,66,46,0.48) 25% 58%, rgba(18,12,8,0.92) 59% 64%, rgba(96,66,46,0.3) 65%); box-shadow: inset 0 0 0 0.45rem rgba(196,147,72,0.08), inset 0 0 0 0.85rem rgba(8,6,4,0.34); }
+    .wall-barrel::before, .wall-barrel::after { content: ''; position: absolute; border-radius: 50%; }
+    .wall-barrel::before { inset: 14%; border: 1px dashed rgba(196,147,72,0.2); }
+    .wall-barrel::after { inset: 42%; background: rgba(196,147,72,0.22); }
+    .wall-barrel:nth-child(3n) { transform: scale(0.82); opacity: 0.68; }
+    .wall-barrel:nth-child(4n) { transform: scale(1.16); opacity: 0.52; }
+    .cellar-feature::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,10,8,0.9), rgba(14,10,8,0.3) 52%, rgba(14,10,8,0.76)), radial-gradient(circle at 60% 48%, rgba(196,147,72,0.13), transparent 34%); }
+    .cellar-inner { position: relative; z-index: 2; max-width: 1440px; min-height: 94dvh; margin: 0 auto; padding: 7rem 4rem; display: grid; grid-template-columns: 0.9fr 1.15fr; gap: 3rem; align-items: center; }
+    .cellar-title { font-family: var(--serif); font-size: clamp(4rem, 7vw, 8.5rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); max-width: 8ch; margin: 1rem 0 2rem; }
+    .cellar-title em { color: var(--gold); }
+    .cellar-body { color: rgba(247,242,232,0.62); font-size: 0.9rem; line-height: 1.95; max-width: 43ch; }
+    .cellar-object { position: relative; min-height: 34rem; display: grid; place-items: center; perspective: 1100px; }
+    .cellar-object::before { content: ''; position: absolute; width: min(45vw, 42rem); aspect-ratio: 1; border-radius: 50%; border: 0.75px solid rgba(196,147,72,0.54); }
+    .hero-barrel { position: relative; z-index: 2; width: min(55vw, 46rem); height: clamp(15rem, 29vw, 23rem); transform: translate3d(var(--cellar-x), var(--cellar-y), 0) rotateX(var(--cellar-rx)) rotateY(var(--cellar-ry)) rotate(-8deg); transition: transform 0.72s cubic-bezier(0.16,1,0.3,1); will-change: transform; filter: drop-shadow(0 2rem 1.6rem rgba(0,0,0,0.52)); }
+    .hero-barrel-body { position: absolute; inset: 12% 9%; border-radius: 24% / 50%; background: repeating-linear-gradient(90deg, rgba(96,66,46,0.84) 0 8%, rgba(125,85,52,0.94) 8% 15%, rgba(81,52,34,0.9) 15% 20%), linear-gradient(#A46E3A,#5E3C27); box-shadow: inset 0 2rem 2rem rgba(247,211,145,0.12), inset 0 -2rem 2rem rgba(12,7,5,0.36); }
+    .hero-barrel-end { position: absolute; right: 1%; top: 8%; height: 84%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #684126 0 19%, #2C1B12 20% 24%, #8B5B32 25% 62%, #2C1B12 63% 69%, #81512C 70%); border: 2px solid rgba(196,147,72,0.8); box-shadow: inset 0 0 0 0.65rem rgba(24,14,9,0.38); }
+    .hero-barrel-end::before { content: 'COQUI'; position: absolute; inset: 0; display: grid; place-items: center; color: rgba(247,242,232,0.52); font-family: var(--serif); font-size: clamp(1rem,2.2vw,2rem); letter-spacing: 0.12em; transform: rotate(8deg); }
+    .barrel-hoop { position: absolute; top: 8%; bottom: 8%; width: 4%; background: linear-gradient(90deg,#392A25,#A58D73,#40312B); opacity: 0.92; }
+    .barrel-hoop.h1 { left: 18%; } .barrel-hoop.h2 { left: 35%; } .barrel-hoop.h3 { left: 55%; } .barrel-hoop.h4 { right: 18%; }
+    .cellar-note { position: absolute; z-index: 3; right: 1rem; bottom: 4rem; max-width: 15rem; padding-top: 1rem; border-top: 0.5px solid rgba(196,147,72,0.68); color: rgba(247,242,232,0.62); font-size: 0.74rem; line-height: 1.85; }
+
     /* ─── EVENTS ─── */
     .events-section { padding: 14rem 0; background: var(--cream-mid); }
     .events-inner { max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
@@ -351,13 +418,14 @@
     .award-note { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,242,232,0.38); text-align: center; line-height: 1.7; }
 
     /* ─── TOURS ───── */
-    .tours-section { padding: 13rem 0 14rem; background: var(--cream-mid); }
+    .tours-section { padding: 10rem 0; background: var(--cream-mid); }
     .tours-inner { max-width: 1300px; margin: 0 auto; padding: 0 4rem; }
-    .tours-split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 8rem; align-items: center; }
+    .tours-split { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr); gap: 6rem; align-items: center; }
     .tours-text { display: flex; flex-direction: column; }
-    .tours-img-wrap { overflow: hidden; }
+    .tours-text .body-text { font-size: clamp(1.08rem, 1.5vw, 1.22rem); line-height: 1.95; }
+    .tours-img-wrap { overflow: hidden; width: min(100%, 29rem); justify-self: end; }
     .tours-img {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 30%;
+      width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 30%;
       filter: sepia(11%) contrast(1.04) brightness(0.86); display: block;
       transition: transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 0.8s ease;
     }
@@ -395,7 +463,7 @@
     .modal-close:hover { background: rgba(26,18,7,0.18); transform: rotate(90deg); }
 
     /* ─── FOOTER ──────────────────────────────────────── */
-    footer { margin-top: 10rem; padding: 4rem 4rem 3.5rem; border-top: 0.5px solid rgba(26,18,7,0.1); display: flex; align-items: center; justify-content: space-between; }
+    footer { padding: 4rem 4rem 3.5rem; border-top: 0.5px solid rgba(26,18,7,0.1); display: flex; align-items: center; justify-content: space-between; }
     .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); transition: color 0.35s ease; }
     .footer-logo:hover { color: var(--amber); }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
@@ -415,13 +483,16 @@
       nav.scrolled { padding: 1.1rem 2.5rem; }
       .hero-content { padding: 4rem 2.5rem 6.5rem; }
       .home-feature-inner { padding: 0 2.5rem 6rem; }
+      .heritage-inner { gap: 4rem 3.5rem; }
+      .cellar-inner { grid-template-columns: 1fr; gap: 2rem; }
       .events-inner { padding: 0 2.5rem; }
       .events-header { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
       .events-grid { grid-template-columns: repeat(2, 1fr); }
       .awards-inner { grid-template-columns: 1fr 1fr; padding: 2.5rem; }
       .award-item { border-right: none; border-bottom: 0.5px solid rgba(247,242,232,0.07); padding: 2.25rem 1.25rem; }
       .tours-inner { padding: 0 2.5rem; }
-      .tours-split { grid-template-columns: 1fr; gap: 4rem; }
+      .tours-split { grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.68fr); gap: 3.5rem; }
+      .tours-img-wrap { width: min(100%, 23rem); }
       footer { flex-direction: column; gap: 2.25rem; padding: 3.25rem 2.5rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
@@ -436,8 +507,24 @@
       .award-item:last-child { border-bottom: none; }
       .award-item:nth-child(2n) { border-right: none; }
       .tours-section { padding: 8rem 0 9rem; }
+      .tours-split { grid-template-columns: 1fr; gap: 3.5rem; }
+      .tours-img-wrap { width: min(100%, 28rem); justify-self: start; }
       /* Disable parallax shift on mobile — no performance penalty */
       .home-feature-bg img { transform: scale(1.04) !important; }
+      .heritage-grid { padding: 7rem 1.75rem; }
+      .heritage-inner { display: flex; flex-direction: column; gap: 3.5rem; align-items: stretch; }
+      .heritage-copy, .rum-copy { padding: 0; }
+      .heritage-photo, .barrel-frame { min-height: 26rem; }
+      .heritage-photo { order: 2; }
+      .barrel-frame { order: 3; }
+      .rum-copy { order: 4; }
+      .cellar-feature, .cellar-inner { min-height: 58rem; }
+      .cellar-inner { padding: 6rem 1.75rem; }
+      .cellar-object { min-height: 23rem; }
+      .cellar-object::before { width: 27rem; max-width: 100vw; }
+      .barrel-wall { grid-template-columns: repeat(4, minmax(7rem,1fr)); }
+      .hero-barrel { width: 39rem; max-width: 122vw; height: 18rem; }
+      .cellar-note { right: 0; bottom: 0; }
     }
     @media (max-width: 520px) {
       .events-grid { grid-template-columns: 1fr; }
@@ -500,64 +587,89 @@
     </div>
   </section>
 
-  <!-- ─── HOME FEATURES ── -->
-  <section class="home-feature">
-    <div class="home-feature-bg">
-      <img src="img/campo-hombre.jpg" alt="Sugarcane harvest in Puerto Rico" loading="lazy">
-    </div>
-    <div class="home-feature-overlay"></div>
-    <div class="home-feature-inner">
-      <span class="home-feature-eyebrow reveal">Est. 2006</span>
-      <h2 class="home-feature-title reveal d1">Our<br><em>Story</em></h2>
-      <p class="home-feature-body reveal d2">
-        In 2006, H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed; with a mission
-        as bold as it was clear: to legalize Puerto Rico&#x2019;s centuries-old Pitorro tradition and bring it
-        into the light. From Mayag&#xFC;ez, they built the island&#x2019;s largest artisan distillery &#x2014;
-        and proved that heritage and craft belong together.
-      </p>
-      <a href="historia.html" class="home-feature-cta reveal d3">
-        Read Our Story
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-          <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+  <!-- ─── HOME HERITAGE: alternating editorial grid ─── -->
+  <section class="heritage-grid" id="barrelStage">
+    <div class="heritage-inner">
+      <div class="heritage-copy">
+        <span class="heritage-kicker reveal">Mayag&#xFC;ez &nbsp;&middot;&nbsp; Est. 2006</span>
+        <h2 class="heritage-title reveal d1">Pitorro,<br><em>brought into the light.</em></h2>
+        <p class="heritage-body reveal d2">
+          H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed; with a clear purpose:
+          honor Puerto Rico&#x2019;s centuries-old Pitorro tradition and give it a legal home in Mayag&#xFC;ez.
+        </p>
+        <p class="heritage-quote reveal d3">&#x201c;Heritage is something you pour, share, and carry forward.&#x201d;</p>
+        <a href="historia.html" class="heritage-link reveal d3">
+          Discover Our Story
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="heritage-photo reveal d1">
+        <img src="img/campo-mujer.jpg" alt="Sugarcane harvest at Destiler&#xed;a Coqu&#xed;" loading="lazy">
+        <div class="heritage-stamp">2006<small>Mayag&#xFC;ez, PR</small></div>
+      </div>
+      <div class="barrel-frame reveal">
+        <div class="barrel-orbit" aria-hidden="true"></div>
+        <div class="barrel-object" id="barrelObject">
+          <img src="img/pitorro-playa.jpg" alt="Destiler&#xed;a Coqu&#xed; product lineup on the coast" loading="lazy">
+        </div>
+      </div>
+      <div class="rum-copy">
+        <span class="heritage-kicker reveal">Inside the rum house</span>
+        <h2 class="rum-title reveal d1">From our house<br><em>to your glass.</em></h2>
+        <p class="heritage-body reveal d2">
+          Distilled by hand on Puerto Rico&#x2019;s west coast. Every expression carries the patience,
+          character, and point of view of a small-batch rum house.
+        </p>
+        <div class="rum-facts reveal d2">
+          <span class="rum-fact">Crafted in Mayag&#xFC;ez, Puerto Rico</span>
+        </div>
+        <a href="ron.html" class="heritage-link reveal d3">
+          Explore Our Rums
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="home-feature">
-    <div class="home-feature-bg">
-      <img src="img/pitorro-playa.jpg" alt="Pitorro Blends lineup on the beach" loading="lazy">
+  <!-- ─── HOME BARREL CELLAR: interactive barrel study ─── -->
+  <section class="cellar-feature" id="cellarFeature">
+    <div class="barrel-wall" aria-hidden="true">
+      <span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span>
+      <span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span>
+      <span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span>
     </div>
-    <div class="home-feature-overlay"></div>
-    <div class="home-feature-inner">
-      <span class="home-feature-eyebrow reveal">The Full Lineup</span>
-      <h2 class="home-feature-title reveal d1">Our<br><em>Rums</em></h2>
-      <p class="home-feature-body reveal d2">
-        From Ron Coqu&#xed;&#x2122; Blanco to nine Pitorro&#xAE; Original expressions, six Pitorro&#xAE; Blends,
-        and Carjaker&#x2019;s at 120 proof &#x2014; all handmade in Mayag&#xFC;ez. All distinctly Puerto Rico.
-      </p>
-      <a href="ron.html" class="home-feature-cta reveal d3">
-        See All Expressions
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-          <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+    <div class="cellar-inner">
+      <div>
+        <span class="heritage-kicker reveal">A patient kind of craft</span>
+        <h2 class="cellar-title reveal d1">Made with<br><em>time.</em></h2>
+        <p class="cellar-body reveal d2">
+          Some things cannot be rushed. In Mayag&#xFC;ez, our rum house carries tradition forward
+          one careful batch at a time.
+        </p>
+      </div>
+      <div class="cellar-object">
+        <div class="hero-barrel" id="heroBarrel" aria-label="Coqu&#xed; oak rum barrel">
+          <div class="hero-barrel-body"></div>
+          <i class="barrel-hoop h1"></i><i class="barrel-hoop h2"></i><i class="barrel-hoop h3"></i><i class="barrel-hoop h4"></i>
+          <div class="hero-barrel-end"></div>
+        </div>
+        <p class="cellar-note reveal d3">Move your cursor gently across the barrel. The motion is small on purpose.</p>
+      </div>
     </div>
   </section>
 
   <!-- ─── HOME FEATURE: COQUÍ PLAZA ─── -->
   <section class="home-feature">
     <div class="home-feature-bg">
-      <img src="https://picsum.photos/seed/coquiplaza01/1600/1000" alt="Coquí Plaza — the distillery in Mayagüez, Puerto Rico" loading="lazy">
+      <img src="img/coqui-plaza-bar.png" alt="Coquí Plaza bar in Mayagüez, Puerto Rico" loading="lazy">
     </div>
     <div class="home-feature-overlay"></div>
     <div class="home-feature-inner">
       <span class="home-feature-eyebrow reveal">Mayag&#xFC;ez &nbsp;&middot;&nbsp; Open to All</span>
       <h2 class="home-feature-title reveal d1">Coqu&#xED;<br><em>Plaza</em></h2>
       <p class="home-feature-body reveal d2">
-        More than a distillery. Walk the production floor where Pitorro&#xAE; is made, sit down in
-        La Sala de Cata for a guided tasting, and bring a bottle home from the shop &#x2014; three spaces,
-        one story, in the heart of Mayag&#xFC;ez.
+        A place to gather, taste, and make memories in Mayag&#xFC;ez. Visit Coqu&#xed; Plaza for
+        guided experiences, special events, and a closer look at the bottles made here.
       </p>
       <a href="plaza.html" class="home-feature-cta reveal d3">
         Explore the Plaza
@@ -583,7 +695,7 @@
       <div class="events-grid">
 
         <article class="event-card reveal" data-event="feria-pitorro" role="button" tabindex="0" aria-label="Feria del Pitorro &#x2014; open for details">
-          <div class="event-bg"><img src="https://picsum.photos/seed/coquiev1/600/800" alt="" loading="lazy"></div>
+          <div class="event-bg"><img src="img/event-feria-pitorro.jpg" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Cultural Festival</span>
@@ -597,7 +709,7 @@
         </article>
 
         <article class="event-card reveal d1" data-event="taste-of-rum" role="button" tabindex="0" aria-label="Taste of Rum &#x2014; open for details">
-          <div class="event-bg"><img src="https://picsum.photos/seed/coquiev2/600/800" alt="" loading="lazy"></div>
+          <div class="event-bg"><img src="img/event-taste-of-rum.jpg" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Spirits Expo</span>
@@ -611,7 +723,7 @@
         </article>
 
         <article class="event-card reveal d2" data-event="electric-420" role="button" tabindex="0" aria-label="Electric 420 &#x2014; open for details">
-          <div class="event-bg"><img src="img/electric-420-fest.jpg" alt="" loading="lazy"></div>
+          <div class="event-bg"><img src="img/event-electric-420.jpg" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Music Festival</span>
@@ -625,7 +737,7 @@
         </article>
 
         <article class="event-card reveal d3" data-event="fango-fest" role="button" tabindex="0" aria-label="Fango Fest &#x2014; open for details">
-          <div class="event-bg"><img src="https://picsum.photos/seed/coquiev4/600/800" alt="" loading="lazy"></div>
+          <div class="event-bg"><img src="img/event-fango-fest.png" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Music &amp; Culture</span>
@@ -656,9 +768,9 @@
         <p class="award-note">Cases produced<br>per year</p>
       </div>
       <div class="award-item reveal d2">
-        <span class="award-score">25</span>
+        <span class="award-score" style="font-size:2.3rem;letter-spacing:-0.01em;">100%</span>
         <div class="award-sep"></div>
-        <p class="award-note">Team members<br>on the island</p>
+        <p class="award-note">Crafted in<br>Mayag&#xFC;ez, Puerto Rico</p>
       </div>
       <div class="award-item reveal d3">
         <span class="award-score" style="font-size:2.1rem;letter-spacing:-0.01em;">No.&thinsp;1</span>
@@ -780,12 +892,55 @@
       });
     });
 
+    /* ── Barrel follows the cursor with a restrained physical shift ── */
+    const barrelStage = document.getElementById('barrelStage');
+    const barrelObject = document.getElementById('barrelObject');
+    if (barrelStage && barrelObject) {
+      barrelStage.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+        const r = barrelStage.getBoundingClientRect();
+        const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        barrelStage.style.setProperty('--barrel-x', (nx * 13).toFixed(2) + 'px');
+        barrelStage.style.setProperty('--barrel-y', (ny * 10).toFixed(2) + 'px');
+        barrelStage.style.setProperty('--barrel-rx', (-ny * 2.2).toFixed(2) + 'deg');
+        barrelStage.style.setProperty('--barrel-ry', (nx * 2.8).toFixed(2) + 'deg');
+      });
+      barrelStage.addEventListener('mouseleave', () => {
+        barrelStage.style.setProperty('--barrel-x', '0px');
+        barrelStage.style.setProperty('--barrel-y', '0px');
+        barrelStage.style.setProperty('--barrel-rx', '0deg');
+        barrelStage.style.setProperty('--barrel-ry', '0deg');
+      });
+    }
+
+    /* ── Foreground cellar barrel follows the cursor ── */
+    const cellarFeature = document.getElementById('cellarFeature');
+    if (cellarFeature) {
+      cellarFeature.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+        const r = cellarFeature.getBoundingClientRect();
+        const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        cellarFeature.style.setProperty('--cellar-x', (nx * 14).toFixed(2) + 'px');
+        cellarFeature.style.setProperty('--cellar-y', (ny * 10).toFixed(2) + 'px');
+        cellarFeature.style.setProperty('--cellar-rx', (-ny * 2.4).toFixed(2) + 'deg');
+        cellarFeature.style.setProperty('--cellar-ry', (nx * 3).toFixed(2) + 'deg');
+      });
+      cellarFeature.addEventListener('mouseleave', () => {
+        cellarFeature.style.setProperty('--cellar-x', '0px');
+        cellarFeature.style.setProperty('--cellar-y', '0px');
+        cellarFeature.style.setProperty('--cellar-rx', '0deg');
+        cellarFeature.style.setProperty('--cellar-ry', '0deg');
+      });
+    }
+
     /* ── Event data & modal ── */
     const EVENTS = {
-      'feria-pitorro': { type: 'Cultural Festival', date: 'October 12–14, 2026', title: 'Feria del Pitorro', location: 'Puerto Rico', seed: 'coquiev1', desc: 'The Feria del Pitorro is Puerto Rico’s premier celebration of the island’s traditional moonshine. Three days of Pitorro tasting, live music, and cultural pride. Destiler\xeda Coqu\xed pours the full Pitorro\xae lineup — Blanco, de Coco, and Caf\xe9 — October 12, 13, and 14.' },
-      'taste-of-rum': { type: 'Spirits Expo', date: 'March 2026', title: 'Taste of Rum', location: 'Puerto Rico', seed: 'coquiev2', desc: 'Puerto Rico’s premier rum industry showcase. Meet the makers, taste the full Coqu\xed lineup, and discover what makes the island’s spirits scene one of the most exciting in the Caribbean.' },
-      'electric-420': { type: 'Music Festival', date: 'March 2026', title: 'Electric 420', location: 'Puerto Rico', imgSrc: 'img/electric-420-fest.jpg', desc: 'One of Puerto Rico’s biggest outdoor music events. Destiler\xeda Coqu\xed is on the ground with Carjaker’s Rum and Ron Coqu\xed™ Lim\xf3n. Find the Coqu\xed tent and join the crowd.' },
-      'fango-fest': { type: 'Music Festival', date: 'November 2026', title: 'Fango Fest', location: 'Puerto Rico', seed: 'coquiev4', desc: 'Fango Fest is exactly what it sounds like — a mud-soaked outdoor music festival where the crowd, the dirt, and the beats are all part of the experience. Destiler\xeda Coqu\xed shows up ready. Carjaker’s Rum was made for moments like this.' }
+      'feria-pitorro': { type: 'Cultural Festival', date: 'October 12–14, 2026', title: 'Feria del Pitorro', location: 'Puerto Rico', imgSrc: 'img/event-feria-pitorro.jpg', desc: 'The Feria del Pitorro is Puerto Rico’s premier celebration of the island’s traditional moonshine. Three days of Pitorro tasting, live music, and cultural pride. Destiler\xeda Coqu\xed pours the full Pitorro\xae lineup — Blanco, de Coco, and Caf\xe9 — October 12, 13, and 14.' },
+      'taste-of-rum': { type: 'Spirits Expo', date: 'March 2026', title: 'Taste of Rum', location: 'Puerto Rico', imgSrc: 'img/event-taste-of-rum.jpg', desc: 'Puerto Rico’s premier rum industry showcase. Meet the makers, taste the full Coqu\xed lineup, and discover what makes the island’s spirits scene one of the most exciting in the Caribbean.' },
+      'electric-420': { type: 'Music Festival', date: 'March 2026', title: 'Electric 420', location: 'Puerto Rico', imgSrc: 'img/event-electric-420.jpg', desc: 'One of Puerto Rico’s biggest outdoor music events. Destiler\xeda Coqu\xed is on the ground with Carjaker’s Rum and Ron Coqu\xed™ Lim\xf3n. Find the Coqu\xed tent and join the crowd.' },
+      'fango-fest': { type: 'Music Festival', date: 'November 2026', title: 'Fango Fest', location: 'Puerto Rico', imgSrc: 'img/event-fango-fest.png', desc: 'Fango Fest is exactly what it sounds like — a mud-soaked outdoor music festival where the crowd, the dirt, and the beats are all part of the experience. Destiler\xeda Coqu\xed shows up ready. Carjaker’s Rum was made for moments like this.' }
     };
 
     const eventModal = document.getElementById('eventModal');
@@ -793,7 +948,7 @@
 
     function openEventModal(id) {
       const ev = EVENTS[id]; if (!ev) return;
-      document.getElementById('eventModalImg').src = ev.imgSrc || `https://picsum.photos/seed/${ev.seed}/800/500`;
+      document.getElementById('eventModalImg').src = ev.imgSrc;
       document.getElementById('eventModalImg').alt = ev.title;
       document.getElementById('eventModalType').textContent = ev.type;
       document.getElementById('eventModalDate').textContent = ev.date;
@@ -845,5 +1000,6 @@
     window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
   })();
   </script>
+  <script src="/js/site-commerce.js"></script>
 </body>
 </html>

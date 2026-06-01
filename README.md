@@ -1,6 +1,16 @@
 # Destilería Coquí — Official Website
 
-Static HTML/CSS/JS site hosted on **Vercel**. All e-commerce (checkout, payments, card info, orders, shipping, taxes, receipts) is handled by **Stripe Payment Links**. This site collects no payment info and has no custom checkout form.
+Static HTML/CSS/JS site hosted on **Vercel**. The storefront now includes a persistent cart, optional Supabase customer accounts, saved order records, and server-side Stripe Checkout Session creation. Card details remain on Stripe-hosted checkout.
+
+## Commerce environment variables
+
+Configure the variables listed in `.env.example` in Vercel. `NEXT_PUBLIC_SUPABASE_ANON_KEY` is safe for the browser because Supabase Row Level Security protects customer records. `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, and `STRIPE_WEBHOOK_SECRET` must remain server-side only.
+
+Add a Stripe webhook endpoint for:
+
+`https://YOUR_DOMAIN/api/stripe-webhook`
+
+Subscribe it to `checkout.session.completed`.
 
 ---
 
@@ -53,42 +63,9 @@ git push -u origin main
 
 ## Stripe Integration
 
-All 25 **Buy Online** buttons redirect to Stripe-hosted checkout. Stripe handles everything after the click: payment form, card info, receipts, shipping, and taxes.
+Product pages add bottles to a shared cart. The shipping button calls `/api/create-checkout-session`, which creates the order record and opens Stripe-hosted Checkout. Stripe handles card details and address collection. The `/api/stripe-webhook` endpoint updates saved orders after payment confirmation.
 
-**No API keys are stored in this site.** Payment Links are just URLs.
-
-### How it works
-
-1. Customer visits a product page (`producto.html?id=ron-blanco`).
-2. Clicks **Buy Online**.
-3. Opens a Stripe checkout page in a new tab.
-4. Stripe handles the entire transaction.
-5. Customer gets a receipt from Stripe.
-
-### Where the links live
-
-Open **`producto.html`** and search for:
-
-```
-// ─── STRIPE PAYMENT LINKS ────────────────────────────────────────────────
-```
-
-The `STRIPE_URLS` object maps all 25 product IDs to live Stripe Payment Links:
-
-```js
-const STRIPE_URLS = {
-  'ron-blanco':           'https://buy.stripe.com/...',
-  'ron-limon':            'https://buy.stripe.com/...',
-  // ... all 25 products
-};
-```
-
-### To update a payment link
-
-1. Go to [Stripe Dashboard](https://dashboard.stripe.com) → **Payment Links**.
-2. Find the product → copy the new URL.
-3. Paste it into the matching line in `STRIPE_URLS`.
-4. Commit and push — Vercel redeploys automatically.
+The Stripe secret key and webhook secret are Vercel server environment variables. They are never sent to the browser.
 
 ### Product catalog (25 products)
 
@@ -107,7 +84,8 @@ const STRIPE_URLS = {
 
 - Does **not** collect card numbers, CVV, or payment info
 - Does **not** have a custom checkout form
-- Does **not** store customer passwords or personal data
+- Does **not** store customer passwords; Supabase Auth handles account credentials
+- Stores only the customer details needed for accounts and order history in protected Supabase tables
 - Does **not** process payments — Stripe handles everything
 - Does **not** require any API keys on the frontend
 
@@ -119,7 +97,14 @@ const STRIPE_URLS = {
 /
 ├── index.html          # Home page
 ├── ron.html            # Full rum catalog (25 products, 6 categories)
-├── producto.html       # Product detail (dynamic via ?id=) + Stripe links
+├── producto.html       # Product detail (dynamic via ?id=) + add-to-cart
+├── cart.html           # Shared cart and fulfillment choices
+├── login.html          # Supabase Auth login
+├── signup.html         # Supabase Auth signup
+├── account.html        # Customer profile
+├── account/orders.html # Saved order history
+├── api/                # Vercel server functions for config and Stripe
+├── js/                 # Shared cart, account, and storefront scripts
 ├── historia.html       # Brand story
 ├── tours.html          # Distillery tours
 ├── plaza.html          # La Plaza event space
