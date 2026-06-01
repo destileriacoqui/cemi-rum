@@ -46,6 +46,16 @@
     }
     return payload;
   }
+  async function resendSignupConfirmation(email) {
+    const redirect = encodeURIComponent(`${location.origin}/auth/callback`);
+    return request(`/auth/v1/resend?redirect_to=${redirect}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        type: 'signup',
+        email: String(email || '').trim().toLowerCase()
+      })
+    });
+  }
   async function completeEmailConfirmation() {
     const params = new URLSearchParams(location.hash.replace(/^#/, ''));
     const query = new URLSearchParams(location.search);
@@ -106,5 +116,5 @@
     if (!getSession()?.access_token) return;
     await request('/rest/v1/rpc/claim_my_guest_orders', { method: 'POST', body: '{}' });
   }
-  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, completeEmailConfirmation, login, logout, profile, updateProfile, orders, claimGuestOrders };
+  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, resendSignupConfirmation, completeEmailConfirmation, login, logout, profile, updateProfile, orders, claimGuestOrders };
 })();

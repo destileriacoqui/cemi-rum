@@ -203,6 +203,8 @@ auth/callback.html
 js/auth-callback.js
 ```
 
+The signup page now shows `Resend Confirmation Email` after signup so customers can request a fresh single-use link.
+
 ### Auth Log Evidence
 
 Checked Supabase Auth logs on June 1, 2026:

@@ -2,6 +2,8 @@
   const api = window.CoquiSupabase;
   const form = document.querySelector('[data-auth-form]');
   const message = document.querySelector('[data-message]');
+  const resend = document.querySelector('[data-resend-confirmation]');
+  let confirmationEmail = '';
   const setMessage = (text, error) => {
     if (!message) return;
     message.textContent = text || '';
@@ -15,13 +17,29 @@
       if (form.dataset.authForm === 'signup') {
         const result = await api.signup({ email: data.email, password: data.password, fullName: data.full_name, phone: data.phone });
         if (!result.access_token) {
+          confirmationEmail = data.email;
           setMessage('Account created. Check your email to confirm your address, then log in.');
+          if (resend) resend.hidden = false;
           form.reset();
           return;
         }
       } else await api.login(data);
       location.href = '/account';
     } catch (error) { setMessage(error.message, true); }
+  });
+  resend?.addEventListener('click', async () => {
+    const email = confirmationEmail || form?.elements.email?.value;
+    if (!email) return setMessage('Enter your email address first.', true);
+    resend.disabled = true;
+    setMessage('Sending a fresh confirmation email...');
+    try {
+      await api.resendSignupConfirmation(email);
+      setMessage('A fresh confirmation email has been requested. Check your inbox and spam folder.');
+    } catch (error) {
+      setMessage(error.message, true);
+    } finally {
+      resend.disabled = false;
+    }
   });
   async function renderAccount() {
     const root = document.querySelector('[data-account-root]');

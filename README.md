@@ -91,6 +91,8 @@ Supabase Auth must be configured with the deployed website URL:
 
 The signup page requests `/auth/callback`, which saves the confirmed Supabase session and opens `/account`.
 
+After signup, customers can request a fresh confirmation email from the signup page. Delivery still requires Supabase Auth custom SMTP to be configured with the verified Resend sender.
+
 ### Product catalog (25 products)
 
 | Category | Products |

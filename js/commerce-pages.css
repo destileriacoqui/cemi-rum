@@ -15,6 +15,7 @@ input{width:100%;margin-top:.55rem;padding:1rem .9rem;border:.5px solid rgba(26,
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}.form-grid .wide{grid-column:1/-1}
 .btn{display:inline-flex;align-items:center;justify-content:center;margin-top:1.4rem;padding:1.05rem 1.7rem;border:0;background:var(--amber);color:var(--cream);font:500 .63rem var(--sans);letter-spacing:.2em;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:background .3s ease}
 .btn:hover{background:#712F0F}.btn.secondary{background:transparent;color:var(--amber);border:.5px solid rgba(140,63,22,.45)}
+.btn.compact-left{margin-top:.4rem;padding:.75rem 1rem}
 .message{min-height:1.5rem;margin-top:1rem;color:var(--muted);font-size:.85rem}.is-error{color:#9b2918!important}
 .page-links{display:flex;gap:1.3rem;align-items:center;margin-top:1.4rem}.page-links a{color:var(--amber);font-size:.75rem}
 .cart-layout{display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:3rem;margin-top:4rem}
