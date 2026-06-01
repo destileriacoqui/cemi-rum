@@ -77,7 +77,7 @@
   async function responseJson(response) {
     const text = await response.text();
     try { return text ? JSON.parse(text) : {}; }
-    catch (_) { throw new Error('Pickup submission is not available in this preview yet. Please try again after the website is deployed.'); }
+    catch (_) { throw new Error('Pickup submission returned an unexpected response. Please try again or call 787-805-1000 for assistance.'); }
   }
   document.querySelector('[data-start-pickup-identity]').addEventListener('click', async () => {
     message.classList.remove('is-error');

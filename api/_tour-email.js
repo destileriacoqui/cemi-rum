@@ -1,4 +1,5 @@
 const { supabase } = require('./_supabase-admin');
+const { emailConfig } = require('./_email-config');
 
 const staffRecipients = ['orders@prsugar.com', 'destileriacoqui07@gmail.com', 'maria@prsugar.com'];
 
@@ -59,15 +60,17 @@ function staffEmail(booking) {
 }
 
 async function sendResend(payload) {
+  const config = emailConfig();
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${config.apiKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       ...payload,
-      ...(process.env.ADMIN_EMAIL_REPLY_TO ? { reply_to: process.env.ADMIN_EMAIL_REPLY_TO } : {})
+      from: config.from,
+      reply_to: config.replyTo
     })
   });
   const result = await response.json().catch(() => ({}));
@@ -76,7 +79,7 @@ async function sendResend(payload) {
 }
 
 async function sendTourConfirmation(booking) {
-  if (!process.env.RESEND_API_KEY || !process.env.ADMIN_EMAIL_FROM) {
+  if (!process.env.RESEND_API_KEY) {
     return { sent: false, reason: 'Email delivery is not configured yet.' };
   }
   const claimed = await supabase(`tour_bookings?id=eq.${booking.id}&confirmation_email_status=eq.pending&select=*`, {
@@ -88,13 +91,11 @@ async function sendTourConfirmation(booking) {
   try {
     await Promise.all([
       sendResend({
-        from: process.env.ADMIN_EMAIL_FROM,
         to: [booking.email],
         subject: 'Your Destilería Coquí tour is confirmed',
         html: customerEmail(booking)
       }),
       sendResend({
-        from: process.env.ADMIN_EMAIL_FROM,
         to: staffRecipients,
         subject: `New tour booking: ${booking.customer_name} on ${booking.tour_date}`,
         html: staffEmail(booking)

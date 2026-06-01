@@ -226,6 +226,37 @@
       display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem;
     }
 
+    /* ── RELATED PRODUCTS ─────────────────────────── */
+    .related-section {
+      padding: 5rem 4.5rem 5.5rem;
+      border-top: 0.5px solid rgba(26,18,7,0.1);
+      background: var(--cream);
+    }
+    .related-heading {
+      font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 200; letter-spacing: -0.04em; line-height: 1;
+      margin-bottom: 2.5rem;
+    }
+    .related-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+    .related-product {
+      display: flex; flex-direction: column; min-height: 100%;
+      border: 0.5px solid rgba(26,18,7,0.12);
+      background: var(--cream-mid);
+    }
+    .related-product img {
+      width: 100%; height: 18rem; object-fit: contain;
+      padding: 1.2rem; background: var(--cream-mid);
+    }
+    .related-info { display: flex; flex: 1; flex-direction: column; padding: 1.3rem; background: var(--cream); }
+    .related-type { color: var(--amber); font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .related-name { margin-top: 0.45rem; font: 400 1.55rem/1.05 var(--serif); }
+    .related-price { margin-top: 0.65rem; color: var(--muted); font-size: 0.78rem; }
+    .related-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; padding-top: 1.15rem; }
+    .related-actions .btn-buy, .related-actions .btn-amber { padding: 0.82rem 1rem; font-size: 0.55rem; letter-spacing: 0.16em; }
+
     /* ── NOT FOUND ────────────────────────────────── */
     .not-found {
       min-height: 100dvh; display: flex; flex-direction: column;
@@ -264,6 +295,7 @@
       .hero-info-col { padding: 3.5rem 2.5rem 4rem; min-height: unset; }
       .back-link { margin-bottom: 2.5rem; }
       .tasting-section { padding: 4rem 2.5rem; }
+      .related-section { padding: 4rem 2.5rem; }
       .cta-band { padding: 4rem 2.5rem; flex-direction: column; align-items: flex-start; }
       footer { flex-direction: column; gap: 2rem; padding: 3rem 2.5rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -274,6 +306,9 @@
       .specs-row { grid-template-columns: 1fr 1fr; }
       .spec:last-child { grid-column: 1 / -1; border-right: none; border-top: 0.5px solid rgba(26,18,7,0.1); padding: 1.5rem 0 0; margin-top: 0.5rem; }
       .tasting-section { padding: 3rem 1.5rem; }
+      .related-section { padding: 3rem 1.5rem; }
+      .related-grid { grid-template-columns: 1fr; }
+      .related-product img { height: 15rem; }
       .cta-band { padding: 3rem 1.5rem; }
     }
   </style>
@@ -500,6 +535,19 @@
     const p  = PRODUCTS[id];
     const checkoutUrl = STRIPE_URLS[id] || '#';
     const root = document.getElementById('page-root');
+    const plainText = value => String(value).replace(/<[^>]*>/g, '');
+    const PRODUCT_GROUPS = [
+      ['ron-blanco', 'ron-limon', 'pitorro-blanco'],
+      ['pitorro-blanco', 'pitorro-coco-35', 'pitorro-coco-15', 'pitorro-cafe', 'pitorro-tamarindo', 'pitorro-parcha', 'pitorro-pina', 'pitorro-fresa', 'pitorro-frutas'],
+      ['blend-coco-pina', 'blend-coco-almendra', 'blend-fresa-pina', 'blend-jengibre-coco', 'blend-mango-pina', 'blend-coco-fresa-pina'],
+      ['caneca-blanco', 'caneca-limon', 'mini-blanco', 'mini-coco', 'mini-parcha', 'mini-tamarindo', 'mini-cafe']
+    ];
+    function relatedProducts(currentId) {
+      const group = PRODUCT_GROUPS.find(items => items.includes(currentId)) || Object.keys(PRODUCTS);
+      return [...group, ...Object.keys(PRODUCTS)]
+        .filter((slug, index, slugs) => slug !== currentId && slugs.indexOf(slug) === index)
+        .slice(0, 3);
+    }
 
     if (!p) {
       document.title = 'Not Found — Destilería Coquí';
@@ -510,12 +558,12 @@
           <a href="ron.html">← Back to Our Rums</a>
         </div>`;
     } else {
-      document.title = p.name + ' — Destilería Coquí';
+      document.title = plainText(p.name) + ' — Destilería Coquí';
 
       root.innerHTML = `
         <section class="hero">
           <div class="hero-img-col">
-            <img class="hero-bottle" src="${p.img}" alt="${p.name}">
+            <img class="hero-bottle" src="${p.img}" alt="${plainText(p.name)}">
           </div>
           <div class="hero-info-col">
             <a href="ron.html" class="back-link">
@@ -573,6 +621,30 @@
           </div>
         </section>
 
+        <section class="related-section">
+          <span class="product-eyebrow">Explore the collection</span>
+          <h2 class="related-heading">You might also like</h2>
+          <div class="related-grid">
+            ${relatedProducts(id).map(slug => {
+              const related = PRODUCTS[slug];
+              const item = COQUI_CATALOG[slug];
+              return `
+                <article class="related-product">
+                  <img src="${related.img}" alt="${item.name}">
+                  <div class="related-info">
+                    <span class="related-type">${related.type}</span>
+                    <h3 class="related-name">${related.name}</h3>
+                    <p class="related-price">${related.price}</p>
+                    <div class="related-actions">
+                      <button type="button" class="btn-buy" data-add-cart data-cart-slug="${slug}">Add to Cart</button>
+                      <a class="btn-amber" href="producto.html?id=${slug}">View Product</a>
+                    </div>
+                  </div>
+                </article>`;
+            }).join('')}
+          </div>
+        </section>
+
         <div class="cta-band">
           <div>
             <p class="cta-text-head">Ready to order?</p>
@@ -605,8 +677,9 @@
       obs.observe(notesEl);
       document.querySelectorAll('[data-add-cart]').forEach(button => {
         button.addEventListener('click', () => {
-          const item = COQUI_CATALOG[id];
-          CoquiCart.add({ slug: id, ...item });
+          const slug = button.dataset.cartSlug || id;
+          const item = COQUI_CATALOG[slug];
+          CoquiCart.add({ slug, ...item });
           button.textContent = 'Added to Cart';
           setTimeout(() => { button.textContent = 'Add to Cart'; }, 1400);
         });

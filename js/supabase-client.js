@@ -40,12 +40,16 @@
       method: 'POST',
       body: JSON.stringify({ email, password, data: { full_name: fullName, phone } })
     });
-    if (payload.access_token) saveSession(payload);
+    if (payload.access_token) {
+      saveSession(payload);
+      await claimGuestOrders();
+    }
     return payload;
   }
   async function completeEmailConfirmation() {
     const params = new URLSearchParams(location.hash.replace(/^#/, ''));
-    const error = params.get('error_description') || params.get('error');
+    const query = new URLSearchParams(location.search);
+    const error = params.get('error_description') || params.get('error') || query.get('error_description') || query.get('error');
     if (error) throw new Error(error);
     const accessToken = params.get('access_token');
     if (!accessToken) throw new Error('The confirmation link is invalid or has expired. Please log in or request a new confirmation email.');
@@ -65,6 +69,8 @@
       user
     };
     saveSession(session);
+    history.replaceState({}, document.title, location.pathname);
+    await claimGuestOrders();
     return session;
   }
   async function login({ email, password }) {
@@ -72,6 +78,7 @@
       method: 'POST', body: JSON.stringify({ email, password })
     });
     saveSession(payload);
+    await claimGuestOrders();
     return payload;
   }
   async function logout() {
@@ -95,5 +102,9 @@
     if (!current?.user?.id) return [];
     return request(`/rest/v1/orders?user_id=eq.${current.user.id}&select=*,order_items(*)&order=created_at.desc`);
   }
-  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, completeEmailConfirmation, login, logout, profile, updateProfile, orders };
+  async function claimGuestOrders() {
+    if (!getSession()?.access_token) return;
+    await request('/rest/v1/rpc/claim_my_guest_orders', { method: 'POST', body: '{}' });
+  }
+  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, completeEmailConfirmation, login, logout, profile, updateProfile, orders, claimGuestOrders };
 })();

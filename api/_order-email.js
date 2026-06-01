@@ -1,4 +1,5 @@
 const { supabase } = require('./_supabase-admin');
+const { emailConfig } = require('./_email-config');
 
 const staffRecipients = ['orders@prsugar.com', 'destileriacoqui07@gmail.com', 'maria@prsugar.com'];
 
@@ -98,18 +99,17 @@ function staffEmail(order) {
 }
 
 async function sendResend(payload) {
-  if (!process.env.RESEND_API_KEY || !process.env.ADMIN_EMAIL_FROM) {
-    throw new Error('Customer email is not configured yet.');
-  }
+  const config = emailConfig();
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${config.apiKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       ...payload,
-      ...(process.env.ADMIN_EMAIL_REPLY_TO ? { reply_to: process.env.ADMIN_EMAIL_REPLY_TO } : {})
+      from: config.from,
+      reply_to: config.replyTo
     })
   });
   const result = await response.json().catch(() => ({}));
@@ -126,7 +126,6 @@ async function sendOrderEmail(order, templateName) {
   const template = templates[templateName];
   if (!template) throw new Error('Choose an email template.');
   const result = await sendResend({
-    from: process.env.ADMIN_EMAIL_FROM,
     to: [order.email],
     subject: template.subject,
     html: renderEmail(order, template)
@@ -139,7 +138,7 @@ async function sendOrderEmail(order, templateName) {
 }
 
 async function sendOrderConfirmation(orderId) {
-  if (!process.env.RESEND_API_KEY || !process.env.ADMIN_EMAIL_FROM) {
+  if (!process.env.RESEND_API_KEY) {
     return { sent: false, reason: 'Email delivery is not configured yet.' };
   }
   const claimed = await supabase(`orders?id=eq.${encodeURIComponent(orderId)}&confirmation_email_status=eq.pending&select=id`, {
@@ -154,7 +153,6 @@ async function sendOrderConfirmation(orderId) {
     await Promise.all([
       sendOrderEmail(order, 'received'),
       sendResend({
-        from: process.env.ADMIN_EMAIL_FROM,
         to: staffRecipients,
         subject: `New ${order.fulfillment_type} bottle order: ${order.customer_name}`,
         html: staffEmail(order)

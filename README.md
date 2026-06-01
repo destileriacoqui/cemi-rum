@@ -2,6 +2,8 @@
 
 Static HTML/CSS/JS site hosted on **Vercel**. The storefront now includes a persistent cart, optional Supabase customer accounts, saved order records, and server-side Stripe Checkout Session creation. Card details remain on Stripe-hosted checkout.
 
+Guest checkout remains the default. Customers can optionally create an account from the cart without interrupting checkout. After they confirm their email and log in, matching guest orders are linked to their account history.
+
 ## Commerce environment variables
 
 Configure the variables listed in `.env.example` in Vercel. `NEXT_PUBLIC_SUPABASE_ANON_KEY` is safe for the browser because Supabase Row Level Security protects customer records. `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, and `STRIPE_WEBHOOK_SECRET` must remain server-side only.
@@ -74,6 +76,8 @@ The Stripe secret key and webhook secret are Vercel server environment variables
 Enable Stripe Identity in the Stripe Dashboard before launch. The site uses hosted document verification pages, so raw ID photos are not stored in this website or Supabase.
 
 Order and tour confirmation emails use Resend. Bottle customers receive an order confirmation, pickup updates can be sent automatically from the admin dashboard status buttons, and tour customers receive a paid-booking confirmation. `orders@prsugar.com`, `destileriacoqui07@gmail.com`, and `maria@prsugar.com` receive new bottle-order and tour-booking details. Configure `RESEND_API_KEY`, `ADMIN_EMAIL_FROM=Destilería Coquí <orders@prsugar.com>`, and `ADMIN_EMAIL_REPLY_TO=orders@prsugar.com` in Vercel before enabling real email delivery. Supabase Auth account-confirmation emails use the custom SMTP settings in the Supabase dashboard.
+
+Add each Resend setting as its own Vercel environment variable. Do not paste multiple `NAME=value` pairs into one field.
 
 ## Customer account confirmation
 
