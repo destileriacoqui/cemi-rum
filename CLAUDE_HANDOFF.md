@@ -275,9 +275,9 @@ One-time token not found
 
 The normal Supabase implicit confirmation flow is therefore verified. Use only the newest confirmation link once when testing.
 
-### Local Callback Improvements Already Added
+### Callback Improvements Already Deployed
 
-The dirty tree updates:
+Deployed files:
 
 ```text
 auth/callback.html
@@ -293,7 +293,7 @@ Changes:
 - expired-link errors now guide users to request a fresh confirmation email
 - the error page links back to signup so the user can resend
 
-The deployed Supabase flow currently uses the implicit callback and is verified. The dirty tree also accepts a `token_hash` callback for compatibility. If the project is intentionally switched to PKCE `?code=...` later, add a supported code exchange flow at that time.
+The deployed Supabase flow currently uses the implicit callback and is verified. It also accepts a `token_hash` callback for compatibility. If the project is intentionally switched to PKCE `?code=...` later, add a supported code exchange flow at that time.
 
 ## Supabase Dashboard Configuration
 
@@ -422,6 +422,7 @@ Verified after reconciling the Claude session:
 - one unpaid pickup test, its pickup request, and one unpaid tour test were soft-deleted after verification
 - post-checkout account forms now match the main signup page's eight-character minimum password
 - soft-deleted tour records no longer count against availability
+- scripted production page requests currently receive Vercel Security Checkpoint responses (`429` on the public alias); use a normal browser session for final visual QA
 
 GitHub and Vercel are synced again.
 
@@ -456,7 +457,7 @@ npm run build
 npm audit --omit=dev --audit-level=high
 ```
 
-3. Consider whether to add PKCE `?code=` callback support before deploying.
+3. The deployed implicit callback and `token_hash` callback are supported and verified. Add PKCE `?code=` exchange support only if the project intentionally switches to PKCE later.
 
 4. Confirm no secrets are tracked:
 
@@ -481,7 +482,7 @@ https://cemi-rum.vercel.app/signup
 https://cemi-rum.vercel.app/auth/callback
 ```
 
-7. After the user configures Supabase Auth SMTP and URL settings, create a brand-new test customer email address. Use only the newest confirmation link once. Verify successful redirect to:
+7. Supabase Auth SMTP and the Vercel callback are configured and verified. For a regression test, create a brand-new test customer email address and use only the newest confirmation link once. Verify successful redirect to:
 
 ```text
 https://cemi-rum.vercel.app/account

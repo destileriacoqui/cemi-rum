@@ -347,8 +347,11 @@ https://cemi-rum.vercel.app/admin/orders
    - customer receives order email
    - `orders@prsugar.com` receives full staff summary
    - admin dashboard shows payment method and Express Pickup details
-3. Configure and test Supabase Auth custom SMTP for account confirmations. Logs confirm this is still missing.
-4. Continue remaining visual edits and tour operational details after user guidance.
+3. Enable leaked-password protection in Supabase Auth settings.
+4. When the final domain is ready, update the Supabase Site URL and allow-list `https://destileriacoqui.com/auth/callback`.
+5. Continue remaining visual edits and tour operational details after user guidance.
+
+Automated production page requests currently receive Vercel Security Checkpoint responses (`429` on the public alias). Use a normal browser session for final visual QA.
 
 ## June 1 Account And Product Update
 
