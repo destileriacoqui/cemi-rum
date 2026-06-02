@@ -88,6 +88,7 @@
       .commerce-cart{display:flex;align-items:center;gap:.45rem}
       .commerce-cart b{display:grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;background:var(--amber,#8C3F16);color:#F7F2E8;font-size:.55rem;letter-spacing:0}
       @media(max-width:900px){.commerce-nav{margin-left:auto;margin-right:3.2rem}.commerce-account{display:none}.commerce-nav a{font-size:.52rem}}
+      @media(max-width:520px){nav .nav-logo img{width:8rem}.nav-toggle{margin-left:auto}.commerce-nav{margin-left:.65rem;margin-right:0}.commerce-cart span{display:none}}
     `;
     document.head.appendChild(style);
   }

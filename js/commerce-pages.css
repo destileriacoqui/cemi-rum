@@ -3,7 +3,7 @@
 [hidden]{display:none!important}
 body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
 nav{padding:1.5rem 4rem;display:flex;align-items:center;gap:2rem;background:rgba(247,242,232,.97);border-bottom:.5px solid rgba(26,18,7,.1)}
-.nav-logo{display:block;text-decoration:none}.nav-logo img{display:block;width:auto;height:clamp(2.8rem,4.5vw,3.8rem)}
+.nav-logo{display:block;text-decoration:none}.nav-logo img{display:block;width:clamp(9rem,13vw,11.5rem);height:auto}
 .page{max-width:1180px;margin:0 auto;padding:8rem 4rem 7rem}
 .eyebrow{display:block;margin-bottom:1.3rem;color:var(--amber);font-size:.58rem;letter-spacing:.32em;text-transform:uppercase}
 h1{font:300 clamp(3.8rem,7vw,7rem)/.92 var(--serif);letter-spacing:-.045em}

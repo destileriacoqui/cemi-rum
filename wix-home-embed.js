@@ -9,7 +9,7 @@
   var IMG_PLAYA = 'https://static.wixstatic.com/media/f04508_656a56188bc04b039df4430627f084d6~mv2.jpeg';
   var IMG_ELECTRIC = 'https://static.wixstatic.com/media/f04508_1d8d5acfdaf34adaacb2fc9379bf05fc~mv2.jpeg';
   var IMG_BARRICAS = 'https://static.wixstatic.com/media/f04508_8b8b22ca1ceb4491a489aeeedc92f70f~mv2.webp';
-  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo.png';
+  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo.svg';
   var IMG_FERIA = 'https://cemi-rum.vercel.app/img/event-feria-pitorro.jpg';
   var IMG_TASTE = 'https://cemi-rum.vercel.app/img/event-taste-of-rum.jpg';
   var IMG_ELECTRIC_LIVE = 'https://cemi-rum.vercel.app/img/electric-420-fest.jpg';
