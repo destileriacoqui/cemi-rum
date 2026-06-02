@@ -45,7 +45,7 @@
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
     .nav-logo { display: block; text-decoration: none; }
-    .nav-logo img { display: block; width: clamp(9rem, 13vw, 11.5rem); height: auto; }
+    .nav-logo img { display: block; width: clamp(11rem, 16vw, 14rem); height: auto; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
@@ -223,6 +223,472 @@
       display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem;
     }
 
+    /* ── PRODUCT SHOWCASE ────────────────────────── */
+    .ron-showcase {
+      background:
+        radial-gradient(circle at 78% 28%, rgba(221,171,78,0.28), transparent 23rem),
+        radial-gradient(circle at 74% 72%, rgba(193,82,48,0.14), transparent 25rem),
+        radial-gradient(circle at 10% 86%, rgba(42,138,120,0.11), transparent 24rem),
+        linear-gradient(135deg, #fbf7ee 0%, #f8f1e3 100%);
+      overflow: hidden;
+    }
+    .ron-hero {
+      min-height: 100dvh;
+      padding: clamp(8rem, 12vh, 10rem) clamp(2rem, 5vw, 6rem) 3rem;
+      display: grid;
+      grid-template-columns: minmax(18rem, 0.92fr) minmax(20rem, 1.08fr);
+      gap: clamp(2rem, 7vw, 8rem);
+      align-items: center;
+      position: relative;
+    }
+    .ron-hero::after {
+      content: '';
+      position: absolute;
+      inset: auto 50% 1.8rem auto;
+      width: 1px;
+      height: 3.5rem;
+      background: linear-gradient(to bottom, rgba(196,147,72,0), rgba(196,147,72,0.8), rgba(196,147,72,0));
+      opacity: 0.7;
+    }
+    .ron-copy {
+      max-width: 43rem;
+      position: relative;
+      z-index: 2;
+    }
+    .ron-kicker {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 2.2rem;
+    }
+    .ron-kicker::before {
+      content: '';
+      width: 2.6rem;
+      height: 1px;
+      background: #ee765f;
+    }
+    .ron-title {
+      font-family: var(--serif);
+      font-size: clamp(4.5rem, 9vw, 8.75rem);
+      line-height: 0.88;
+      font-weight: 300;
+      letter-spacing: -0.06em;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+    }
+    .ron-title em,
+    .ron-split-title em,
+    .ron-recipe-title em {
+      color: #9d7929;
+      font-style: italic;
+      font-weight: 300;
+    }
+    .ron-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.6rem, 2.3vw, 2.25rem);
+      line-height: 1.2;
+      color: #e86f5c;
+      margin-bottom: 2rem;
+    }
+    .ron-intro {
+      max-width: 34rem;
+      color: var(--muted);
+      font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+      line-height: 1.9;
+      margin-bottom: 2.7rem;
+    }
+    .ron-specs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.35rem;
+      padding-top: 1.7rem;
+      border-top: 1px solid rgba(26,18,7,0.12);
+      max-width: 44rem;
+    }
+    .ron-spec-label {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: rgba(125,102,84,0.72);
+      font-size: 0.52rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+    .ron-spec-value {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      line-height: 1;
+      color: #9d7929;
+    }
+    .ron-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.2rem;
+    }
+    .ron-actions .btn-buy {
+      background: #d1a644;
+      color: #fffaf0;
+      border-radius: 999px;
+      box-shadow: 0 1.15rem 2.5rem rgba(151,103,22,0.22);
+    }
+    .ron-actions .btn-buy:hover { background: #b98727; }
+    .ron-actions .btn-amber {
+      background: rgba(255,255,255,0.38);
+      color: var(--ink);
+      border: 1px solid rgba(26,18,7,0.14);
+      border-radius: 999px;
+    }
+    .ron-actions .btn-amber:hover { background: rgba(255,255,255,0.72); }
+    .ron-stage {
+      min-height: 42rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+    .ron-stage::before,
+    .ron-stage::after {
+      content: '';
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(1px);
+      z-index: -1;
+    }
+    .ron-stage::before {
+      width: min(34rem, 70vw);
+      height: min(34rem, 70vw);
+      background: radial-gradient(circle, rgba(222,171,79,0.22), rgba(222,171,79,0.04) 56%, transparent 70%);
+    }
+    .ron-stage::after {
+      width: min(24rem, 48vw);
+      height: min(24rem, 48vw);
+      transform: translate(7rem, 8rem);
+      background: radial-gradient(circle, rgba(223,91,68,0.12), transparent 70%);
+    }
+    .ron-stage img {
+      height: min(66vh, 48rem);
+      max-height: 48rem;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2rem 3.5rem rgba(26,18,7,0.22));
+      animation: ronBottleSettle 900ms cubic-bezier(0.16,1,0.3,1) both;
+    }
+    @keyframes ronBottleSettle {
+      from { opacity: 0; transform: translateY(1.8rem) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .ron-scroll {
+      position: absolute;
+      left: 50%;
+      bottom: 2.6rem;
+      transform: translateX(-50%);
+      color: rgba(125,102,84,0.72);
+      font-size: 0.56rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .ron-story-section {
+      padding: clamp(5rem, 9vw, 8.5rem) clamp(2rem, 6vw, 7rem);
+      background: #fffdf8;
+    }
+    .ron-story-inner {
+      max-width: 92rem;
+      margin: 0 auto;
+    }
+    .ron-split-title {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 7.5vw, 7rem);
+      line-height: 0.98;
+      font-weight: 300;
+      letter-spacing: -0.06em;
+      margin-bottom: 2.5rem;
+    }
+    .ron-note-copy {
+      max-width: 56rem;
+      color: var(--muted);
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      line-height: 1.8;
+      margin-bottom: 4.2rem;
+    }
+    .ron-tasting-notes {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .ron-tasting-row {
+      display: grid;
+      grid-template-columns: 11rem 1fr 3rem;
+      gap: 1.4rem;
+      align-items: center;
+    }
+    .ron-tasting-row .tasting-label {
+      width: auto;
+      font-size: clamp(1rem, 1.35vw, 1.35rem);
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--ink);
+    }
+    .ron-tasting-row .tasting-track {
+      height: 0.28rem;
+      border-radius: 999px;
+      background: #f1eadc;
+      overflow: hidden;
+    }
+    .ron-tasting-row .tasting-fill {
+      border-radius: inherit;
+      background: linear-gradient(90deg, #f0a72f, #a98734);
+    }
+    .ron-tasting-row .tasting-num {
+      font-size: 1.35rem;
+      color: #a98734;
+    }
+    .ron-note-grid {
+      border-top: 1px solid rgba(26,18,7,0.12);
+      padding-top: 2.6rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(2rem, 5vw, 5rem);
+    }
+    .ron-note-card h3 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      color: #e86f5c;
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .ron-note-card p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+    .ron-pour-section {
+      padding: clamp(5rem, 8vw, 8rem) clamp(2rem, 6vw, 7rem);
+      background: linear-gradient(180deg, #fffdf8 0%, #f8f1e3 100%);
+      overflow: hidden;
+    }
+    .ron-pour-top {
+      max-width: 92rem;
+      margin: 0 auto 2.7rem;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .ron-pour-grid {
+      max-width: 92rem;
+      margin: 0 auto;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(17rem, 1fr);
+      gap: 1.35rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      padding-bottom: 1.8rem;
+      scrollbar-color: #d5a742 #efe4cf;
+    }
+    .ron-pour-card img {
+      width: 100%;
+      height: clamp(19rem, 31vw, 31rem);
+      object-fit: cover;
+      border-radius: 0.55rem;
+      box-shadow: 0 1.4rem 3rem rgba(26,18,7,0.08);
+    }
+    .ron-pour-card h3 {
+      margin-top: 1.25rem;
+      font: 300 1.7rem/1 var(--serif);
+      color: var(--ink);
+    }
+    .ron-pour-card p {
+      margin-top: 0.35rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .ron-pour-card {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      color: inherit;
+    }
+    .ron-pour-card img,
+    .cocktail-placeholder {
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .ron-pour-card:hover img,
+    .ron-pour-card:hover .cocktail-placeholder,
+    .ron-pour-card.is-active .cocktail-placeholder {
+      transform: translateY(-0.35rem);
+      box-shadow: 0 1.9rem 4rem rgba(26,18,7,0.12);
+    }
+    .ron-pour-card.is-active h3 { color: var(--amber); }
+    .cocktail-placeholder {
+      width: 100%;
+      height: clamp(19rem, 31vw, 31rem);
+      border-radius: 0.55rem;
+      box-shadow: 0 1.4rem 3rem rgba(26,18,7,0.08);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(255,255,255,0.74), transparent 5.5rem),
+        radial-gradient(circle at 35% 68%, var(--cocktail-glow, rgba(196,147,72,0.32)), transparent 12rem),
+        linear-gradient(145deg, var(--cocktail-a, #f6d89a), var(--cocktail-b, #fff8e8));
+    }
+    .cocktail-placeholder::before {
+      content: '';
+      width: 6.6rem;
+      height: 12rem;
+      border: 1px solid rgba(255,255,255,0.72);
+      border-top-width: 4px;
+      border-bottom-width: 8px;
+      border-radius: 0 0 2.5rem 2.5rem;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.42), rgba(255,255,255,0.05)),
+        linear-gradient(to top, var(--cocktail-liquid, rgba(211,154,54,0.68)) 0 58%, transparent 58%);
+      box-shadow: inset 0 0 2rem rgba(255,255,255,0.4), 0 1.5rem 2.4rem rgba(26,18,7,0.13);
+    }
+    .cocktail-placeholder::after {
+      content: 'Recipe';
+      position: absolute;
+      left: 1.3rem;
+      bottom: 1.15rem;
+      font-size: 0.54rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(26,18,7,0.58);
+    }
+    .ron-recipe.is-cocktail-recipe {
+      grid-template-columns: minmax(15rem, 0.72fr) minmax(20rem, 1.28fr);
+    }
+    .cocktail-recipe-art {
+      min-height: 34rem;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 68% 22%, rgba(255,255,255,0.58), transparent 8rem),
+        linear-gradient(145deg, var(--recipe-a, #f7d58f), var(--recipe-b, #f8eee0));
+      overflow: hidden;
+    }
+    .cocktail-recipe-art::before {
+      content: '';
+      width: min(16rem, 42vw);
+      height: min(24rem, 62vw);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-top-width: 5px;
+      border-bottom-width: 10px;
+      border-radius: 0 0 5rem 5rem;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.07)),
+        linear-gradient(to top, var(--recipe-liquid, rgba(211,154,54,0.68)) 0 56%, transparent 56%);
+      box-shadow: inset 0 0 4rem rgba(255,255,255,0.45), 0 2rem 4rem rgba(26,18,7,0.16);
+      transform: rotate(-3deg);
+    }
+    .cocktail-recipe-art span {
+      position: absolute;
+      left: 2rem;
+      bottom: 2rem;
+      font-size: 0.58rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(26,18,7,0.52);
+    }
+    .ron-recipe {
+      display: grid;
+      grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 1fr);
+      background: var(--cream);
+      border-top: 1px solid rgba(26,18,7,0.1);
+      border-bottom: 1px solid rgba(26,18,7,0.1);
+    }
+    .ron-recipe-photo {
+      min-height: 44rem;
+      background: linear-gradient(rgba(26,18,7,0.12), rgba(26,18,7,0.12)), url('img/coqui-plaza-bar.webp') center / cover;
+    }
+    .ron-recipe-copy {
+      padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 6vw, 6rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .ron-recipe-title {
+      font-family: var(--serif);
+      font-size: clamp(3.1rem, 5vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      font-weight: 300;
+      margin-bottom: 2.6rem;
+    }
+    .ron-recipe-lists {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .ron-recipe h3 {
+      font-size: 0.56rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+    }
+    .ron-recipe ul,
+    .ron-recipe ol {
+      list-style: none;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .ron-recipe li {
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(26,18,7,0.09);
+    }
+    .ron-recipe ol { counter-reset: method; }
+    .ron-recipe ol li {
+      counter-increment: method;
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 1rem;
+    }
+    .ron-recipe ol li::before {
+      content: counter(method);
+      color: var(--amber);
+      font-family: var(--serif);
+      font-style: italic;
+    }
+    .ron-related-section {
+      padding: clamp(5rem, 8vw, 8rem) clamp(2rem, 6vw, 7rem);
+      background: var(--cream-mid);
+    }
+    .ron-related-section .related-grid {
+      max-width: 92rem;
+      margin: 0 auto;
+    }
+    .ron-related-section .related-heading,
+    .ron-related-section .product-eyebrow {
+      max-width: 92rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .ron-related-section .related-product {
+      background: #fffdf8;
+      border-radius: 0.45rem;
+      overflow: hidden;
+      box-shadow: 0 1.4rem 3rem rgba(26,18,7,0.04);
+    }
+    .ron-related-section .related-product img {
+      background: #fff;
+      height: 20rem;
+      padding: 2.2rem;
+    }
+
     /* ── RELATED PRODUCTS ─────────────────────────── */
     .related-section {
       padding: 5rem 4.5rem 5.5rem;
@@ -291,6 +757,12 @@
       .hero-bottle { height: 90%; max-width: 55%; }
       .hero-info-col { padding: 3.5rem 2.5rem 4rem; min-height: unset; }
       .back-link { margin-bottom: 2.5rem; }
+      .ron-hero { grid-template-columns: 1fr; min-height: unset; padding-top: 8rem; }
+      .ron-stage { min-height: 34rem; order: -1; }
+      .ron-stage img { height: 32rem; }
+      .ron-specs { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .ron-note-grid, .ron-recipe, .ron-recipe-lists { grid-template-columns: 1fr; }
+      .ron-recipe-photo { min-height: 28rem; }
       .tasting-section { padding: 4rem 2.5rem; }
       .related-section { padding: 4rem 2.5rem; }
       .cta-band { padding: 4rem 2.5rem; flex-direction: column; align-items: flex-start; }
@@ -302,6 +774,19 @@
       .hero-info-col { padding: 2.5rem 1.5rem 3rem; }
       .specs-row { grid-template-columns: 1fr 1fr; }
       .spec:last-child { grid-column: 1 / -1; border-right: none; border-top: 0.5px solid rgba(26,18,7,0.1); padding: 1.5rem 0 0; margin-top: 0.5rem; }
+      .ron-hero { padding: 6.8rem 1.35rem 3rem; }
+      .ron-stage { min-height: 25rem; }
+      .ron-stage img { height: 24rem; }
+      .ron-title { font-size: clamp(4rem, 22vw, 6rem); }
+      .ron-specs { grid-template-columns: 1fr 1fr; }
+      .ron-tasting-row { grid-template-columns: 1fr; gap: 0.45rem; }
+      .ron-tasting-row .tasting-num { text-align: left; }
+      .ron-story-section, .ron-pour-section, .ron-related-section { padding-left: 1.35rem; padding-right: 1.35rem; }
+      .ron-note-grid { gap: 1.75rem; }
+      .ron-pour-top { display: block; }
+      .ron-pour-grid { grid-auto-columns: minmax(15rem, 80vw); }
+      .ron-recipe-copy { padding: 3rem 1.35rem; }
+      .ron-recipe-photo { min-height: 21rem; }
       .tasting-section { padding: 3rem 1.5rem; }
       .related-section { padding: 3rem 1.5rem; }
       .related-grid { grid-template-columns: 1fr; }
@@ -528,7 +1013,7 @@
     };
     // ─────────────────────────────────────────────────────────────────────────
 
-    const id = new URLSearchParams(window.location.search).get('id');
+    const id = new URLSearchParams(window.location.search).get('id') || 'ron-blanco';
     const p  = PRODUCTS[id];
     const checkoutUrl = STRIPE_URLS[id] || '#';
     const root = document.getElementById('page-root');
@@ -546,6 +1031,331 @@
         .slice(0, 3);
     }
 
+    function renderRelatedCards(currentId) {
+      return relatedProducts(currentId).map(slug => {
+        const related = PRODUCTS[slug];
+        const item = COQUI_CATALOG[slug];
+        return `
+          <article class="related-product">
+            <img src="${related.img}" alt="${item.name}">
+            <div class="related-info">
+              <span class="related-type">${related.type}</span>
+              <h3 class="related-name">${related.name}</h3>
+              <p class="related-price">${related.price}</p>
+              <div class="related-actions">
+                <button type="button" class="btn-buy" data-add-cart data-cart-slug="${slug}">Add to Cart</button>
+                <a class="btn-amber" href="producto.html?id=${slug}">View Product</a>
+              </div>
+            </div>
+          </article>`;
+      }).join('');
+    }
+
+    const PRODUCT_ORIGINS = {
+      'ron-blanco': 'Mayagüez',
+      'ron-limon': 'Mayagüez',
+      carjakers: 'Mayagüez'
+    };
+    const PRODUCT_SUBTITLES = {
+      'ron-blanco': 'The everyday spirit of Puerto Rico.',
+      'ron-limon': 'Bright citrus, island cane, easy sunshine.',
+      'pitorro-blanco': 'Puerto Rico’s tradition, poured clean and bold.',
+      'pitorro-coco-35': 'Rich coconut, warm cane, unmistakably tropical.',
+      'pitorro-coco-15': 'A lighter coconut pour for easy afternoons.',
+      'pitorro-cafe': 'Coffee, cane, and late-night Puerto Rico.',
+      'pitorro-tamarindo': 'Tart tamarind with a bold island backbone.',
+      'pitorro-parcha': 'Passion fruit brightness with Pitorro® character.',
+      'pitorro-pina': 'Pineapple sweetness with a spirited kick.',
+      'pitorro-fresa': 'Fresh strawberry, soft sweetness, island lift.',
+      'pitorro-frutas': 'A fruit-forward pour built for gatherings.',
+      'blend-coco-pina': 'Coconut and pineapple in a smooth tropical blend.',
+      'blend-coco-almendra': 'Coconut, almond, and a softer island finish.',
+      'blend-fresa-pina': 'Strawberry and pineapple, bright and easy.',
+      'blend-jengibre-coco': 'Ginger warmth meets tropical coconut.',
+      'blend-mango-pina': 'Mango and pineapple with sunlit sweetness.',
+      'blend-coco-fresa-pina': 'Three island flavors in one layered blend.',
+      'caneca-blanco': 'Our white rum, ready in a smaller pour.',
+      'caneca-limon': 'A small bottle with a bright citrus snap.',
+      'mini-blanco': 'A pocket-sized taste of traditional Pitorro®.',
+      'mini-coco': 'Small, sweet, and tropical.',
+      'mini-parcha': 'A miniature burst of passion fruit.',
+      'mini-tamarindo': 'Tart tamarind in a smaller pour.',
+      'mini-cafe': 'Coffee Pitorro® in a pocket-sized bottle.'
+    };
+    // ─── PER-PRODUCT COCKTAILS (3 per product) ────────────────────────────
+    const PRODUCT_COCKTAILS = {
+      ‘ron-blanco’: [
+        { name:’Coquí Mojito Blanco’, sub:’Mint, lime, soda water’, ingredients:[‘2 oz Ron Coquí Blanco’,’1 oz lime juice’,’¾ oz simple syrup’,’Mint leaves’,’Soda water’], method:[‘Muddle mint with syrup and lime.’,’Add rum and ice, shake briefly.’,’Strain, top with soda, garnish with mint.’], color:’#8C3F16’ },
+        { name:’Mayagüez Daiquiri’, sub:’Lime, cane syrup, chilled coupe’, ingredients:[‘2 oz Ron Coquí Blanco’,’1 oz lime juice’,’¾ oz cane syrup’], method:[‘Shake all ingredients with ice.’,’Double strain into a chilled coupe.’,’Garnish with a lime wheel.’], color:’#60422E’ },
+        { name:’Isla Blanca Spritz’, sub:’Pineapple, coconut water, soda’, ingredients:[‘1½ oz Ron Coquí Blanco’,’1 oz pineapple juice’,’½ oz lime juice’,’½ oz coconut water’,’Soda water’], method:[‘Shake rum, juices, and coconut water with ice.’,’Strain into a glass over fresh ice.’,’Top with soda and stir gently.’], color:’#7D6654’ }
+      ],
+      ‘ron-limon’: [
+        { name:’Coquí Limón Collins’, sub:’Lemon, syrup, soda water’, ingredients:[‘2 oz Ron Coquí Limón’,’1 oz lemon juice’,’¾ oz simple syrup’,’Soda water’], method:[‘Shake rum, lemon, and syrup with ice.’,’Strain into a tall glass over ice.’,’Top with soda, garnish with lemon.’], color:’#8C3F16’ },
+        { name:’Limoncito Tropical’, sub:’Passion fruit, lime, agave’, ingredients:[‘1½ oz Ron Coquí Limón’,’1 oz passion fruit juice’,’½ oz lime juice’,’½ oz agave syrup’], method:[‘Shake all ingredients hard with ice.’,’Strain into a chilled coupe.’,’Garnish with a lime wheel.’], color:’#60422E’ },
+        { name:’Lemon Rum Mule’, sub:’Ginger beer, lime, mint’, ingredients:[‘2 oz Ron Coquí Limón’,’½ oz lime juice’,’Ginger beer’,’Mint sprig’], method:[‘Build rum and lime over ice in a copper mug.’,’Top with ginger beer.’,’Garnish with mint and a lime wedge.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-blanco’: [
+        { name:’Pitorro Sour Boricua’, sub:’Lime, pineapple, syrup’, ingredients:[‘1½ oz Pitorro Blanco’,’¾ oz lime juice’,’¾ oz simple syrup’,’½ oz pineapple juice’], method:[‘Shake all ingredients with ice.’,’Strain into a rocks glass over ice.’,’Garnish with a pineapple wedge.’], color:’#8C3F16’ },
+        { name:’La Clara’, sub:’Coconut water, lime, honey’, ingredients:[‘1½ oz Pitorro Blanco’,’1 oz coconut water’,’½ oz lime juice’,’½ oz honey syrup’], method:[‘Shake all ingredients with ice.’,’Strain into a chilled glass.’,’Garnish with a lime twist.’], color:’#60422E’ },
+        { name:’Pitorro Highball’, sub:’Soda water, lime, bitters’, ingredients:[‘1½ oz Pitorro Blanco’,’Soda water’,’Lime wedge’,’Dash of bitters’], method:[‘Build Pitorro and bitters over ice.’,’Top with soda water.’,’Squeeze and drop in a lime wedge.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-coco-35’: [
+        { name:’Coquito Express’, sub:’Coconut cream, milk, cinnamon’, ingredients:[‘1½ oz Pitorro de Coco’,’1 oz cream of coconut’,’1 oz evaporated milk’,’Cinnamon’,’Nutmeg’], method:[‘Shake all liquid ingredients hard with ice.’,’Strain into a glass with fresh ice.’,’Dust with cinnamon and nutmeg.’], color:’#8C3F16’ },
+        { name:’Coco Lime Cooler’, sub:’Lime, syrup, soda water’, ingredients:[‘1½ oz Pitorro de Coco’,’¾ oz lime juice’,’¾ oz simple syrup’,’Soda water’], method:[‘Shake rum, lime, and syrup with ice.’,’Strain into a tall glass over ice.’,’Top with soda and stir.’], color:’#60422E’ },
+        { name:’Palma Real’, sub:’Pineapple, orange, lime’, ingredients:[‘1½ oz Pitorro de Coco’,’1 oz pineapple juice’,’½ oz orange juice’,’½ oz lime juice’], method:[‘Shake all ingredients with ice.’,’Strain over fresh ice.’,’Garnish with a pineapple leaf.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-coco-15’: [
+        { name:’Pitorro de Coco Cream’, sub:’Coconut cream, condensed milk’, ingredients:[‘1½ oz Pitorro de Coco’,’1 oz cream of coconut’,’½ oz condensed milk’,’Cinnamon’], method:[‘Shake all liquid ingredients with ice.’,’Strain into a glass over ice.’,’Dust with cinnamon.’], color:’#8C3F16’ },
+        { name:’Coco Verde’, sub:’Coconut water, lime, honey’, ingredients:[‘1½ oz Pitorro de Coco’,’1 oz coconut water’,’½ oz lime juice’,’½ oz honey syrup’], method:[‘Shake all ingredients with ice.’,’Strain into a chilled glass.’,’Garnish with a lime wheel.’], color:’#60422E’ },
+        { name:’Coconut Rum Lemonade’, sub:’Lemon, syrup, soda’, ingredients:[‘1½ oz Pitorro de Coco’,’1 oz lemon juice’,’¾ oz simple syrup’,’Soda water’], method:[‘Shake rum, lemon, and syrup with ice.’,’Strain into a tall glass over ice.’,’Top with soda.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-cafe’: [
+        { name:’Pitorro Espresso Martini’, sub:’Espresso, coffee liqueur, syrup’, ingredients:[‘1½ oz Pitorro Café’,’1 oz espresso’,’½ oz coffee liqueur’,’½ oz simple syrup’], method:[‘Shake all ingredients hard with ice.’,’Double strain into a chilled coupe.’,’Garnish with three coffee beans.’], color:’#8C3F16’ },
+        { name:’Café Coquí Old Fashioned’, sub:’Brown sugar, chocolate bitters’, ingredients:[‘2 oz Pitorro Café’,’¼ oz brown sugar syrup’,’2 dashes chocolate bitters’], method:[‘Stir all ingredients with ice until chilled.’,’Strain over a large ice cube.’,’Express an orange peel over the glass.’], color:’#60422E’ },
+        { name:’Café con Coco’, sub:’Coconut cream, condensed milk’, ingredients:[‘1½ oz Pitorro Café’,’1 oz coconut cream’,’½ oz condensed milk’,’Cinnamon’], method:[‘Shake all ingredients with ice.’,’Strain into a rocks glass over ice.’,’Dust with cinnamon.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-tamarindo’: [
+        { name:’Tamarindo Picante’, sub:’Tamarind, lime, chili salt’, ingredients:[‘1½ oz Pitorro Tamarindo’,’1 oz tamarind juice’,’½ oz lime juice’,’½ oz agave’,’Chili salt rim’], method:[‘Rim glass with chili salt.’,’Shake all liquid ingredients with ice.’,’Strain into the rimmed glass over ice.’], color:’#8C3F16’ },
+        { name:’Tamarindo Sour’, sub:’Lemon, syrup, optional egg white’, ingredients:[‘1½ oz Pitorro Tamarindo’,’¾ oz lemon juice’,’¾ oz simple syrup’,’Optional egg white’], method:[‘Dry shake if using egg white.’,’Add ice and shake again.’,’Strain into a coupe.’], color:’#60422E’ },
+        { name:’Tamarindo Rum Punch’, sub:’Pineapple, orange, lime’, ingredients:[‘1½ oz Pitorro Tamarindo’,’1 oz pineapple juice’,’½ oz orange juice’,’½ oz lime juice’], method:[‘Shake all ingredients with ice.’,’Pour over fresh ice.’,’Garnish with a pineapple wedge.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-parcha’: [
+        { name:’Parcha Punch Coquí’, sub:’Orange, pineapple, lime’, ingredients:[‘1½ oz Pitorro Parcha’,’1 oz orange juice’,’1 oz pineapple juice’,’½ oz lime juice’], method:[‘Shake all ingredients with ice.’,’Strain over fresh ice.’,’Garnish with a passion fruit half.’], color:’#8C3F16’ },
+        { name:’Maracuyá Mule’, sub:’Lime, ginger beer’, ingredients:[‘1½ oz Pitorro Parcha’,’½ oz lime juice’,’Ginger beer’], method:[‘Build rum and lime over ice in a copper mug.’,’Top with ginger beer.’,’Garnish with a lime wedge.’], color:’#60422E’ },
+        { name:’Parcha Sunset’, sub:’Cranberry, lime, syrup’, ingredients:[‘1½ oz Pitorro Parcha’,’1 oz cranberry juice’,’½ oz lime juice’,’½ oz simple syrup’], method:[‘Shake all ingredients with ice.’,’Strain into a glass over ice.’,’Garnish with a lime wheel.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-pina’: [
+        { name:’Piña Pitorro Colada’, sub:’Coconut cream, pineapple, ice’, ingredients:[‘1½ oz Pitorro Piña’,’1 oz cream of coconut’,’1 oz pineapple juice’,’Crushed ice’], method:[‘Blend or shake all ingredients with ice.’,’Pour into a chilled glass.’,’Garnish with a pineapple wedge.’], color:’#8C3F16’ },
+        { name:’Piña Brava’, sub:’Lime, agave, jalapeño’, ingredients:[‘1½ oz Pitorro Piña’,’½ oz lime juice’,’½ oz agave’,’Jalapeño slice’], method:[‘Muddle jalapeño gently with agave.’,’Add remaining ingredients, shake with ice.’,’Strain over ice, garnish with jalapeño.’], color:’#60422E’ },
+        { name:’Pineapple Rum Smash’, sub:’Lime, syrup, mint’, ingredients:[‘1½ oz Pitorro Piña’,’1 oz lime juice’,’¾ oz simple syrup’,’Mint leaves’,’Pineapple chunks’], method:[‘Muddle pineapple and mint with syrup.’,’Add rum and lime, shake with ice.’,’Strain over crushed ice.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-fresa’: [
+        { name:’Fresa Fresca’, sub:’Lime, syrup, muddled strawberry’, ingredients:[‘1½ oz Pitorro Fresa’,’1 oz lime juice’,’¾ oz simple syrup’,’Muddled strawberries’], method:[‘Muddle strawberries with syrup.’,’Add rum and lime, shake with ice.’,’Strain into a glass over ice.’], color:’#8C3F16’ },
+        { name:’Strawberry Coquí Spritz’, sub:’Lemon, syrup, soda water’, ingredients:[‘1½ oz Pitorro Fresa’,’½ oz lemon juice’,’½ oz simple syrup’,’Soda water’], method:[‘Shake rum, lemon, and syrup with ice.’,’Strain into a wine glass over ice.’,’Top with soda and stir gently.’], color:’#60422E’ },
+        { name:’Fresa Colada’, sub:’Pineapple, coconut cream’, ingredients:[‘1½ oz Pitorro Fresa’,’1 oz pineapple juice’,’1 oz cream of coconut’], method:[‘Shake all ingredients hard with ice.’,’Strain into a glass with crushed ice.’,’Garnish with a strawberry.’], color:’#7D6654’ }
+      ],
+      ‘pitorro-frutas’: [
+        { name:’Frutas de la Isla’, sub:’Guava, pineapple, lime’, ingredients:[‘1½ oz Pitorro Frutas’,’1 oz guava juice’,’1 oz pineapple juice’,’½ oz lime juice’], method:[‘Shake all ingredients with ice.’,’Strain over fresh ice.’,’Garnish with tropical fruit.’], color:’#8C3F16’ },
+        { name:’Tropical Sangría Coquí’, sub:’White wine, fruit, soda’, ingredients:[‘1 oz Pitorro Frutas’,’3 oz white wine’,’Chopped fruit’,’Splash lemon-lime soda’], method:[‘Combine rum, wine, and fruit in a glass.’,’Stir gently with ice.’,’Top with a splash of soda.’], color:’#60422E’ },
+        { name:’Fruit Stand Punch’, sub:’Orange, cranberry, lime’, ingredients:[‘1½ oz Pitorro Frutas’,’1 oz orange juice’,’1 oz cranberry juice’,’½ oz lime juice’], method:[‘Shake all ingredients with ice.’,’Pour over fresh ice.’,’Garnish with an orange wheel.’], color:’#7D6654’ }
+      ],
+      ‘blend-mango-pina’: [
+        { name:’Mango Piña Smash’, sub:’Mango nectar, lime, mint’, ingredients:[‘1½ oz Mango/Piña Blend’,’1 oz mango nectar’,’½ oz lime juice’,’Mint leaves’], method:[‘Muddle mint gently.’,’Add remaining ingredients, shake with ice.’,’Strain over crushed ice.’], color:’#8C3F16’ },
+        { name:’Golden Coquí’, sub:’Pineapple, orange, lime’, ingredients:[‘1½ oz Mango/Piña Blend’,’1 oz pineapple juice’,’½ oz orange juice’,’½ oz lime juice’], method:[‘Shake all ingredients with ice.’,’Strain into a glass over ice.’,’Garnish with a pineapple leaf.’], color:’#60422E’ },
+        { name:’Mango Piña Mule’, sub:’Lime, ginger beer’, ingredients:[‘1½ oz Mango/Piña Blend’,’½ oz lime juice’,’Ginger beer’], method:[‘Build rum and lime over ice.’,’Top with ginger beer.’,’Garnish with a lime wedge.’], color:’#7D6654’ }
+      ],
+      ‘blend-fresa-pina’: [
+        { name:’Fresa Piña Colada’, sub:’Coconut cream, pineapple’, ingredients:[‘1½ oz Fresa/Piña Blend’,’1 oz cream of coconut’,’1 oz pineapple juice’], method:[‘Shake all ingredients with ice.’,’Strain into a glass with crushed ice.’,’Garnish with a strawberry.’], color:’#8C3F16’ },
+        { name:’Pink Island Cooler’, sub:’Lime, syrup, soda water’, ingredients:[‘1½ oz Fresa/Piña Blend’,’½ oz lime juice’,’½ oz simple syrup’,’Soda water’], method:[‘Shake rum, lime, and syrup with ice.’,’Strain over ice.’,’Top with soda and stir gently.’], color:’#60422E’ },
+        { name:’Strawberry Pineapple Daiquiri’, sub:’Lime, syrup, chilled coupe’, ingredients:[‘1½ oz Fresa/Piña Blend’,’¾ oz lime juice’,’½ oz simple syrup’], method:[‘Shake all ingredients with ice.’,’Double strain into a chilled coupe.’,’Garnish with a lime wheel.’], color:’#7D6654’ }
+      ],
+      ‘blend-coco-almendra’: [
+        { name:’Coco Almendra Coquito’, sub:’Coconut cream, milk, cinnamon’, ingredients:[‘1½ oz Coco Almendra Blend’,’1 oz cream of coconut’,’1 oz evaporated milk’,’Cinnamon’], method:[‘Shake all liquid ingredients with ice.’,’Strain into a glass over ice.’,’Dust with cinnamon.’], color:’#8C3F16’ },
+        { name:’Almond Coconut Sour’, sub:’Lemon, orgeat, syrup’, ingredients:[‘1½ oz Coco Almendra Blend’,’¾ oz lemon juice’,’½ oz orgeat’,’¼ oz simple syrup’], method:[‘Shake all ingredients with ice.’,’Strain into a coupe.’,’Garnish with an almond.’], color:’#60422E’ },
+        { name:’Isla Almendra’, sub:’Pineapple, lime, coconut water’, ingredients:[‘1½ oz Coco Almendra Blend’,’1 oz pineapple juice’,’½ oz lime juice’,’½ oz coconut water’], method:[‘Shake all ingredients with ice.’,’Strain over fresh ice.’,’Garnish with a pineapple wedge.’], color:’#7D6654’ }
+      ],
+      ‘blend-jengibre-coco’: [
+        { name:’Ginger Coco Mule’, sub:’Lime, ginger beer’, ingredients:[‘1½ oz Jengibre Coco Blend’,’½ oz lime juice’,’Ginger beer’], method:[‘Build rum and lime over ice in a copper mug.’,’Top with ginger beer.’,’Garnish with a lime wedge and candied ginger.’], color:’#8C3F16’ },
+        { name:’Coco Jengibre Sour’, sub:’Lemon, honey, coconut water’, ingredients:[‘1½ oz Jengibre Coco Blend’,’¾ oz lemon juice’,’½ oz honey syrup’,’½ oz coconut water’], method:[‘Shake all ingredients with ice.’,’Strain into a rocks glass over ice.’,’Garnish with a lemon twist.’], color:’#60422E’ },
+        { name:’Spiced Coconut Highball’, sub:’Soda water, lime, bitters’, ingredients:[‘1½ oz Jengibre Coco Blend’,’Soda water’,’Lime wedge’,’Dash aromatic bitters’], method:[‘Build rum and bitters over ice.’,’Top with soda water.’,’Garnish with a lime wedge.’], color:’#7D6654’ }
+      ],
+      ‘blend-coco-fresa-pina’: [
+        { name:’Triple Isla Colada’, sub:’Pineapple, coconut cream’, ingredients:[‘1½ oz Coco/Fresa/Piña Blend’,’1 oz pineapple juice’,’1 oz cream of coconut’], method:[‘Shake all ingredients with ice.’,’Pour into a glass with crushed ice.’,’Garnish with tropical fruit.’], color:’#8C3F16’ },
+        { name:’Coquí Paradise Punch’, sub:’Orange, lime, grenadine’, ingredients:[‘1½ oz Coco/Fresa/Piña Blend’,’1 oz orange juice’,’½ oz lime juice’,’½ oz grenadine’], method:[‘Shake all ingredients with ice.’,’Strain over fresh ice.’,’Garnish with an orange wheel.’], color:’#60422E’ },
+        { name:’Rosado Tropical’, sub:’Lemon, syrup, soda water’, ingredients:[‘1½ oz Coco/Fresa/Piña Blend’,’½ oz lemon juice’,’½ oz simple syrup’,’Soda water’], method:[‘Shake rum, lemon, and syrup with ice.’,’Strain over ice.’,’Top with soda.’], color:’#7D6654’ }
+      ],
+      ‘blend-coco-pina’: [
+        { name:’Classic Coquí Colada’, sub:’Coconut cream, pineapple, ice’, ingredients:[‘1½ oz Coco Piña Blend’,’1 oz cream of coconut’,’1 oz pineapple juice’,’Crushed ice’], method:[‘Blend or shake all ingredients with ice.’,’Pour into a chilled glass.’,’Garnish with a pineapple wedge.’], color:’#8C3F16’ },
+        { name:’Coco Piña Mojito’, sub:’Lime, syrup, mint, soda’, ingredients:[‘1½ oz Coco Piña Blend’,’¾ oz lime juice’,’½ oz simple syrup’,’Mint leaves’,’Soda water’], method:[‘Muddle mint with syrup and lime.’,’Add rum and ice, shake.’,’Top with soda and stir gently.’], color:’#60422E’ },
+        { name:’Beach House Punch’, sub:’Orange, lime, coconut water’, ingredients:[‘1½ oz Coco Piña Blend’,’1 oz orange juice’,’½ oz lime juice’,’½ oz coconut water’], method:[‘Shake all ingredients with ice.’,’Pour over fresh ice.’,’Garnish with a lime wheel.’], color:’#7D6654’ }
+      ],
+      ‘carjakers’: [
+        { name:’Carjaker\’s Old Fashioned’, sub:’Demerara, bitters, orange peel’, ingredients:[‘2 oz Carjaker\’s Rum’,’¼ oz demerara syrup’,’2 dashes Angostura bitters’,’Orange peel’], method:[‘Stir all ingredients with ice until chilled.’,’Strain over a large ice cube.’,’Express orange peel over the glass.’], color:’#8C3F16’ },
+        { name:’Carjaker\’s Rum Manhattan’, sub:’Sweet vermouth, bitters’, ingredients:[‘2 oz Carjaker\’s Rum’,’¾ oz sweet vermouth’,’2 dashes bitters’], method:[‘Stir all ingredients with ice.’,’Strain into a chilled coupe.’,’Garnish with a cherry.’], color:’#60422E’ },
+        { name:’Carjaker\’s Café Nocturno’, sub:’Espresso, coffee liqueur’, ingredients:[‘1½ oz Carjaker\’s Rum’,’1 oz espresso’,’½ oz coffee liqueur’,’½ oz brown sugar syrup’], method:[‘Shake all ingredients hard with ice.’,’Double strain into a chilled coupe.’,’Garnish with three coffee beans.’], color:’#7D6654’ }
+      ]
+    };
+    // Miniatures & canecas share cocktails with their parent product
+    PRODUCT_COCKTAILS[‘caneca-blanco’] = PRODUCT_COCKTAILS[‘ron-blanco’];
+    PRODUCT_COCKTAILS[‘caneca-limon’] = PRODUCT_COCKTAILS[‘ron-limon’];
+    PRODUCT_COCKTAILS[‘mini-blanco’] = PRODUCT_COCKTAILS[‘pitorro-blanco’];
+    PRODUCT_COCKTAILS[‘mini-coco’] = PRODUCT_COCKTAILS[‘pitorro-coco-15’];
+    PRODUCT_COCKTAILS[‘mini-parcha’] = PRODUCT_COCKTAILS[‘pitorro-parcha’];
+    PRODUCT_COCKTAILS[‘mini-tamarindo’] = PRODUCT_COCKTAILS[‘pitorro-tamarindo’];
+    PRODUCT_COCKTAILS[‘mini-cafe’] = PRODUCT_COCKTAILS[‘pitorro-cafe’];
+
+    function cocktailSet(slug) {
+      return PRODUCT_COCKTAILS[slug] || PRODUCT_COCKTAILS[‘ron-blanco’];
+    }
+
+    function cocktailVars(color) {
+      return `--cocktail-a:${color};--cocktail-b:#fff8e9;--cocktail-liquid:${color}bb;--cocktail-glow:${color}55;`;
+    }
+
+    function recipeVars(color) {
+      return `--recipe-a:${color};--recipe-b:#fff4df;--recipe-liquid:${color}bb;`;
+    }
+
+    function displayProductName(product) {
+      const name = product.name;
+      const plain = plainText(name);
+      if (plain.includes('Ron Coquí')) return plain.replace('Ron Coquí™ ', 'Ron Coquí<br><em>') + '.</em>';
+      if (plain.includes('Pitorro')) return name.replace(' ', '<br><em>') + '.</em>';
+      if (plain.includes('/')) return name.replace(' / ', '<br><em>/ ') + '.</em>';
+      return `${name}<br><em>${product.style}.</em>`;
+    }
+
+    function productOrigin(slug) {
+      return PRODUCT_ORIGINS[slug] || 'Puerto Rico';
+    }
+
+    function showcaseIntro(product) {
+      return plainText(product.desc).replace(/\s+/g, ' ');
+    }
+
+    function renderCocktailCards(cocktails) {
+      return cocktails.map((cocktail, index) => `
+        <button type="button" class="ron-pour-card ${index === 0 ? 'is-active' : ''}" data-cocktail-index="${index}">
+          <span class="cocktail-placeholder" style="${cocktailVars(cocktail.color)}" aria-hidden="true"></span>
+          <h3>${cocktail.name}</h3>
+          <p>${cocktail.sub}</p>
+        </button>
+      `).join('');
+    }
+
+    function renderRecipe(cocktail) {
+      return `
+        <section class="ron-recipe is-cocktail-recipe" id="cocktailRecipe">
+          <div class="cocktail-recipe-art" style="${recipeVars(cocktail.color)}" role="img" aria-label="Placeholder cocktail image">
+            <span>Cocktail image placeholder</span>
+          </div>
+          <div class="ron-recipe-copy">
+            <span class="product-eyebrow">Selected recipe</span>
+            <h2 class="ron-recipe-title">How to make <em>${cocktail.name}.</em></h2>
+            <div class="ron-recipe-lists">
+              <div>
+                <h3>Ingredients</h3>
+                <ul>
+                  ${cocktail.ingredients.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+              </div>
+              <div>
+                <h3>Method</h3>
+                <ol>
+                  ${cocktail.method.map(step => `<li>${step}</li>`).join('')}
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function renderProductShowcase(slug, p) {
+      const cocktails = cocktailSet(slug);
+      const firstCocktail = cocktails[0];
+      return `
+        <main class="ron-showcase">
+          <section class="ron-hero">
+            <div class="ron-copy">
+              <a href="ron.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Our Rums
+              </a>
+              <span class="ron-kicker">${p.type}</span>
+              <h1 class="ron-title">${displayProductName(p)}</h1>
+              <p class="ron-tagline">${PRODUCT_SUBTITLES[slug] || 'A handcrafted spirit with Puerto Rican character.'}</p>
+              <p class="ron-intro">${showcaseIntro(p)}</p>
+              <div class="ron-specs">
+                <div>
+                  <span class="ron-spec-label">Alcohol</span>
+                  <span class="ron-spec-value">${p.abv.replace(' ABV', '')}</span>
+                </div>
+                <div>
+                  <span class="ron-spec-label">Origin</span>
+                  <span class="ron-spec-value">${productOrigin(slug)}</span>
+                </div>
+                <div>
+                  <span class="ron-spec-label">Style</span>
+                  <span class="ron-spec-value">${p.style}</span>
+                </div>
+                <div>
+                  <span class="ron-spec-label">Price</span>
+                  <span class="ron-spec-value">${p.price}</span>
+                </div>
+              </div>
+              <div class="ron-actions">
+                <button type="button" class="btn-buy" data-add-cart>
+                  Add to Cart
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                    <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button type="button" class="btn-amber" data-add-cart data-buy-now>Buy Now</button>
+              </div>
+            </div>
+            <div class="ron-stage">
+              <img src="${p.img}" alt="${plainText(p.name)}">
+            </div>
+            <span class="ron-scroll">Scroll</span>
+          </section>
+
+          <section class="ron-story-section">
+            <div class="ron-story-inner">
+              <span class="product-eyebrow">Tasting notes</span>
+              <h2 class="ron-split-title">${p.style}, <em>made for the island.</em></h2>
+              <p class="ron-note-copy">A quick flavor map for ${plainText(p.name)}. These notes are placeholders for now, but the structure is ready for final tasting copy.</p>
+              <div class="ron-tasting-notes" id="tastingNotes">
+                ${p.notes.map(n => `
+                  <div class="ron-tasting-row tasting-row">
+                    <span class="tasting-label">${n.label}</span>
+                    <div class="tasting-track"><div class="tasting-fill" data-w="${n.pct}%" style="width:${n.pct}%"></div></div>
+                    <span class="tasting-num">${n.pct}</span>
+                  </div>`).join('')}
+              </div>
+              <div class="ron-note-grid">
+                <article class="ron-note-card">
+                  <h3>Nose</h3>
+                  <p>Fresh cane with a lift of light citrus and a soft floral edge.</p>
+                </article>
+                <article class="ron-note-card">
+                  <h3>Palate</h3>
+                  <p>Smooth and rounded, with gentle vanilla over a clean sugarcane core.</p>
+                </article>
+                <article class="ron-note-card">
+                  <h3>Finish</h3>
+                  <p>Crisp and dry, leaving the palate clean and ready for the next sip.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="ron-pour-section">
+            <div class="ron-pour-top">
+              <div>
+                <span class="product-eyebrow">Mix it up</span>
+                <h2 class="ron-split-title">Ways to <em>pour it.</em></h2>
+              </div>
+              <p class="cta-text-sub">Click a cocktail to see the recipe</p>
+            </div>
+            <div class="ron-pour-grid">
+              ${renderCocktailCards(cocktails)}
+            </div>
+          </section>
+
+          ${renderRecipe(firstCocktail)}
+
+          <section class="ron-related-section">
+            <span class="product-eyebrow">Explore the collection</span>
+            <h2 class="related-heading">Our recommended rums</h2>
+            <div class="related-grid">
+              ${renderRelatedCards(slug)}
+            </div>
+          </section>
+        </main>`;
+    }
+
     if (!p) {
       document.title = 'Not Found — Destilería Coquí';
       root.innerHTML = `
@@ -557,126 +1367,29 @@
     } else {
       document.title = plainText(p.name) + ' — Destilería Coquí';
 
-      root.innerHTML = `
-        <section class="hero">
-          <div class="hero-img-col">
-            <img class="hero-bottle" src="${p.img}" alt="${plainText(p.name)}">
-          </div>
-          <div class="hero-info-col">
-            <a href="ron.html" class="back-link">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Our Rums
-            </a>
-            <span class="product-eyebrow">${p.type}</span>
-            <h1 class="product-name">${p.name}</h1>
-            <p class="product-desc">${p.desc}</p>
-            <div class="specs-row">
-              <div class="spec">
-                <span class="spec-label">Alcohol</span>
-                <span class="spec-val">${p.abv}</span>
-              </div>
-              <div class="spec">
-                <span class="spec-label">Price</span>
-                <span class="spec-val price">${p.price}</span>
-              </div>
-              <div class="spec">
-                <span class="spec-label">Style</span>
-                <span class="spec-val style">${p.style}</span>
-              </div>
-            </div>
-            <div class="hero-actions">
-              <button type="button" class="btn-buy" data-add-cart>
-                Add to Cart
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                  <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <a href="tours.html" class="btn-amber">
-                Visit Distillery
-                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                  <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
+      const activeCocktails = cocktailSet(id, p);
+      root.innerHTML = renderProductShowcase(id, p);
 
-        <section class="tasting-section">
-          <div class="tasting-inner">
-            <h2 class="tasting-heading">Tasting Profile</h2>
-            <p class="tasting-sub">Flavor intensity — handcrafted in Mayagüez, Puerto Rico</p>
-            <div class="tasting-notes" id="tastingNotes">
-              ${p.notes.map(n => `
-                <div class="tasting-row">
-                  <span class="tasting-label">${n.label}</span>
-                  <div class="tasting-track"><div class="tasting-fill" data-w="${n.pct}%"></div></div>
-                  <span class="tasting-num">${n.pct}</span>
-                </div>`).join('')}
-            </div>
-          </div>
-        </section>
-
-        <section class="related-section">
-          <span class="product-eyebrow">Explore the collection</span>
-          <h2 class="related-heading">You might also like</h2>
-          <div class="related-grid">
-            ${relatedProducts(id).map(slug => {
-              const related = PRODUCTS[slug];
-              const item = COQUI_CATALOG[slug];
-              return `
-                <article class="related-product">
-                  <img src="${related.img}" alt="${item.name}">
-                  <div class="related-info">
-                    <span class="related-type">${related.type}</span>
-                    <h3 class="related-name">${related.name}</h3>
-                    <p class="related-price">${related.price}</p>
-                    <div class="related-actions">
-                      <button type="button" class="btn-buy" data-add-cart data-cart-slug="${slug}">Add to Cart</button>
-                      <a class="btn-amber" href="producto.html?id=${slug}">View Product</a>
-                    </div>
-                  </div>
-                </article>`;
-            }).join('')}
-          </div>
-        </section>
-
-        <div class="cta-band">
-          <div>
-            <p class="cta-text-head">Ready to order?</p>
-            <p class="cta-text-sub">Order online or visit us at the distillery in Mayag&#xFC;ez, Puerto Rico.</p>
-          </div>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-            <button type="button" class="btn-buy" data-add-cart>
-              Add to Cart
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <a href="tours.html" class="btn-amber">
-              Plan a Visit
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>`;
-
-      // Animate tasting bars when they scroll into view
       const notesEl = document.getElementById('tastingNotes');
-      const obs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          notesEl.querySelectorAll('.tasting-fill').forEach(bar => { bar.style.width = bar.dataset.w; });
-          obs.disconnect();
-        }
-      }, { threshold: 0.2 });
-      obs.observe(notesEl);
+      if (notesEl) notesEl.querySelectorAll('.tasting-fill').forEach(bar => { bar.style.width = bar.dataset.w; });
+      document.querySelectorAll('[data-cocktail-index]').forEach(button => {
+        button.addEventListener('click', () => {
+          const index = Number(button.dataset.cocktailIndex || 0);
+          document.querySelectorAll('[data-cocktail-index]').forEach(card => card.classList.remove('is-active'));
+          button.classList.add('is-active');
+          document.getElementById('cocktailRecipe').replaceWith(new DOMParser().parseFromString(renderRecipe(activeCocktails[index]), 'text/html').body.firstElementChild);
+          document.getElementById('cocktailRecipe').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
       document.querySelectorAll('[data-add-cart]').forEach(button => {
         button.addEventListener('click', () => {
           const slug = button.dataset.cartSlug || id;
           const item = COQUI_CATALOG[slug];
           CoquiCart.add({ slug, ...item });
+          if (button.dataset.buyNow !== undefined) {
+            window.location.href = 'cart.html';
+            return;
+          }
           button.textContent = 'Added to Cart';
           setTimeout(() => { button.textContent = 'Add to Cart'; }, 1400);
         });
