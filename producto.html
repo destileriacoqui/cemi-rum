@@ -226,11 +226,40 @@
     /* ── PRODUCT SHOWCASE ────────────────────────── */
     .ron-showcase {
       background:
-        radial-gradient(circle at 78% 28%, rgba(221,171,78,0.28), transparent 23rem),
-        radial-gradient(circle at 74% 72%, rgba(193,82,48,0.14), transparent 25rem),
-        radial-gradient(circle at 10% 86%, rgba(42,138,120,0.11), transparent 24rem),
+        radial-gradient(circle at 78% 28%, rgba(140,63,22,0.08), transparent 23rem),
+        radial-gradient(circle at 74% 72%, rgba(140,63,22,0.05), transparent 25rem),
+        radial-gradient(circle at 10% 86%, rgba(125,102,84,0.06), transparent 24rem),
         linear-gradient(135deg, #fbf7ee 0%, #f8f1e3 100%);
       overflow: hidden;
+    }
+
+    /* ── LANDSCAPE SKETCH (product-specific) ─── */
+    .hero-sketch {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 28rem;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .hero-sketch img {
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: max(100%, 72rem);
+      height: auto;
+      opacity: 0.18;
+      mix-blend-mode: multiply;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+    }
+    .hero-sketch-bg {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 20rem;
+      background: linear-gradient(to bottom, transparent 0%, rgba(239,232,216,0.4) 50%, rgba(231,218,201,0.55) 100%);
+      pointer-events: none;
+      z-index: 0;
     }
     .ron-hero {
       min-height: 100dvh;
@@ -269,7 +298,7 @@
       content: '';
       width: 2.6rem;
       height: 1px;
-      background: #ee765f;
+      background: var(--amber);
     }
     .ron-title {
       font-family: var(--serif);
@@ -283,7 +312,7 @@
     .ron-title em,
     .ron-split-title em,
     .ron-recipe-title em {
-      color: #9d7929;
+      color: var(--amber);
       font-style: italic;
       font-weight: 300;
     }
@@ -292,7 +321,7 @@
       font-style: italic;
       font-size: clamp(1.6rem, 2.3vw, 2.25rem);
       line-height: 1.2;
-      color: #e86f5c;
+      color: var(--amber);
       margin-bottom: 2rem;
     }
     .ron-intro {
@@ -323,7 +352,7 @@
       font-family: var(--serif);
       font-size: 1.45rem;
       line-height: 1;
-      color: #9d7929;
+      color: var(--amber);
     }
     .ron-actions {
       display: flex;
@@ -332,12 +361,12 @@
       margin-top: 2.2rem;
     }
     .ron-actions .btn-buy {
-      background: #d1a644;
+      background: var(--amber);
       color: #fffaf0;
       border-radius: 999px;
-      box-shadow: 0 1.15rem 2.5rem rgba(151,103,22,0.22);
+      box-shadow: 0 1.15rem 2.5rem rgba(140,63,22,0.22);
     }
-    .ron-actions .btn-buy:hover { background: #b98727; }
+    .ron-actions .btn-buy:hover { background: #712F0F; }
     .ron-actions .btn-amber {
       background: rgba(255,255,255,0.38);
       color: var(--ink);
@@ -442,11 +471,11 @@
     }
     .ron-tasting-row .tasting-fill {
       border-radius: inherit;
-      background: linear-gradient(90deg, #f0a72f, #a98734);
+      background: linear-gradient(90deg, var(--amber), var(--gold));
     }
     .ron-tasting-row .tasting-num {
       font-size: 1.35rem;
-      color: #a98734;
+      color: var(--amber);
     }
     .ron-note-grid {
       border-top: 1px solid rgba(26,18,7,0.12);
@@ -459,7 +488,7 @@
       font-family: var(--serif);
       font-style: italic;
       font-weight: 300;
-      color: #e86f5c;
+      color: var(--amber);
       font-size: 1.8rem;
       margin-bottom: 0.8rem;
     }
@@ -491,7 +520,7 @@
       overflow-x: auto;
       overscroll-behavior-inline: contain;
       padding-bottom: 1.8rem;
-      scrollbar-color: #d5a742 #efe4cf;
+      scrollbar-color: var(--amber) #efe4cf;
     }
     .ron-pour-card img {
       width: 100%;
@@ -1213,6 +1242,21 @@
       return plainText(product.desc).replace(/\s+/g, ' ');
     }
 
+    function beachSketch(slug) {
+      // Beach sketch for Ron Coquí products
+      var beachSlugs = ['ron-blanco', 'ron-limon', 'caneca-blanco', 'caneca-limon'];
+      // Forest/mountain sketch for Pitorro products
+      var forestSlugs = ['pitorro-blanco', 'pitorro-coco-35', 'pitorro-coco-15', 'pitorro-cafe',
+        'pitorro-tamarindo', 'pitorro-parcha', 'pitorro-pina', 'pitorro-fresa', 'pitorro-frutas',
+        'mini-blanco', 'mini-coco', 'mini-parcha', 'mini-tamarindo', 'mini-cafe'];
+      var img = null;
+      if (beachSlugs.includes(slug)) img = 'img/sketch-beach-sunset.jpg';
+      else if (forestSlugs.includes(slug)) img = 'img/sketch-forest-mountain.jpg';
+      if (!img) return '';
+      return '<div class="hero-sketch-bg"></div>' +
+        '<div class="hero-sketch" aria-hidden="true"><img src="' + img + '" alt="" loading="eager"></div>';
+    }
+
     function renderCocktailCards(cocktails) {
       return cocktails.map((cocktail, index) => `
         <button type="button" class="ron-pour-card ${index === 0 ? 'is-active' : ''}" data-cocktail-index="${index}">
@@ -1299,6 +1343,7 @@
               <img src="${p.img}" alt="${plainText(p.name)}">
             </div>
             <span class="ron-scroll">Scroll</span>
+            ${beachSketch(slug)}
           </section>
 
           <section class="ron-story-section">
