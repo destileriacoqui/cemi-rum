@@ -59,6 +59,29 @@
       catch (error) { setMessage(error.message, true); }
     });
   }
+  function statusLabel(order) {
+    const s = (order.status || 'pending').toLowerCase();
+    const labels = { pending: 'Pending', submitted: 'Submitted', confirmed: 'Confirmed', ready: 'Ready', completed: 'Completed', cancelled: 'Cancelled' };
+    return labels[s] || s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function statusClass(order) {
+    const s = (order.status || 'pending').toLowerCase();
+    if (s === 'completed' || s === 'ready') return 'status-success';
+    if (s === 'cancelled') return 'status-cancelled';
+    if (s === 'confirmed' || s === 'submitted') return 'status-active';
+    return 'status-pending';
+  }
+  function paymentLabel(order) {
+    const p = (order.payment_status || 'unpaid').toLowerCase();
+    return p === 'paid' ? 'Paid' : 'Unpaid';
+  }
+  function fulfillmentLabel(order) {
+    const f = (order.fulfillment_type || '').toLowerCase();
+    if (f === 'shipping') return 'Shipping';
+    if (f === 'pickup') return 'Pickup';
+    if (f === 'tour') return 'Tour';
+    return f.charAt(0).toUpperCase() + f.slice(1);
+  }
   async function renderOrders() {
     const root = document.querySelector('[data-orders-root]');
     if (!root) return;
@@ -66,12 +89,32 @@
     try {
       const orders = await api.orders();
       if (!orders.length) return root.innerHTML = '<p class="empty-state">You do not have any saved orders yet.</p>';
-      root.innerHTML = orders.map(order => `
-        <article class="order-card">
-          <div><span class="eyebrow-small">${new Date(order.created_at).toLocaleDateString()}</span><h2>Order ${order.id.slice(0, 8)}</h2></div>
-          <p>${order.fulfillment_type} · ${order.payment_status}</p>
-          <strong>${window.CoquiCart.money(order.total)}</strong>
-        </article>`).join('');
+      root.innerHTML = orders.map(order => {
+        const items = order.order_items || [];
+        const date = new Date(order.created_at);
+        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const thumbs = items.slice(0, 4).map(item =>
+          `<img src="${item.image || '/images/placeholder.png'}" alt="${item.name || 'Product'}" class="order-thumb">`
+        ).join('');
+        const extraCount = items.length > 4 ? `<span class="order-thumb-more">+${items.length - 4}</span>` : '';
+        const itemSummary = items.map(item =>
+          `<span class="order-item-line">${item.name}${item.quantity > 1 ? ' x' + item.quantity : ''}</span>`
+        ).join('');
+        return `
+        <article class="order-card-detail">
+          <div class="order-thumbs">${thumbs}${extraCount}</div>
+          <div class="order-info">
+            <span class="eyebrow-small">${dateStr} · ${fulfillmentLabel(order)}</span>
+            <h2>Order ${order.id.slice(0, 8)}</h2>
+            <div class="order-items-list">${itemSummary}</div>
+          </div>
+          <div class="order-meta">
+            <strong class="order-total">${window.CoquiCart.money(order.total)}</strong>
+            <span class="order-status ${statusClass(order)}">${statusLabel(order)}</span>
+            <span class="order-payment">${paymentLabel(order)}</span>
+          </div>
+        </article>`;
+      }).join('');
     } catch (error) { root.innerHTML = `<p class="empty-state is-error">${error.message}</p>`; }
   }
   document.querySelector('[data-logout]')?.addEventListener('click', async () => { await api.logout(); location.href = '/'; });
