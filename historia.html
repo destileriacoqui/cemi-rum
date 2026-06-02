@@ -50,12 +50,10 @@
       padding: 1.25rem 4rem;
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
-    .nav-logo {
-      font-family: var(--serif); font-size: 1.3rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--cream); text-decoration: none; transition: color 0.55s ease;
-    }
-    nav.scrolled .nav-logo { color: var(--ink); }
+    .nav-logo { display: block; text-decoration: none; transition: opacity 0.3s ease; }
+    .nav-logo img { display: block; width: clamp(10.75rem, 15vw, 13.75rem); height: auto; filter: brightness(0) invert(1); transition: filter 0.55s ease; }
+    .nav-logo:hover { opacity: 0.82; }
+    nav.scrolled .nav-logo img { filter: none; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em;
@@ -307,7 +305,8 @@
       border-top: 0.5px solid rgba(26,18,7,0.1);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-logo { display: block; }
+    .footer-logo img { display: block; width: clamp(11rem, 17vw, 14rem); height: auto; }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
     .footer-links { display: flex; gap: 2.5rem; list-style: none; }
     .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
@@ -356,7 +355,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">Coquí</a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destilería Coquí"></a>
     <ul class="nav-links">
       <li><a href="historia.html" aria-current="page">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
@@ -372,7 +371,7 @@
       <img src="img/campo-hombre.jpg" alt="Sugarcane harvest in Puerto Rico" fetchpriority="high">
     </div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Destilería Coquí &nbsp;·&nbsp; Est. 2006</p>
+      <p class="hero-eyebrow">Destilería Coquí, Inc. &nbsp;·&nbsp; Est. 2006</p>
       <h1 class="hero-h1">
         Our<br>
         <em>Story.</em>
@@ -389,7 +388,7 @@
     <div class="foundation-visual">
       <img
         src="img/campo-mujer.jpg"
-        alt="Harvesting sugarcane in Puerto Rico — the heart of Pitorro"
+        alt="Harvesting sugarcane in Puerto Rico — the heart of Pitorro®"
         loading="lazy"
       >
     </div>
@@ -397,18 +396,18 @@
       <p class="eyebrow reveal">The Beginning</p>
       <h2 class="h2 reveal d1" style="font-size:clamp(2.6rem,4.5vw,5rem);">Born from a<br>tradition <em>forgotten.</em></h2>
       <blockquote class="foundation-pull reveal d2">
-        "Pitorro was always made here — in every barrio,
+        "Pitorro® was always made here — in every barrio,
         in every family's backyard. We simply refused
         to let that tradition disappear."
       </blockquote>
       <p class="foundation-body reveal d2">
-        In 2006, H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed; in Mayag&#xFC;ez,
+        In 2006, H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed;, Inc. in Mayag&#xFC;ez,
         Puerto Rico — with a mission as bold as it was clear: to legalize and dignify the island's
         centuries-old tradition of Ron Ca&#xf1;a, the handmade sugarcane spirit that Puerto Ricans
-        have always known as Pitorro.
+        have always known as Pitorro&#xAE;.
       </p>
       <p class="foundation-body reveal d3" style="margin-top:1.35rem;">
-        Before Coquí, Pitorro existed only in the shadows — homemade, untaxed, and technically
+        Before Coquí, Pitorro&#xAE; existed only in the shadows — homemade, untaxed, and technically
         illegal. H&#xe9;ctor Augusto and Mar&#xed;a Cristina fought to change that. They built
         Puerto Rico's largest artisan distillery, trademarked Pitorro&#xAE;, and brought the island's
         most beloved spirit into the light.
@@ -448,9 +447,9 @@
       </div>
       <div>
         <p class="process-intro reveal d2">
-          Every bottle from Destiler&#xed;a Coqu&#xed; is distilled the traditional way — using
+          Every bottle from Destiler&#xed;a Coqu&#xed;, Inc. is distilled the traditional way — using
           methods handed down through Puerto Rican culture for generations. Our distillery
-          in Mayag&#xFC;ez is where heritage meets craft, where Pitorro became legal, and where
+          in Mayag&#xFC;ez is where heritage meets craft, where Pitorro&#xAE; became legal, and where
           the island's character is poured into every batch.
         </p>
       </div>
@@ -461,7 +460,7 @@
         <h3 class="step-title reveal d1">The Vision</h3>
         <p class="step-body reveal d2">
           H&#xe9;ctor Augusto and Mar&#xed;a Cristina didn't set out to build a rum company.
-          They set out to preserve a culture. Pitorro had been made in Puerto Rican homes
+          They set out to preserve a culture. Pitorro&#xAE; had been made in Puerto Rican homes
           for centuries — they simply gave it a home it could be proud of.
         </p>
       </div>
@@ -469,7 +468,7 @@
         <span class="step-num reveal">02</span>
         <h3 class="step-title reveal d1">The Distillation</h3>
         <p class="step-body reveal d2">
-          From Ron Ca&#xf1;a to Ron Coqu&#xed;&#x2122; Blanco, every spirit is distilled using
+          From Pitorro&#xAE; to Ron Coqu&#xed;&#x2122; Blanco, every spirit is distilled using
           sugarcane-based recipes. Our Pitorro&#xAE; line follows the traditional island method —
           bold, full-bodied, and crafted with the character that made it legendary.
         </p>
@@ -478,9 +477,9 @@
         <span class="step-num reveal">03</span>
         <h3 class="step-title reveal d1">The Craft</h3>
         <p class="step-body reveal d2">
-          We are the largest artisan distillery in Puerto Rico — yet every bottle
-          is still made with the attention it deserves. That tension between scale and
-          soul is what drives us. It keeps us honest.
+          We have grown into Puerto Rico's leading artisan distillery, yet every bottle
+          is still treated as a work of craft. With patience, tradition, and purpose,
+          we honor the process that gives our spirits their soul.
         </p>
       </div>
     </div>
@@ -502,7 +501,7 @@
       </div>
       <div class="archive-grid">
         <div class="arch-wrap arch-1 reveal">
-          <img class="arch-img" src="img/story-coqui-02.jpeg" alt="Pitorro bottles from Destileria Coqui arranged on the coast" loading="lazy">
+          <img class="arch-img" src="img/story-coqui-02.jpeg" alt="Pitorro® bottles from Destileria Coqui arranged on the coast" loading="lazy">
         </div>
         <div class="arch-wrap arch-2 reveal d1">
           <img class="arch-img" src="img/story-coqui-03.jpeg" alt="Live music gathering hosted by Destileria Coqui" loading="lazy">
@@ -533,9 +532,9 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo">Destilería Coquí</span>
+    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destilería Coquí"></span>
     <p class="footer-copy">
-      &copy; 2026 Destiler&#xed;a Coqu&#xed; &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
+      &copy; 2026 Destiler&#xed;a Coqu&#xed;, Inc. &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
     </p>
     <ul class="footer-links">

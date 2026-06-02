@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Destiler&#xed;a Coqu&#xed; &mdash; Rum &amp; Pitorro from Mayag&#xFC;ez, Puerto Rico</title>
+  <title>Destiler&#xed;a Coqu&#xed; &mdash; Rum &amp; Pitorro&#xAE; from Mayag&#xFC;ez, Puerto Rico</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -67,19 +67,10 @@
       padding: 1.25rem 4rem;
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
-      transition: color 0.55s ease, letter-spacing 0.55s ease, opacity 0.3s ease;
-    }
-    .nav-logo:hover { letter-spacing: 0.3em; opacity: 0.85; }
-    nav.scrolled .nav-logo { color: var(--ink); }
-    nav.scrolled .nav-logo:hover { color: var(--amber); opacity: 1; }
+    .nav-logo { display: block; text-decoration: none; transition: opacity 0.3s ease; }
+    .nav-logo img { display: block; width: clamp(10.75rem, 15vw, 13.75rem); height: auto; filter: brightness(0) invert(1); transition: filter 0.55s ease; }
+    .nav-logo:hover { opacity: 0.82; }
+    nav.scrolled .nav-logo img { filter: none; }
 
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
@@ -455,8 +446,8 @@
 
     /* ─── FOOTER ──────────────────────────────────────── */
     footer { padding: 4rem 4rem 3.5rem; border-top: 0.5px solid rgba(26,18,7,0.1); display: flex; align-items: center; justify-content: space-between; }
-    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); transition: color 0.35s ease; }
-    .footer-logo:hover { color: var(--amber); }
+    .footer-logo { display: block; }
+    .footer-logo img { display: block; width: clamp(11rem, 17vw, 14rem); height: auto; }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
     .footer-links { display: flex; gap: 2.5rem; list-style: none; }
     .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
@@ -525,7 +516,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">Coqu&#xed;</a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destilería Coquí"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
@@ -543,15 +534,16 @@
       </video>
     </div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Destiler&#xed;a Coqu&#xed; &nbsp;&middot;&nbsp; Mayag&#xFC;ez, Puerto Rico &nbsp;&middot;&nbsp; Est. 2006</p>
+      <p class="hero-eyebrow">Destiler&#xed;a Coqu&#xed;, Inc. &nbsp;&middot;&nbsp; Mayag&#xFC;ez, Puerto Rico &nbsp;&middot;&nbsp; Est. 2006</p>
       <h1 class="hero-h1">
         Sabor<br>
         a Puerto<br>
         <em>Rico.</em>
       </h1>
       <p class="hero-sub">
-        Puerto Rico&#x2019;s largest artisan distillery. Creators of Pitorro&#xAE; &#x2014; the island&#x2019;s
-        traditional spirit, now legal. Distilled by hand in Mayag&#xFC;ez since 2006.
+        Home of Pitorro&#xAE;. One of Puerto Rico&#x2019;s earliest and leading artisan distilleries,
+        honoring the island&#x2019;s heritage through a traditional spirit born from culture, memory,
+        and celebration. Handcrafted in Mayag&#xFC;ez since 2006.
       </p>
       <div class="hero-actions">
         <a href="ron.html" class="btn-primary">
@@ -579,10 +571,10 @@
     <div class="heritage-inner">
       <div class="heritage-copy">
         <span class="heritage-kicker reveal">Mayag&#xFC;ez &nbsp;&middot;&nbsp; Est. 2006</span>
-        <h2 class="heritage-title reveal d1">Pitorro,<br><em>brought into the light.</em></h2>
+        <h2 class="heritage-title reveal d1">Pitorro&#xAE;,<br><em>brought into the light.</em></h2>
         <p class="heritage-body reveal d2">
-          H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed; with a clear purpose:
-          honor Puerto Rico&#x2019;s centuries-old Pitorro tradition and give it a legal home in Mayag&#xFC;ez.
+          H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed;, Inc. with a clear purpose:
+          honor Puerto Rico&#x2019;s centuries-old Pitorro&#xAE; tradition and give it a legal home in Mayag&#xFC;ez.
         </p>
         <p class="heritage-quote reveal d3">&#x201c;Heritage is something you pour, share, and carry forward.&#x201d;</p>
         <a href="historia.html" class="heritage-link reveal d3">
@@ -591,13 +583,13 @@
         </a>
       </div>
       <div class="heritage-photo reveal d1">
-        <img src="img/campo-mujer.jpg" alt="Sugarcane harvest at Destiler&#xed;a Coqu&#xed;" loading="lazy">
+        <img src="img/campo-mujer.jpg" alt="Sugarcane harvest at Destiler&#xed;a Coqu&#xed;, Inc." loading="lazy">
         <div class="heritage-stamp">2006<small>Mayag&#xFC;ez, PR</small></div>
       </div>
       <div class="barrel-frame reveal">
         <div class="barrel-orbit" aria-hidden="true"></div>
         <div class="barrel-object" id="barrelObject">
-          <img src="img/pitorro-playa.jpg" alt="Destiler&#xed;a Coqu&#xed; product lineup on the coast" loading="lazy">
+          <img src="img/pitorro-playa.jpg" alt="Destiler&#xed;a Coqu&#xed;, Inc. product lineup on the coast" loading="lazy">
         </div>
       </div>
       <div class="rum-copy">
@@ -655,7 +647,7 @@
         </div>
       </div>
       <div class="cellar-img-wrap reveal d1">
-        <img src="img/coqui-oak-barrel-v2.webp" alt="A brand new American white oak barrel at Destiler&#xed;a Coqu&#xed;" loading="lazy">
+        <img src="img/coqui-oak-barrel-v2.webp" alt="A brand new American white oak barrel at Destiler&#xed;a Coqu&#xed;, Inc." loading="lazy">
         <p class="cellar-img-caption">Brand new American white oak &#x2014; one barrel, one batch</p>
       </div>
     </div>
@@ -692,18 +684,18 @@
           <h2 class="h2 reveal d1" style="font-size:clamp(3.6rem,5.8vw,6.5rem);">Evenings<br>worth <em>remembering.</em></h2>
         </div>
         <div>
-          <p class="body-text reveal d2">From music festivals to rum expos, Destiler&#xed;a Coqu&#xed; shows up across Puerto Rico throughout the year. Check back here for updates on where to find us next.</p>
+          <p class="body-text reveal d2">From cultural celebrations to live-music collaborations, Destiler&#xed;a Coqu&#xed;, Inc. shows up across Puerto Rico throughout the year. Explore moments from the community and watch for what comes next.</p>
         </div>
       </div>
       <div class="events-grid">
 
-        <article class="event-card reveal" data-event="feria-pitorro" role="button" tabindex="0" aria-label="Feria del Pitorro &#x2014; open for details">
+        <article class="event-card reveal" data-event="feria-pitorro" role="button" tabindex="0" aria-label="Feria Nacional del Pitorro &#x2014; open for details">
           <div class="event-bg"><img src="img/event-feria-pitorro.jpg" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Cultural Festival</span>
-            <span class="event-date">October 12&#x2013;14, 2026</span>
-            <h3 class="event-title">Feria del Pitorro</h3>
+            <span class="event-date">Annual Celebration</span>
+            <h3 class="event-title">Feria Nacional del Pitorro</h3>
             <span class="event-expand-hint">
               Details
               <svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -725,13 +717,13 @@
           </div>
         </article>
 
-        <article class="event-card reveal d2" data-event="electric-420" role="button" tabindex="0" aria-label="Electric 420 &#x2014; open for details">
-          <div class="event-bg"><img src="img/event-electric-420.jpg" alt="" loading="lazy"></div>
+        <article class="event-card reveal d2" data-event="electric-420" role="button" tabindex="0" aria-label="420 Fest collaboration with Efecto Secundario Fest &#x2014; open for details">
+          <div class="event-bg"><img src="img/electric-420-fest.jpg" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Music Festival</span>
-            <span class="event-date">March 2026</span>
-            <h3 class="event-title">Electric 420</h3>
+            <span class="event-date">Event Archive</span>
+            <h3 class="event-title">420 Fest <em style="font-size:.75em;">&times;</em> Efecto Secundario Fest</h3>
             <span class="event-expand-hint">
               Details
               <svg width="11" height="11" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -802,7 +794,7 @@
               <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <span class="tours-tag reveal d4">Call 787-805-1000 &nbsp;&middot;&nbsp; $45/person &nbsp;&middot;&nbsp; Mon &#x2013; Sat, 9:30am &#x2013; 5:30pm</span>
+          <span class="tours-tag reveal d4">Call 787-805-1000 &nbsp;&middot;&nbsp; $45/person &nbsp;&middot;&nbsp; Mon &#x2013; Fri, 9:30am &#x2013; 5:30pm &nbsp;&middot;&nbsp; Sat until 4:30pm</span>
         </div>
 
         <div class="tours-img-wrap reveal d2">
@@ -815,9 +807,9 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo">Destiler&#xed;a Coqu&#xed;</span>
+    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destilería Coquí"></span>
     <p class="footer-copy">
-      &copy; 2026 Destiler&#xed;a Coqu&#xed; &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
+      &copy; 2026 Destiler&#xed;a Coqu&#xed;, Inc. &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
     </p>
     <ul class="footer-links">
@@ -921,9 +913,9 @@
 
     /* ── Event data & modal ── */
     const EVENTS = {
-      'feria-pitorro': { type: 'Cultural Festival', date: 'October 12–14, 2026', title: 'Feria del Pitorro', location: 'Puerto Rico', imgSrc: 'img/event-feria-pitorro.jpg', desc: 'The Feria del Pitorro is Puerto Rico’s premier celebration of the island’s traditional moonshine. Three days of Pitorro tasting, live music, and cultural pride. Destiler\xeda Coqu\xed pours the full Pitorro\xae lineup — Blanco, de Coco, and Caf\xe9 — October 12, 13, and 14.' },
+      'feria-pitorro': { type: 'Cultural Festival', date: 'Annual Celebration', title: 'Feria Nacional del Pitorro', location: 'Puerto Rico', imgSrc: 'img/event-feria-pitorro.jpg', desc: 'Feria Nacional del Pitorro celebrates one of Puerto Rico’s most cherished spirit traditions with Pitorro® tastings, live music, and community pride. Destiler\xeda Coqu\xed, Inc. joins the celebration with its Pitorro® lineup.' },
       'taste-of-rum': { type: 'Spirits Expo', date: 'March 2026', title: 'Taste of Rum', location: 'Puerto Rico', imgSrc: 'img/event-taste-of-rum.jpg', desc: 'Puerto Rico’s premier rum industry showcase. Meet the makers, taste the full Coqu\xed lineup, and discover what makes the island’s spirits scene one of the most exciting in the Caribbean.' },
-      'electric-420': { type: 'Music Festival', date: 'March 2026', title: 'Electric 420', location: 'Puerto Rico', imgSrc: 'img/event-electric-420.jpg', desc: 'One of Puerto Rico’s biggest outdoor music events. Destiler\xeda Coqu\xed is on the ground with Carjaker’s Rum and Ron Coqu\xed™ Lim\xf3n. Find the Coqu\xed tent and join the crowd.' },
+      'electric-420': { type: 'Music Festival Collaboration', date: 'Event Archive', title: '420 Fest × Efecto Secundario Fest', location: 'Puerto Rico', imgSrc: 'img/electric-420-fest.jpg', desc: 'A live-music collaboration with Efecto Secundario Fest featuring performances and appearances connected to Puerto Rico’s music scene, including PJ, Young Miko, RaiNao, and more.' },
       'fango-fest': { type: 'Music Festival', date: 'November 2026', title: 'Fango Fest', location: 'Puerto Rico', imgSrc: 'img/event-fango-fest.png', desc: 'Fango Fest is exactly what it sounds like — a mud-soaked outdoor music festival where the crowd, the dirt, and the beats are all part of the experience. Destiler\xeda Coqu\xed shows up ready. Carjaker’s Rum was made for moments like this.' }
     };
 

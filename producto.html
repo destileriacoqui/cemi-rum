@@ -44,11 +44,8 @@
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
-    .nav-logo {
-      font-family: var(--serif); font-size: 1.3rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink); text-decoration: none;
-    }
+    .nav-logo { display: block; text-decoration: none; }
+    .nav-logo img { display: block; width: clamp(11rem, 18vw, 14rem); height: auto; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
@@ -280,7 +277,7 @@
       border-top: 0.5px solid rgba(26,18,7,0.1);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-logo img { display: block; width: clamp(12rem, 20vw, 16rem); height: auto; }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
     .footer-links { display: flex; gap: 2.5rem; list-style: none; }
     .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
@@ -316,7 +313,7 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">Coqu&#xED;</a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html" aria-current="page">Our Rums</a></li>
@@ -329,9 +326,9 @@
   <div id="page-root"></div>
 
   <footer>
-    <span class="footer-logo">Destiler&#xED;a Coqu&#xED;</span>
+    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></span>
     <p class="footer-copy">
-      &copy; 2026 Destiler&#xED;a Coqu&#xED; &mdash; Mayag&#xFC;ez, Puerto Rico.<br>
+      &copy; 2026 Destiler&#xED;a Coqu&#xED;, Inc. &mdash; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
     </p>
     <ul class="footer-links">
@@ -360,63 +357,63 @@
         notes: [{ label:'Fresh Lemon', pct:94 },{ label:'Citrus Zest', pct:91 },{ label:'Light Cane', pct:67 },{ label:'Floral', pct:73 },{ label:'Crisp Finish', pct:80 }]
       },
       'pitorro-blanco': {
-        name: 'Pitorro<sup>®</sup> Blanco', type: 'Traditional Pitorro', abv: '39% ABV', price: '$19', style: 'Bold & Authentic',
+        name: 'Pitorro<sup>®</sup> Blanco', type: 'Traditional Pitorro®', abv: '39% ABV', price: '$19', style: 'Bold & Authentic',
         img: 'img/pitorro-blanco-store.webp',
         desc: 'Puerto Rico\'s legendary moonshine, made legal. We fought to formalize the island\'s centuries-old tradition of Ron Caña and called it Pitorro<sup>®</sup>. Raw, bold, and unmistakably Puerto Rican — distilled the same way families have done it for generations.',
         notes: [{ label:'Raw Cane', pct:88 },{ label:'Earthy', pct:76 },{ label:'Tropical Fruit', pct:69 },{ label:'Bold Spirit', pct:83 },{ label:'Mineral', pct:61 }]
       },
       'pitorro-coco-35': {
-        name: 'Pitorro<sup>®</sup> de Coco', type: 'Coconut Pitorro · 35%', abv: '35% ABV', price: '$25', style: 'Tropical & Rich',
+        name: 'Pitorro<sup>®</sup> de Coco', type: 'Coconut Pitorro® · 35%', abv: '35% ABV', price: '$25', style: 'Tropical & Rich',
         img: 'img/pitorro-coco-35-store.webp',
-        desc: 'Our Pitorro Blanco meets the lush sweetness of real Puerto Rican coconut. Rich, warm, and tropical through and through. Serve chilled or over ice — it needs nothing else.',
+        desc: 'Our Pitorro® Blanco meets the lush sweetness of real Puerto Rican coconut. Rich, warm, and tropical through and through. Serve chilled or over ice — it needs nothing else.',
         notes: [{ label:'Fresh Coconut', pct:93 },{ label:'Sweet Cane', pct:86 },{ label:'Tropical', pct:91 },{ label:'Vanilla', pct:74 },{ label:'Smooth Finish', pct:79 }]
       },
       'pitorro-coco-15': {
-        name: 'Pitorro<sup>®</sup> Coco', type: 'Coconut Pitorro · 15%', abv: '15% ABV', price: '$19', style: 'Light & Tropical',
+        name: 'Pitorro<sup>®</sup> Coco', type: 'Coconut Pitorro® · 15%', abv: '15% ABV', price: '$19', style: 'Light & Tropical',
         img: 'img/pitorro-coco-15-store.webp',
-        desc: 'A lighter, more approachable coconut Pitorro. All the tropical sweetness of fresh Puerto Rican coconut with a gentler spirit — easy to enjoy any time of day.',
+        desc: 'A lighter, more approachable coconut Pitorro®. All the tropical sweetness of fresh Puerto Rican coconut with a gentler spirit — easy to enjoy any time of day.',
         notes: [{ label:'Fresh Coconut', pct:89 },{ label:'Sweetness', pct:84 },{ label:'Light Cane', pct:72 },{ label:'Tropical', pct:88 },{ label:'Soft Finish', pct:82 }]
       },
       'pitorro-cafe': {
-        name: 'Pitorro<sup>®</sup> Café', type: 'Coffee Pitorro', abv: '35% ABV', price: '$19', style: 'Dark & Aromatic',
+        name: 'Pitorro<sup>®</sup> Café', type: 'Coffee Pitorro®', abv: '35% ABV', price: '$19', style: 'Dark & Aromatic',
         img: 'img/pitorro-cafe-store.webp',
-        desc: 'Puerto Rico\'s two great traditions in a single bottle. Our traditional Pitorro infused with locally-sourced Puerto Rican coffee — bold, aromatic, and deeply satisfying. For the coffee lover who runs bold.',
+        desc: 'Puerto Rico\'s two great traditions in a single bottle. Our traditional Pitorro® infused with locally-sourced Puerto Rican coffee — bold, aromatic, and deeply satisfying. For the coffee lover who runs bold.',
         notes: [{ label:'PR Coffee', pct:95 },{ label:'Dark Roast', pct:89 },{ label:'Cane Sugar', pct:72 },{ label:'Caramel', pct:80 },{ label:'Warm Spice', pct:67 }]
       },
       'pitorro-tamarindo': {
-        name: 'Pitorro<sup>®</sup> Tamarindo', type: 'Tamarind Pitorro', abv: '35% ABV', price: '$25', style: 'Tropical & Tart',
+        name: 'Pitorro<sup>®</sup> Tamarindo', type: 'Tamarind Pitorro®', abv: '35% ABV', price: '$25', style: 'Tropical & Tart',
         img: 'img/pitorro-tamarindo-store.webp',
-        desc: 'Tangy tamarind and traditional Pitorro — a bold, tart combination that\'s distinctly Caribbean. Lively on the palate with a long, earthy finish that lingers beautifully.',
+        desc: 'Tangy tamarind and traditional Pitorro® — a bold, tart combination that\'s distinctly Caribbean. Lively on the palate with a long, earthy finish that lingers beautifully.',
         notes: [{ label:'Tamarind', pct:92 },{ label:'Sweet-Tart', pct:87 },{ label:'Tropical', pct:78 },{ label:'Raw Cane', pct:71 },{ label:'Long Finish', pct:76 }]
       },
       'pitorro-parcha': {
-        name: 'Pitorro<sup>®</sup> Parcha', type: 'Passion Fruit Pitorro', abv: '35% ABV', price: '$25', style: 'Bright & Fruity',
+        name: 'Pitorro<sup>®</sup> Parcha', type: 'Passion Fruit Pitorro®', abv: '35% ABV', price: '$25', style: 'Bright & Fruity',
         img: 'img/pitorro-parcha-store.webp',
         desc: 'Parcha — Puerto Rico\'s passion fruit — in every drop. Bright, aromatic, and tropical through and through. One of the most vibrant spirits in our lineup.',
         notes: [{ label:'Passion Fruit', pct:96 },{ label:'Tropical', pct:91 },{ label:'Floral', pct:80 },{ label:'Sweet Cane', pct:73 },{ label:'Vibrant Finish', pct:85 }]
       },
       'pitorro-pina': {
-        name: 'Pitorro<sup>®</sup> Piña', type: 'Pineapple Pitorro', abv: '35% ABV', price: '$25', style: 'Sweet & Tropical',
+        name: 'Pitorro<sup>®</sup> Piña', type: 'Pineapple Pitorro®', abv: '35% ABV', price: '$25', style: 'Sweet & Tropical',
         img: 'img/pitorro-pina-store.webp',
-        desc: 'The sweetness of fresh pineapple and the kick of traditional Pitorro in perfect balance. A tropical combination that\'s hard to resist and impossible to put down.',
+        desc: 'The sweetness of fresh pineapple and the kick of traditional Pitorro® in perfect balance. A tropical combination that\'s hard to resist and impossible to put down.',
         notes: [{ label:'Fresh Pineapple', pct:94 },{ label:'Tropical', pct:90 },{ label:'Sweet Cane', pct:78 },{ label:'Floral', pct:69 },{ label:'Juicy Finish', pct:83 }]
       },
       'pitorro-fresa': {
-        name: 'Pitorro<sup>®</sup> Fresa', type: 'Strawberry Pitorro', abv: '35% ABV', price: '$25', style: 'Fresh & Fruity',
+        name: 'Pitorro<sup>®</sup> Fresa', type: 'Strawberry Pitorro®', abv: '35% ABV', price: '$25', style: 'Fresh & Fruity',
         img: 'img/pitorro-fresa-store.webp',
         desc: 'Ripe strawberry infused into Puerto Rico\'s legendary spirit. Fresh, fruity, and unmistakably island — a crowd-pleaser that holds its own.',
         notes: [{ label:'Fresh Strawberry', pct:92 },{ label:'Fruity', pct:88 },{ label:'Sweetness', pct:82 },{ label:'Light Cane', pct:72 },{ label:'Berry Finish', pct:85 }]
       },
       'pitorro-frutas': {
-        name: 'Pitorro<sup>®</sup> Frutas', type: 'Mixed Fruit Pitorro', abv: '35% ABV', price: '$25', style: 'Tropical Blend',
+        name: 'Pitorro<sup>®</sup> Frutas', type: 'Mixed Fruit Pitorro®', abv: '35% ABV', price: '$25', style: 'Tropical Blend',
         img: 'img/pitorro-frutas-store.webp',
-        desc: 'A tropical medley of island fruits captured in traditional Pitorro. Layered, vibrant, and endlessly refreshing — the spirit of Puerto Rico\'s fruit stands in every sip.',
+        desc: 'A tropical medley of island fruits captured in traditional Pitorro®. Layered, vibrant, and endlessly refreshing — the spirit of Puerto Rico\'s fruit stands in every sip.',
         notes: [{ label:'Mixed Fruits', pct:91 },{ label:'Tropical', pct:88 },{ label:'Sweetness', pct:79 },{ label:'Floral', pct:72 },{ label:'Layered Finish', pct:81 }]
       },
       'blend-coco-pina': {
         name: 'Coco Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Tropical Fusion',
         img: 'img/blend-coco-pina-store.webp',
-        desc: 'Coconut and pineapple — Puerto Rico\'s tropical duo, blended perfectly with traditional Pitorro. Light, refreshing, and impossible to resist on a warm island afternoon.',
+        desc: 'Coconut and pineapple — Puerto Rico\'s tropical duo, blended perfectly with traditional Pitorro®. Light, refreshing, and impossible to resist on a warm island afternoon.',
         notes: [{ label:'Coconut', pct:90 },{ label:'Pineapple', pct:88 },{ label:'Tropical', pct:92 },{ label:'Sweetness', pct:80 },{ label:'Refreshing Finish', pct:85 }]
       },
       'blend-coco-almendra': {
@@ -476,25 +473,25 @@
       'mini-coco': {
         name: 'Pitorro<sup>®</sup> Miniature Coco', type: 'Miniature', abv: '15% ABV', price: '$3.25', style: 'Light & Tropical',
         img: 'img/mini-coco-store.webp',
-        desc: 'Our tropical coconut Pitorro in a pocket-sized miniature. Sweet, smooth, and impossibly easy to enjoy.',
+        desc: 'Our tropical coconut Pitorro® in a pocket-sized miniature. Sweet, smooth, and impossibly easy to enjoy.',
         notes: [{ label:'Fresh Coconut', pct:89 },{ label:'Sweetness', pct:84 },{ label:'Light Cane', pct:72 },{ label:'Tropical', pct:88 },{ label:'Soft Finish', pct:82 }]
       },
       'mini-parcha': {
         name: 'Pitorro<sup>®</sup> Miniature Parcha', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Bright & Fruity',
         img: 'img/mini-parcha-store.webp',
-        desc: 'Puerto Rico\'s passion fruit Pitorro in a pocket-sized miniature. Bright, aromatic, and tropical — a taste of the island.',
+        desc: 'Puerto Rico\'s passion fruit Pitorro® in a pocket-sized miniature. Bright, aromatic, and tropical — a taste of the island.',
         notes: [{ label:'Passion Fruit', pct:96 },{ label:'Tropical', pct:91 },{ label:'Floral', pct:80 },{ label:'Sweet Cane', pct:73 },{ label:'Vibrant Finish', pct:85 }]
       },
       'mini-tamarindo': {
         name: 'Pitorro<sup>®</sup> Miniature Tamarindo', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Tropical & Tart',
         img: 'img/mini-tamarindo-store.webp',
-        desc: 'Our tangy tamarind Pitorro in a pocket-sized miniature. Bold, tart, and distinctly Caribbean.',
+        desc: 'Our tangy tamarind Pitorro® in a pocket-sized miniature. Bold, tart, and distinctly Caribbean.',
         notes: [{ label:'Tamarind', pct:92 },{ label:'Sweet-Tart', pct:87 },{ label:'Tropical', pct:78 },{ label:'Raw Cane', pct:71 },{ label:'Long Finish', pct:76 }]
       },
       'mini-cafe': {
         name: 'Pitorro<sup>®</sup> Miniature Café', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Dark & Aromatic',
         img: 'img/mini-cafe-store.webp',
-        desc: 'Puerto Rico\'s coffee and Pitorro tradition in a pocket-sized miniature. Bold, aromatic, and deeply satisfying.',
+        desc: 'Puerto Rico\'s coffee and Pitorro® tradition in a pocket-sized miniature. Bold, aromatic, and deeply satisfying.',
         notes: [{ label:'PR Coffee', pct:95 },{ label:'Dark Roast', pct:89 },{ label:'Cane Sugar', pct:72 },{ label:'Caramel', pct:80 },{ label:'Warm Spice', pct:67 }]
       }
     };

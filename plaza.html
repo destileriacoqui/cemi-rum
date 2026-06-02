@@ -58,14 +58,12 @@
       padding: 1.25rem 4rem;
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.3rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--cream); text-decoration: none;
-      transition: color 0.55s ease;
+    .nav-logo { display: block; text-decoration: none; }
+    .nav-logo img {
+      display: block; width: clamp(11rem, 18vw, 14rem); height: auto;
+      filter: brightness(0) invert(1); transition: filter 0.55s ease;
     }
-    nav.scrolled .nav-logo { color: var(--ink); }
+    nav.scrolled .nav-logo img { filter: none; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.68rem; font-weight: 400;
@@ -329,7 +327,7 @@
     /* ─── SPACE GALLERY ───────────────────────────────── */
     .plaza-gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
       padding: 10rem 4rem 12rem;
       max-width: 1400px; margin: 0 auto;
@@ -392,7 +390,7 @@
       border-top: 0.5px solid rgba(26,18,7,0.1);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-logo img { display: block; width: clamp(12rem, 20vw, 16rem); height: auto; }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
     .footer-links { display: flex; gap: 2.5rem; list-style: none; }
     .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
@@ -443,7 +441,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">Coquí</a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
@@ -520,7 +518,7 @@
         <span class="plaza-space-num">III</span>
         <h3 class="plaza-space-name">The Distillery Shop</h3>
         <p class="plaza-space-body">
-          The best selection of Destiler&#xed;a Coqu&#xed; products on the island &#x2014; including
+          The best selection of Destiler&#xed;a Coqu&#xed;, Inc. products on the island &#x2014; including
           distillery-exclusive bottlings, branded merchandise, and gift sets not
           available anywhere else. Open during all visiting hours. Free parking on site.
         </p>
@@ -531,13 +529,10 @@
   <!-- ─── SPACE GALLERY ─────────────────────────────────── -->
   <div class="plaza-gallery">
     <div class="gallery-item reveal">
-      <img src="img/pitorro-playa.jpg" alt="Destilería Coquí bottles on the coast" loading="lazy">
+      <img src="img/event-taste-of-rum.jpg" alt="Destilería Coquí tasting gathering" loading="lazy">
     </div>
     <div class="gallery-item reveal d1">
-      <img src="img/barricas-coqui.webp" alt="Destilería Coquí aging barrels" loading="lazy">
-    </div>
-    <div class="gallery-item reveal d2">
-      <img src="img/event-taste-of-rum.jpg" alt="Destilería Coquí tasting gathering" loading="lazy">
+      <img src="img/electric-420-fest.jpg" alt="Live music gathering at Coquí Plaza" loading="lazy">
     </div>
   </div>
 
@@ -592,7 +587,7 @@
         </div>
         <div class="visit-detail reveal d2">
           <span class="visit-label">Hours</span>
-          <span class="visit-val">Monday &#x2013; Saturday<br>9:30 AM &#x2013; 5:30 PM</span>
+          <span class="visit-val">Monday &#x2013; Friday<br>9:30 AM &#x2013; 5:30 PM<br>Saturday<br>9:30 AM &#x2013; 4:30 PM</span>
         </div>
         <div class="visit-detail reveal d3">
           <span class="visit-label">Phone</span>
@@ -610,9 +605,9 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo">Destilería Coquí</span>
+    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></span>
     <p class="footer-copy">
-      &copy; 2026 Destiler&#xed;a Coqu&#xed; &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
+      &copy; 2026 Destiler&#xed;a Coqu&#xed;, Inc. &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
     </p>
     <ul class="footer-links">

@@ -45,11 +45,8 @@
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
-    .nav-logo {
-      font-family: var(--serif); font-size: 1.3rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink); text-decoration: none;
-    }
+    .nav-logo { display: block; text-decoration: none; }
+    .nav-logo img { display: block; width: clamp(11rem, 18vw, 14rem); height: auto; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em;
@@ -272,7 +269,7 @@
       background: var(--cream);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-logo img { display: block; width: clamp(12rem, 20vw, 16rem); height: auto; }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
     .footer-links { display: flex; gap: 2.5rem; list-style: none; }
     .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
@@ -308,7 +305,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">Coquí</a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
@@ -321,7 +318,7 @@
   <!-- ─── SECTION 1: TOUR HEADER ──────────────────────── -->
   <div class="tour-header">
     <div>
-      <p class="tour-eyebrow reveal">Destiler&#xed;a Coqu&#xed; &nbsp;·&nbsp; Mayag&#xFC;ez, Puerto Rico</p>
+      <p class="tour-eyebrow reveal">Destiler&#xed;a Coqu&#xed;, Inc. &nbsp;·&nbsp; Mayag&#xFC;ez, Puerto Rico</p>
       <h1 class="tour-h1 reveal d1">
         The Distillery<br>
         <em>Tour.</em>
@@ -340,7 +337,7 @@
         </div>
         <div class="tour-fact">
           <span class="tour-fact-label">Hours</span>
-          <span class="tour-fact-val">Mon &#x2013; Sat, 9:30 AM &#x2013; 5:30 PM</span>
+          <span class="tour-fact-val">Mon &#x2013; Fri, 9:30 AM &#x2013; 5:30 PM<br>Sat, 9:30 AM &#x2013; 4:30 PM</span>
         </div>
         <div class="tour-fact">
           <span class="tour-fact-label">Phone</span>
@@ -464,7 +461,7 @@
           </div>
           <div class="info-item">
             <span class="info-label">Hours</span>
-            <span class="info-val">Monday through Saturday, 9:30 AM to 5:30 PM. Closed Sundays and public holidays.</span>
+            <span class="info-val">Monday through Friday, 9:30 AM to 5:30 PM. Saturday, 9:30 AM to 4:30 PM. Closed Sundays and public holidays.</span>
           </div>
           <div class="info-item">
             <span class="info-label">Groups</span>
@@ -482,9 +479,9 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo">Destilería Coquí</span>
+    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></span>
     <p class="footer-copy">
-      &copy; 2026 Destiler&#xed;a Coqu&#xed; &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
+      &copy; 2026 Destiler&#xed;a Coqu&#xed;, Inc. &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
     </p>
     <ul class="footer-links">

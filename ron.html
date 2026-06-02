@@ -55,13 +55,8 @@
       -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
-    .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.3rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ink); text-decoration: none;
-      transition: color 0.55s ease;
-    }
+    .nav-logo { display: block; text-decoration: none; }
+    .nav-logo img { display: block; width: clamp(11rem, 18vw, 14rem); height: auto; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.68rem; font-weight: 400;
@@ -170,7 +165,7 @@
       border-top: 0.5px solid rgba(26,18,7,0.1);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); }
+    .footer-logo img { display: block; width: clamp(12rem, 20vw, 16rem); height: auto; }
     .footer-copy { font-size: 0.65rem; font-weight: 300; color: var(--muted); letter-spacing: 0.04em; line-height: 1.7; text-align: center; }
     .footer-links { display: flex; gap: 2.5rem; list-style: none; }
     .footer-links a { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.35s ease; }
@@ -205,7 +200,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo">Coqu&#xED;</a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html" aria-current="page">Our Rums</a></li>
@@ -222,12 +217,12 @@
       <div class="catalog-header">
         <div>
           <p class="catalog-eyebrow reveal">18 Spirits</p>
-          <h1 class="catalog-h2 reveal d1">Rum, Pitorro<br>&amp; beyond.<br><em>All Puerto Rico.</em></h1>
+          <h1 class="catalog-h2 reveal d1">Rum, Pitorro®<br>&amp; beyond.<br><em>All Puerto Rico.</em></h1>
         </div>
         <p class="catalog-sub reveal d2">
-          From our flagship Ron Coqu&#xED; white rum to the island's legendary Pitorro —
-          now legal — every bottle is distilled by hand in Mayag&#xFC;ez. Eighteen spirits,
-          each carrying the flavors and traditions of Puerto Rico in every sip.
+          From our signature Ron Coqu&#xED; white rum to Puerto Rico's cherished Pitorro&#xAE;,
+          every bottle is hand-distilled in Mayag&#xFC;ez with purpose and tradition. Across
+          eighteen spirits, each sip carries the flavors, heritage, and soul of the island.
         </p>
       </div>
 
@@ -240,7 +235,7 @@
 
         <a href="/producto?id=ron-blanco" class="prod-card reveal" data-product="ron-blanco">
           <div class="prod-img-wrap">
-            <img class="prod-img" src="img/ron-blanco-store.webp" alt="Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
+            <img class="prod-img" src="img/ron-blanco.png" alt="Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Ron Coqu&#xED;&#x2122; Blanco</p>
               <p class="prod-overlay-teaser">Puerto Rico's everyday rum. Clean, smooth, unmistakably island.</p>
@@ -284,7 +279,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Blanco</span>
-            <span class="prod-base-type">Traditional Pitorro</span>
+            <span class="prod-base-type">Traditional Pitorro®</span>
           </div>
         </a>
 
@@ -299,7 +294,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> de Coco</span>
-            <span class="prod-base-type">Coconut Pitorro</span>
+            <span class="prod-base-type">Coconut Pitorro®</span>
           </div>
         </a>
 
@@ -314,7 +309,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Coco</span>
-            <span class="prod-base-type">Coconut Pitorro</span>
+            <span class="prod-base-type">Coconut Pitorro®</span>
           </div>
         </a>
 
@@ -329,7 +324,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Caf&#xe9;</span>
-            <span class="prod-base-type">Coffee Pitorro</span>
+            <span class="prod-base-type">Coffee Pitorro®</span>
           </div>
         </a>
 
@@ -338,13 +333,13 @@
             <img class="prod-img" src="img/pitorro-tamarindo-store.webp" alt="Pitorro&#xAE; Tamarindo" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro<sup>®</sup> Tamarindo</p>
-              <p class="prod-overlay-teaser">Tangy tamarind and traditional Pitorro — bold, tart, distinctly Caribbean.</p>
+              <p class="prod-overlay-teaser">Tangy tamarind and traditional Pitorro® — bold, tart, distinctly Caribbean.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Tamarindo</span>
-            <span class="prod-base-type">Tamarind Pitorro</span>
+            <span class="prod-base-type">Tamarind Pitorro®</span>
           </div>
         </a>
 
@@ -359,7 +354,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Parcha</span>
-            <span class="prod-base-type">Passion Fruit Pitorro</span>
+            <span class="prod-base-type">Passion Fruit Pitorro®</span>
           </div>
         </a>
 
@@ -368,13 +363,13 @@
             <img class="prod-img" src="img/pitorro-pina-store.webp" alt="Pitorro&#xAE; Pi&#xF1;a" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro<sup>®</sup> Pi&#xF1;a</p>
-              <p class="prod-overlay-teaser">The sweetness of fresh pineapple, the kick of traditional Pitorro.</p>
+              <p class="prod-overlay-teaser">The sweetness of fresh pineapple, the kick of traditional Pitorro®.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Pi&#xF1;a</span>
-            <span class="prod-base-type">Pineapple Pitorro</span>
+            <span class="prod-base-type">Pineapple Pitorro®</span>
           </div>
         </a>
 
@@ -389,7 +384,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Fresa</span>
-            <span class="prod-base-type">Strawberry Pitorro</span>
+            <span class="prod-base-type">Strawberry Pitorro®</span>
           </div>
         </a>
 
@@ -398,13 +393,13 @@
             <img class="prod-img" src="img/pitorro-frutas-store.webp" alt="Pitorro&#xAE; Frutas" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro<sup>®</sup> Frutas</p>
-              <p class="prod-overlay-teaser">A tropical medley of island fruits captured in traditional Pitorro.</p>
+              <p class="prod-overlay-teaser">A tropical medley of island fruits captured in traditional Pitorro®.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Pitorro<sup>®</sup> Frutas</span>
-            <span class="prod-base-type">Mixed Fruit Pitorro</span>
+            <span class="prod-base-type">Mixed Fruit Pitorro®</span>
           </div>
         </a>
 
@@ -424,7 +419,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Coco Pi&#xF1;a</span>
-            <span class="prod-base-type">Pitorro Blend</span>
+            <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
 
@@ -439,7 +434,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Coco Almendra</span>
-            <span class="prod-base-type">Pitorro Blend</span>
+            <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
 
@@ -454,7 +449,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Fresa / Pi&#xF1;a</span>
-            <span class="prod-base-type">Pitorro Blend</span>
+            <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
 
@@ -469,7 +464,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Jengibre Coco</span>
-            <span class="prod-base-type">Pitorro Blend</span>
+            <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
 
@@ -484,7 +479,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Mango / Pi&#xF1;a</span>
-            <span class="prod-base-type">Pitorro Blend</span>
+            <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
 
@@ -499,7 +494,7 @@
           </div>
           <div class="prod-base-strip">
             <span class="prod-base-name">Coco, Fresa y Pi&#xF1;a</span>
-            <span class="prod-base-type">Pitorro Blend</span>
+            <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
 
@@ -583,7 +578,7 @@
             <img class="prod-img" src="img/mini-coco-store.webp" alt="Pitorro&#xAE; Miniature Coco" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro&#xAE; Miniature Coco</p>
-              <p class="prod-overlay-teaser">Tropical coconut Pitorro in a pocket-sized miniature.</p>
+              <p class="prod-overlay-teaser">Tropical coconut Pitorro® in a pocket-sized miniature.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
@@ -598,7 +593,7 @@
             <img class="prod-img" src="img/mini-parcha-store.webp" alt="Pitorro&#xAE; Miniature Parcha" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro&#xAE; Miniature Parcha</p>
-              <p class="prod-overlay-teaser">Passion fruit Pitorro miniature. Bright and tropical.</p>
+              <p class="prod-overlay-teaser">Passion fruit Pitorro® miniature. Bright and tropical.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
@@ -613,7 +608,7 @@
             <img class="prod-img" src="img/mini-tamarindo-store.webp" alt="Pitorro&#xAE; Miniature Tamarindo" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro&#xAE; Miniature Tamarindo</p>
-              <p class="prod-overlay-teaser">Tangy tamarind Pitorro miniature. Bold and Caribbean.</p>
+              <p class="prod-overlay-teaser">Tangy tamarind Pitorro® miniature. Bold and Caribbean.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
@@ -628,7 +623,7 @@
             <img class="prod-img" src="img/mini-cafe-store.webp" alt="Pitorro&#xAE; Miniature Caf&#xE9;" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro&#xAE; Miniature Caf&#xE9;</p>
-              <p class="prod-overlay-teaser">Coffee and Pitorro tradition in a pocket-sized miniature.</p>
+              <p class="prod-overlay-teaser">Coffee and Pitorro® tradition in a pocket-sized miniature.</p>
               <span class="prod-overlay-hint"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 6H11M6 1L11 6L6 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
             </div>
           </div>
@@ -644,9 +639,9 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo">Destiler&#xED;a Coqu&#xED;</span>
+    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destiler&#xED;a Coqu&#xED;"></span>
     <p class="footer-copy">
-      &copy; 2026 Destiler&#xED;a Coqu&#xED; &mdash; Mayag&#xFC;ez, Puerto Rico.<br>
+      &copy; 2026 Destiler&#xED;a Coqu&#xED;, Inc. &mdash; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
     </p>
     <ul class="footer-links">

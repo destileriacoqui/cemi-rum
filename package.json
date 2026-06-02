@@ -15,6 +15,7 @@
     "node": "24.x"
   },
   "dependencies": {
+    "@vercel/functions": "^3.6.1",
     "stripe": "^18.5.0"
   }
 }

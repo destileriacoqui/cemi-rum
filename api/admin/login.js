@@ -1,13 +1,32 @@
-const { credentialsMatch, setSessionCookie } = require('../_admin');
+const { clearSessionCookie, credentialsMatch, setSessionCookie, verifySession } = require('../_admin');
 const { isThrottled, recordFailure, clearFailures } = require('../_admin-login-rate-limit');
+const { passwordMatches: maintenancePasswordMatches, setOwnerCookie } = require('../_maintenance');
 
 module.exports = async function handler(req, res) {
+  if (req.method === 'GET') {
+    const session = verifySession(req);
+    if (!session) return res.status(401).json({ authenticated: false });
+    return res.status(200).json({ authenticated: true, name: session.username });
+  }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed.' });
   try {
+    if (req.body?.action === 'logout') {
+      clearSessionCookie(res);
+      return res.status(200).json({ authenticated: false });
+    }
     if (isThrottled(req)) {
       return res.status(429).json({ error: 'Too many login attempts. Please try again in a few minutes.' });
     }
-    const { name, password } = req.body || {};
+    const { name, password, maintenanceAccess } = req.body || {};
+    if (maintenanceAccess === true) {
+      if (!maintenancePasswordMatches(password)) {
+        recordFailure(req);
+        return res.status(401).json({ error: 'Incorrect password.' });
+      }
+      clearFailures(req);
+      setOwnerCookie(res);
+      return res.status(200).json({ authenticated: true });
+    }
     const username = credentialsMatch(name, password);
     if (!username) {
       recordFailure(req);

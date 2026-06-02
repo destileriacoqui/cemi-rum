@@ -347,9 +347,9 @@
   search.addEventListener('input', render);
   document.querySelector('[data-refresh-orders]').addEventListener('click', loadOrders);
   document.querySelector('[data-admin-logout]').addEventListener('click', async () => {
-    await api('/api/admin/logout', { method: 'POST' });
+    await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ action: 'logout' }) });
     location.href = '/admin/login';
   });
 
-  api('/api/admin/session').then(loadOrders).catch(() => {});
+  api('/api/admin/login').then(loadOrders).catch(() => {});
 })();

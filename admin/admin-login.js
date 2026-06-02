@@ -14,7 +14,7 @@
     return payload;
   }
 
-  fetch('/api/admin/session').then(response => {
+  fetch('/api/admin/login').then(response => {
     if (response.ok) location.href = '/admin/orders';
   }).catch(() => {});
 
