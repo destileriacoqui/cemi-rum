@@ -4,13 +4,13 @@ Updated: June 2, 2026
 
 ## Read This First
 
-Continue from the current dirty working tree in:
+Continue from the current synced repository in:
 
 ```text
 /Users/hector/cemi-rum
 ```
 
-Do not reset, discard, or overwrite the existing uncommitted changes. They are the current security-hardening work and have not been deployed yet.
+Pull `main` before editing. The Claude changes and the follow-up security reconciliation are committed, pushed, and deployed.
 
 Do not commit or deploy these unrelated local folders:
 
@@ -44,15 +44,15 @@ The user is intentionally waiting to finish the custom-domain Auth settings unti
 
 ## User Priorities
 
-1. Finish and deploy the security-hardening edits already in the dirty tree.
-2. Fix customer account confirmation emails and callback handling.
+1. Continue testing the deployed commerce flows before launch.
+2. Keep customer account confirmation emails and callback handling working when the custom domain changes.
 3. Keep both admin logins working with the same full access.
 4. Preserve recoverable order history when staff remove an order from the dashboard.
 5. Do not expose secrets in frontend code, commits, logs, or chat.
 
 ## What Is Already Live
 
-Commerce features already deployed before the current dirty-tree work:
+Commerce features currently deployed:
 
 - persistent localStorage cart
 - guest checkout
@@ -76,16 +76,16 @@ Commerce features already deployed before the current dirty-tree work:
 - unpaid pickup orders can open Stripe-hosted payment from the admin dashboard
 - product recommendations under product detail pages
 
-Latest deployed feature commit before the dirty-tree changes:
+Latest deployed code commit:
 
 ```text
-12db673 Add account confirmation resend option
+be0ebaf Harden admin orders and auth callbacks
 ```
 
-Documentation-only checkpoint pushed after that:
+Latest verified Vercel deployment:
 
 ```text
-f64a44f Refresh admin handoff checkpoint
+dpl_BruYBzmjuxSZMpnbPec9i4TmAu34
 ```
 
 ## Live Database Cleanup Completed
@@ -134,9 +134,9 @@ Still optional for later:
 - decide whether malformed email sender configuration should fail loudly
 - replace the `serve` dev dependency with `sirv-cli` if desired
 
-## Dirty Tree: Local Code Changes Not Yet Deployed
+## Synced Security-Hardening Files
 
-These files are modified or added locally:
+These files are committed and deployed:
 
 ```text
 .env.example
@@ -406,10 +406,11 @@ Item 4 still needs to be enabled manually in Supabase.
 
 ## June 2 Sync Verification
 
-Verified after the Claude session:
+Verified after reconciling the Claude session:
 
-- no new Git commit existed after `f64a44f`
-- the latest production deployment was newer than GitHub and contained the local hardening bundle
+- Claude pushed commits `87ae47e` through `0c0e752`
+- the follow-up hardening reconciliation was rebased onto Claude's work and pushed as `be0ebaf`
+- Vercel production deployment `dpl_BruYBzmjuxSZMpnbPec9i4TmAu34` is `Ready`
 - syntax checks passed
 - static build passed
 - `npm audit --omit=dev --audit-level=high` returned `0 vulnerabilities`
@@ -420,14 +421,15 @@ Verified after the Claude session:
 - one paid order and its paid pickup request remain active
 - one unpaid pickup test, its pickup request, and one unpaid tour test were soft-deleted after verification
 
-Before the next production deploy, commit and push the dirty-tree hardening bundle so GitHub and Vercel no longer drift apart.
+GitHub and Vercel are synced again.
 
 ## Exact Resume Steps
 
-1. Inspect the dirty tree:
+1. Pull and inspect the working tree:
 
 ```bash
 cd /Users/hector/cemi-rum
+git pull --ff-only
 git status --short --branch
 git diff --check
 ```

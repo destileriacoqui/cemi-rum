@@ -7,8 +7,8 @@ Updated: June 2, 2026
 - Repository: `https://github.com/destileriacoqui/cemi-rum`
 - Branch: `main`
 - Production site: `https://cemi-rum.vercel.app`
-- Latest deployed code commit: `12db673` (`Add account confirmation resend option`)
-- Latest verified Vercel deployment: `dpl_G3zGBnYc6bFWkRrgqfaTYYmrF5WP`
+- Latest deployed code commit: `be0ebaf` (`Harden admin orders and auth callbacks`)
+- Latest verified Vercel deployment: `dpl_BruYBzmjuxSZMpnbPec9i4TmAu34`
 - Deployment state checked after push: `READY`
 - Supabase project: `autkqbfgniopxldszdur`
 - Vercel project: `prj_Tqp4zZdhSn0HllZnyZzwS85amrX3`
@@ -19,6 +19,13 @@ Do not add `.claude/`, `.supply-chain-risk-auditor/`, or `vercel-backup/` to com
 ## Latest Commits
 
 ```text
+be0ebaf Harden admin orders and auth callbacks
+0c0e752 Merge tour availability into checkout endpoint to fix Vercel 12-function limit
+c2460f7 Add login/cart to mobile menu, redesign barrel section with white oak content
+3b7cc77 Add Saturday tour times, group booking notifications, and post-checkout account creation
+9628096 Fix order thumbnail paths — prepend leading slash for relative image URLs
+75b5884 Enhance saved orders page with product photos, status badges, and item details
+87ae47e Harden admin sessions, throttle logins, and replace hard deletes with soft deletes
 1ecd26d Document tour staff email recipients
 44d3c42 Add orders@prsugar.com to tour staff emails
 6b8c524 Expand staff order notification details
@@ -93,6 +100,8 @@ This confirms Express Pickup is excluded from IVU.
 - Tour booking saved in Supabase
 - Customer confirmation page
 - Staff and customer confirmation emails after payment
+- Saturday-specific tour times
+- Availability check merged into the checkout endpoint to remain within the Vercel 12-function limit
 
 ### Admin Orders
 
@@ -107,7 +116,7 @@ This confirms Express Pickup is excluded from IVU.
   - Cancel Order
   - Mark ID Checked
   - Open Secure Payment for an unpaid pickup request
-  - Permanently delete a bottle order or tour reservation after confirmation
+  - Remove a bottle order or tour reservation from the dashboard while retaining recoverable history
 - `Copy Customer Email` was removed
 - Email template selector and `Send Email to Customer` button are grouped together
 - Status changes send customer pickup-ready, picked-up, or cancellation emails when Resend is configured
