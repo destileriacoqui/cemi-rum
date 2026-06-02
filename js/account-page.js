@@ -93,9 +93,10 @@
         const items = order.order_items || [];
         const date = new Date(order.created_at);
         const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        const thumbs = items.slice(0, 4).map(item =>
-          `<img src="${item.image || '/images/placeholder.png'}" alt="${item.name || 'Product'}" class="order-thumb">`
-        ).join('');
+        const thumbs = items.slice(0, 4).map(item => {
+          const src = item.image ? (item.image.startsWith('/') || item.image.startsWith('http') ? item.image : '/' + item.image) : '/img/placeholder.png';
+          return `<img src="${src}" alt="${item.name || 'Product'}" class="order-thumb">`;
+        }).join('');
         const extraCount = items.length > 4 ? `<span class="order-thumb-more">+${items.length - 4}</span>` : '';
         const itemSummary = items.map(item =>
           `<span class="order-item-line">${item.name}${item.quantity > 1 ? ' x' + item.quantity : ''}</span>`
