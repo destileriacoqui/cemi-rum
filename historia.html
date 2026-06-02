@@ -253,25 +253,30 @@
     }
     .archive-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.85fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1rem;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr 1fr;
+      gap: 0.75rem;
     }
     .arch-wrap { overflow: hidden; display: block; }
     .arch-img {
-      width: 100%; object-fit: cover; display: block;
+      width: 100%; height: 100%; object-fit: cover; display: block;
       filter: sepia(8%) contrast(1.03);
       transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
     }
     .arch-wrap:hover .arch-img { transform: scale(1.03); }
-    .arch-1 { grid-column:1; grid-row:1/3; }
-    .arch-1 .arch-img { aspect-ratio: 3/4; height: 100%; }
-    .arch-2 { grid-column:2; grid-row:1; margin-top: 5rem; }
+    .arch-1 { grid-column: 1 / 3; grid-row: 1 / 3; }
+    .arch-1 .arch-img { aspect-ratio: 3/4; }
+    .arch-2 { grid-column: 3; grid-row: 1; }
     .arch-2 .arch-img { aspect-ratio: 4/3; }
-    .arch-3 { grid-column:3; grid-row:1; }
-    .arch-3 .arch-img { aspect-ratio: 5/4; }
-    .arch-4 { grid-column:2/4; grid-row:2; }
-    .arch-4 .arch-img { aspect-ratio: 16/7; }
+    .arch-3 { grid-column: 4; grid-row: 1; }
+    .arch-3 .arch-img { aspect-ratio: 3/4; }
+    .arch-4 { grid-column: 3 / 5; grid-row: 2; }
+    .arch-4 .arch-img { aspect-ratio: 16/8; }
+    .arch-5 { grid-column: 1; grid-row: 3; }
+    .arch-5 .arch-img { aspect-ratio: 3/4; }
+    .arch-6 { grid-column: 2 / 4; grid-row: 3; }
+    .arch-6 .arch-img { aspect-ratio: 16/9; }
+    .arch-7 { grid-column: 4; grid-row: 3; }
+    .arch-7 .arch-img { aspect-ratio: 3/4; }
 
     /* ─── CTA ─────────────────────────────────────────── */
     .cta-band {
@@ -343,11 +348,15 @@
       .hero { min-height: 86dvh; }
       .archive { padding: 8rem 0; }
       .archive-grid { grid-template-columns: 1fr 1fr; }
-      .arch-1 { grid-column:1; grid-row:1; }
+      .arch-1 { grid-column: 1; grid-row: 1; }
       .arch-1 .arch-img { aspect-ratio: 4/3; height: auto; }
-      .arch-2 { grid-column:2; grid-row:1; margin-top: 0; }
-      .arch-3 { grid-column:1/3; grid-row:2; }
-      .arch-4 { grid-column:1/3; grid-row:3; }
+      .arch-2 { grid-column: 2; grid-row: 1; }
+      .arch-3 { grid-column: 1; grid-row: 2; }
+      .arch-4 { grid-column: 2; grid-row: 2; }
+      .arch-5 { grid-column: 1 / 3; grid-row: 3; }
+      .arch-5 .arch-img { aspect-ratio: 16/9; }
+      .arch-6 { grid-column: 1; grid-row: 4; }
+      .arch-7 { grid-column: 2; grid-row: 4; }
     }
   </style>
 </head>
@@ -501,16 +510,25 @@
       </div>
       <div class="archive-grid">
         <div class="arch-wrap arch-1 reveal">
-          <img class="arch-img" src="img/story-coqui-02.jpeg" alt="Pitorro® bottles from Destileria Coqui arranged on the coast" loading="lazy">
+          <img class="arch-img" src="img/archive-guarapo-crowd.jpeg" alt="Mar&#xed;a Cristina serving guarapo de ca&#xf1;a at an early Destiler&#xed;a Coqu&#xed; stand" loading="lazy">
         </div>
         <div class="arch-wrap arch-2 reveal d1">
-          <img class="arch-img" src="img/story-coqui-03.jpeg" alt="Live music gathering hosted by Destileria Coqui" loading="lazy">
+          <img class="arch-img" src="img/archive-pitorro-bottle.jpeg" alt="The original Pitorro&#xAE; bottle on fresh-cut sugarcane" loading="lazy">
         </div>
         <div class="arch-wrap arch-3 reveal d2">
-          <img class="arch-img" src="img/story-coqui-04.webp" alt="Coqui aging barrels at the distillery" loading="lazy">
+          <img class="arch-img" src="img/archive-original-still.jpeg" alt="The original copper stills used in Destiler&#xed;a Coqu&#xed;'s earliest days" loading="lazy">
         </div>
-        <div class="arch-wrap arch-4 reveal d3">
-          <img class="arch-img" src="img/coqui-plaza-bar.png" alt="Coqui Plaza bar in Mayaguez, Puerto Rico" loading="lazy">
+        <div class="arch-wrap arch-4 reveal d1">
+          <img class="arch-img" src="img/archive-guarapo-stand.jpeg" alt="H&#xe9;ctor pressing fresh guarapo de ca&#xf1;a at a street stand in Mayag&#xfc;ez" loading="lazy">
+        </div>
+        <div class="arch-wrap arch-5 reveal d2">
+          <img class="arch-img" src="img/archive-founders-booth.jpeg" alt="H&#xe9;ctor Augusto and Mar&#xed;a Cristina at a Pitorro&#xAE; tasting booth" loading="lazy">
+        </div>
+        <div class="arch-wrap arch-6 reveal d1">
+          <img class="arch-img" src="img/archive-cane-harvest.jpeg" alt="Father and son harvesting sugarcane for Destiler&#xed;a Coqu&#xed;" loading="lazy">
+        </div>
+        <div class="arch-wrap arch-7 reveal d2">
+          <img class="arch-img" src="img/archive-labeling.jpeg" alt="Hand-labeling Pitorro&#xAE; bottles in the early Coqu&#xed; warehouse" loading="lazy">
         </div>
       </div>
     </div>
