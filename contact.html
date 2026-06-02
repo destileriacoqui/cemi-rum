@@ -318,12 +318,14 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}"+
       ".nav-toggle[aria-expanded='true'] span:nth-child(2){opacity:0;}"+
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
-      ".mobile-menu{position:fixed;inset:0;z-index:600;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
+      ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
       ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
       ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
+      ".mobile-menu-sep{width:3rem;height:.5px;background:rgba(196,147,72,.4);margin:1rem 0;}"+
+      ".mobile-menu-account{font-size:1.4rem!important;color:rgba(247,242,232,.55)!important;}"+
       "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
     document.head.appendChild(s);
     var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
@@ -331,6 +333,10 @@
     var m=document.createElement('div');m.className='mobile-menu';
     var h='<button class="mobile-menu-close" aria-label="Close menu">&#10005;</button>';
     links.forEach(function(l){h+='<a href="'+l[0]+'">'+l[1]+'</a>';});
+    var hasSession=false;try{hasSession=!!JSON.parse(localStorage.getItem('coqui_supabase_session'))?.user;}catch(_){}
+    h+='<div class="mobile-menu-sep"></div>';
+    h+='<a href="'+(hasSession?'/account':'/login')+'" class="mobile-menu-account">'+(hasSession?'My Account':'Log In')+'</a>';
+    h+='<a href="/cart" class="mobile-menu-account">Cart</a>';
     m.innerHTML=h;document.body.appendChild(m);
     function close(){m.classList.remove('open');document.body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');}
     btn.addEventListener('click',function(){m.classList.add('open');document.body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');});

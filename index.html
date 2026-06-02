@@ -330,34 +330,24 @@
     .rum-facts { display: grid; gap: 1rem; margin: 2.25rem 0; }
     .rum-fact { padding-top: 1rem; border-top: 0.5px solid rgba(96,66,46,0.24); color: var(--brown); font-size: 0.76rem; letter-spacing: 0.11em; text-transform: uppercase; }
 
-    /* ─── HOME BARREL CELLAR: dedicated interactive stage ─── */
+    /* ─── HOME BARREL CELLAR: clean gradient stage ─── */
     .cellar-feature {
-      --cellar-x: 0px; --cellar-y: 0px; --cellar-rx: 0deg; --cellar-ry: 0deg;
       position: relative; min-height: 94dvh; overflow: hidden; color: var(--cream);
-      background: #171311;
+      background: linear-gradient(155deg, #1A1207 0%, #0E0A06 42%, #171311 100%);
     }
-    .barrel-wall { position: absolute; inset: -3rem; display: grid; grid-template-columns: repeat(7, minmax(8rem, 1fr)); gap: clamp(1rem, 2vw, 2.5rem); align-content: center; opacity: 0.38; transform: rotate(-3deg) scale(1.06); }
-    .wall-barrel { position: relative; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(196,147,72,0.36); background: radial-gradient(circle, rgba(96,66,46,0.56) 0 18%, rgba(26,18,7,0.82) 19% 24%, rgba(96,66,46,0.48) 25% 58%, rgba(18,12,8,0.92) 59% 64%, rgba(96,66,46,0.3) 65%); box-shadow: inset 0 0 0 0.45rem rgba(196,147,72,0.08), inset 0 0 0 0.85rem rgba(8,6,4,0.34); }
-    .wall-barrel::before, .wall-barrel::after { content: ''; position: absolute; border-radius: 50%; }
-    .wall-barrel::before { inset: 14%; border: 1px dashed rgba(196,147,72,0.2); }
-    .wall-barrel::after { inset: 42%; background: rgba(196,147,72,0.22); }
-    .wall-barrel:nth-child(3n) { transform: scale(0.82); opacity: 0.68; }
-    .wall-barrel:nth-child(4n) { transform: scale(1.16); opacity: 0.52; }
-    .cellar-feature::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,10,8,0.9), rgba(14,10,8,0.3) 52%, rgba(14,10,8,0.76)), radial-gradient(circle at 60% 48%, rgba(196,147,72,0.13), transparent 34%); }
+    .cellar-feature::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 65% 45%, rgba(196,147,72,0.08), transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(140,63,22,0.06), transparent 45%); pointer-events: none; }
     .cellar-inner { position: relative; z-index: 2; max-width: 1440px; min-height: 94dvh; margin: 0 auto; padding: 7rem 4rem; display: grid; grid-template-columns: 0.9fr 1.15fr; gap: 3rem; align-items: center; }
-    .cellar-title { font-family: var(--serif); font-size: clamp(4rem, 7vw, 8.5rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); max-width: 8ch; margin: 1rem 0 2rem; }
+    .cellar-title { font-family: var(--serif); font-size: clamp(4rem, 7vw, 8.5rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); max-width: 10ch; margin: 1rem 0 2rem; }
     .cellar-title em { color: var(--gold); }
     .cellar-body { color: rgba(247,242,232,0.62); font-size: 0.9rem; line-height: 1.95; max-width: 43ch; }
-    .cellar-object { position: relative; min-height: 34rem; display: grid; place-items: center; perspective: 1100px; }
-    .cellar-object::before { content: ''; position: absolute; width: min(45vw, 42rem); aspect-ratio: 1; border-radius: 50%; border: 0.75px solid rgba(196,147,72,0.54); }
-    .hero-barrel { position: relative; z-index: 2; width: min(58vw, 48rem); transform: translate3d(var(--cellar-x), var(--cellar-y), 0) rotateX(var(--cellar-rx)) rotateY(var(--cellar-ry)) rotate(-5deg); transition: transform 0.72s cubic-bezier(0.16,1,0.3,1); will-change: transform; filter: drop-shadow(0 2rem 1.6rem rgba(0,0,0,0.52)); }
-    .hero-barrel img { width: 100%; height: auto; }
-    .cellar-fact { position: absolute; z-index: 3; max-width: 13rem; color: rgba(247,242,232,0.7); font-size: 0.68rem; line-height: 1.75; letter-spacing: 0.04em; }
-    .cellar-fact strong { display: block; color: var(--gold); font-family: var(--serif); font-size: 1.25rem; font-weight: 400; letter-spacing: 0; }
-    .cellar-fact::before { content: ''; display: block; width: 4.5rem; height: 0.5px; margin-bottom: 0.85rem; background: rgba(196,147,72,0.68); }
-    .cellar-fact-one { top: 4rem; left: 0; }
-    .cellar-fact-two { right: 0; top: 7rem; }
-    .cellar-fact-three { right: 2rem; bottom: 2rem; }
+    .cellar-body + .cellar-body { margin-top: 1.25rem; }
+    .cellar-facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .cellar-fact-card { padding: 1.5rem 0; border-top: 0.5px solid rgba(196,147,72,0.25); }
+    .cellar-fact-card strong { display: block; color: var(--gold); font-family: var(--serif); font-size: 1.15rem; font-weight: 400; letter-spacing: 0; margin-bottom: 0.45rem; }
+    .cellar-fact-card span { color: rgba(247,242,232,0.55); font-size: 0.76rem; line-height: 1.7; }
+    .cellar-img-wrap { position: relative; display: grid; place-items: center; }
+    .cellar-img-wrap img { width: min(100%, 38rem); border: 0.5px solid rgba(196,147,72,0.18); filter: brightness(0.9) contrast(1.05); }
+    .cellar-img-caption { margin-top: 1.5rem; text-align: center; color: rgba(247,242,232,0.38); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
 
     /* ─── EVENTS ─── */
     .events-section { padding: 14rem 0; background: var(--cream-mid); }
@@ -485,7 +475,7 @@
       .hero-content { padding: 4rem 2.5rem 6.5rem; }
       .home-feature-inner { padding: 0 2.5rem 6rem; }
       .heritage-inner { gap: 4rem 3.5rem; }
-      .cellar-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .cellar-inner { grid-template-columns: 1fr; gap: 2rem; min-height: auto; }
       .events-inner { padding: 0 2.5rem; }
       .events-header { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
       .events-grid { grid-template-columns: repeat(2, 1fr); }
@@ -519,16 +509,9 @@
       .heritage-photo { order: 2; }
       .barrel-frame { order: 3; }
       .rum-copy { order: 4; }
-      .cellar-feature, .cellar-inner { min-height: 58rem; }
-      .cellar-inner { padding: 6rem 1.75rem; }
-      .cellar-object { min-height: 23rem; }
-      .cellar-object::before { width: 27rem; max-width: 100vw; }
-      .barrel-wall { grid-template-columns: repeat(4, minmax(7rem,1fr)); }
-      .hero-barrel { width: 39rem; max-width: 122vw; }
-      .cellar-fact { max-width: 10rem; font-size: 0.6rem; }
-      .cellar-fact-one { top: 0; }
-      .cellar-fact-two { top: 5rem; }
-      .cellar-fact-three { right: 0; bottom: 0; }
+      .cellar-feature { min-height: auto; }
+      .cellar-inner { min-height: auto; padding: 6rem 1.75rem; grid-template-columns: 1fr; }
+      .cellar-facts-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       .events-grid { grid-template-columns: 1fr; }
@@ -635,29 +618,45 @@
     </div>
   </section>
 
-  <!-- ─── HOME BARREL CELLAR: interactive barrel study ─── -->
+  <!-- ─── HOME BARREL CELLAR: American white oak ─── -->
   <section class="cellar-feature" id="cellarFeature">
-    <div class="barrel-wall" aria-hidden="true">
-      <span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span>
-      <span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span>
-      <span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span><span class="wall-barrel"></span>
-    </div>
     <div class="cellar-inner">
       <div>
-        <span class="heritage-kicker reveal">A patient kind of craft</span>
-        <h2 class="cellar-title reveal d1">Made with<br><em>time.</em></h2>
+        <span class="heritage-kicker reveal">American White Oak</span>
+        <h2 class="cellar-title reveal d1">Brand new<br><em>barrels.</em></h2>
         <p class="cellar-body reveal d2">
-          Some things cannot be rushed. In Mayag&#xFC;ez, our rum house carries tradition forward
-          one careful batch at a time.
+          Every batch of Ron Coqu&#xed;&#x2122; is aged in brand new American white oak barrels &#x2014;
+          never used, never recycled. New oak gives the rum its deepest
+          vanilla, caramel, and toasted character from the very first day.
         </p>
-      </div>
-      <div class="cellar-object">
-        <p class="cellar-fact cellar-fact-one reveal d2"><strong>Oak &amp; patience</strong>The barrel lends depth, warmth, and character over time.</p>
-        <div class="hero-barrel" id="heroBarrel">
-          <img src="img/coqui-oak-barrel-v2.webp" alt="A resting oak rum barrel" loading="lazy">
+        <p class="cellar-body reveal d2">
+          We source our barrels directly from cooperages in the American Midwest, where
+          the wood is air-dried and charred to our specifications. Each barrel is used once,
+          for one batch, and never reused &#x2014; because the spirit deserves the full depth
+          that only fresh oak can deliver.
+        </p>
+        <div class="cellar-facts-grid reveal d3">
+          <div class="cellar-fact-card">
+            <strong>100% new oak</strong>
+            <span>Never reused or recycled. Fresh barrels for every single batch.</span>
+          </div>
+          <div class="cellar-fact-card">
+            <strong>American white oak</strong>
+            <span>Quercus alba &#x2014; prized for vanilla, coconut, and caramel notes.</span>
+          </div>
+          <div class="cellar-fact-card">
+            <strong>Charred interior</strong>
+            <span>The char layer caramelizes sugars in the wood, adding depth and color.</span>
+          </div>
+          <div class="cellar-fact-card">
+            <strong>Mayag&#xFC;ez aged</strong>
+            <span>Tropical heat accelerates the exchange between spirit and wood.</span>
+          </div>
         </div>
-        <p class="cellar-fact cellar-fact-two reveal d3"><strong>Small batches</strong>Craft is measured carefully, one batch at a time.</p>
-        <p class="cellar-fact cellar-fact-three reveal d3"><strong>Mayag&#xFC;ez, PR</strong>Made on Puerto Rico&#x2019;s west coast.</p>
+      </div>
+      <div class="cellar-img-wrap reveal d1">
+        <img src="img/coqui-oak-barrel-v2.webp" alt="A brand new American white oak barrel at Destiler&#xed;a Coqu&#xed;" loading="lazy">
+        <p class="cellar-img-caption">Brand new American white oak &#x2014; one barrel, one batch</p>
       </div>
     </div>
   </section>
@@ -918,26 +917,7 @@
       });
     }
 
-    /* ── Foreground cellar barrel follows the cursor ── */
-    const cellarFeature = document.getElementById('cellarFeature');
-    if (cellarFeature) {
-      cellarFeature.addEventListener('mousemove', (e) => {
-        if (window.innerWidth <= 768) return;
-        const r = cellarFeature.getBoundingClientRect();
-        const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-        const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
-        cellarFeature.style.setProperty('--cellar-x', (nx * 14).toFixed(2) + 'px');
-        cellarFeature.style.setProperty('--cellar-y', (ny * 10).toFixed(2) + 'px');
-        cellarFeature.style.setProperty('--cellar-rx', (-ny * 2.4).toFixed(2) + 'deg');
-        cellarFeature.style.setProperty('--cellar-ry', (nx * 3).toFixed(2) + 'deg');
-      });
-      cellarFeature.addEventListener('mouseleave', () => {
-        cellarFeature.style.setProperty('--cellar-x', '0px');
-        cellarFeature.style.setProperty('--cellar-y', '0px');
-        cellarFeature.style.setProperty('--cellar-rx', '0deg');
-        cellarFeature.style.setProperty('--cellar-ry', '0deg');
-      });
-    }
+    /* Cellar barrel cursor-follow removed — section is now static layout */
 
     /* ── Event data & modal ── */
     const EVENTS = {
@@ -982,12 +962,14 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}"+
       ".nav-toggle[aria-expanded='true'] span:nth-child(2){opacity:0;}"+
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
-      ".mobile-menu{position:fixed;inset:0;z-index:600;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
+      ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
       ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
       ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
+      ".mobile-menu-sep{width:3rem;height:.5px;background:rgba(196,147,72,.4);margin:1rem 0;}"+
+      ".mobile-menu-account{font-size:1.4rem!important;color:rgba(247,242,232,.55)!important;}"+
       "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
     document.head.appendChild(s);
     var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
@@ -995,6 +977,10 @@
     var m=document.createElement('div');m.className='mobile-menu';
     var h='<button class="mobile-menu-close" aria-label="Close menu">&#10005;</button>';
     links.forEach(function(l){h+='<a href="'+l[0]+'">'+l[1]+'</a>';});
+    var hasSession=false;try{hasSession=!!JSON.parse(localStorage.getItem('coqui_supabase_session'))?.user;}catch(_){}
+    h+='<div class="mobile-menu-sep"></div>';
+    h+='<a href="'+(hasSession?'/account':'/login')+'" class="mobile-menu-account">'+(hasSession?'My Account':'Log In')+'</a>';
+    h+='<a href="/cart" class="mobile-menu-account">Cart</a>';
     m.innerHTML=h;document.body.appendChild(m);
     function close(){m.classList.remove('open');document.body.classList.remove('menu-open');btn.setAttribute('aria-expanded','false');}
     btn.addEventListener('click',function(){m.classList.add('open');document.body.classList.add('menu-open');btn.setAttribute('aria-expanded','true');});
