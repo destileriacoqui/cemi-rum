@@ -3,7 +3,8 @@ const { supabase } = require('./_supabase-admin');
 const { ivuFor } = require('./_ivu');
 const { siteUrl } = require('./_site-url');
 
-const tourTimes = new Set(['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:30 PM']);
+const weekdayTimes = new Set(['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:30 PM']);
+const saturdayTimes = new Set(['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:00 PM']);
 
 function dateOnly(value) {
   return /^\d{4}-\d{2}-\d{2}$/.test(String(value || '')) ? value : null;
@@ -26,7 +27,9 @@ module.exports = async function handler(req, res) {
     if (Number.isNaN(parsedDate.getTime()) || parsedDate < today || parsedDate.getDay() === 0) {
       throw new Error('Choose an available Monday through Saturday.');
     }
-    if (!tourTimes.has(tourTime)) throw new Error('Choose an available tour time.');
+    const isSaturday = parsedDate.getDay() === 6;
+    const validTimes = isSaturday ? saturdayTimes : weekdayTimes;
+    if (!validTimes.has(tourTime)) throw new Error(isSaturday ? 'Saturday tours are available until 4:00 PM.' : 'Choose an available tour time.');
     if (adults < 1) throw new Error('Each booking needs at least one paying adult.');
     if (guests > 50) throw new Error('For groups larger than 50, please call 787-805-1000.');
     const subtotal = adults * 45;

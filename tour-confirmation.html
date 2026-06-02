@@ -1,1 +1,73 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tour Confirmed — Destilería Coquí</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="/js/commerce-pages.css"></head><body><nav><a class="nav-logo" href="/">Coquí</a></nav><main class="page"><span class="eyebrow">Tour Confirmed</span><h1>We will see you <em>soon.</em></h1><p class="lede" data-tour-confirmation-message>Your payment is confirmed. We are loading your tour details.</p><div class="panel" style="max-width:46rem"><h2 class="section-title">Your reservation</h2><div class="detail-list" data-tour-confirmation></div><a class="btn" href="/">Return Home</a></div></main><script src="/js/tour-confirmation.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tour Confirmed — Destilería Coquí</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/js/commerce-pages.css">
+</head>
+<body>
+  <nav><a class="nav-logo" href="/">Coquí</a></nav>
+  <main class="page">
+    <span class="eyebrow">Tour Confirmed</span>
+    <h1>We will see you <em>soon.</em></h1>
+    <p class="lede" data-tour-confirmation-message>Your payment is confirmed. We are loading your tour details.</p>
+    <div class="panel" style="max-width:46rem">
+      <h2 class="section-title">Your reservation</h2>
+      <div class="detail-list" data-tour-confirmation></div>
+      <a class="btn" href="/">Return Home</a>
+    </div>
+
+    <section class="panel" id="postCheckoutAccount" style="max-width:38rem;margin-top:3rem;" hidden>
+      <h2 style="font:400 1.6rem var(--serif,'Cormorant Garamond',serif);margin-bottom:0.6rem;">Save your booking to an account</h2>
+      <p style="color:var(--muted,#7D6654);font-size:0.84rem;line-height:1.7;margin-bottom:1.4rem;">Create a free account to track this booking and any future orders.</p>
+      <form id="postCheckoutSignup" class="form-grid">
+        <label class="wide">Full Name<input name="full_name" autocomplete="name" required></label>
+        <label class="wide">Email<input type="email" name="email" autocomplete="email" required></label>
+        <label class="wide">Password<input type="password" name="password" minlength="6" required></label>
+        <label class="wide">Phone <span style="color:var(--muted);font-weight:300;text-transform:none;letter-spacing:0;">(optional)</span><input name="phone" autocomplete="tel"></label>
+        <div class="wide">
+          <button class="btn" type="submit">Create Account</button>
+          <p class="message" id="postCheckoutMessage" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="/js/site-commerce.js"></script>
+  <script src="/js/supabase-client.js"></script>
+  <script src="/js/tour-confirmation.js"></script>
+  <script>
+  (function () {
+    var session = window.CoquiSupabase && window.CoquiSupabase.getSession();
+    if (!session || !session.user) {
+      document.getElementById('postCheckoutAccount').hidden = false;
+    }
+    var form = document.getElementById('postCheckoutSignup');
+    var message = document.getElementById('postCheckoutMessage');
+    if (form) form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      message.textContent = 'Creating your account...';
+      message.classList.remove('is-error');
+      var data = Object.fromEntries(new FormData(form));
+      try {
+        var result = await window.CoquiSupabase.signup({
+          email: data.email, password: data.password,
+          fullName: data.full_name, phone: data.phone
+        });
+        if (result.access_token) {
+          message.textContent = 'Account created and your booking has been saved! You can view it in your account.';
+          form.style.display = 'none';
+        } else {
+          message.textContent = 'Account created! Check your email to confirm your address, then log in to view your saved bookings.';
+          form.style.display = 'none';
+        }
+      } catch (error) {
+        message.textContent = error.message;
+        message.classList.add('is-error');
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

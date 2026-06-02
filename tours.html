@@ -395,7 +395,7 @@
           <input type="hidden" name="tour_date" id="tourDate">
           <div class="booking-grid">
             <label>Tour time
-              <select name="tour_time" required>
+              <select name="tour_time" id="tourTimeSelect" required>
                 <option value="">Choose a time</option>
                 <option>9:30 AM</option>
                 <option>11:00 AM</option>
@@ -404,6 +404,7 @@
                 <option>4:30 PM</option>
               </select>
             </label>
+            <div class="wide" id="tourGroupNotice" style="display:none;padding:1rem 1.25rem;background:rgba(196,147,72,0.1);border-left:2px solid var(--gold);font-size:0.84rem;color:var(--muted);line-height:1.7;"></div>
             <label>Adults, $45 each
               <input type="number" name="adult_guests" min="1" max="50" value="1" required>
             </label>
@@ -547,6 +548,22 @@
       }
     }
 
+    const WEEKDAY_TIMES = ['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:30 PM'];
+    const SATURDAY_TIMES = ['9:30 AM', '11:00 AM', '1:30 PM', '3:00 PM', '4:00 PM'];
+
+    function updateTimeOptions(isSaturday) {
+      const select = document.getElementById('tourTimeSelect');
+      const times = isSaturday ? SATURDAY_TIMES : WEEKDAY_TIMES;
+      const current = select.value;
+      select.innerHTML = '<option value="">Choose a time</option>' +
+        times.map(t => '<option' + (t === current ? ' selected' : '') + '>' + t + '</option>').join('');
+      // If current selection isn't valid for this day, reset
+      if (current && !times.includes(current)) {
+        select.value = '';
+        document.getElementById('tourGroupNotice').style.display = 'none';
+      }
+    }
+
     function selectDate(cell, day, date) {
       if (selectedCell) selectedCell.classList.remove('selected');
       cell.classList.add('selected');
@@ -561,6 +578,9 @@
         String(date.getMonth() + 1).padStart(2, '0'),
         String(date.getDate()).padStart(2, '0')
       ].join('-');
+      updateTimeOptions(date.getDay() === 6);
+      document.getElementById('tourGroupNotice').style.display = 'none';
+      document.getElementById('tourTimeSelect').value = '';
       document.getElementById('bookingPanel').classList.add('visible');
       document.getElementById('bookingPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -575,6 +595,24 @@
     });
 
     renderCalendar();
+
+    /* ── Check existing bookings when tour time is selected ── */
+    document.getElementById('tourTimeSelect').addEventListener('change', async function () {
+      const notice = document.getElementById('tourGroupNotice');
+      const tourDate = document.getElementById('tourDate').value;
+      const tourTime = this.value;
+      notice.style.display = 'none';
+      notice.textContent = '';
+      if (!tourDate || !tourTime) return;
+      try {
+        const response = await fetch('/api/tour-availability?date=' + encodeURIComponent(tourDate) + '&time=' + encodeURIComponent(tourTime));
+        const data = await response.json();
+        if (data.groups > 0 && data.total_guests > 0) {
+          notice.textContent = 'There is already a group of ' + data.total_guests + ' people booked for this tour time. You may still book this tour and join the same group.';
+          notice.style.display = 'block';
+        }
+      } catch (_) { /* silently ignore availability check errors */ }
+    });
   </script>
   <script src="/js/tour-booking.js"></script>
   <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->
