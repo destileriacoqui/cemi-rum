@@ -7,8 +7,8 @@ Updated: June 2, 2026
 - Repository: `https://github.com/destileriacoqui/cemi-rum`
 - Branch: `main`
 - Production site: `https://cemi-rum.vercel.app`
-- Latest deployed code commit: `be0ebaf` (`Harden admin orders and auth callbacks`)
-- Latest verified Vercel deployment: `dpl_BruYBzmjuxSZMpnbPec9i4TmAu34`
+- Latest deployed code commit: `456dcc4` (`Align account signup validation and tour availability`)
+- Latest verified Vercel deployment: `dpl_5eXGn2Zd6vaZVuoQge1o3EYZGc7S`
 - Deployment state checked after push: `READY`
 - Supabase project: `autkqbfgniopxldszdur`
 - Vercel project: `prj_Tqp4zZdhSn0HllZnyZzwS85amrX3`
@@ -19,6 +19,7 @@ Do not add `.claude/`, `.supply-chain-risk-auditor/`, or `vercel-backup/` to com
 ## Latest Commits
 
 ```text
+456dcc4 Align account signup validation and tour availability
 be0ebaf Harden admin orders and auth callbacks
 0c0e752 Merge tour availability into checkout endpoint to fix Vercel 12-function limit
 c2460f7 Add login/cart to mobile menu, redesign barrel section with white oak content

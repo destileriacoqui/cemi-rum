@@ -79,13 +79,13 @@ Commerce features currently deployed:
 Latest deployed code commit:
 
 ```text
-be0ebaf Harden admin orders and auth callbacks
+456dcc4 Align account signup validation and tour availability
 ```
 
 Latest verified Vercel deployment:
 
 ```text
-dpl_BruYBzmjuxSZMpnbPec9i4TmAu34
+dpl_5eXGn2Zd6vaZVuoQge1o3EYZGc7S
 ```
 
 ## Live Database Cleanup Completed
@@ -410,7 +410,7 @@ Verified after reconciling the Claude session:
 
 - Claude pushed commits `87ae47e` through `0c0e752`
 - the follow-up hardening reconciliation was rebased onto Claude's work and pushed as `be0ebaf`
-- Vercel production deployment `dpl_BruYBzmjuxSZMpnbPec9i4TmAu34` is `Ready`
+- Vercel production deployment `dpl_5eXGn2Zd6vaZVuoQge1o3EYZGc7S` is `Ready`
 - syntax checks passed
 - static build passed
 - `npm audit --omit=dev --audit-level=high` returned `0 vulnerabilities`
@@ -420,6 +420,8 @@ Verified after reconciling the Claude session:
 - recoverable deletion migration is applied live
 - one paid order and its paid pickup request remain active
 - one unpaid pickup test, its pickup request, and one unpaid tour test were soft-deleted after verification
+- post-checkout account forms now match the main signup page's eight-character minimum password
+- soft-deleted tour records no longer count against availability
 
 GitHub and Vercel are synced again.
 
