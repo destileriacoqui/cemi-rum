@@ -605,7 +605,7 @@
       notice.textContent = '';
       if (!tourDate || !tourTime) return;
       try {
-        const response = await fetch('/api/tour-availability?date=' + encodeURIComponent(tourDate) + '&time=' + encodeURIComponent(tourTime));
+        const response = await fetch('/api/create-tour-checkout-session?date=' + encodeURIComponent(tourDate) + '&time=' + encodeURIComponent(tourTime));
         const data = await response.json();
         if (data.groups > 0 && data.total_guests > 0) {
           notice.textContent = 'There is already a group of ' + data.total_guests + ' people booked for this tour time. You may still book this tour and join the same group.';
