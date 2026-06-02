@@ -324,29 +324,57 @@
     }
     .private-events-call:hover { color: var(--gold); gap: 1.5rem; }
 
-    /* ─── SPACE GALLERY ───────────────────────────────── */
-    .plaza-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
+    /* ─── LOCATION / MAP ─────────────────────────────── */
+    .plaza-location {
       padding: 10rem 4rem 12rem;
       max-width: 1400px; margin: 0 auto;
     }
-    .gallery-item {
-      overflow: hidden;
-      position: relative;
+    .plaza-location-inner {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 5rem; align-items: start;
     }
-    .gallery-item img {
-      width: 100%; display: block;
-      object-fit: cover;
-      filter: sepia(10%) contrast(1.04);
-      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1);
-      will-change: transform;
+    .plaza-location-text {}
+    .plaza-location-h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      font-weight: 300; line-height: 1.04;
+      letter-spacing: -0.03em; color: var(--ink);
+      margin-bottom: 2.5rem;
     }
-    .gallery-item:hover img { transform: scale(1.028); }
-    .gallery-item:nth-child(1) img { aspect-ratio: 4/5; }
-    .gallery-item:nth-child(2) img { aspect-ratio: 4/5; margin-top: 4rem; }
-    .gallery-item:nth-child(3) img { aspect-ratio: 4/5; margin-top: 2rem; }
+    .plaza-location-h2 em { font-style: italic; color: var(--amber); }
+    .plaza-location-address {
+      font-size: 0.9rem; font-weight: 300; color: var(--ink);
+      line-height: 1.75; margin-bottom: 2rem;
+    }
+    .plaza-location-note {
+      font-size: 0.78rem; color: var(--muted); line-height: 1.7;
+      padding-top: 1.5rem; border-top: 0.5px solid rgba(26,18,7,0.1);
+    }
+    .plaza-location-directions {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;
+    }
+    .dir-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.7rem 1.35rem;
+      font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      text-decoration: none; color: var(--ink);
+      border: 0.5px solid rgba(26,18,7,0.22);
+      background: transparent;
+      transition: border-color 0.35s ease, color 0.35s ease, background 0.35s ease;
+      cursor: pointer;
+    }
+    .dir-btn:hover { border-color: var(--amber); color: var(--amber); }
+    .dir-btn svg { flex-shrink: 0; }
+    .plaza-map-wrap {
+      position: relative; overflow: hidden;
+      border: 0.5px solid rgba(26,18,7,0.1);
+      aspect-ratio: 4/3;
+    }
+    .plaza-map-wrap iframe {
+      width: 100%; height: 100%; border: 0;
+      filter: sepia(12%) saturate(0.85) brightness(1.02);
+    }
 
     /* ─── VISIT CTA ───────────────────────────────────── */
     .visit-cta {
@@ -412,8 +440,8 @@
       .plaza-spaces { grid-template-columns: 1fr; }
       .plaza-space { border-right: none; border-bottom: 0.5px solid rgba(26,18,7,0.1); }
       .plaza-space:last-child { border-bottom: none; }
-      .plaza-gallery { grid-template-columns: 1fr 1fr; padding: 7rem 2.5rem 9rem; }
-      .gallery-item:nth-child(3) { display: none; }
+      .plaza-location { padding: 7rem 2.5rem 9rem; }
+      .plaza-location-inner { grid-template-columns: 1fr; gap: 3rem; }
       .private-events { padding: 7rem 2.5rem; }
       .private-events-inner { grid-template-columns: 1fr; gap: 4rem; }
       .visit-cta { padding: 7rem 2.5rem; }
@@ -427,10 +455,8 @@
       .page-hero-content { padding: 0 1.75rem 4.5rem; }
       .plaza-intro { padding: 8rem 0 0; }
       .plaza-panorama { height: 320px; margin-top: 5rem; }
-      .plaza-gallery { grid-template-columns: 1fr; padding: 5rem 1.75rem 7rem; }
-      .gallery-item:nth-child(2) { margin-top: 0; }
-      .gallery-item:nth-child(3) { display: block; margin-top: 0; }
-      .gallery-item img { aspect-ratio: 16/9 !important; }
+      .plaza-location { padding: 5rem 1.75rem 7rem; }
+      .plaza-map-wrap { aspect-ratio: 16/10; }
       .private-events { padding: 6rem 1.75rem; }
       .private-events-list { grid-template-columns: 1fr; }
       .private-event-detail:nth-child(even) { padding-left: 0; border-left: none; }
@@ -526,15 +552,46 @@
     </div>
   </section>
 
-  <!-- ─── SPACE GALLERY ─────────────────────────────────── -->
-  <div class="plaza-gallery">
-    <div class="gallery-item reveal">
-      <img src="img/event-taste-of-rum.jpg" alt="Destilería Coquí tasting gathering" loading="lazy">
+  <!-- ─── LOCATION / MAP ─────────────────────────────────── -->
+  <section class="plaza-location">
+    <div class="plaza-location-inner">
+      <div class="plaza-location-text">
+        <p class="eyebrow reveal">Find Us</p>
+        <h2 class="plaza-location-h2 reveal d1">Come straight<br><em>to the source.</em></h2>
+        <p class="plaza-location-address reveal d2">
+          Parque Industrial Mar&#xed;a L. Arcelay<br>
+          Edificio 2, M&#xF3;dulo 2, Suite 103<br>
+          Mayag&#xFC;ez, PR 00682
+        </p>
+        <p class="plaza-location-note reveal d2">
+          Free parking on site. Open Monday&ndash;Friday 9:30 AM&ndash;5:30 PM, Saturday 9:30 AM&ndash;4:30 PM.
+        </p>
+        <div class="plaza-location-directions reveal d3">
+          <a class="dir-btn" href="https://www.google.com/maps/dir/?api=1&destination=Parque+Industrial+Maria+L+Arcelay+Edificio+2+Modulo+2+Mayaguez+PR+00682" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
+            Google Maps
+          </a>
+          <a class="dir-btn" href="https://maps.apple.com/?daddr=Parque+Industrial+Maria+L+Arcelay+Edificio+2+Modulo+2+Mayaguez+PR+00682" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/></svg>
+            Apple Maps
+          </a>
+          <a class="dir-btn" href="https://waze.com/ul?q=Parque+Industrial+Maria+L+Arcelay+Mayaguez+PR+00682&navigate=yes" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 2.3.8 4.4 2.1 6.1.3-.8.7-1.5 1.2-2.1C4.5 14.7 4 13.4 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8c0 3.2-1.9 6-4.7 7.3.2.6.3 1.3.3 2 0 .2 0 .5-.1.7C19.5 20.1 22 16.4 22 12c0-5.5-4.5-10-10-10zm-2.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-6.2 3.5c.7 1.2 2.1 2 3.7 2s3-.8 3.7-2H8.3z" fill="currentColor"/></svg>
+            Waze
+          </a>
+        </div>
+      </div>
+      <div class="plaza-map-wrap reveal d2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3789.5!2d-67.1454!3d18.2013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDEyJzA0LjciTiA2N8KwMDgnNDMuNCJX!5e0!3m2!1sen!2spr!4v1"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Destiler&#xed;a Coqu&#xed; location in Mayag&#xFC;ez, Puerto Rico"
+        ></iframe>
+      </div>
     </div>
-    <div class="gallery-item reveal d1">
-      <img src="img/electric-420-fest.jpg" alt="Live music gathering at Coquí Plaza" loading="lazy">
-    </div>
-  </div>
+  </section>
 
   <!-- ─── PRIVATE EVENTS ───────────────────────────────── -->
   <section class="private-events">
@@ -673,6 +730,36 @@
     m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
     window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
+  })();
+  </script>
+  <!-- ─── FIND US dropdown (self-contained, consistent across pages) ─── -->
+  <script>
+  (function(){
+    var fl=document.querySelector('.footer-links'); if(!fl||document.querySelector('.find-us-wrap')) return;
+    var s=document.createElement('style');
+    s.textContent=".find-us-wrap{position:relative;}"+
+      ".find-us-btn{display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;cursor:pointer;font-family:var(--sans,system-ui,sans-serif);font-size:.65rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#7D6654);text-decoration:none;transition:color .35s ease;padding:0;line-height:1;}"+
+      ".find-us-btn:hover{color:var(--ink,#1A1207);}"+
+      ".find-us-dd{position:absolute;bottom:calc(100% + .75rem);left:50%;transform:translateX(-50%) translateY(4px);background:rgba(26,18,7,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:.5rem .15rem;display:flex;flex-direction:column;gap:.05rem;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;white-space:nowrap;z-index:100;border-radius:2px;}"+
+      ".find-us-dd.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}"+
+      ".find-us-dd::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(26,18,7,.94);}"+
+      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,242,232,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
+      ".find-us-dd a:hover{color:#F7F2E8;background:rgba(247,242,232,.08);}";
+    document.head.appendChild(s);
+    var li=document.createElement('li');li.className='find-us-wrap';
+    li.innerHTML='<button class="find-us-btn" aria-expanded="false" aria-label="Get directions to Destilería Coquí">'+
+      '<svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>'+
+      'Find Us</button>'+
+      '<div class="find-us-dd">'+
+      '<a href="https://www.google.com/maps/dir/?api=1&destination=Parque+Industrial+Maria+L+Arcelay+Edificio+2+Modulo+2+Mayaguez+PR+00682" target="_blank" rel="noopener">Google Maps</a>'+
+      '<a href="https://maps.apple.com/?daddr=Parque+Industrial+Maria+L+Arcelay+Edificio+2+Modulo+2+Mayaguez+PR+00682" target="_blank" rel="noopener">Apple Maps</a>'+
+      '<a href="https://waze.com/ul?q=Parque+Industrial+Maria+L+Arcelay+Mayaguez+PR+00682&navigate=yes" target="_blank" rel="noopener">Waze</a>'+
+      '</div>';
+    fl.appendChild(li);
+    var btn=li.querySelector('.find-us-btn'),dd=li.querySelector('.find-us-dd');
+    btn.addEventListener('click',function(e){e.stopPropagation();var o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+    document.addEventListener('click',function(){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
   })();
   </script>
   <script src="/js/site-commerce.js"></script>

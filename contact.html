@@ -294,15 +294,36 @@
     }, { threshold: 0.06 });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    /* Placeholder submit handler — replace with Wix Forms / real endpoint on launch */
+    /* Contact form → sends to jessica@prsugar.com + orders@prsugar.com via /api/contact */
     const form = document.getElementById('contactForm');
     const success = document.getElementById('formSuccess');
-    form.addEventListener('submit', (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      success.classList.add('visible');
-      form.querySelector('button[type="submit"]').disabled = true;
-      form.reset();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending&hellip;';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            firstName: form.firstName.value.trim(),
+            lastName: form.lastName.value.trim(),
+            email: form.email.value.trim(),
+            subject: form.subject.value.trim(),
+            message: form.message.value.trim()
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+        success.classList.add('visible');
+        form.reset();
+      } catch (err) {
+        alert(err.message || 'Could not send your message. Please call us at 787-805-1000.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send Message <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
     });
   </script>
   <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->
@@ -341,6 +362,36 @@
     m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
     window.addEventListener('resize',function(){if(window.innerWidth>768)close();});
+  })();
+  </script>
+  <!-- ─── FIND US dropdown (self-contained, consistent across pages) ─── -->
+  <script>
+  (function(){
+    var fl=document.querySelector('.footer-links'); if(!fl||document.querySelector('.find-us-wrap')) return;
+    var s=document.createElement('style');
+    s.textContent=".find-us-wrap{position:relative;}"+
+      ".find-us-btn{display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;cursor:pointer;font-family:var(--sans,system-ui,sans-serif);font-size:.65rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#7D6654);text-decoration:none;transition:color .35s ease;padding:0;line-height:1;}"+
+      ".find-us-btn:hover{color:var(--ink,#1A1207);}"+
+      ".find-us-dd{position:absolute;bottom:calc(100% + .75rem);left:50%;transform:translateX(-50%) translateY(4px);background:rgba(26,18,7,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:.5rem .15rem;display:flex;flex-direction:column;gap:.05rem;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;white-space:nowrap;z-index:100;border-radius:2px;}"+
+      ".find-us-dd.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}"+
+      ".find-us-dd::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(26,18,7,.94);}"+
+      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,242,232,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
+      ".find-us-dd a:hover{color:#F7F2E8;background:rgba(247,242,232,.08);}";
+    document.head.appendChild(s);
+    var li=document.createElement('li');li.className='find-us-wrap';
+    li.innerHTML='<button class="find-us-btn" aria-expanded="false" aria-label="Get directions to Destilería Coquí">'+
+      '<svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>'+
+      'Find Us</button>'+
+      '<div class="find-us-dd">'+
+      '<a href="https://www.google.com/maps/dir/?api=1&destination=Parque+Industrial+Maria+L+Arcelay+Edificio+2+Modulo+2+Mayaguez+PR+00682" target="_blank" rel="noopener">Google Maps</a>'+
+      '<a href="https://maps.apple.com/?daddr=Parque+Industrial+Maria+L+Arcelay+Edificio+2+Modulo+2+Mayaguez+PR+00682" target="_blank" rel="noopener">Apple Maps</a>'+
+      '<a href="https://waze.com/ul?q=Parque+Industrial+Maria+L+Arcelay+Mayaguez+PR+00682&navigate=yes" target="_blank" rel="noopener">Waze</a>'+
+      '</div>';
+    fl.appendChild(li);
+    var btn=li.querySelector('.find-us-btn'),dd=li.querySelector('.find-us-dd');
+    btn.addEventListener('click',function(e){e.stopPropagation();var o=dd.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+    document.addEventListener('click',function(){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
   })();
   </script>
   <script src="/js/site-commerce.js"></script>
