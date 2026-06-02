@@ -24,9 +24,33 @@
     else storage.removeItem(SESSION_KEY);
     window.CoquiAuth?.setSession(value);
   };
-  async function request(path, options = {}) {
+  const sessionExpiresSoon = session => Number(session?.expires_at || 0) <= Math.floor(Date.now() / 1000) + 30;
+  const isExpiredTokenError = (response, payload) => response.status === 401
+    && /jwt expired|token.*expired|expired.*token/i.test(payload.msg || payload.message || payload.error_description || '');
+  async function refreshSession() {
     const cfg = await getConfig();
     const current = getSession();
+    if (!current?.refresh_token) {
+      saveSession(null);
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    const response = await fetch(`${cfg.supabaseUrl}/auth/v1/token?grant_type=refresh_token`, {
+      method: 'POST',
+      headers: { apikey: cfg.supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: current.refresh_token })
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || !payload.access_token) {
+      saveSession(null);
+      throw new Error('Your session has expired. Please log in again.');
+    }
+    saveSession({ ...payload, user: payload.user || current.user });
+    return getSession();
+  }
+  async function request(path, options = {}, retryExpiredToken = true) {
+    const cfg = await getConfig();
+    let current = getSession();
+    if (current?.refresh_token && sessionExpiresSoon(current)) current = await refreshSession();
     const headers = {
       apikey: cfg.supabaseAnonKey,
       'Content-Type': 'application/json',
@@ -35,6 +59,10 @@
     if (current?.access_token) headers.Authorization = `Bearer ${current.access_token}`;
     const response = await fetch(`${cfg.supabaseUrl}${path}`, { ...options, headers });
     const payload = await response.json().catch(() => ({}));
+    if (!response.ok && retryExpiredToken && current?.refresh_token && isExpiredTokenError(response, payload)) {
+      await refreshSession();
+      return request(path, options, false);
+    }
     if (!response.ok) throw new Error(payload.msg || payload.message || payload.error_description || 'Something went wrong.');
     return payload;
   }
@@ -144,5 +172,5 @@
     if (!getSession()?.access_token) return;
     await request('/rest/v1/rpc/claim_my_guest_orders', { method: 'POST', body: '{}' });
   }
-  window.CoquiSupabase = { getConfig, getSession, saveSession, signup, resendSignupConfirmation, completeEmailConfirmation, login, logout, profile, updateProfile, orders, claimGuestOrders };
+  window.CoquiSupabase = { getConfig, getSession, saveSession, refreshSession, signup, resendSignupConfirmation, completeEmailConfirmation, login, logout, profile, updateProfile, orders, claimGuestOrders };
 })();

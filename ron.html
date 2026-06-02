@@ -114,6 +114,7 @@
       font-family: var(--serif); font-size: 1.9rem; font-weight: 200; letter-spacing: -0.01em;
       color: var(--amber); display: flex; align-items: center; gap: 1.75rem; opacity: 1;
     }
+    .catalog-category-title { display: inline-block; }
     .catalog-category-label::after { content: ''; flex: 1; height: 0.5px; background: var(--amber); opacity: 0.3; }
 
     /* ─── PRODUCT CARDS ───────────────────────────────── */
@@ -127,7 +128,6 @@
       filter: drop-shadow(0 8px 24px rgba(26,18,7,0.10));
     }
     .prod-card:hover .prod-img { transform: scale(1.04); }
-    [data-product="pitorro-coco-35"] .prod-img { object-fit: cover; padding: 0; }
     .prod-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(247,242,232,0.98) 0%, rgba(247,242,232,0.72) 42%, rgba(247,242,232,0) 68%);
@@ -236,7 +236,7 @@
 
         <a href="/producto?id=ron-blanco" class="prod-card reveal" data-product="ron-blanco">
           <div class="prod-img-wrap">
-            <img class="prod-img" src="img/ron-blanco.png" alt="Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
+            <img class="prod-img" src="img/ron-blanco-store.webp" alt="Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Ron Coqu&#xED;&#x2122; Blanco</p>
               <p class="prod-overlay-teaser">Puerto Rico's everyday rum. Clean, smooth, unmistakably island.</p>
@@ -266,7 +266,7 @@
 
         <!-- ── Pitorro® Original ────────────────────────── -->
         <div class="catalog-category">
-          <span class="catalog-category-label">Pitorro<sup>®</sup> Original</span>
+          <span class="catalog-category-label"><span class="catalog-category-title">Pitorro<sup>®</sup> Original</span></span>
         </div>
 
         <a href="/producto?id=pitorro-blanco" class="prod-card reveal" data-product="pitorro-blanco">
@@ -286,7 +286,7 @@
 
         <a href="/producto?id=pitorro-coco-35" class="prod-card reveal d1" data-product="pitorro-coco-35">
           <div class="prod-img-wrap">
-            <img class="prod-img" src="img/pitorro-coco-35-store.webp" alt="Pitorro&#xAE; de Coco" loading="lazy">
+            <img class="prod-img" src="img/pitorro-coco-35-store-v2.webp" alt="Pitorro&#xAE; de Coco" loading="lazy">
             <div class="prod-overlay">
               <p class="prod-overlay-name">Pitorro<sup>®</sup> de Coco</p>
               <p class="prod-overlay-teaser">The island's boldest spirit meets pure Puerto Rican coconut. 35% ABV.</p>
@@ -406,7 +406,7 @@
 
         <!-- ── Pitorro® Blends ──────────────────────────── -->
         <div class="catalog-category">
-          <span class="catalog-category-label">Pitorro<sup>®</sup> Blends</span>
+          <span class="catalog-category-label"><span class="catalog-category-title">Pitorro<sup>®</sup> Blends</span></span>
         </div>
 
         <a href="/producto?id=blend-coco-pina" class="prod-card reveal" data-product="blend-coco-pina">
@@ -556,7 +556,7 @@
 
         <!-- ── Pitorro® Miniatures ─────────────────────── -->
         <div class="catalog-category">
-          <span class="catalog-category-label">Pitorro<sup>&#xAE;</sup> Miniatures</span>
+          <span class="catalog-category-label"><span class="catalog-category-title">Pitorro<sup>&#xAE;</sup> Miniatures</span></span>
         </div>
 
         <a href="/producto?id=mini-blanco" class="prod-card reveal" data-product="mini-blanco">
