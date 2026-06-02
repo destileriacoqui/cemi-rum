@@ -9,6 +9,7 @@
     "build": "echo 'Static site — no build step required.'"
   },
   "devDependencies": {
+    "@types/node": "^25.9.1",
     "serve": "^14.2.3"
   },
   "engines": {
