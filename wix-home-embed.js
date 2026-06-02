@@ -9,11 +9,11 @@
   var IMG_PLAYA = 'https://static.wixstatic.com/media/f04508_656a56188bc04b039df4430627f084d6~mv2.jpeg';
   var IMG_ELECTRIC = 'https://static.wixstatic.com/media/f04508_1d8d5acfdaf34adaacb2fc9379bf05fc~mv2.jpeg';
   var IMG_BARRICAS = 'https://static.wixstatic.com/media/f04508_8b8b22ca1ceb4491a489aeeedc92f70f~mv2.webp';
-  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo.svg';
+  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo-v2.svg';
   var IMG_FERIA = 'https://cemi-rum.vercel.app/img/event-feria-pitorro.jpg';
   var IMG_TASTE = 'https://cemi-rum.vercel.app/img/event-taste-of-rum.jpg';
   var IMG_ELECTRIC_LIVE = 'https://cemi-rum.vercel.app/img/electric-420-fest.jpg';
-  var IMG_FANGO = 'https://cemi-rum.vercel.app/img/event-fango-fest.png';
+  var IMG_FANGO = 'https://cemi-rum.vercel.app/img/event-fango-fest.webp';
 
   var AR = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var AD = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M6.5 1L6.5 12M1 6.5L6.5 12L12 6.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';

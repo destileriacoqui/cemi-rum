@@ -7,11 +7,11 @@
 
   var IMG_CAMPO = 'https://static.wixstatic.com/media/f04508_4c736d9258b046718273b89c963c99ba~mv2.jpeg';
   var IMG_MUJER = 'https://static.wixstatic.com/media/f04508_ccc2821cd65643babed7b553cedec3ca~mv2.jpg';
-  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo.svg';
+  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo-v2.svg';
   var IMG_STORY_02 = 'https://cemi-rum.vercel.app/img/story-coqui-02.jpeg';
   var IMG_STORY_03 = 'https://cemi-rum.vercel.app/img/story-coqui-03.jpeg';
   var IMG_STORY_04 = 'https://cemi-rum.vercel.app/img/story-coqui-04.webp';
-  var IMG_PLAZA = 'https://cemi-rum.vercel.app/img/coqui-plaza-bar.png';
+  var IMG_PLAZA = 'https://cemi-rum.vercel.app/img/coqui-plaza-bar.webp';
   var AR = '<svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   var noise = document.createElement('div');

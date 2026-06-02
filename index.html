@@ -40,6 +40,11 @@
 
     img { display: block; max-width: 100%; }
 
+    .heritage-grid, .cellar-feature, .home-feature, .events-section, .awards, .tours-section, footer {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 900px;
+    }
+
     /* ─── GRAIN OVERLAY ─────────────────────────────────── */
     /* Fixed noise layer for film-grain depth — no GPU repaint impact */
     .noise-layer {
@@ -126,7 +131,10 @@
     .hero-content {
       position: relative; z-index: 10; grid-column: 1;
       display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 5rem 4.5rem 7.5rem;
+      /* Top padding reserves room for the fixed nav. When the stack is taller than
+         the viewport it pins to this top edge, so it must clear the logo; on tall
+         screens flex-end keeps content low and the reserve is simply unused. */
+      padding: 8.5rem 4.5rem 7.5rem;
     }
     .hero-eyebrow {
       font-size: 0.62rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase;
@@ -491,7 +499,7 @@
     @media (max-width: 1100px) {
       nav { padding: 1.5rem 2.5rem; }
       nav.scrolled { padding: 1.1rem 2.5rem; }
-      .hero-content { padding: 4rem 2.5rem 6.5rem; }
+      .hero-content { padding: 7rem 2.5rem 6.5rem; }
       .home-feature-inner { padding: 0 2.5rem 6rem; }
       .heritage-inner { gap: 4rem 3.5rem; }
       .cellar-inner { min-height: auto; }
@@ -512,7 +520,7 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
-      .hero-content { padding: 2rem 1.75rem 5.5rem; }
+      .hero-content { padding: 7rem 1.75rem 5.5rem; }
       .hero-scroll-indicator { display: none; }
       .events-section { padding: 8rem 0 9rem; }
       .events-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
@@ -545,6 +553,29 @@
     @media (max-width: 520px) {
       .events-grid { grid-template-columns: 1fr; }
     }
+    /* Short, wide viewports (laptops / short desktop windows):
+       the bottom-anchored hero stack can grow taller than the screen, which pins
+       the eyebrow to the top padding and pushes it into the fixed logo. Trim the
+       nav, scale the headline to viewport height, and reserve enough top room so
+       the eyebrow always clears the logo. Scoped to >=769px so mobile is untouched. */
+    @media (min-width: 769px) and (max-height: 860px) {
+      nav { padding-top: 1.4rem; padding-bottom: 1.4rem; }
+      nav.scrolled { padding-top: 1rem; padding-bottom: 1rem; }
+      .nav-logo img { width: clamp(7.5rem, 10vw, 9.5rem); }
+      .hero-content { padding-top: 8.5rem; padding-bottom: 4rem; }
+      .hero-eyebrow { margin-bottom: 1.25rem; }
+      .hero-h1 { font-size: clamp(3.2rem, 10.5vh, 6rem); margin-bottom: 1.5rem; }
+      .hero-sub { margin-bottom: 2rem; line-height: 1.75; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .noise-layer { display: none; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -554,7 +585,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-logo.svg" alt="Destilería Coquí"></a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-logo-v2.svg" alt="Destilería Coquí"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
@@ -567,9 +598,7 @@
   <!-- ─── HERO ─────────────────────────────────────────── -->
   <section class="hero" id="home">
     <div class="hero-img">
-      <video autoplay muted loop playsinline>
-        <source src="hero-bg.mp4" type="video/mp4">
-      </video>
+      <video id="heroVideo" muted loop playsinline preload="none" poster="img/hero-poster.webp" aria-hidden="true"></video>
     </div>
     <div class="hero-content">
       <p class="hero-eyebrow">Destiler&#xed;a Coqu&#xed;, Inc. &nbsp;&middot;&nbsp; Mayag&#xFC;ez, Puerto Rico &nbsp;&middot;&nbsp; Est. 2006</p>
@@ -730,7 +759,7 @@
   <!-- ─── HOME FEATURE: COQUÍ PLAZA ─── -->
   <section class="home-feature">
     <div class="home-feature-bg">
-      <img src="img/coqui-plaza-bar.png" alt="Coquí Plaza bar in Mayagüez, Puerto Rico" loading="lazy">
+      <img src="img/coqui-plaza-bar.webp" alt="Coquí Plaza bar in Mayagüez, Puerto Rico" loading="lazy">
     </div>
     <div class="home-feature-overlay"></div>
     <div class="home-feature-inner">
@@ -806,7 +835,7 @@
         </article>
 
         <article class="event-card reveal d3" data-event="fango-fest" role="button" tabindex="0" aria-label="Fango Fest &#x2014; open for details">
-          <div class="event-bg"><img src="img/event-fango-fest.png" alt="" loading="lazy"></div>
+          <div class="event-bg"><img src="img/event-fango-fest.webp" alt="" loading="lazy"></div>
           <div class="event-overlay"></div>
           <div class="event-info">
             <span class="event-type">Music &amp; Culture</span>
@@ -881,7 +910,7 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo"><img src="img/destileria-coqui-logo.svg" alt="Destilería Coquí"></span>
+    <span class="footer-logo"><img src="img/destileria-coqui-logo-v2.svg" alt="Destilería Coquí"></span>
     <p class="footer-copy">
       &copy; 2026 Destiler&#xed;a Coqu&#xed;, Inc. &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
@@ -913,6 +942,24 @@
   </div>
 
   <script>
+    /* ── Adaptive hero: motion for capable devices, immediate poster elsewhere ── */
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const slowConnection = connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType || ''));
+      const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 2;
+      const lowCpu = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 2;
+      if (!reducedMotion && !slowConnection && !lowMemory && !lowCpu) {
+        const source = document.createElement('source');
+        source.src = 'hero-bg-lite.mp4';
+        source.type = 'video/mp4';
+        heroVideo.appendChild(source);
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
+    }
+
     /* ── Scroll reveal ── */
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
@@ -941,8 +988,16 @@
         section.style.setProperty('--py', py + 'px');
       });
     };
-    window.addEventListener('scroll', parallaxTick, { passive: true });
-    parallaxTick();
+    let parallaxFrame = 0;
+    const scheduleParallax = () => {
+      if (parallaxFrame) return;
+      parallaxFrame = requestAnimationFrame(() => {
+        parallaxFrame = 0;
+        parallaxTick();
+      });
+    };
+    window.addEventListener('scroll', scheduleParallax, { passive: true });
+    scheduleParallax();
 
     /* ── Magnetic pull on home-feature CTAs ──
        Buttons gently attract toward the cursor (15% of offset).
@@ -1010,7 +1065,7 @@
       'feria-pitorro': { type: 'Cultural Festival', date: 'Annual Celebration', title: 'Feria Nacional del Pitorro', location: 'Puerto Rico', imgSrc: 'img/event-feria-pitorro.jpg', desc: 'Feria Nacional del Pitorro celebrates one of Puerto Rico’s most cherished spirit traditions with Pitorro® tastings, live music, and community pride. Destiler\xeda Coqu\xed, Inc. joins the celebration with its Pitorro® lineup.' },
       'taste-of-rum': { type: 'Spirits Expo', date: 'March 2026', title: 'Taste of Rum', location: 'Puerto Rico', imgSrc: 'img/event-taste-of-rum.jpg', desc: 'Puerto Rico’s premier rum industry showcase. Meet the makers, taste the full Coqu\xed lineup, and discover what makes the island’s spirits scene one of the most exciting in the Caribbean.' },
       'electric-420': { type: 'Music Festival Collaboration', date: 'Event Archive', title: '420 Fest × Efecto Secundario Fest', location: 'Puerto Rico', imgSrc: 'img/electric-420-fest.jpg', desc: 'A live-music collaboration with Efecto Secundario Fest featuring performances and appearances connected to Puerto Rico’s music scene, including PJ, Young Miko, RaiNao, and more.' },
-      'fango-fest': { type: 'Music Festival', date: 'November 2026', title: 'Fango Fest', location: 'Puerto Rico', imgSrc: 'img/event-fango-fest.png', desc: 'Fango Fest is exactly what it sounds like — a mud-soaked outdoor music festival where the crowd, the dirt, and the beats are all part of the experience. Destiler\xeda Coqu\xed shows up ready. Carjaker’s Rum was made for moments like this.' }
+      'fango-fest': { type: 'Music Festival', date: 'November 2026', title: 'Fango Fest', location: 'Puerto Rico', imgSrc: 'img/event-fango-fest.webp', desc: 'Fango Fest is exactly what it sounds like — a mud-soaked outdoor music festival where the crowd, the dirt, and the beats are all part of the experience. Destiler\xeda Coqu\xed shows up ready. Carjaker’s Rum was made for moments like this.' }
     };
 
     const eventModal = document.getElementById('eventModal');

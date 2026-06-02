@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "serve . --listen 4242",
     "start": "serve . --listen 4242",
-    "build": "echo 'Static site — no build step required.'"
+    "build": "node scripts/build-static.mjs"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",

@@ -2,13 +2,31 @@
 
 Updated: June 2, 2026
 
+## Current Continuation Note
+
+For the newest local worktree status, read:
+
+```text
+claudee.md
+```
+
+That file documents the deployed `de0aa35` baseline, the unfinished local-only
+performance optimization, the required logo URL cache bust, and the newly reported
+laptop logo/hero-eyebrow overlap. Work from the existing local folder before editing.
+
+Important: another Claude session was confirmed to be working from the separate
+checkout `/Users/mariacristinamoralestapia/caudenoc` at older commit `0c0e752`.
+That checkout is not the active source of truth. Read the mandatory workspace
+preflight in `claudee.md`, fetch GitHub before editing, and stop if the expected
+logo and `Find Us` checks do not pass.
+
 ## Current Production State
 
 - Repository: `https://github.com/destileriacoqui/cemi-rum`
 - Branch: `main`
 - Production site: `https://cemi-rum.vercel.app`
-- Latest deployed code commit: `456dcc4` (`Align account signup validation and tour availability`)
-- Latest verified Vercel deployment: `dpl_5eXGn2Zd6vaZVuoQge1o3EYZGc7S`
+- Latest deployed code commit: `de0aa35` (`Refresh customer sessions and align rum catalog`)
+- Latest verified Vercel deployment: `dpl_9wcRCgNrcr7YBjCvt4zhXjYSvk3K`
 - Deployment state checked after push: `READY`
 - Supabase project: `autkqbfgniopxldszdur`
 - Vercel project: `prj_Tqp4zZdhSn0HllZnyZzwS85amrX3`
@@ -19,6 +37,18 @@ Do not add `.claude/`, `.supply-chain-risk-auditor/`, or `vercel-backup/` to com
 ## Latest Commits
 
 ```text
+de0aa35 Refresh customer sessions and align rum catalog
+58e6f7e Use crisp official logo across site
+d5a78d3 Replace admin text brand with logo image
+29c9981 Replace logo with higher quality version
+e214860 Add location section to plaza, Find Us footer dropdown, and contact form emails
+ee63c80 Replace story archive photos with original Coquí history images
+3a6aedd Shrink registered mark and fix spacing on rum catalog pages
+3634c00 Add @types/node for middleware TypeScript build
+4fa2603 Redesign barrel section, replace logo, and shrink registered mark
+4b91382 Refresh Coqui branding and add maintenance gate
+ca34ed3 Correct synced auth and QA handoff notes
+c7ea3c3 Refresh verified production handoff
 456dcc4 Align account signup validation and tour availability
 be0ebaf Harden admin orders and auth callbacks
 0c0e752 Merge tour availability into checkout endpoint to fix Vercel 12-function limit

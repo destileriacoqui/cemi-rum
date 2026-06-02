@@ -4,3 +4,5 @@ vercel-backup/
 .env
 .env.*
 !.env.example
+hero-bg.mp4
+img/*.png
