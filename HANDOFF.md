@@ -1,6 +1,6 @@
 # Destilería Coquí Website Handoff
 
-Updated: June 1, 2026
+Updated: June 2, 2026
 
 ## Current Production State
 
@@ -14,7 +14,7 @@ Updated: June 1, 2026
 - Vercel project: `prj_Tqp4zZdhSn0HllZnyZzwS85amrX3`
 - Vercel team: `team_braoCHaqGgScHBLekPPxbcvT`
 
-Do not add `.claude/` or `vercel-backup/` to commits. They are unrelated untracked local folders.
+Do not add `.claude/`, `.supply-chain-risk-auditor/`, or `vercel-backup/` to commits. They are unrelated local folders and are excluded from manual Vercel deployments through `.vercelignore`.
 
 ## Latest Commits
 
@@ -175,7 +175,7 @@ maria@prsugar.com
 
 ### Account Confirmation Emails
 
-Supabase Auth account-confirmation emails require custom SMTP configuration inside Supabase, separately from the Vercel API email sender.
+Supabase Auth account-confirmation emails are configured inside Supabase separately from the Vercel API email sender.
 
 Recommended sender:
 
@@ -183,7 +183,7 @@ Recommended sender:
 orders@prsugar.com
 ```
 
-Configure Resend SMTP in Supabase Auth dashboard. Also verify:
+Resend SMTP and the deployed callback were tested successfully on June 2, 2026. Keep these values configured:
 
 ```text
 Site URL: https://cemi-rum.vercel.app
@@ -207,18 +207,19 @@ The signup page now shows `Resend Confirmation Email` after signup so customers 
 
 ### Auth Log Evidence
 
-Checked Supabase Auth logs on June 1, 2026:
+Checked Supabase Auth logs again on June 2, 2026:
 
-- confirmation emails are still being sent from `noreply@mail.app.supabase.io`
-- custom SMTP is therefore not active yet
-- earlier signup and confirmation attempts used referer `http://localhost:3000`
-- one initial verification succeeded and subsequent reuse of the same one-time link produced `403: Email link is invalid or has expired`
+- one SMTP setup attempt failed with `535 Authentication credentials invalid`
+- after correction, a fresh deployed-site signup succeeded
+- the email confirmation link completed successfully through `https://cemi-rum.vercel.app/auth/callback`
+- Supabase `/user` returned `200`
+- password login returned `200`
+- old links remain one-time links; reusing one correctly returns `403: Email link is invalid or has expired`
 
-Next fix in the Supabase dashboard:
+Remaining Auth dashboard hardening:
 
-1. Enable custom SMTP using Resend SMTP credentials and sender `orders@prsugar.com`.
-2. Set the production Site URL and allow-list the deployed `/auth/callback` URL.
-3. Create a fresh test account and click the newest confirmation email only once.
+1. Enable leaked-password protection.
+2. When the final domain is ready, change the Site URL to `https://destileriacoqui.com` and add `https://destileriacoqui.com/auth/callback`.
 
 ## Database
 

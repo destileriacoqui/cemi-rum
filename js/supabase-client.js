@@ -138,7 +138,7 @@
     const current = getSession();
     if (!current?.user?.id) return [];
     assertUuid(current.user.id);
-    return request(`/rest/v1/orders?user_id=eq.${current.user.id}&select=*,order_items(*)&order=created_at.desc`);
+    return request(`/rest/v1/orders?user_id=eq.${current.user.id}&deleted_at=is.null&select=*,order_items(*)&order=created_at.desc`);
   }
   async function claimGuestOrders() {
     if (!getSession()?.access_token) return;

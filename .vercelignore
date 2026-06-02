@@ -1,0 +1,6 @@
+.claude/
+.supply-chain-risk-auditor/
+vercel-backup/
+.env
+.env.*
+!.env.example

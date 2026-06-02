@@ -28,3 +28,8 @@ Thumbs.db
 *.swp
 *.sln
 .vercel
+
+# Local agent and audit working folders. Never commit or deploy these.
+.claude/
+.supply-chain-risk-auditor/
+vercel-backup/

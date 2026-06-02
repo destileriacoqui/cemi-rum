@@ -146,18 +146,18 @@ module.exports = async function handler(req, res) {
       if (tourBookingId) {
         await supabase(`tour_bookings?id=eq.${encodeURIComponent(tourBookingId)}`, {
           method: 'PATCH',
-          body: JSON.stringify({ deleted_at: deletedAt })
+          body: JSON.stringify({ deleted_at: deletedAt, updated_at: deletedAt })
         });
         return res.status(200).json({ removed: true, tour_booking_id: tourBookingId });
       }
       if (!orderId) return res.status(400).json({ error: 'Choose an order to remove.' });
       await supabase(`pickup_requests?order_id=eq.${encodeURIComponent(orderId)}`, {
         method: 'PATCH',
-        body: JSON.stringify({ deleted_at: deletedAt })
+        body: JSON.stringify({ deleted_at: deletedAt, updated_at: deletedAt })
       });
       await supabase(`orders?id=eq.${encodeURIComponent(orderId)}`, {
         method: 'PATCH',
-        body: JSON.stringify({ deleted_at: deletedAt })
+        body: JSON.stringify({ deleted_at: deletedAt, updated_at: deletedAt })
       });
       return res.status(200).json({ removed: true, order_id: orderId });
     }
