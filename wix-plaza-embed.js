@@ -5,7 +5,7 @@
 
   document.body.classList.add('dc-custom-page');
 
-  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-wordmark.png';
+  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo.png';
   var IMG_PLAZA = 'https://cemi-rum.vercel.app/img/coqui-plaza-bar.png';
   var IMG_TASTE = 'https://cemi-rum.vercel.app/img/event-taste-of-rum.jpg';
   var IMG_ELECTRIC = 'https://cemi-rum.vercel.app/img/electric-420-fest.jpg';

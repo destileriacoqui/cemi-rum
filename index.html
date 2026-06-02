@@ -68,7 +68,7 @@
       box-shadow: 0 0.5px 0 rgba(26,18,7,0.08);
     }
     .nav-logo { display: block; text-decoration: none; transition: opacity 0.3s ease; }
-    .nav-logo img { display: block; width: clamp(10.75rem, 15vw, 13.75rem); height: auto; filter: brightness(0) invert(1); transition: filter 0.55s ease; }
+    .nav-logo img { display: block; width: auto; height: clamp(2.8rem, 4.5vw, 3.8rem); filter: brightness(0) invert(1); transition: filter 0.55s ease; }
     .nav-logo:hover { opacity: 0.82; }
     nav.scrolled .nav-logo img { filter: none; }
 
@@ -298,6 +298,7 @@
     .heritage-kicker { display: block; color: var(--amber); font-size: 0.58rem; letter-spacing: 0.34em; text-transform: uppercase; margin-bottom: 1.6rem; }
     .heritage-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.2vw, 7.5rem); font-weight: 300; line-height: 0.88; color: var(--ink); letter-spacing: -0.055em; max-width: 8ch; margin-bottom: 2.5rem; }
     .heritage-title em { color: var(--amber); }
+    .heritage-title .reg { font-size: 0.35em; vertical-align: super; line-height: 0; font-weight: 400; }
     .heritage-body { color: #6D5541; font-size: 0.92rem; line-height: 1.95; max-width: 47ch; margin-bottom: 2rem; }
     .heritage-quote { font-family: var(--serif); font-size: clamp(1.35rem, 2vw, 1.85rem); line-height: 1.2; color: var(--brown); max-width: 20ch; margin-bottom: 2.25rem; }
     .heritage-link { display: inline-flex; align-items: center; gap: 0.85rem; color: var(--amber); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transform-origin: left center; transition: gap 0.35s cubic-bezier(0.16,1,0.3,1), color 0.3s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1); }
@@ -321,24 +322,51 @@
     .rum-facts { display: grid; gap: 1rem; margin: 2.25rem 0; }
     .rum-fact { padding-top: 1rem; border-top: 0.5px solid rgba(96,66,46,0.24); color: var(--brown); font-size: 0.76rem; letter-spacing: 0.11em; text-transform: uppercase; }
 
-    /* ─── HOME BARREL CELLAR: clean gradient stage ─── */
+    /* ─── HOME BARREL CELLAR: floating barrel stage ─── */
     .cellar-feature {
-      position: relative; min-height: 94dvh; overflow: hidden; color: var(--cream);
+      --cellar-x: 0px; --cellar-y: 0px; --cellar-rx: 0deg; --cellar-ry: 0deg;
+      position: relative; min-height: 100dvh; overflow: hidden; color: var(--cream);
       background: linear-gradient(155deg, #1A1207 0%, #0E0A06 42%, #171311 100%);
     }
-    .cellar-feature::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 65% 45%, rgba(196,147,72,0.08), transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(140,63,22,0.06), transparent 45%); pointer-events: none; }
-    .cellar-inner { position: relative; z-index: 2; max-width: 1440px; min-height: 94dvh; margin: 0 auto; padding: 7rem 4rem; display: grid; grid-template-columns: 0.9fr 1.15fr; gap: 3rem; align-items: center; }
-    .cellar-title { font-family: var(--serif); font-size: clamp(4rem, 7vw, 8.5rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); max-width: 10ch; margin: 1rem 0 2rem; }
+    .cellar-feature::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, rgba(196,147,72,0.07), transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(140,63,22,0.04), transparent 45%); pointer-events: none; }
+    .cellar-inner { position: relative; z-index: 2; max-width: 1440px; margin: 0 auto; padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 5vw, 5rem); }
+    /* Top header area */
+    .cellar-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: clamp(4rem, 7vw, 7rem); }
+    .cellar-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.5vw, 8rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); }
     .cellar-title em { color: var(--gold); }
-    .cellar-body { color: rgba(247,242,232,0.62); font-size: 0.9rem; line-height: 1.95; max-width: 43ch; }
-    .cellar-body + .cellar-body { margin-top: 1.25rem; }
-    .cellar-facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
-    .cellar-fact-card { padding: 1.5rem 0; border-top: 0.5px solid rgba(196,147,72,0.25); }
-    .cellar-fact-card strong { display: block; color: var(--gold); font-family: var(--serif); font-size: 1.15rem; font-weight: 400; letter-spacing: 0; margin-bottom: 0.45rem; }
-    .cellar-fact-card span { color: rgba(247,242,232,0.55); font-size: 0.76rem; line-height: 1.7; }
-    .cellar-img-wrap { position: relative; display: grid; place-items: center; }
-    .cellar-img-wrap img { width: min(100%, 38rem); border: 0.5px solid rgba(196,147,72,0.18); filter: brightness(0.9) contrast(1.05); }
-    .cellar-img-caption { margin-top: 1.5rem; text-align: center; color: rgba(247,242,232,0.38); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .cellar-header-body { color: rgba(247,242,232,0.55); font-size: 0.92rem; line-height: 1.85; max-width: 42ch; }
+    /* Center stage: barrel with specs placed around it */
+    .cellar-stage { position: relative; display: grid; place-items: center; min-height: clamp(30rem, 52vw, 44rem); }
+    /* Specs positioned absolutely around the barrel */
+    .cellar-spec { position: absolute; z-index: 4; max-width: 17rem; }
+    .cellar-spec-title { color: var(--gold); font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.5rem); font-weight: 400; margin-bottom: 0.4rem; }
+    .cellar-spec-line { width: 2.5rem; height: 0.5px; background: rgba(196,147,72,0.32); margin-bottom: 0.7rem; }
+    .cellar-spec-body { color: rgba(247,242,232,0.52); font-size: 0.82rem; line-height: 1.8; }
+    /* Top-left: horizontal, right-aligned text */
+    .cellar-spec--tl { top: 6%; left: 4%; text-align: right; }
+    .cellar-spec--tl .cellar-spec-line { margin-left: auto; }
+    /* Top-right: diagonal tilt */
+    .cellar-spec--tr { top: 4%; right: 4%; transform: rotate(3deg); transform-origin: right top; }
+    /* Bottom-left: diagonal tilt */
+    .cellar-spec--bl { bottom: 10%; left: 4%; text-align: right; transform: rotate(-3deg); transform-origin: left bottom; }
+    .cellar-spec--bl .cellar-spec-line { margin-left: auto; }
+    /* Bottom-right: horizontal */
+    .cellar-spec--br { bottom: 6%; right: 4%; }
+    /* Barrel in the center */
+    .cellar-barrel-wrap { position: relative; width: clamp(24rem, 40vw, 38rem); display: grid; place-items: center; }
+    .cellar-barrel-img {
+      position: relative; z-index: 2; width: 100%;
+      transform: translate3d(var(--cellar-x), var(--cellar-y), 0) rotateX(var(--cellar-rx)) rotateY(var(--cellar-ry));
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); will-change: transform;
+      filter: drop-shadow(0 2rem 3.5rem rgba(0,0,0,0.55)) brightness(0.93) contrast(1.07);
+    }
+    .cellar-barrel-img img { width: 100%; height: auto; display: block; }
+    /* Bottom row */
+    .cellar-bottom { display: flex; justify-content: space-between; align-items: flex-start; margin-top: clamp(4rem, 6vw, 6rem); gap: 3rem; }
+    .cellar-quote { font-family: var(--serif); font-size: clamp(1.3rem, 1.9vw, 1.75rem); line-height: 1.28; color: rgba(247,242,232,0.42); max-width: 22ch; flex-shrink: 0; }
+    .cellar-caption { color: rgba(247,242,232,0.28); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; text-align: right; max-width: 28ch; }
+    /* Mobile callouts fallback */
+    .cellar-callouts-mobile { display: none; }
 
     /* ─── EVENTS ─── */
     .events-section { padding: 14rem 0; background: var(--cream-mid); }
@@ -466,7 +494,10 @@
       .hero-content { padding: 4rem 2.5rem 6.5rem; }
       .home-feature-inner { padding: 0 2.5rem 6rem; }
       .heritage-inner { gap: 4rem 3.5rem; }
-      .cellar-inner { grid-template-columns: 1fr; gap: 2rem; min-height: auto; }
+      .cellar-inner { min-height: auto; }
+      .cellar-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .cellar-barrel-wrap { width: clamp(20rem, 34vw, 32rem); }
+      .cellar-bottom { flex-direction: column; gap: 2rem; }
       .events-inner { padding: 0 2.5rem; }
       .events-header { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
       .events-grid { grid-template-columns: repeat(2, 1fr); }
@@ -501,8 +532,15 @@
       .barrel-frame { order: 3; }
       .rum-copy { order: 4; }
       .cellar-feature { min-height: auto; }
-      .cellar-inner { min-height: auto; padding: 6rem 1.75rem; grid-template-columns: 1fr; }
-      .cellar-facts-grid { grid-template-columns: 1fr; }
+      .cellar-inner { min-height: auto; padding: 5rem 1.75rem; }
+      .cellar-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
+      .cellar-stage { min-height: auto; }
+      .cellar-spec { position: static; transform: none !important; max-width: none; text-align: left; display: none; }
+      .cellar-barrel-wrap { width: min(80vw, 22rem); }
+      .cellar-callouts-mobile { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+      .cellar-callouts-mobile .cellar-spec { display: block; max-width: none; text-align: left; }
+      .cellar-bottom { flex-direction: column; gap: 1.5rem; margin-top: 3rem; }
+      .cellar-caption { text-align: left; }
     }
     @media (max-width: 520px) {
       .events-grid { grid-template-columns: 1fr; }
@@ -516,7 +554,7 @@
 
   <!-- ─── NAV ─────────────────────────────────────────── -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destilería Coquí"></a>
+    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-logo.png" alt="Destilería Coquí"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
@@ -571,7 +609,7 @@
     <div class="heritage-inner">
       <div class="heritage-copy">
         <span class="heritage-kicker reveal">Mayag&#xFC;ez &nbsp;&middot;&nbsp; Est. 2006</span>
-        <h2 class="heritage-title reveal d1">Pitorro&#xAE;,<br><em>brought into the light.</em></h2>
+        <h2 class="heritage-title reveal d1">Pitorro<sup class="reg">&reg;</sup>,<br><em>brought into the light.</em></h2>
         <p class="heritage-body reveal d2">
           H&#xe9;ctor Augusto and Mar&#xed;a Cristina founded Destiler&#xed;a Coqu&#xed;, Inc. with a clear purpose:
           honor Puerto Rico&#x2019;s centuries-old Pitorro&#xAE; tradition and give it a legal home in Mayag&#xFC;ez.
@@ -610,46 +648,82 @@
     </div>
   </section>
 
-  <!-- ─── HOME BARREL CELLAR: American white oak ─── -->
+  <!-- ─── HOME BARREL CELLAR: floating barrel stage ─── -->
   <section class="cellar-feature" id="cellarFeature">
     <div class="cellar-inner">
-      <div>
-        <span class="heritage-kicker reveal">American White Oak</span>
-        <h2 class="cellar-title reveal d1">Brand new<br><em>barrels.</em></h2>
-        <p class="cellar-body reveal d2">
+
+      <!-- Header: title + intro -->
+      <div class="cellar-header">
+        <div>
+          <span class="heritage-kicker reveal" style="color:var(--gold)">American White Oak</span>
+          <h2 class="cellar-title reveal d1">Brand new<br><em>barrels.</em></h2>
+        </div>
+        <p class="cellar-header-body reveal d2">
           Every batch of Ron Coqu&#xed;&#x2122; is aged in brand new American white oak barrels &#x2014;
-          never used, never recycled. New oak gives the rum its deepest
-          vanilla, caramel, and toasted character from the very first day.
+          never used, never recycled. New oak gives the rum its deepest vanilla, caramel,
+          and toasted character from the very first day.
         </p>
-        <p class="cellar-body reveal d2">
-          We source our barrels directly from cooperages in the American Midwest, where
-          the wood is air-dried and charred to our specifications. Each barrel is used once,
-          for one batch, and never reused &#x2014; because the spirit deserves the full depth
-          that only fresh oak can deliver.
-        </p>
-        <div class="cellar-facts-grid reveal d3">
-          <div class="cellar-fact-card">
-            <strong>100% new oak</strong>
-            <span>Never reused or recycled. Fresh barrels for every single batch.</span>
-          </div>
-          <div class="cellar-fact-card">
-            <strong>American white oak</strong>
-            <span>Quercus alba &#x2014; prized for vanilla, coconut, and caramel notes.</span>
-          </div>
-          <div class="cellar-fact-card">
-            <strong>Charred interior</strong>
-            <span>The char layer caramelizes sugars in the wood, adding depth and color.</span>
-          </div>
-          <div class="cellar-fact-card">
-            <strong>Mayag&#xFC;ez aged</strong>
-            <span>Tropical heat accelerates the exchange between spirit and wood.</span>
+      </div>
+
+      <!-- Center: barrel with specs placed around it -->
+      <div class="cellar-stage">
+        <div class="cellar-spec cellar-spec--tl reveal">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">100% new oak</p>
+          <p class="cellar-spec-body">Fresh barrels for every single batch. Never reused or recycled &#x2014; the spirit gets the full depth that only untouched wood delivers.</p>
+        </div>
+        <div class="cellar-spec cellar-spec--tr reveal d1">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">American white oak</p>
+          <p class="cellar-spec-body">Quercus alba &#x2014; prized worldwide for the vanilla, coconut, and caramel notes it gives the aging spirit.</p>
+        </div>
+        <div class="cellar-barrel-wrap reveal">
+          <div class="cellar-barrel-img" id="cellarBarrel">
+            <img src="img/coqui-oak-barrel-v2.webp" alt="A brand new American white oak barrel at Destiler&#xed;a Coqu&#xed;, Inc." loading="lazy">
           </div>
         </div>
+        <div class="cellar-spec cellar-spec--bl reveal d1">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">Charred interior</p>
+          <p class="cellar-spec-body">The char layer caramelizes sugars in the wood, adding richness, color, and a clean toasted finish to every pour.</p>
+        </div>
+        <div class="cellar-spec cellar-spec--br reveal">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">Mayag&#xFC;ez aged</p>
+          <p class="cellar-spec-body">Puerto Rico&#x2019;s tropical heat accelerates the exchange between spirit and wood, building complexity faster than temperate climates.</p>
+        </div>
       </div>
-      <div class="cellar-img-wrap reveal d1">
-        <img src="img/coqui-oak-barrel-v2.webp" alt="A brand new American white oak barrel at Destiler&#xed;a Coqu&#xed;, Inc." loading="lazy">
-        <p class="cellar-img-caption">Brand new American white oak &#x2014; one barrel, one batch</p>
+
+      <!-- Mobile fallback: specs as grid below barrel -->
+      <div class="cellar-callouts-mobile">
+        <div class="cellar-spec">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">100% new oak</p>
+          <p class="cellar-spec-body">Fresh barrels for every single batch. Never reused or recycled.</p>
+        </div>
+        <div class="cellar-spec">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">Charred interior</p>
+          <p class="cellar-spec-body">Caramelizes sugars in the wood, adding richness and color.</p>
+        </div>
+        <div class="cellar-spec">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">American white oak</p>
+          <p class="cellar-spec-body">Vanilla, coconut, and caramel notes from Quercus alba.</p>
+        </div>
+        <div class="cellar-spec">
+          <div class="cellar-spec-line"></div>
+          <p class="cellar-spec-title">Mayag&#xFC;ez aged</p>
+          <p class="cellar-spec-body">Tropical heat accelerates the exchange between spirit and wood.</p>
+        </div>
       </div>
+
+      <!-- Bottom row -->
+      <div class="cellar-bottom reveal d2">
+        <p class="cellar-quote">&#x201c;One barrel, one batch &#x2014; because the spirit deserves the full depth that only fresh oak can deliver.&#x201d;</p>
+        <p class="cellar-caption">Sourced directly from cooperages in the American Midwest &#x2014; air-dried, charred to our specifications, and shipped to Mayag&#xFC;ez</p>
+      </div>
+
     </div>
   </section>
 
@@ -807,7 +881,7 @@
 
   <!-- ─── FOOTER ────────────────────────────────────────── -->
   <footer>
-    <span class="footer-logo"><img src="img/destileria-coqui-wordmark.png" alt="Destilería Coquí"></span>
+    <span class="footer-logo"><img src="img/destileria-coqui-logo.png" alt="Destilería Coquí"></span>
     <p class="footer-copy">
       &copy; 2026 Destiler&#xed;a Coqu&#xed;, Inc. &#x2014; Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
@@ -909,7 +983,27 @@
       });
     }
 
-    /* Cellar barrel cursor-follow removed — section is now static layout */
+    /* ── Cellar barrel follows cursor with subtle 3D shift ── */
+    const cellarFeature = document.getElementById('cellarFeature');
+    const cellarBarrel = document.getElementById('cellarBarrel');
+    if (cellarFeature && cellarBarrel) {
+      cellarFeature.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+        const r = cellarFeature.getBoundingClientRect();
+        const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        cellarFeature.style.setProperty('--cellar-x', (nx * 16).toFixed(2) + 'px');
+        cellarFeature.style.setProperty('--cellar-y', (ny * 12).toFixed(2) + 'px');
+        cellarFeature.style.setProperty('--cellar-rx', (-ny * 2.5).toFixed(2) + 'deg');
+        cellarFeature.style.setProperty('--cellar-ry', (nx * 3).toFixed(2) + 'deg');
+      });
+      cellarFeature.addEventListener('mouseleave', () => {
+        cellarFeature.style.setProperty('--cellar-x', '0px');
+        cellarFeature.style.setProperty('--cellar-y', '0px');
+        cellarFeature.style.setProperty('--cellar-rx', '0deg');
+        cellarFeature.style.setProperty('--cellar-ry', '0deg');
+      });
+    }
 
     /* ── Event data & modal ── */
     const EVENTS = {

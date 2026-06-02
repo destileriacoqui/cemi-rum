@@ -7,7 +7,7 @@
 
   var IMG_CAMPO = 'https://static.wixstatic.com/media/f04508_4c736d9258b046718273b89c963c99ba~mv2.jpeg';
   var IMG_MUJER = 'https://static.wixstatic.com/media/f04508_ccc2821cd65643babed7b553cedec3ca~mv2.jpg';
-  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-wordmark.png';
+  var IMG_LOGO = 'https://cemi-rum.vercel.app/img/destileria-coqui-logo.png';
   var IMG_STORY_02 = 'https://cemi-rum.vercel.app/img/story-coqui-02.jpeg';
   var IMG_STORY_03 = 'https://cemi-rum.vercel.app/img/story-coqui-03.jpeg';
   var IMG_STORY_04 = 'https://cemi-rum.vercel.app/img/story-coqui-04.webp';
