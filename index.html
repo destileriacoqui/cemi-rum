@@ -6,6 +6,8 @@
   <title>Destiler&#xed;a Coqu&#xed; | Rum &amp; Pitorro&#xAE; from Mayag&#xFC;ez, Puerto Rico</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Start fetching the hero video during HTML parse so it shows ASAP. -->
+  <link rel="preload" as="video" href="hero-bg-lite.mp4" type="video/mp4">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -601,7 +603,9 @@
   <!-- ─── HERO ─────────────────────────────────────────── -->
   <section class="hero" id="home">
     <div class="hero-img">
-      <video id="heroVideo" muted loop playsinline preload="none" poster="img/hero-poster.webp" aria-hidden="true"></video>
+      <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="img/hero-poster.webp" aria-hidden="true">
+        <source src="hero-bg-lite.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-content">
       <p class="hero-eyebrow">Destiler&#xed;a Coqu&#xed;, Inc. &nbsp;&middot;&nbsp; Mayag&#xFC;ez, Puerto Rico &nbsp;&middot;&nbsp; Est. 2006</p>
@@ -945,26 +949,17 @@
   </div>
 
   <script>
-    /* ── Adaptive hero: motion for capable devices, immediate poster elsewhere ── */
+    /* ── Hero video: load and play immediately on every visit ──
+       The <video> already has the inline <source>, autoplay, and preload="auto",
+       so the browser starts fetching during HTML parse. This just guarantees
+       playback starts as soon as enough data is buffered, and retries if the
+       browser deferred the autoplay (e.g. tab restored, slow first frame). */
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
-      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const slowConnection = connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType || ''));
-      const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 2;
-      const lowCpu = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 2;
-      if (!reducedMotion && !slowConnection && !lowMemory && !lowCpu) {
-        // Defer video load until after paint to prioritize content
-        window.requestIdleCallback ? window.requestIdleCallback(loadVideo) : setTimeout(loadVideo, 1500);
-        function loadVideo() {
-          const source = document.createElement('source');
-          source.src = 'hero-bg-lite.mp4';
-          source.type = 'video/mp4';
-          heroVideo.appendChild(source);
-          heroVideo.load();
-          heroVideo.play().catch(() => {});
-        }
-      }
+      const playHero = () => heroVideo.play().catch(() => {});
+      playHero();
+      heroVideo.addEventListener('loadeddata', playHero, { once: true });
+      heroVideo.addEventListener('canplay', playHero, { once: true });
     }
 
     /* ── Scroll reveal ── */
