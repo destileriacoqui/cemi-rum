@@ -759,7 +759,7 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo"><img src="img/destileria-coqui-logo-v2.svg" alt="Destiler&#xED;a Coqu&#xED;"></a>
+    <a href="index.html" class="nav-logo"><img decoding="async" src="img/destileria-coqui-logo-v2.svg" alt="Destiler&#xED;a Coqu&#xED;"></a>
     <ul class="nav-links">
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html" aria-current="page">Our Rums</a></li>
@@ -772,7 +772,7 @@
   <div id="page-root"></div>
 
   <footer>
-    <span class="footer-logo"><img src="img/destileria-coqui-logo-v2.svg" alt="Destiler&#xED;a Coqu&#xED;"></span>
+    <span class="footer-logo"><img decoding="async" src="img/destileria-coqui-logo-v2.svg" alt="Destiler&#xED;a Coqu&#xED;"></span>
     <p class="footer-copy">
       &copy; 2026 Destiler&#xED;a Coqu&#xED;, Inc. · Mayag&#xFC;ez, Puerto Rico.<br>
       Drink responsibly. Must be of legal drinking age.
@@ -998,7 +998,7 @@
         const item = COQUI_CATALOG[slug];
         return `
           <article class="related-product">
-            <img src="${related.img}" alt="${item.name}">
+            <img decoding="async" src="${related.img}" alt="${item.name}">
             <div class="related-info">
               <span class="related-type">${related.type}</span>
               <h3 class="related-name">${related.name}</h3>
@@ -1186,13 +1186,13 @@
       if (beachSlugs.includes(slug)) img = 'img/sketch-beach-sunset.jpg';
       else if (forestSlugs.includes(slug)) img = 'img/sketch-forest-mountain.jpg';
       else img = 'img/sketch-tropical.jpg';
-      return '<div class="hero-sketch" aria-hidden="true"><img src="' + img + '" alt="" loading="eager"></div>';
+      return '<div class="hero-sketch" aria-hidden="true"><img decoding="async" src="' + img + '" alt="" loading="eager"></div>';
     }
 
     function renderCocktailCards(cocktails) {
       return cocktails.map((cocktail, index) => `
         <button type="button" class="ron-pour-card ${index === 0 ? 'is-active' : ''}" data-cocktail-index="${index}">
-          <img src="${cocktail.img}" alt="${cocktail.name}" loading="lazy" class="cocktail-photo">
+          <img decoding="async" src="${cocktail.img}" alt="${cocktail.name}" loading="lazy" class="cocktail-photo">
           <h3>${cocktail.name}</h3>
           <p>${cocktail.sub}</p>
         </button>
@@ -1203,7 +1203,7 @@
       return `
         <section class="ron-recipe is-cocktail-recipe" id="cocktailRecipe">
           <div class="cocktail-recipe-art">
-            <img src="${cocktail.img}" alt="${cocktail.name}" loading="lazy">
+            <img decoding="async" src="${cocktail.img}" alt="${cocktail.name}" loading="lazy">
           </div>
           <div class="ron-recipe-copy">
             <span class="product-eyebrow">Selected recipe</span>
@@ -1272,7 +1272,7 @@
               </div>
             </div>
             <div class="ron-stage">
-              <img src="${p.img}" alt="${plainText(p.name)}">
+              <img decoding="async" src="${p.img}" alt="${plainText(p.name)}">
             </div>
             <span class="ron-scroll">Scroll</span>
             ${beachSketch(slug)}
