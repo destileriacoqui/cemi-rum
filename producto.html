@@ -535,89 +535,33 @@
       cursor: pointer;
       color: inherit;
     }
-    .ron-pour-card img,
-    .cocktail-placeholder {
-      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s cubic-bezier(0.16,1,0.3,1);
-    }
-    .ron-pour-card:hover img,
-    .ron-pour-card:hover .cocktail-placeholder,
-    .ron-pour-card.is-active .cocktail-placeholder {
-      transform: translateY(-0.35rem);
-      box-shadow: 0 1.9rem 4rem rgba(26,18,7,0.12);
-    }
-    .ron-pour-card.is-active h3 { color: var(--amber); }
-    .cocktail-placeholder {
+    .cocktail-photo {
       width: 100%;
       height: clamp(19rem, 31vw, 31rem);
       border-radius: 0.55rem;
       box-shadow: 0 1.4rem 3rem rgba(26,18,7,0.08);
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 72% 18%, rgba(255,255,255,0.74), transparent 5.5rem),
-        radial-gradient(circle at 35% 68%, var(--cocktail-glow, rgba(196,147,72,0.32)), transparent 12rem),
-        linear-gradient(145deg, var(--cocktail-a, #f6d89a), var(--cocktail-b, #fff8e8));
+      object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), box-shadow 0.55s cubic-bezier(0.16,1,0.3,1);
     }
-    .cocktail-placeholder::before {
-      content: '';
-      width: 6.6rem;
-      height: 12rem;
-      border: 1px solid rgba(255,255,255,0.72);
-      border-top-width: 4px;
-      border-bottom-width: 8px;
-      border-radius: 0 0 2.5rem 2.5rem;
-      background:
-        linear-gradient(to bottom, rgba(255,255,255,0.42), rgba(255,255,255,0.05)),
-        linear-gradient(to top, var(--cocktail-liquid, rgba(211,154,54,0.68)) 0 58%, transparent 58%);
-      box-shadow: inset 0 0 2rem rgba(255,255,255,0.4), 0 1.5rem 2.4rem rgba(26,18,7,0.13);
+    .ron-pour-card:hover .cocktail-photo,
+    .ron-pour-card.is-active .cocktail-photo {
+      transform: translateY(-0.35rem);
+      box-shadow: 0 1.9rem 4rem rgba(26,18,7,0.12);
     }
-    .cocktail-placeholder::after {
-      content: 'Recipe';
-      position: absolute;
-      left: 1.3rem;
-      bottom: 1.15rem;
-      font-size: 0.54rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: rgba(26,18,7,0.58);
-    }
+    .ron-pour-card.is-active h3 { color: var(--amber); }
     .ron-recipe.is-cocktail-recipe {
       grid-template-columns: minmax(15rem, 0.72fr) minmax(20rem, 1.28fr);
     }
     .cocktail-recipe-art {
       min-height: 34rem;
       position: relative;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 68% 22%, rgba(255,255,255,0.58), transparent 8rem),
-        linear-gradient(145deg, var(--recipe-a, #f7d58f), var(--recipe-b, #f8eee0));
       overflow: hidden;
     }
-    .cocktail-recipe-art::before {
-      content: '';
-      width: min(16rem, 42vw);
-      height: min(24rem, 62vw);
-      border: 1px solid rgba(255,255,255,0.75);
-      border-top-width: 5px;
-      border-bottom-width: 10px;
-      border-radius: 0 0 5rem 5rem;
-      background:
-        linear-gradient(to bottom, rgba(255,255,255,0.5), rgba(255,255,255,0.07)),
-        linear-gradient(to top, var(--recipe-liquid, rgba(211,154,54,0.68)) 0 56%, transparent 56%);
-      box-shadow: inset 0 0 4rem rgba(255,255,255,0.45), 0 2rem 4rem rgba(26,18,7,0.16);
-      transform: rotate(-3deg);
-    }
-    .cocktail-recipe-art span {
-      position: absolute;
-      left: 2rem;
-      bottom: 2rem;
-      font-size: 0.58rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: rgba(26,18,7,0.52);
+    .cocktail-recipe-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .ron-recipe {
       display: grid;
@@ -1102,94 +1046,94 @@
     // ─── PER-PRODUCT COCKTAILS (3 per product) ────────────────────────────
     const PRODUCT_COCKTAILS = {
       'ron-blanco': [
-        { name:'Coquí Mojito Blanco', sub:'Mint, lime, soda water', ingredients:['2 oz Ron Coquí Blanco','1 oz lime juice','¾ oz simple syrup','Mint leaves','Soda water'], method:['Muddle mint with syrup and lime.','Add rum and ice, shake briefly.','Strain, top with soda, garnish with mint.'], color:'#8C3F16' },
-        { name:'Mayagüez Daiquiri', sub:'Lime, cane syrup, chilled coupe', ingredients:['2 oz Ron Coquí Blanco','1 oz lime juice','¾ oz cane syrup'], method:['Shake all ingredients with ice.','Double strain into a chilled coupe.','Garnish with a lime wheel.'], color:'#60422E' },
-        { name:'Isla Blanca Spritz', sub:'Pineapple, coconut water, soda', ingredients:['1½ oz Ron Coquí Blanco','1 oz pineapple juice','½ oz lime juice','½ oz coconut water','Soda water'], method:['Shake rum, juices, and coconut water with ice.','Strain into a glass over fresh ice.','Top with soda and stir gently.'], color:'#7D6654' }
+        { name:'Coquí Mojito Blanco', sub:'Mint, lime, soda water', img:'img/cocktails/mojito.jpg', ingredients:['2 oz Ron Coquí Blanco','1 oz lime juice','¾ oz simple syrup','Mint leaves','Soda water'], method:['Muddle mint with syrup and lime.','Add rum and ice, shake briefly.','Strain, top with soda, garnish with mint.'], color:'#8C3F16' },
+        { name:'Mayagüez Daiquiri', sub:'Lime, cane syrup, chilled coupe', img:'img/cocktails/daiquiri.jpg', ingredients:['2 oz Ron Coquí Blanco','1 oz lime juice','¾ oz cane syrup'], method:['Shake all ingredients with ice.','Double strain into a chilled coupe.','Garnish with a lime wheel.'], color:'#60422E' },
+        { name:'Isla Blanca Spritz', sub:'Pineapple, coconut water, soda', img:'img/cocktails/spritz.jpg', ingredients:['1½ oz Ron Coquí Blanco','1 oz pineapple juice','½ oz lime juice','½ oz coconut water','Soda water'], method:['Shake rum, juices, and coconut water with ice.','Strain into a glass over fresh ice.','Top with soda and stir gently.'], color:'#7D6654' }
       ],
       'ron-limon': [
-        { name:'Coquí Limón Collins', sub:'Lemon, syrup, soda water', ingredients:['2 oz Ron Coquí Limón','1 oz lemon juice','¾ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain into a tall glass over ice.','Top with soda, garnish with lemon.'], color:'#8C3F16' },
-        { name:'Limoncito Tropical', sub:'Passion fruit, lime, agave', ingredients:['1½ oz Ron Coquí Limón','1 oz passion fruit juice','½ oz lime juice','½ oz agave syrup'], method:['Shake all ingredients hard with ice.','Strain into a chilled coupe.','Garnish with a lime wheel.'], color:'#60422E' },
-        { name:'Lemon Rum Mule', sub:'Ginger beer, lime, mint', ingredients:['2 oz Ron Coquí Limón','½ oz lime juice','Ginger beer','Mint sprig'], method:['Build rum and lime over ice in a copper mug.','Top with ginger beer.','Garnish with mint and a lime wedge.'], color:'#7D6654' }
+        { name:'Coquí Limón Collins', sub:'Lemon, syrup, soda water', img:'img/cocktails/collins.jpg', ingredients:['2 oz Ron Coquí Limón','1 oz lemon juice','¾ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain into a tall glass over ice.','Top with soda, garnish with lemon.'], color:'#8C3F16' },
+        { name:'Limoncito Tropical', sub:'Passion fruit, lime, agave', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Ron Coquí Limón','1 oz passion fruit juice','½ oz lime juice','½ oz agave syrup'], method:['Shake all ingredients hard with ice.','Strain into a chilled coupe.','Garnish with a lime wheel.'], color:'#60422E' },
+        { name:'Lemon Rum Mule', sub:'Ginger beer, lime, mint', img:'img/cocktails/mule.jpg', ingredients:['2 oz Ron Coquí Limón','½ oz lime juice','Ginger beer','Mint sprig'], method:['Build rum and lime over ice in a copper mug.','Top with ginger beer.','Garnish with mint and a lime wedge.'], color:'#7D6654' }
       ],
       'pitorro-blanco': [
-        { name:'Pitorro Sour Boricua', sub:'Lime, pineapple, syrup', ingredients:['1½ oz Pitorro Blanco','¾ oz lime juice','¾ oz simple syrup','½ oz pineapple juice'], method:['Shake all ingredients with ice.','Strain into a rocks glass over ice.','Garnish with a pineapple wedge.'], color:'#8C3F16' },
-        { name:'La Clara', sub:'Coconut water, lime, honey', ingredients:['1½ oz Pitorro Blanco','1 oz coconut water','½ oz lime juice','½ oz honey syrup'], method:['Shake all ingredients with ice.','Strain into a chilled glass.','Garnish with a lime twist.'], color:'#60422E' },
-        { name:'Pitorro Highball', sub:'Soda water, lime, bitters', ingredients:['1½ oz Pitorro Blanco','Soda water','Lime wedge','Dash of bitters'], method:['Build Pitorro and bitters over ice.','Top with soda water.','Squeeze and drop in a lime wedge.'], color:'#7D6654' }
+        { name:'Pitorro Sour Boricua', sub:'Lime, pineapple, syrup', img:'img/cocktails/sour.jpg', ingredients:['1½ oz Pitorro Blanco','¾ oz lime juice','¾ oz simple syrup','½ oz pineapple juice'], method:['Shake all ingredients with ice.','Strain into a rocks glass over ice.','Garnish with a pineapple wedge.'], color:'#8C3F16' },
+        { name:'La Clara', sub:'Coconut water, lime, honey', img:'img/cocktails/highball.jpg', ingredients:['1½ oz Pitorro Blanco','1 oz coconut water','½ oz lime juice','½ oz honey syrup'], method:['Shake all ingredients with ice.','Strain into a chilled glass.','Garnish with a lime twist.'], color:'#60422E' },
+        { name:'Pitorro Highball', sub:'Soda water, lime, bitters', img:'img/cocktails/collins.jpg', ingredients:['1½ oz Pitorro Blanco','Soda water','Lime wedge','Dash of bitters'], method:['Build Pitorro and bitters over ice.','Top with soda water.','Squeeze and drop in a lime wedge.'], color:'#7D6654' }
       ],
       'pitorro-coco-35': [
-        { name:'Coquito Express', sub:'Coconut cream, milk, cinnamon', ingredients:['1½ oz Pitorro de Coco','1 oz cream of coconut','1 oz evaporated milk','Cinnamon','Nutmeg'], method:['Shake all liquid ingredients hard with ice.','Strain into a glass with fresh ice.','Dust with cinnamon and nutmeg.'], color:'#8C3F16' },
-        { name:'Coco Lime Cooler', sub:'Lime, syrup, soda water', ingredients:['1½ oz Pitorro de Coco','¾ oz lime juice','¾ oz simple syrup','Soda water'], method:['Shake rum, lime, and syrup with ice.','Strain into a tall glass over ice.','Top with soda and stir.'], color:'#60422E' },
-        { name:'Palma Real', sub:'Pineapple, orange, lime', ingredients:['1½ oz Pitorro de Coco','1 oz pineapple juice','½ oz orange juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with a pineapple leaf.'], color:'#7D6654' }
+        { name:'Coquito Express', sub:'Coconut cream, milk, cinnamon', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Pitorro de Coco','1 oz cream of coconut','1 oz evaporated milk','Cinnamon','Nutmeg'], method:['Shake all liquid ingredients hard with ice.','Strain into a glass with fresh ice.','Dust with cinnamon and nutmeg.'], color:'#8C3F16' },
+        { name:'Coco Lime Cooler', sub:'Lime, syrup, soda water', img:'img/cocktails/spritz.jpg', ingredients:['1½ oz Pitorro de Coco','¾ oz lime juice','¾ oz simple syrup','Soda water'], method:['Shake rum, lime, and syrup with ice.','Strain into a tall glass over ice.','Top with soda and stir.'], color:'#60422E' },
+        { name:'Palma Real', sub:'Pineapple, orange, lime', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Pitorro de Coco','1 oz pineapple juice','½ oz orange juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with a pineapple leaf.'], color:'#7D6654' }
       ],
       'pitorro-coco-15': [
-        { name:'Pitorro de Coco Cream', sub:'Coconut cream, condensed milk', ingredients:['1½ oz Pitorro de Coco','1 oz cream of coconut','½ oz condensed milk','Cinnamon'], method:['Shake all liquid ingredients with ice.','Strain into a glass over ice.','Dust with cinnamon.'], color:'#8C3F16' },
-        { name:'Coco Verde', sub:'Coconut water, lime, honey', ingredients:['1½ oz Pitorro de Coco','1 oz coconut water','½ oz lime juice','½ oz honey syrup'], method:['Shake all ingredients with ice.','Strain into a chilled glass.','Garnish with a lime wheel.'], color:'#60422E' },
-        { name:'Coconut Rum Lemonade', sub:'Lemon, syrup, soda', ingredients:['1½ oz Pitorro de Coco','1 oz lemon juice','¾ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain into a tall glass over ice.','Top with soda.'], color:'#7D6654' }
+        { name:'Pitorro de Coco Cream', sub:'Coconut cream, condensed milk', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Pitorro de Coco','1 oz cream of coconut','½ oz condensed milk','Cinnamon'], method:['Shake all liquid ingredients with ice.','Strain into a glass over ice.','Dust with cinnamon.'], color:'#8C3F16' },
+        { name:'Coco Verde', sub:'Coconut water, lime, honey', img:'img/cocktails/highball.jpg', ingredients:['1½ oz Pitorro de Coco','1 oz coconut water','½ oz lime juice','½ oz honey syrup'], method:['Shake all ingredients with ice.','Strain into a chilled glass.','Garnish with a lime wheel.'], color:'#60422E' },
+        { name:'Coconut Rum Lemonade', sub:'Lemon, syrup, soda', img:'img/cocktails/collins.jpg', ingredients:['1½ oz Pitorro de Coco','1 oz lemon juice','¾ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain into a tall glass over ice.','Top with soda.'], color:'#7D6654' }
       ],
       'pitorro-cafe': [
-        { name:'Pitorro Espresso Martini', sub:'Espresso, coffee liqueur, syrup', ingredients:['1½ oz Pitorro Café','1 oz espresso','½ oz coffee liqueur','½ oz simple syrup'], method:['Shake all ingredients hard with ice.','Double strain into a chilled coupe.','Garnish with three coffee beans.'], color:'#8C3F16' },
-        { name:'Café Coquí Old Fashioned', sub:'Brown sugar, chocolate bitters', ingredients:['2 oz Pitorro Café','¼ oz brown sugar syrup','2 dashes chocolate bitters'], method:['Stir all ingredients with ice until chilled.','Strain over a large ice cube.','Express an orange peel over the glass.'], color:'#60422E' },
-        { name:'Café con Coco', sub:'Coconut cream, condensed milk', ingredients:['1½ oz Pitorro Café','1 oz coconut cream','½ oz condensed milk','Cinnamon'], method:['Shake all ingredients with ice.','Strain into a rocks glass over ice.','Dust with cinnamon.'], color:'#7D6654' }
+        { name:'Pitorro Espresso Martini', sub:'Espresso, coffee liqueur, syrup', img:'img/cocktails/espresso.jpg', ingredients:['1½ oz Pitorro Café','1 oz espresso','½ oz coffee liqueur','½ oz simple syrup'], method:['Shake all ingredients hard with ice.','Double strain into a chilled coupe.','Garnish with three coffee beans.'], color:'#8C3F16' },
+        { name:'Café Coquí Old Fashioned', sub:'Brown sugar, chocolate bitters', img:'img/cocktails/oldfashioned.jpg', ingredients:['2 oz Pitorro Café','¼ oz brown sugar syrup','2 dashes chocolate bitters'], method:['Stir all ingredients with ice until chilled.','Strain over a large ice cube.','Express an orange peel over the glass.'], color:'#60422E' },
+        { name:'Café con Coco', sub:'Coconut cream, condensed milk', img:'img/cocktails/coffee.jpg', ingredients:['1½ oz Pitorro Café','1 oz coconut cream','½ oz condensed milk','Cinnamon'], method:['Shake all ingredients with ice.','Strain into a rocks glass over ice.','Dust with cinnamon.'], color:'#7D6654' }
       ],
       'pitorro-tamarindo': [
-        { name:'Tamarindo Picante', sub:'Tamarind, lime, chili salt', ingredients:['1½ oz Pitorro Tamarindo','1 oz tamarind juice','½ oz lime juice','½ oz agave','Chili salt rim'], method:['Rim glass with chili salt.','Shake all liquid ingredients with ice.','Strain into the rimmed glass over ice.'], color:'#8C3F16' },
-        { name:'Tamarindo Sour', sub:'Lemon, syrup, optional egg white', ingredients:['1½ oz Pitorro Tamarindo','¾ oz lemon juice','¾ oz simple syrup','Optional egg white'], method:['Dry shake if using egg white.','Add ice and shake again.','Strain into a coupe.'], color:'#60422E' },
-        { name:'Tamarindo Rum Punch', sub:'Pineapple, orange, lime', ingredients:['1½ oz Pitorro Tamarindo','1 oz pineapple juice','½ oz orange juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Pour over fresh ice.','Garnish with a pineapple wedge.'], color:'#7D6654' }
+        { name:'Tamarindo Picante', sub:'Tamarind, lime, chili salt', img:'img/cocktails/margarita.jpg', ingredients:['1½ oz Pitorro Tamarindo','1 oz tamarind juice','½ oz lime juice','½ oz agave','Chili salt rim'], method:['Rim glass with chili salt.','Shake all liquid ingredients with ice.','Strain into the rimmed glass over ice.'], color:'#8C3F16' },
+        { name:'Tamarindo Sour', sub:'Lemon, syrup, optional egg white', img:'img/cocktails/sour.jpg', ingredients:['1½ oz Pitorro Tamarindo','¾ oz lemon juice','¾ oz simple syrup','Optional egg white'], method:['Dry shake if using egg white.','Add ice and shake again.','Strain into a coupe.'], color:'#60422E' },
+        { name:'Tamarindo Rum Punch', sub:'Pineapple, orange, lime', img:'img/cocktails/punch.jpg', ingredients:['1½ oz Pitorro Tamarindo','1 oz pineapple juice','½ oz orange juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Pour over fresh ice.','Garnish with a pineapple wedge.'], color:'#7D6654' }
       ],
       'pitorro-parcha': [
-        { name:'Parcha Punch Coquí', sub:'Orange, pineapple, lime', ingredients:['1½ oz Pitorro Parcha','1 oz orange juice','1 oz pineapple juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with a passion fruit half.'], color:'#8C3F16' },
-        { name:'Maracuyá Mule', sub:'Lime, ginger beer', ingredients:['1½ oz Pitorro Parcha','½ oz lime juice','Ginger beer'], method:['Build rum and lime over ice in a copper mug.','Top with ginger beer.','Garnish with a lime wedge.'], color:'#60422E' },
-        { name:'Parcha Sunset', sub:'Cranberry, lime, syrup', ingredients:['1½ oz Pitorro Parcha','1 oz cranberry juice','½ oz lime juice','½ oz simple syrup'], method:['Shake all ingredients with ice.','Strain into a glass over ice.','Garnish with a lime wheel.'], color:'#7D6654' }
+        { name:'Parcha Punch Coquí', sub:'Orange, pineapple, lime', img:'img/cocktails/punch.jpg', ingredients:['1½ oz Pitorro Parcha','1 oz orange juice','1 oz pineapple juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with a passion fruit half.'], color:'#8C3F16' },
+        { name:'Maracuyá Mule', sub:'Lime, ginger beer', img:'img/cocktails/mule.jpg', ingredients:['1½ oz Pitorro Parcha','½ oz lime juice','Ginger beer'], method:['Build rum and lime over ice in a copper mug.','Top with ginger beer.','Garnish with a lime wedge.'], color:'#60422E' },
+        { name:'Parcha Sunset', sub:'Cranberry, lime, syrup', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Pitorro Parcha','1 oz cranberry juice','½ oz lime juice','½ oz simple syrup'], method:['Shake all ingredients with ice.','Strain into a glass over ice.','Garnish with a lime wheel.'], color:'#7D6654' }
       ],
       'pitorro-pina': [
-        { name:'Piña Pitorro Colada', sub:'Coconut cream, pineapple, ice', ingredients:['1½ oz Pitorro Piña','1 oz cream of coconut','1 oz pineapple juice','Crushed ice'], method:['Blend or shake all ingredients with ice.','Pour into a chilled glass.','Garnish with a pineapple wedge.'], color:'#8C3F16' },
-        { name:'Piña Brava', sub:'Lime, agave, jalapeño', ingredients:['1½ oz Pitorro Piña','½ oz lime juice','½ oz agave','Jalapeño slice'], method:['Muddle jalapeño gently with agave.','Add remaining ingredients, shake with ice.','Strain over ice, garnish with jalapeño.'], color:'#60422E' },
-        { name:'Pineapple Rum Smash', sub:'Lime, syrup, mint', ingredients:['1½ oz Pitorro Piña','1 oz lime juice','¾ oz simple syrup','Mint leaves','Pineapple chunks'], method:['Muddle pineapple and mint with syrup.','Add rum and lime, shake with ice.','Strain over crushed ice.'], color:'#7D6654' }
+        { name:'Piña Pitorro Colada', sub:'Coconut cream, pineapple, ice', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Pitorro Piña','1 oz cream of coconut','1 oz pineapple juice','Crushed ice'], method:['Blend or shake all ingredients with ice.','Pour into a chilled glass.','Garnish with a pineapple wedge.'], color:'#8C3F16' },
+        { name:'Piña Brava', sub:'Lime, agave, jalapeño', img:'img/cocktails/margarita.jpg', ingredients:['1½ oz Pitorro Piña','½ oz lime juice','½ oz agave','Jalapeño slice'], method:['Muddle jalapeño gently with agave.','Add remaining ingredients, shake with ice.','Strain over ice, garnish with jalapeño.'], color:'#60422E' },
+        { name:'Pineapple Rum Smash', sub:'Lime, syrup, mint', img:'img/cocktails/mojito.jpg', ingredients:['1½ oz Pitorro Piña','1 oz lime juice','¾ oz simple syrup','Mint leaves','Pineapple chunks'], method:['Muddle pineapple and mint with syrup.','Add rum and lime, shake with ice.','Strain over crushed ice.'], color:'#7D6654' }
       ],
       'pitorro-fresa': [
-        { name:'Fresa Fresca', sub:'Lime, syrup, muddled strawberry', ingredients:['1½ oz Pitorro Fresa','1 oz lime juice','¾ oz simple syrup','Muddled strawberries'], method:['Muddle strawberries with syrup.','Add rum and lime, shake with ice.','Strain into a glass over ice.'], color:'#8C3F16' },
-        { name:'Strawberry Coquí Spritz', sub:'Lemon, syrup, soda water', ingredients:['1½ oz Pitorro Fresa','½ oz lemon juice','½ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain into a wine glass over ice.','Top with soda and stir gently.'], color:'#60422E' },
-        { name:'Fresa Colada', sub:'Pineapple, coconut cream', ingredients:['1½ oz Pitorro Fresa','1 oz pineapple juice','1 oz cream of coconut'], method:['Shake all ingredients hard with ice.','Strain into a glass with crushed ice.','Garnish with a strawberry.'], color:'#7D6654' }
+        { name:'Fresa Fresca', sub:'Lime, syrup, muddled strawberry', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Pitorro Fresa','1 oz lime juice','¾ oz simple syrup','Muddled strawberries'], method:['Muddle strawberries with syrup.','Add rum and lime, shake with ice.','Strain into a glass over ice.'], color:'#8C3F16' },
+        { name:'Strawberry Coquí Spritz', sub:'Lemon, syrup, soda water', img:'img/cocktails/spritz.jpg', ingredients:['1½ oz Pitorro Fresa','½ oz lemon juice','½ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain into a wine glass over ice.','Top with soda and stir gently.'], color:'#60422E' },
+        { name:'Fresa Colada', sub:'Pineapple, coconut cream', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Pitorro Fresa','1 oz pineapple juice','1 oz cream of coconut'], method:['Shake all ingredients hard with ice.','Strain into a glass with crushed ice.','Garnish with a strawberry.'], color:'#7D6654' }
       ],
       'pitorro-frutas': [
-        { name:'Frutas de la Isla', sub:'Guava, pineapple, lime', ingredients:['1½ oz Pitorro Frutas','1 oz guava juice','1 oz pineapple juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with tropical fruit.'], color:'#8C3F16' },
-        { name:'Tropical Sangría Coquí', sub:'White wine, fruit, soda', ingredients:['1 oz Pitorro Frutas','3 oz white wine','Chopped fruit','Splash lemon-lime soda'], method:['Combine rum, wine, and fruit in a glass.','Stir gently with ice.','Top with a splash of soda.'], color:'#60422E' },
-        { name:'Fruit Stand Punch', sub:'Orange, cranberry, lime', ingredients:['1½ oz Pitorro Frutas','1 oz orange juice','1 oz cranberry juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Pour over fresh ice.','Garnish with an orange wheel.'], color:'#7D6654' }
+        { name:'Frutas de la Isla', sub:'Guava, pineapple, lime', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Pitorro Frutas','1 oz guava juice','1 oz pineapple juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with tropical fruit.'], color:'#8C3F16' },
+        { name:'Tropical Sangría Coquí', sub:'White wine, fruit, soda', img:'img/cocktails/punch.jpg', ingredients:['1 oz Pitorro Frutas','3 oz white wine','Chopped fruit','Splash lemon-lime soda'], method:['Combine rum, wine, and fruit in a glass.','Stir gently with ice.','Top with a splash of soda.'], color:'#60422E' },
+        { name:'Fruit Stand Punch', sub:'Orange, cranberry, lime', img:'img/cocktails/punch.jpg', ingredients:['1½ oz Pitorro Frutas','1 oz orange juice','1 oz cranberry juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Pour over fresh ice.','Garnish with an orange wheel.'], color:'#7D6654' }
       ],
       'blend-mango-pina': [
-        { name:'Mango Piña Smash', sub:'Mango nectar, lime, mint', ingredients:['1½ oz Mango/Piña Blend','1 oz mango nectar','½ oz lime juice','Mint leaves'], method:['Muddle mint gently.','Add remaining ingredients, shake with ice.','Strain over crushed ice.'], color:'#8C3F16' },
-        { name:'Golden Coquí', sub:'Pineapple, orange, lime', ingredients:['1½ oz Mango/Piña Blend','1 oz pineapple juice','½ oz orange juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain into a glass over ice.','Garnish with a pineapple leaf.'], color:'#60422E' },
-        { name:'Mango Piña Mule', sub:'Lime, ginger beer', ingredients:['1½ oz Mango/Piña Blend','½ oz lime juice','Ginger beer'], method:['Build rum and lime over ice.','Top with ginger beer.','Garnish with a lime wedge.'], color:'#7D6654' }
+        { name:'Mango Piña Smash', sub:'Mango nectar, lime, mint', img:'img/cocktails/mojito.jpg', ingredients:['1½ oz Mango/Piña Blend','1 oz mango nectar','½ oz lime juice','Mint leaves'], method:['Muddle mint gently.','Add remaining ingredients, shake with ice.','Strain over crushed ice.'], color:'#8C3F16' },
+        { name:'Golden Coquí', sub:'Pineapple, orange, lime', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Mango/Piña Blend','1 oz pineapple juice','½ oz orange juice','½ oz lime juice'], method:['Shake all ingredients with ice.','Strain into a glass over ice.','Garnish with a pineapple leaf.'], color:'#60422E' },
+        { name:'Mango Piña Mule', sub:'Lime, ginger beer', img:'img/cocktails/mule.jpg', ingredients:['1½ oz Mango/Piña Blend','½ oz lime juice','Ginger beer'], method:['Build rum and lime over ice.','Top with ginger beer.','Garnish with a lime wedge.'], color:'#7D6654' }
       ],
       'blend-fresa-pina': [
-        { name:'Fresa Piña Colada', sub:'Coconut cream, pineapple', ingredients:['1½ oz Fresa/Piña Blend','1 oz cream of coconut','1 oz pineapple juice'], method:['Shake all ingredients with ice.','Strain into a glass with crushed ice.','Garnish with a strawberry.'], color:'#8C3F16' },
-        { name:'Pink Island Cooler', sub:'Lime, syrup, soda water', ingredients:['1½ oz Fresa/Piña Blend','½ oz lime juice','½ oz simple syrup','Soda water'], method:['Shake rum, lime, and syrup with ice.','Strain over ice.','Top with soda and stir gently.'], color:'#60422E' },
-        { name:'Strawberry Pineapple Daiquiri', sub:'Lime, syrup, chilled coupe', ingredients:['1½ oz Fresa/Piña Blend','¾ oz lime juice','½ oz simple syrup'], method:['Shake all ingredients with ice.','Double strain into a chilled coupe.','Garnish with a lime wheel.'], color:'#7D6654' }
+        { name:'Fresa Piña Colada', sub:'Coconut cream, pineapple', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Fresa/Piña Blend','1 oz cream of coconut','1 oz pineapple juice'], method:['Shake all ingredients with ice.','Strain into a glass with crushed ice.','Garnish with a strawberry.'], color:'#8C3F16' },
+        { name:'Pink Island Cooler', sub:'Lime, syrup, soda water', img:'img/cocktails/spritz.jpg', ingredients:['1½ oz Fresa/Piña Blend','½ oz lime juice','½ oz simple syrup','Soda water'], method:['Shake rum, lime, and syrup with ice.','Strain over ice.','Top with soda and stir gently.'], color:'#60422E' },
+        { name:'Strawberry Pineapple Daiquiri', sub:'Lime, syrup, chilled coupe', img:'img/cocktails/daiquiri.jpg', ingredients:['1½ oz Fresa/Piña Blend','¾ oz lime juice','½ oz simple syrup'], method:['Shake all ingredients with ice.','Double strain into a chilled coupe.','Garnish with a lime wheel.'], color:'#7D6654' }
       ],
       'blend-coco-almendra': [
-        { name:'Coco Almendra Coquito', sub:'Coconut cream, milk, cinnamon', ingredients:['1½ oz Coco Almendra Blend','1 oz cream of coconut','1 oz evaporated milk','Cinnamon'], method:['Shake all liquid ingredients with ice.','Strain into a glass over ice.','Dust with cinnamon.'], color:'#8C3F16' },
-        { name:'Almond Coconut Sour', sub:'Lemon, orgeat, syrup', ingredients:['1½ oz Coco Almendra Blend','¾ oz lemon juice','½ oz orgeat','¼ oz simple syrup'], method:['Shake all ingredients with ice.','Strain into a coupe.','Garnish with an almond.'], color:'#60422E' },
-        { name:'Isla Almendra', sub:'Pineapple, lime, coconut water', ingredients:['1½ oz Coco Almendra Blend','1 oz pineapple juice','½ oz lime juice','½ oz coconut water'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with a pineapple wedge.'], color:'#7D6654' }
+        { name:'Coco Almendra Coquito', sub:'Coconut cream, milk, cinnamon', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Coco Almendra Blend','1 oz cream of coconut','1 oz evaporated milk','Cinnamon'], method:['Shake all liquid ingredients with ice.','Strain into a glass over ice.','Dust with cinnamon.'], color:'#8C3F16' },
+        { name:'Almond Coconut Sour', sub:'Lemon, orgeat, syrup', img:'img/cocktails/sour.jpg', ingredients:['1½ oz Coco Almendra Blend','¾ oz lemon juice','½ oz orgeat','¼ oz simple syrup'], method:['Shake all ingredients with ice.','Strain into a coupe.','Garnish with an almond.'], color:'#60422E' },
+        { name:'Isla Almendra', sub:'Pineapple, lime, coconut water', img:'img/cocktails/tropical.jpg', ingredients:['1½ oz Coco Almendra Blend','1 oz pineapple juice','½ oz lime juice','½ oz coconut water'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with a pineapple wedge.'], color:'#7D6654' }
       ],
       'blend-jengibre-coco': [
-        { name:'Ginger Coco Mule', sub:'Lime, ginger beer', ingredients:['1½ oz Jengibre Coco Blend','½ oz lime juice','Ginger beer'], method:['Build rum and lime over ice in a copper mug.','Top with ginger beer.','Garnish with a lime wedge and candied ginger.'], color:'#8C3F16' },
-        { name:'Coco Jengibre Sour', sub:'Lemon, honey, coconut water', ingredients:['1½ oz Jengibre Coco Blend','¾ oz lemon juice','½ oz honey syrup','½ oz coconut water'], method:['Shake all ingredients with ice.','Strain into a rocks glass over ice.','Garnish with a lemon twist.'], color:'#60422E' },
-        { name:'Spiced Coconut Highball', sub:'Soda water, lime, bitters', ingredients:['1½ oz Jengibre Coco Blend','Soda water','Lime wedge','Dash aromatic bitters'], method:['Build rum and bitters over ice.','Top with soda water.','Garnish with a lime wedge.'], color:'#7D6654' }
+        { name:'Ginger Coco Mule', sub:'Lime, ginger beer', img:'img/cocktails/mule.jpg', ingredients:['1½ oz Jengibre Coco Blend','½ oz lime juice','Ginger beer'], method:['Build rum and lime over ice in a copper mug.','Top with ginger beer.','Garnish with a lime wedge and candied ginger.'], color:'#8C3F16' },
+        { name:'Coco Jengibre Sour', sub:'Lemon, honey, coconut water', img:'img/cocktails/sour.jpg', ingredients:['1½ oz Jengibre Coco Blend','¾ oz lemon juice','½ oz honey syrup','½ oz coconut water'], method:['Shake all ingredients with ice.','Strain into a rocks glass over ice.','Garnish with a lemon twist.'], color:'#60422E' },
+        { name:'Spiced Coconut Highball', sub:'Soda water, lime, bitters', img:'img/cocktails/highball.jpg', ingredients:['1½ oz Jengibre Coco Blend','Soda water','Lime wedge','Dash aromatic bitters'], method:['Build rum and bitters over ice.','Top with soda water.','Garnish with a lime wedge.'], color:'#7D6654' }
       ],
       'blend-coco-fresa-pina': [
-        { name:'Triple Isla Colada', sub:'Pineapple, coconut cream', ingredients:['1½ oz Coco/Fresa/Piña Blend','1 oz pineapple juice','1 oz cream of coconut'], method:['Shake all ingredients with ice.','Pour into a glass with crushed ice.','Garnish with tropical fruit.'], color:'#8C3F16' },
-        { name:'Coquí Paradise Punch', sub:'Orange, lime, grenadine', ingredients:['1½ oz Coco/Fresa/Piña Blend','1 oz orange juice','½ oz lime juice','½ oz grenadine'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with an orange wheel.'], color:'#60422E' },
-        { name:'Rosado Tropical', sub:'Lemon, syrup, soda water', ingredients:['1½ oz Coco/Fresa/Piña Blend','½ oz lemon juice','½ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain over ice.','Top with soda.'], color:'#7D6654' }
+        { name:'Triple Isla Colada', sub:'Pineapple, coconut cream', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Coco/Fresa/Piña Blend','1 oz pineapple juice','1 oz cream of coconut'], method:['Shake all ingredients with ice.','Pour into a glass with crushed ice.','Garnish with tropical fruit.'], color:'#8C3F16' },
+        { name:'Coquí Paradise Punch', sub:'Orange, lime, grenadine', img:'img/cocktails/punch.jpg', ingredients:['1½ oz Coco/Fresa/Piña Blend','1 oz orange juice','½ oz lime juice','½ oz grenadine'], method:['Shake all ingredients with ice.','Strain over fresh ice.','Garnish with an orange wheel.'], color:'#60422E' },
+        { name:'Rosado Tropical', sub:'Lemon, syrup, soda water', img:'img/cocktails/spritz.jpg', ingredients:['1½ oz Coco/Fresa/Piña Blend','½ oz lemon juice','½ oz simple syrup','Soda water'], method:['Shake rum, lemon, and syrup with ice.','Strain over ice.','Top with soda.'], color:'#7D6654' }
       ],
       'blend-coco-pina': [
-        { name:'Classic Coquí Colada', sub:'Coconut cream, pineapple, ice', ingredients:['1½ oz Coco Piña Blend','1 oz cream of coconut','1 oz pineapple juice','Crushed ice'], method:['Blend or shake all ingredients with ice.','Pour into a chilled glass.','Garnish with a pineapple wedge.'], color:'#8C3F16' },
-        { name:'Coco Piña Mojito', sub:'Lime, syrup, mint, soda', ingredients:['1½ oz Coco Piña Blend','¾ oz lime juice','½ oz simple syrup','Mint leaves','Soda water'], method:['Muddle mint with syrup and lime.','Add rum and ice, shake.','Top with soda and stir gently.'], color:'#60422E' },
-        { name:'Beach House Punch', sub:'Orange, lime, coconut water', ingredients:['1½ oz Coco Piña Blend','1 oz orange juice','½ oz lime juice','½ oz coconut water'], method:['Shake all ingredients with ice.','Pour over fresh ice.','Garnish with a lime wheel.'], color:'#7D6654' }
+        { name:'Classic Coquí Colada', sub:'Coconut cream, pineapple, ice', img:'img/cocktails/colada.jpg', ingredients:['1½ oz Coco Piña Blend','1 oz cream of coconut','1 oz pineapple juice','Crushed ice'], method:['Blend or shake all ingredients with ice.','Pour into a chilled glass.','Garnish with a pineapple wedge.'], color:'#8C3F16' },
+        { name:'Coco Piña Mojito', sub:'Lime, syrup, mint, soda', img:'img/cocktails/mojito.jpg', ingredients:['1½ oz Coco Piña Blend','¾ oz lime juice','½ oz simple syrup','Mint leaves','Soda water'], method:['Muddle mint with syrup and lime.','Add rum and ice, shake.','Top with soda and stir gently.'], color:'#60422E' },
+        { name:'Beach House Punch', sub:'Orange, lime, coconut water', img:'img/cocktails/punch.jpg', ingredients:['1½ oz Coco Piña Blend','1 oz orange juice','½ oz lime juice','½ oz coconut water'], method:['Shake all ingredients with ice.','Pour over fresh ice.','Garnish with a lime wheel.'], color:'#7D6654' }
       ],
       'carjakers': [
-        { name:'Carjaker\'s Old Fashioned', sub:'Demerara, bitters, orange peel', ingredients:['2 oz Carjaker\'s Rum','¼ oz demerara syrup','2 dashes Angostura bitters','Orange peel'], method:['Stir all ingredients with ice until chilled.','Strain over a large ice cube.','Express orange peel over the glass.'], color:'#8C3F16' },
-        { name:'Carjaker\'s Rum Manhattan', sub:'Sweet vermouth, bitters', ingredients:['2 oz Carjaker\'s Rum','¾ oz sweet vermouth','2 dashes bitters'], method:['Stir all ingredients with ice.','Strain into a chilled coupe.','Garnish with a cherry.'], color:'#60422E' },
-        { name:'Carjaker\'s Café Nocturno', sub:'Espresso, coffee liqueur', ingredients:['1½ oz Carjaker\'s Rum','1 oz espresso','½ oz coffee liqueur','½ oz brown sugar syrup'], method:['Shake all ingredients hard with ice.','Double strain into a chilled coupe.','Garnish with three coffee beans.'], color:'#7D6654' }
+        { name:'Carjaker\'s Old Fashioned', sub:'Demerara, bitters, orange peel', img:'img/cocktails/oldfashioned.jpg', ingredients:['2 oz Carjaker\'s Rum','¼ oz demerara syrup','2 dashes Angostura bitters','Orange peel'], method:['Stir all ingredients with ice until chilled.','Strain over a large ice cube.','Express orange peel over the glass.'], color:'#8C3F16' },
+        { name:'Carjaker\'s Rum Manhattan', sub:'Sweet vermouth, bitters', img:'img/cocktails/manhattan.jpg', ingredients:['2 oz Carjaker\'s Rum','¾ oz sweet vermouth','2 dashes bitters'], method:['Stir all ingredients with ice.','Strain into a chilled coupe.','Garnish with a cherry.'], color:'#60422E' },
+        { name:'Carjaker\'s Café Nocturno', sub:'Espresso, coffee liqueur', img:'img/cocktails/espresso.jpg', ingredients:['1½ oz Carjaker\'s Rum','1 oz espresso','½ oz coffee liqueur','½ oz brown sugar syrup'], method:['Shake all ingredients hard with ice.','Double strain into a chilled coupe.','Garnish with three coffee beans.'], color:'#7D6654' }
       ]
     };
     // Miniatures & canecas share cocktails with their parent product
@@ -1247,7 +1191,7 @@
     function renderCocktailCards(cocktails) {
       return cocktails.map((cocktail, index) => `
         <button type="button" class="ron-pour-card ${index === 0 ? 'is-active' : ''}" data-cocktail-index="${index}">
-          <span class="cocktail-placeholder" style="${cocktailVars(cocktail.color)}" aria-hidden="true"></span>
+          <img src="${cocktail.img}" alt="${cocktail.name}" loading="lazy" class="cocktail-photo">
           <h3>${cocktail.name}</h3>
           <p>${cocktail.sub}</p>
         </button>
@@ -1257,8 +1201,8 @@
     function renderRecipe(cocktail) {
       return `
         <section class="ron-recipe is-cocktail-recipe" id="cocktailRecipe">
-          <div class="cocktail-recipe-art" style="${recipeVars(cocktail.color)}" role="img" aria-label="Placeholder cocktail image">
-            <span>Cocktail image placeholder</span>
+          <div class="cocktail-recipe-art">
+            <img src="${cocktail.img}" alt="${cocktail.name}" loading="lazy">
           </div>
           <div class="ron-recipe-copy">
             <span class="product-eyebrow">Selected recipe</span>
