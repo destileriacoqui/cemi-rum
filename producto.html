@@ -236,30 +236,17 @@
     /* ── LANDSCAPE SKETCH (product-specific) ─── */
     .hero-sketch {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
       overflow: hidden;
     }
     .hero-sketch img {
-      position: absolute;
-      bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: max(100%, 72rem);
-      height: auto;
-      opacity: 0.14;
-      mix-blend-mode: multiply;
-      mask-image: linear-gradient(to bottom, transparent 0%, transparent 35%, black 55%, black 85%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 35%, black 55%, black 85%, transparent 100%);
-    }
-    .hero-sketch-bg {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 45%;
-      background: linear-gradient(to bottom, transparent 0%, rgba(239,232,216,0.3) 40%, rgba(231,218,201,0.45) 100%);
-      pointer-events: none;
-      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      opacity: 0.35;
     }
     .ron-hero {
       min-height: 100dvh;
@@ -380,6 +367,7 @@
       place-items: center;
       position: relative;
       isolation: isolate;
+      z-index: 2;
     }
     .ron-stage::before,
     .ron-stage::after {
@@ -1253,8 +1241,7 @@
       if (beachSlugs.includes(slug)) img = 'img/sketch-beach-sunset.jpg';
       else if (forestSlugs.includes(slug)) img = 'img/sketch-forest-mountain.jpg';
       if (!img) return '';
-      return '<div class="hero-sketch-bg"></div>' +
-        '<div class="hero-sketch" aria-hidden="true"><img src="' + img + '" alt="" loading="eager"></div>';
+      return '<div class="hero-sketch" aria-hidden="true"><img src="' + img + '" alt="" loading="eager"></div>';
     }
 
     function renderCocktailCards(cocktails) {
