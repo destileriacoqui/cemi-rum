@@ -249,11 +249,16 @@
     }
     .ron-hero {
       min-height: 100dvh;
-      padding: clamp(8rem, 12vh, 10rem) clamp(2rem, 5vw, 6rem) 3rem;
+      /* Top padding must clear the fixed nav (~122px tall) with breathing room
+         so the back link is never tucked under it on short/zoomed viewports. */
+      padding: clamp(10.5rem, 13vh, 12rem) clamp(2rem, 5vw, 6rem) 3rem;
       display: grid;
       grid-template-columns: minmax(18rem, 0.92fr) minmax(20rem, 1.08fr);
       gap: clamp(2rem, 7vw, 8rem);
-      align-items: center;
+      /* "safe" keeps the copy vertically centered when it fits, but anchors it
+         to the top padding (instead of overflowing under the fixed nav) when
+         the copy is taller than the viewport, e.g. on short/zoomed screens. */
+      align-items: safe center;
       position: relative;
     }
     .ron-hero::after {
@@ -1247,10 +1252,6 @@
                 <div>
                   <span class="ron-spec-label">Alcohol</span>
                   <span class="ron-spec-value">${p.abv.replace(' ABV', '')}</span>
-                </div>
-                <div>
-                  <span class="ron-spec-label">Origin</span>
-                  <span class="ron-spec-value">${productOrigin(slug)}</span>
                 </div>
                 <div>
                   <span class="ron-spec-label">Style</span>
