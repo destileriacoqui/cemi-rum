@@ -355,6 +355,17 @@
     .cellar-spec-title { color: var(--gold); font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.5rem); font-weight: 400; margin-bottom: 0.4rem; }
     .cellar-spec-line { width: 2.5rem; height: 0.5px; background: rgba(196,147,72,0.32); margin-bottom: 0.7rem; }
     .cellar-spec-body { color: rgba(247,242,232,0.52); font-size: 0.82rem; line-height: 1.8; }
+    /* Small gold glyph above each callout title. Inline-block follows the
+       spec's text-align, so it sits on the barrel-facing side automatically. */
+    .cellar-spec-icon { display: block; margin-bottom: 0.7rem; color: var(--gold); line-height: 0; }
+    .cellar-spec-icon svg { display: inline-block; width: 1.5rem; height: 1.5rem; opacity: 0.92; }
+    /* Faint connector line + open dot running from the text toward the barrel. */
+    .cellar-conn { position: absolute; top: 2.5rem; height: 1px; width: clamp(2.5rem, 6vw, 7rem); pointer-events: none; }
+    .cellar-conn::after { content: ''; position: absolute; top: 50%; width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(196,147,72,0.7); transform: translateY(-50%); }
+    .cellar-spec--tl .cellar-conn, .cellar-spec--bl .cellar-conn { left: calc(100% + 0.7rem); background: linear-gradient(90deg, rgba(196,147,72,0.5), rgba(196,147,72,0.03)); }
+    .cellar-spec--tl .cellar-conn::after, .cellar-spec--bl .cellar-conn::after { left: -2.5px; }
+    .cellar-spec--tr .cellar-conn, .cellar-spec--br .cellar-conn { right: calc(100% + 0.7rem); background: linear-gradient(270deg, rgba(196,147,72,0.5), rgba(196,147,72,0.03)); }
+    .cellar-spec--tr .cellar-conn::after, .cellar-spec--br .cellar-conn::after { right: -2.5px; }
     /* Top-left: horizontal, right-aligned text */
     .cellar-spec--tl { top: 6%; left: 4%; text-align: right; }
     .cellar-spec--tl .cellar-spec-line { margin-left: auto; }
@@ -704,14 +715,16 @@
       <!-- Center: barrel with specs placed around it -->
       <div class="cellar-stage">
         <div class="cellar-spec cellar-spec--tl reveal">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">100% new American white oak barrels</p>
-          <p class="cellar-spec-body">Brand new American white oak barrels, charred to our master rum blender&#x2019;s specifications. Our rums get the full depth that only untouched wood delivers.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 5-12 14-13 1 9-4 15-13 14"/><path d="M5 19c3-4 6-6 9-7"/></svg></span>
+          <p class="cellar-spec-title">New American White Oak</p>
+          <p class="cellar-spec-body">Fresh oak gives the spirit deep vanilla, caramel, and toasted character from the start.</p>
+          <span class="cellar-conn"></span>
         </div>
         <div class="cellar-spec cellar-spec--tr reveal d1">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">American white oak</p>
-          <p class="cellar-spec-body">Quercus alba, prized worldwide for the vanilla, coconut, and caramel notes it gives the aging spirit.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 5l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></span>
+          <p class="cellar-spec-title">Mayag&#xFC;ez Aged</p>
+          <p class="cellar-spec-body">Puerto Rico&#x2019;s warm climate accelerates the exchange between spirit and oak, building depth faster.</p>
+          <span class="cellar-conn"></span>
         </div>
         <div class="cellar-barrel-wrap reveal">
           <div class="cellar-barrel-img" id="cellarBarrel">
@@ -719,38 +732,40 @@
           </div>
         </div>
         <div class="cellar-spec cellar-spec--bl reveal d1">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">Charred interior</p>
-          <p class="cellar-spec-body">The char layer caramelizes sugars in the wood, adding richness, color, and a clean toasted finish to every pour.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3 4 5 4 9a4 4 0 0 1-8 0c0-1 .3-2 .8-2.7C9 11 11 8 12 3z"/></svg></span>
+          <p class="cellar-spec-title">Charred Interior</p>
+          <p class="cellar-spec-body">The charred layer caramelizes natural sugars in the wood, adding richness, color, and a smooth finish.</p>
+          <span class="cellar-conn"></span>
         </div>
         <div class="cellar-spec cellar-spec--br reveal">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">Mayag&#xFC;ez aged</p>
-          <p class="cellar-spec-body">Puerto Rico&#x2019;s tropical heat accelerates the exchange between spirit and wood, building complexity faster than temperate climates.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10"/><path d="M7 20h10"/><path d="M7 4c-2.5 4-2.5 12 0 16"/><path d="M17 4c2.5 4 2.5 12 0 16"/><path d="M4.8 9.5h14.4"/><path d="M4.8 14.5h14.4"/></svg></span>
+          <p class="cellar-spec-title">Crafted for Character</p>
+          <p class="cellar-spec-body">Every barrel is selected to bring structure, aroma, and complexity to each batch.</p>
+          <span class="cellar-conn"></span>
         </div>
       </div>
 
       <!-- Mobile fallback: specs as grid below barrel -->
       <div class="cellar-callouts-mobile">
         <div class="cellar-spec">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">100% new American white oak barrels</p>
-          <p class="cellar-spec-body">Brand new American white oak barrels, charred to our master rum blender&#x2019;s specifications.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 5-12 14-13 1 9-4 15-13 14"/><path d="M5 19c3-4 6-6 9-7"/></svg></span>
+          <p class="cellar-spec-title">New American White Oak</p>
+          <p class="cellar-spec-body">Fresh oak gives the spirit deep vanilla, caramel, and toasted character from the start.</p>
         </div>
         <div class="cellar-spec">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">Charred interior</p>
-          <p class="cellar-spec-body">Caramelizes sugars in the wood, adding richness and color.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 5l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></span>
+          <p class="cellar-spec-title">Mayag&#xFC;ez Aged</p>
+          <p class="cellar-spec-body">Puerto Rico&#x2019;s warm climate accelerates the exchange between spirit and oak, building depth faster.</p>
         </div>
         <div class="cellar-spec">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">American white oak</p>
-          <p class="cellar-spec-body">Vanilla, coconut, and caramel notes from Quercus alba.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3 4 5 4 9a4 4 0 0 1-8 0c0-1 .3-2 .8-2.7C9 11 11 8 12 3z"/></svg></span>
+          <p class="cellar-spec-title">Charred Interior</p>
+          <p class="cellar-spec-body">The charred layer caramelizes natural sugars in the wood, adding richness, color, and a smooth finish.</p>
         </div>
         <div class="cellar-spec">
-          <div class="cellar-spec-line"></div>
-          <p class="cellar-spec-title">Mayag&#xFC;ez aged</p>
-          <p class="cellar-spec-body">Tropical heat accelerates the exchange between spirit and wood.</p>
+          <span class="cellar-spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h10"/><path d="M7 20h10"/><path d="M7 4c-2.5 4-2.5 12 0 16"/><path d="M17 4c2.5 4 2.5 12 0 16"/><path d="M4.8 9.5h14.4"/><path d="M4.8 14.5h14.4"/></svg></span>
+          <p class="cellar-spec-title">Crafted for Character</p>
+          <p class="cellar-spec-body">Every barrel is selected to bring structure, aroma, and complexity to each batch.</p>
         </div>
       </div>
 
