@@ -1175,16 +1175,17 @@
     }
 
     function beachSketch(slug) {
-      // Beach sketch for Ron Coquí products
+      // Beach — Ron Coquí white/citrus rums
       var beachSlugs = ['ron-blanco', 'ron-limon', 'caneca-blanco', 'caneca-limon'];
-      // Forest/mountain sketch for Pitorro products
+      // Forest/mountain — Pitorro traditional line
       var forestSlugs = ['pitorro-blanco', 'pitorro-coco-35', 'pitorro-coco-15', 'pitorro-cafe',
         'pitorro-tamarindo', 'pitorro-parcha', 'pitorro-pina', 'pitorro-fresa', 'pitorro-frutas',
-        'mini-blanco', 'mini-coco', 'mini-parcha', 'mini-tamarindo', 'mini-cafe'];
-      var img = null;
+        'mini-blanco', 'mini-coco', 'mini-parcha', 'mini-tamarindo', 'mini-cafe', 'carjakers'];
+      // Tropical — Blends
+      var img;
       if (beachSlugs.includes(slug)) img = 'img/sketch-beach-sunset.jpg';
       else if (forestSlugs.includes(slug)) img = 'img/sketch-forest-mountain.jpg';
-      if (!img) return '';
+      else img = 'img/sketch-tropical.jpg';
       return '<div class="hero-sketch" aria-hidden="true"><img src="' + img + '" alt="" loading="eager"></div>';
     }
 
