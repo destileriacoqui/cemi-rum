@@ -377,12 +377,10 @@
         '<div class="age-gate-card">' +
           '<div class="age-gate-brand">Destilería Coquí</div>' +
           '<h2 class="age-gate-q">' + escapeHtml(copy.AGE_GATE_QUESTION) + '</h2>' +
-          '<p class="age-gate-sub">Please enter your date of birth to continue.</p>' +
+          '<p class="age-gate-sub">Please enter your birth year to continue.</p>' +
           '<form class="age-gate-dob" novalidate>' +
             '<div class="age-gate-dob-fields">' +
-              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" name="month" placeholder="MM" aria-label="Month" required />' +
-              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" name="day" placeholder="DD" aria-label="Day" required />' +
-              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" name="year" placeholder="YYYY" aria-label="Year" required />' +
+              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" name="year" placeholder="YYYY" aria-label="Year of birth" required />' +
             '</div>' +
             '<p class="age-gate-error" role="alert" hidden></p>' +
             '<button type="submit" class="age-gate-btn age-gate-verify">Enter</button>' +
@@ -399,43 +397,42 @@
       function cleanup() { overlay.remove(); document.documentElement.style.overflow = ''; }
 
       overlay.querySelector('.age-gate-exit').addEventListener('click', fail);
-      overlay.querySelector('.age-gate-dob').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var f = e.target;
-        var err = overlay.querySelector('.age-gate-error');
-        if (!f.month.value || !f.day.value || !f.year.value) {
-          err.textContent = 'Please enter your full date of birth.'; err.hidden = false; return;
+
+      var form = overlay.querySelector('.age-gate-dob');
+      var yearInput = overlay.querySelector('input[name=year]');
+      var errEl = overlay.querySelector('.age-gate-error');
+      var decided = false;
+
+      // Validate the entered year and admit/redirect. With a year alone we use
+      // the largest age the visitor could be this calendar year (thisYear - year),
+      // which is the standard lenient year-only gate.
+      function evaluateYear() {
+        if (decided) return;
+        var digits = (yearInput.value || '').replace(/\D/g, '');
+        if (digits.length < 4) {
+          errEl.textContent = 'Please enter your 4-digit birth year.'; errEl.hidden = false; return;
         }
-        var dob = { month: f.month.value, day: f.day.value, year: f.year.value };
-        var age = calculateAge(dob);
-        if (age == null) { err.textContent = 'Please enter a valid date of birth.'; err.hidden = false; return; }
-        if (age >= required) { pass(); } else { fail(); }
-      });
-      // Keep each field numeric, cap its length, and auto-advance focus when a
-      // field is full (MM -> DD -> YYYY -> Enter) so the user never has to click
-      // between fields. Backspace on an empty field jumps to the previous one.
-      var dobInputs = overlay.querySelectorAll('.age-gate-dob input');
-      var verifyBtn = overlay.querySelector('.age-gate-verify');
-      for (var i = 0; i < dobInputs.length; i++) {
-        (function (input, idx) {
-          var max = parseInt(input.getAttribute('maxlength'), 10) || 2;
-          input.addEventListener('input', function () {
-            var digits = input.value.replace(/\D/g, '').slice(0, max);
-            if (digits !== input.value) input.value = digits;
-            if (digits.length >= max) {
-              var next = dobInputs[idx + 1];
-              if (next) next.focus(); else if (verifyBtn) verifyBtn.focus();
-            }
-          });
-          input.addEventListener('keydown', function (e) {
-            if (e.key === 'Backspace' && !input.value && idx > 0) {
-              var prev = dobInputs[idx - 1];
-              if (prev) prev.focus();
-            }
-          });
-        })(dobInputs[i], i);
+        var year = parseInt(digits, 10);
+        var thisYear = new Date().getFullYear();
+        if (Number.isNaN(year) || year < 1900 || year > thisYear) {
+          errEl.textContent = 'Please enter a valid birth year.'; errEl.hidden = false; return;
+        }
+        errEl.hidden = true;
+        decided = true;
+        if ((thisYear - year) >= required) { pass(); } else { fail(); }
       }
-      setTimeout(function () { var m = overlay.querySelector('input[name=month]'); if (m) m.focus(); }, 50);
+
+      form.addEventListener('submit', function (e) { e.preventDefault(); evaluateYear(); });
+      // Keep the field numeric and auto-verify the moment a full 4-digit year is
+      // typed, so the visitor is taken through without clicking Enter.
+      yearInput.addEventListener('input', function () {
+        var digits = yearInput.value.replace(/\D/g, '').slice(0, 4);
+        if (digits !== yearInput.value) yearInput.value = digits;
+        errEl.hidden = true;
+        if (digits.length === 4) evaluateYear();
+      });
+
+      setTimeout(function () { if (yearInput) yearInput.focus(); }, 50);
     };
 
     api.initFooterWarning = function () {
