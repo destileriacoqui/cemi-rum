@@ -376,9 +376,9 @@
           '<p class="age-gate-sub">Please enter your date of birth to continue.</p>' +
           '<form class="age-gate-dob" novalidate>' +
             '<div class="age-gate-dob-fields">' +
-              '<input type="number" inputmode="numeric" name="month" placeholder="MM" min="1" max="12" aria-label="Month" required />' +
-              '<input type="number" inputmode="numeric" name="day" placeholder="DD" min="1" max="31" aria-label="Day" required />' +
-              '<input type="number" inputmode="numeric" name="year" placeholder="YYYY" min="1900" aria-label="Year" required />' +
+              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" name="month" placeholder="MM" aria-label="Month" required />' +
+              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" name="day" placeholder="DD" aria-label="Day" required />' +
+              '<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" name="year" placeholder="YYYY" aria-label="Year" required />' +
             '</div>' +
             '<p class="age-gate-error" role="alert" hidden></p>' +
             '<button type="submit" class="age-gate-btn age-gate-verify">Enter</button>' +
@@ -407,6 +407,30 @@
         if (age == null) { err.textContent = 'Please enter a valid date of birth.'; err.hidden = false; return; }
         if (age >= required) { pass(); } else { fail(); }
       });
+      // Keep each field numeric, cap its length, and auto-advance focus when a
+      // field is full (MM -> DD -> YYYY -> Enter) so the user never has to click
+      // between fields. Backspace on an empty field jumps to the previous one.
+      var dobInputs = overlay.querySelectorAll('.age-gate-dob input');
+      var verifyBtn = overlay.querySelector('.age-gate-verify');
+      for (var i = 0; i < dobInputs.length; i++) {
+        (function (input, idx) {
+          var max = parseInt(input.getAttribute('maxlength'), 10) || 2;
+          input.addEventListener('input', function () {
+            var digits = input.value.replace(/\D/g, '').slice(0, max);
+            if (digits !== input.value) input.value = digits;
+            if (digits.length >= max) {
+              var next = dobInputs[idx + 1];
+              if (next) next.focus(); else if (verifyBtn) verifyBtn.focus();
+            }
+          });
+          input.addEventListener('keydown', function (e) {
+            if (e.key === 'Backspace' && !input.value && idx > 0) {
+              var prev = dobInputs[idx - 1];
+              if (prev) prev.focus();
+            }
+          });
+        })(dobInputs[i], i);
+      }
       setTimeout(function () { var m = overlay.querySelector('input[name=month]'); if (m) m.focus(); }, 50);
     };
 
