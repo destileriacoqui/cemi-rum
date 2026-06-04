@@ -1267,17 +1267,16 @@
               <div class="compliance-product-block">
                 Alcohol product. Must be of legal drinking age to purchase. Valid government-issued photo ID required at pickup or delivery. Orders may be refused or refunded if ID cannot be verified. Availability, pricing, and pickup/shipping options may change without notice.
               </div>
-              <!-- Online alcohol checkout is disabled (ALLOW_ALCOHOL_ONLINE_CHECKOUT=false).
-                   Direct purchase is replaced with pickup/availability requests. Routing +
-                   mandatory ID enforcement is wired in the cart/checkout phase. -->
+              <!-- Add to cart / buy now restored. Mandatory age + government-issued
+                   photo ID confirmation is enforced at checkout (no matter what). -->
               <div class="ron-actions">
-                <button type="button" class="btn-buy" data-add-cart data-cart-slug="${slug}">
-                  Request Pickup
+                <button type="button" class="btn-buy" data-add-cart>
+                  Add to Cart
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
                     <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
-                <a class="btn-amber" href="/contact">Check Availability</a>
+                <button type="button" class="btn-amber" data-add-cart data-buy-now>Buy Now</button>
               </div>
             </div>
             <div class="ron-stage">

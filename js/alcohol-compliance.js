@@ -51,13 +51,18 @@
     STRICT_ALCOHOL_MODE: envBool('STRICT_ALCOHOL_MODE', false),
     STRICT_ALCOHOL_AGE: envInt('STRICT_ALCOHOL_AGE', 21),
 
-    // Sales / fulfillment — all DISABLED by default until legally confirmed.
-    ALLOW_ALCOHOL_ONLINE_CHECKOUT: envBool('ALLOW_ALCOHOL_ONLINE_CHECKOUT', false),
+    // Online checkout is ENABLED per owner instruction, but every checkout is
+    // gated by a mandatory age + government-issued-ID confirmation (no matter
+    // what). Shipping/delivery stay DISABLED until legally confirmed.
+    // NOTE: enabling online alcohol sale still requires Hacienda licensing,
+    // payment-processor approval, and attorney review before going live.
+    ALLOW_ALCOHOL_ONLINE_CHECKOUT: envBool('ALLOW_ALCOHOL_ONLINE_CHECKOUT', true),
     ALLOW_ALCOHOL_SHIPPING:        envBool('ALLOW_ALCOHOL_SHIPPING', false),
     ALLOW_ALCOHOL_DELIVERY:        envBool('ALLOW_ALCOHOL_DELIVERY', false),
     ALLOW_PICKUP_REQUESTS:         envBool('ALLOW_PICKUP_REQUESTS', true),
 
     // ID / verification requirements.
+    REQUIRE_ID_AT_CHECKOUT:   envBool('REQUIRE_ID_AT_CHECKOUT', true),
     REQUIRE_ID_AT_PICKUP:     envBool('REQUIRE_ID_AT_PICKUP', true),
     REQUIRE_ID_FOR_SHIPPING:  envBool('REQUIRE_ID_FOR_SHIPPING', true),
     REQUIRE_ID_FOR_TASTINGS:  envBool('REQUIRE_ID_FOR_TASTINGS', true),

@@ -8,8 +8,10 @@
  *
  * NOTHING HERE IS LEGAL ADVICE. All flags are owner-configurable defaults that
  * require confirmation from Hacienda, an attorney, the payment processor, and
- * any carrier/delivery provider before being relied upon. Online alcohol
- * checkout, shipping, and delivery are DISABLED by default on purpose.
+ * any carrier/delivery provider before being relied upon. Online checkout is
+ * ENABLED with a mandatory age + government-ID confirmation at checkout (owner
+ * instruction); alcohol SHIPPING and DELIVERY remain DISABLED by default.
+ * Enabling online alcohol sale still requires the reviews named above.
  * ========================================================================== */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const compliance = require('../js/alcohol-compliance.js');
