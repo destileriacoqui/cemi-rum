@@ -87,18 +87,23 @@
   /* ------------------------------- COPY ------------------------------------ */
   /* All user-facing compliance strings live here so they can be reviewed in one
      place. Owner/attorney may revise wording; do not scatter copies elsewhere. */
+  /* ---------------------------------------------------------------------------
+   * INTERNAL COMPLIANCE NOTES — NOT shown to customers (developer/legal only).
+   *
+   * NOTE: The federal Government Warning is intentionally NOT displayed on the
+   * website. 27 CFR Part 16 is a container/bottle label rule, not a general
+   * website-warning rule. Physical bottle/container labels must separately
+   * include the exact statutory Government Warning text required under 27 CFR
+   * Part 16. Label compliance must be verified separately before sale or
+   * distribution. The website only shows a soft responsible-drinking line.
+   *
+   * NOTE: Before enabling alcohol shipping or delivery in production, confirm
+   * that Destilería Coquí has the correct Puerto Rico authority for direct-to-
+   * consumer retail sales, pickup, shipping, and delivery, including any required
+   * Hacienda alcohol licenses and any required carrier/porteador or delivery-
+   * related permissions. The website wording does not replace license compliance.
+   * ------------------------------------------------------------------------- */
   var copy = {
-    // Federal Alcoholic Beverage Labeling Act government warning (verbatim).
-    GOVERNMENT_WARNING:
-      'GOVERNMENT WARNING: According to the Surgeon General, alcoholic beverages ' +
-      'should not be consumed during pregnancy because of the risk of birth ' +
-      'defects. Consumption of alcoholic beverages impairs your ability to drive ' +
-      'a car or operate machinery, and may cause health problems.',
-
-    PREGNANCY_WARNING_PR:
-      'Alcohol consumption during pregnancy may cause serious harm, including ' +
-      'fetal alcohol syndrome.',
-
     RESPONSIBLE_DRINKING:
       'Please enjoy responsibly. Made for responsible enjoyment by adults of ' +
       'legal drinking age. Do not drink and drive.',
@@ -128,8 +133,11 @@
       'Valid government-issued photo ID is required at pickup. The name on the ' +
       'order should match the person picking up the order.',
     PICKUP_ADMIN_WARNING:
-      'Do not release alcohol unless valid government-issued photo ID confirms ' +
-      'the receiver is of legal drinking age.',
+      'Before releasing alcohol: require a valid government-issued photo ID that ' +
+      'includes a photo and date of birth; the recipient must be of legal drinking ' +
+      'age in Puerto Rico (18 years of age or older); request ID from anyone who ' +
+      'appears to be younger than 27; the order may be refused, canceled, or ' +
+      'refunded if age or identity cannot be verified.',
 
     // Shipping / delivery (only shown if explicitly enabled).
     SHIPPING_ID_REQUIRED:
@@ -338,10 +346,6 @@
       var wrap = document.createElement('div');
       wrap.className = 'compliance-notice';
       var parts = [];
-      if (config.REQUIRE_PREGNANCY_WARNING) {
-        parts.push('<p class="compliance-gov-warning">' + escapeHtml(copy.GOVERNMENT_WARNING) + '</p>');
-        parts.push('<p class="compliance-preg-warning">' + escapeHtml(copy.PREGNANCY_WARNING_PR) + '</p>');
-      }
       if (config.REQUIRE_RESPONSIBLE_DRINKING_NOTICE) {
         parts.push('<p class="compliance-responsible">' + escapeHtml(copy.RESPONSIBLE_DRINKING) + '</p>');
       }

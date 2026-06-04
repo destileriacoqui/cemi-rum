@@ -8,7 +8,7 @@ function escape(value) {
   })[character]);
 }
 
-function contactEmail({ firstName, lastName, email, subject, message }) {
+function contactEmail({ firstName, lastName, email, category, subject, message }) {
   return `<!doctype html>
     <html><body style="font-family:Arial,sans-serif;color:#1a1207;margin:0;padding:0">
       <div style="max-width:620px;margin:0 auto;padding:40px 24px">
@@ -17,6 +17,7 @@ function contactEmail({ firstName, lastName, email, subject, message }) {
         <div style="padding:20px;background:#fff;border:1px solid #e6dcc8;margin-bottom:24px">
           <p style="margin:0 0 8px"><strong>Name:</strong> ${escape(firstName)} ${escape(lastName)}</p>
           <p style="margin:0 0 8px"><strong>Email:</strong> <a href="mailto:${escape(email)}">${escape(email)}</a></p>
+          <p style="margin:0 0 8px"><strong>Reason:</strong> ${escape(category || 'Not provided')}</p>
           <p style="margin:0 0 8px"><strong>Subject:</strong> ${escape(subject || 'Not provided')}</p>
         </div>
         <div style="padding:20px;background:#faf8f4;border:1px solid #e6dcc8">
@@ -33,7 +34,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, subject, message } = req.body || {};
+  const { firstName, lastName, email, category, subject, message } = req.body || {};
 
   if (!firstName || !lastName || !email || !message) {
     return res.status(400).json({ error: 'Please fill in all required fields.' });
@@ -59,8 +60,8 @@ module.exports = async function handler(req, res) {
         from: config.from,
         reply_to: email,
         to: CONTACT_RECIPIENTS,
-        subject: `Contact: ${(subject || 'New message').slice(0, 100)} — ${firstName} ${lastName}`,
-        html: contactEmail({ firstName, lastName, email, subject, message })
+        subject: `Contact${category ? ` [${category}]` : ''}: ${(subject || 'New message').slice(0, 100)} — ${firstName} ${lastName}`,
+        html: contactEmail({ firstName, lastName, email, category, subject, message })
       })
     });
 

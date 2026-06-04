@@ -66,8 +66,10 @@ test('checkout/ship/pickup gates honor config flags (server-side, no session)', 
 });
 
 test('copy: required verbatim notices are present', () => {
-  assert.match(AC.copy.GOVERNMENT_WARNING, /^GOVERNMENT WARNING: According to the Surgeon General/);
-  assert.match(AC.copy.PREGNANCY_WARNING_PR, /fetal alcohol syndrome/);
+  // The federal Government Warning is intentionally NOT shown on the website
+  // (see internal note in alcohol-compliance.js); only a soft responsible line.
+  assert.equal(AC.copy.GOVERNMENT_WARNING, undefined);
+  assert.match(AC.copy.RESPONSIBLE_DRINKING, /Please enjoy responsibly/);
   assert.ok(AC.copy.PRODUCT_DISCLAIMER.includes('Must be of legal drinking age to purchase'));
   assert.equal(AC.copy.CARD_LABEL, 'Alcohol product. Legal drinking age required.');
 });

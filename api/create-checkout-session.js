@@ -64,7 +64,10 @@ module.exports = async function handler(req, res) {
     const user = await authenticatedUser(req);
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const shippingTotal = 20;
-    const taxTotal = ivuFor(subtotal);
+    // Default: treat the shipping fee as taxable when the shipped products are
+    // taxable (IVU applies to the shipping fee too). Do not treat shipping as
+    // exempt unless an accountant confirms an exemption under Puerto Rico law.
+    const taxTotal = ivuFor(subtotal + shippingTotal);
     const verificationSession = await requireVerifiedIdentity(req.body.stripe_identity_verification_session_id, 'shipping');
     const [order] = await supabase('orders?select=id', {
       method: 'POST', headers: { Prefer: 'return=representation' },
