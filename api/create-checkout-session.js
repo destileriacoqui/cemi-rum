@@ -87,7 +87,10 @@ module.exports = async function handler(req, res) {
     const params = {
       mode: 'payment',
       customer_email: customer.email,
-      shipping_address_collection: { allowed_countries: ['US'] },
+      // We ship alcohol ONLY within Puerto Rico. Stripe treats 'PR' as a
+      // distinct country code, so this locks the shipping address to Puerto Rico
+      // and prevents mainland US (or any other) shipping addresses at checkout.
+      shipping_address_collection: { allowed_countries: ['PR'] },
       line_items: items.map(item => ({
         quantity: item.quantity,
         price_data: { currency: 'usd', unit_amount: Math.round(item.price * 100), product_data: { name: item.name } }

@@ -316,6 +316,10 @@
         'color:rgba(26,18,7,.55);max-width:70ch;margin:0 auto .4rem;}' +
         '.compliance-notice .compliance-gov-warning{text-transform:uppercase;letter-spacing:.07em;' +
         'color:rgba(26,18,7,.72);}' +
+        '.compliance-notice .compliance-policy-links{margin-top:.55rem;}' +
+        '.compliance-notice .compliance-policy-links a{color:rgba(140,63,22,.85);' +
+        'text-decoration:underline;text-underline-offset:2px;}' +
+        '.compliance-notice .compliance-policy-links a:hover{color:#8C3F16;}' +
         '.compliance-product-block{margin:1.25rem 0;padding:1rem 1.1rem;border:1px solid rgba(140,63,22,.3);' +
         'background:rgba(140,63,22,.04);font-size:.72rem;line-height:1.6;color:rgba(26,18,7,.72);}' +
         '.compliance-card-label{display:block;margin:1.25rem 0 .25rem;font-size:.54rem;letter-spacing:.12em;' +
@@ -340,6 +344,12 @@
       }
       if (config.REQUIRE_RESPONSIBLE_DRINKING_NOTICE) {
         parts.push('<p class="compliance-responsible">' + escapeHtml(copy.RESPONSIBLE_DRINKING) + '</p>');
+      }
+      if (config.SHOW_ALCOHOL_POLICY_LINKS) {
+        parts.push('<p class="compliance-policy-links">' +
+          '<a href="/terms">Terms of Service</a><span aria-hidden="true"> &middot; </span>' +
+          '<a href="/privacy">Privacy Policy</a><span aria-hidden="true"> &middot; </span>' +
+          '<a href="/shipping-policy">Shipping &amp; Returns</a></p>');
       }
       wrap.innerHTML = parts.join('');
       host.appendChild(wrap);
