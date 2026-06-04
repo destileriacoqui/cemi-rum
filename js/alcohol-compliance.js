@@ -281,34 +281,36 @@
       stylesInjected = true;
       var css =
         '#coqui-age-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;' +
-        'justify-content:center;padding:1.5rem;background:rgba(10,6,2,.86);backdrop-filter:blur(8px);' +
-        '-webkit-backdrop-filter:blur(8px);font-family:"DM Sans",system-ui,sans-serif;}' +
-        '#coqui-age-gate .age-gate-card{background:#150d05;border:1px solid rgba(196,147,72,.28);' +
-        'max-width:30rem;width:100%;padding:clamp(2rem,5vw,3rem);text-align:center;color:#F7F2E8;' +
-        'box-shadow:0 30px 80px rgba(0,0,0,.5);}' +
-        '#coqui-age-gate .age-gate-brand{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;' +
-        'letter-spacing:.02em;margin-bottom:1.5rem;color:#F7F2E8;}' +
+        'justify-content:center;padding:1.5rem;background:rgba(26,18,7,.62);backdrop-filter:blur(6px);' +
+        '-webkit-backdrop-filter:blur(6px);font-family:"DM Sans",system-ui,sans-serif;}' +
+        '#coqui-age-gate .age-gate-card{background:#F7F2E8;border:1px solid rgba(140,63,22,.25);' +
+        'max-width:32rem;width:100%;padding:clamp(2.25rem,5vw,3.25rem);text-align:center;color:#1A1207;' +
+        'box-shadow:0 40px 90px rgba(26,18,7,.45);}' +
+        '#coqui-age-gate .age-gate-brand{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.05rem;' +
+        'letter-spacing:.18em;text-transform:uppercase;color:#8C3F16;margin-bottom:1.5rem;}' +
         '#coqui-age-gate .age-gate-q{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;' +
-        'font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.2;margin-bottom:1.75rem;}' +
-        '#coqui-age-gate .age-gate-actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}' +
-        '#coqui-age-gate .age-gate-btn{cursor:pointer;font-family:inherit;font-size:.66rem;letter-spacing:.2em;' +
-        'text-transform:uppercase;padding:.95rem 1.75rem;border:1px solid rgba(196,147,72,.5);background:transparent;' +
-        'color:#F7F2E8;transition:background .25s,color .25s;}' +
-        '#coqui-age-gate .age-gate-yes{background:#C49348;border-color:#C49348;color:#150d05;}' +
-        '#coqui-age-gate .age-gate-yes:hover{background:#d4a85e;}' +
-        '#coqui-age-gate .age-gate-no:hover{background:rgba(247,242,232,.08);}' +
-        '#coqui-age-gate .age-gate-dob-toggle{margin-top:1.5rem;background:none;border:none;cursor:pointer;' +
-        'color:rgba(196,147,72,.85);font-family:inherit;font-size:.62rem;letter-spacing:.14em;' +
+        'font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.08;letter-spacing:-.02em;color:#1A1207;margin-bottom:.9rem;}' +
+        '#coqui-age-gate .age-gate-sub{font-size:.8rem;line-height:1.6;color:#7D6654;margin-bottom:1.75rem;}' +
+        '#coqui-age-gate .age-gate-dob-fields{display:flex;gap:.6rem;justify-content:center;margin-bottom:1.1rem;}' +
+        '#coqui-age-gate .age-gate-dob input{width:4.6rem;text-align:center;padding:.85rem .5rem;background:#fff;' +
+        'border:1px solid rgba(96,66,46,.35);color:#1A1207;font-family:inherit;font-size:1rem;border-radius:0;-moz-appearance:textfield;}' +
+        '#coqui-age-gate .age-gate-dob input::-webkit-outer-spin-button,' +
+        '#coqui-age-gate .age-gate-dob input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}' +
+        '#coqui-age-gate .age-gate-dob input::placeholder{color:#a8917c;letter-spacing:.05em;}' +
+        '#coqui-age-gate .age-gate-dob input:focus{outline:none;border-color:#8C3F16;}' +
+        '#coqui-age-gate .age-gate-dob input[name=year]{width:6rem;}' +
+        '#coqui-age-gate .age-gate-btn{cursor:pointer;font-family:inherit;font-size:.66rem;letter-spacing:.22em;' +
+        'text-transform:uppercase;padding:1rem 2.5rem;border:1px solid #8C3F16;background:#8C3F16;color:#F7F2E8;' +
+        'transition:background .25s,border-color .25s;}' +
+        '#coqui-age-gate .age-gate-verify{width:100%;max-width:18rem;}' +
+        '#coqui-age-gate .age-gate-verify:hover{background:#712F0F;border-color:#712F0F;}' +
+        '#coqui-age-gate .age-gate-error{color:#a3331a;font-size:.74rem;margin:0 0 1rem;}' +
+        '#coqui-age-gate .age-gate-exit{display:inline-block;margin-top:1.5rem;background:none;border:none;' +
+        'cursor:pointer;color:#7D6654;font-family:inherit;font-size:.62rem;letter-spacing:.14em;' +
         'text-transform:uppercase;text-decoration:underline;text-underline-offset:3px;}' +
-        '#coqui-age-gate .age-gate-dob{margin-top:1.25rem;}' +
-        '#coqui-age-gate .age-gate-dob-fields{display:flex;gap:.6rem;justify-content:center;margin-bottom:1rem;}' +
-        '#coqui-age-gate .age-gate-dob input{width:5rem;text-align:center;padding:.7rem .5rem;background:#0e0803;' +
-        'border:1px solid rgba(247,242,232,.18);color:#F7F2E8;font-family:inherit;font-size:.9rem;}' +
-        '#coqui-age-gate .age-gate-dob input[name=year]{width:6.5rem;}' +
-        '#coqui-age-gate .age-gate-verify{width:100%;}' +
-        '#coqui-age-gate .age-gate-error{color:#e08a6a;font-size:.72rem;margin-top:.75rem;}' +
-        '#coqui-age-gate .age-gate-fine{margin-top:1.75rem;font-size:.58rem;line-height:1.6;' +
-        'color:rgba(247,242,232,.4);letter-spacing:.02em;}' +
+        '#coqui-age-gate .age-gate-exit:hover{color:#1A1207;}' +
+        '#coqui-age-gate .age-gate-fine{margin-top:1.75rem;font-size:.6rem;line-height:1.6;' +
+        'color:#9b8772;letter-spacing:.02em;}' +
         '.compliance-notice{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(26,18,7,.12);}' +
         '.compliance-notice p{font-size:.58rem;line-height:1.65;letter-spacing:.02em;' +
         'color:rgba(26,18,7,.55);max-width:70ch;margin:0 auto .4rem;}' +
@@ -361,20 +363,17 @@
         '<div class="age-gate-card">' +
           '<div class="age-gate-brand">Destilería Coquí</div>' +
           '<h2 class="age-gate-q">' + escapeHtml(copy.AGE_GATE_QUESTION) + '</h2>' +
-          '<div class="age-gate-actions">' +
-            '<button type="button" class="age-gate-btn age-gate-yes">' + escapeHtml(copy.AGE_GATE_YES) + '</button>' +
-            '<button type="button" class="age-gate-btn age-gate-no">' + escapeHtml(copy.AGE_GATE_NO) + '</button>' +
-          '</div>' +
-          '<button type="button" class="age-gate-dob-toggle">Verify with date of birth instead</button>' +
-          '<form class="age-gate-dob" hidden novalidate>' +
+          '<p class="age-gate-sub">Please enter your date of birth to continue.</p>' +
+          '<form class="age-gate-dob" novalidate>' +
             '<div class="age-gate-dob-fields">' +
-              '<input type="number" inputmode="numeric" name="month" placeholder="MM" min="1" max="12" aria-label="Month" />' +
-              '<input type="number" inputmode="numeric" name="day" placeholder="DD" min="1" max="31" aria-label="Day" />' +
-              '<input type="number" inputmode="numeric" name="year" placeholder="YYYY" min="1900" aria-label="Year" />' +
+              '<input type="number" inputmode="numeric" name="month" placeholder="MM" min="1" max="12" aria-label="Month" required />' +
+              '<input type="number" inputmode="numeric" name="day" placeholder="DD" min="1" max="31" aria-label="Day" required />' +
+              '<input type="number" inputmode="numeric" name="year" placeholder="YYYY" min="1900" aria-label="Year" required />' +
             '</div>' +
-            '<button type="submit" class="age-gate-btn age-gate-verify">Verify</button>' +
             '<p class="age-gate-error" role="alert" hidden></p>' +
+            '<button type="submit" class="age-gate-btn age-gate-verify">Enter</button>' +
           '</form>' +
+          '<button type="button" class="age-gate-exit">I am not of legal drinking age</button>' +
           '<p class="age-gate-fine">' + escapeHtml(copy.RESPONSIBLE_DRINKING) + '</p>' +
         '</div>';
 
@@ -385,21 +384,20 @@
       function fail() { window.location.href = '/age-restricted'; }
       function cleanup() { overlay.remove(); document.documentElement.style.overflow = ''; }
 
-      overlay.querySelector('.age-gate-yes').addEventListener('click', pass);
-      overlay.querySelector('.age-gate-no').addEventListener('click', fail);
-      overlay.querySelector('.age-gate-dob-toggle').addEventListener('click', function () {
-        overlay.querySelector('.age-gate-dob').hidden = false;
-        this.hidden = true;
-      });
+      overlay.querySelector('.age-gate-exit').addEventListener('click', fail);
       overlay.querySelector('.age-gate-dob').addEventListener('submit', function (e) {
         e.preventDefault();
         var f = e.target;
-        var dob = { month: f.month.value, day: f.day.value, year: f.year.value };
         var err = overlay.querySelector('.age-gate-error');
+        if (!f.month.value || !f.day.value || !f.year.value) {
+          err.textContent = 'Please enter your full date of birth.'; err.hidden = false; return;
+        }
+        var dob = { month: f.month.value, day: f.day.value, year: f.year.value };
         var age = calculateAge(dob);
         if (age == null) { err.textContent = 'Please enter a valid date of birth.'; err.hidden = false; return; }
         if (age >= required) { pass(); } else { fail(); }
       });
+      setTimeout(function () { var m = overlay.querySelector('input[name=month]'); if (m) m.focus(); }, 50);
     };
 
     api.initFooterWarning = function () {
