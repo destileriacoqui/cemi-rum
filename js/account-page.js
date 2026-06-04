@@ -34,8 +34,12 @@
         }
         const result = await api.signup({ email: data.email, password: data.password, fullName: data.full_name, phone: data.phone });
         if (!result.access_token) {
+          if (result.identities && result.identities.length === 0) {
+            setMessage('An account with the email "' + data.email + '" already exists. Try logging in instead.', true);
+            return;
+          }
           confirmationEmail = data.email;
-          setMessage('Check your email to confirm your address, then log in. If you already have an account, try logging in instead.');
+          setMessage('Account created. Check your email to confirm your address, then log in.');
           if (resend) resend.hidden = false;
           form.reset();
           return;
