@@ -914,7 +914,7 @@
             Our team in Mayag&#xFC;ez guides you through the full production process and finishes with
             a tasting of our spirits. Children under 18 enter free.
           </p>
-          <a href="tours.html" class="btn-primary reveal d3" style="margin-top:3.25rem;display:inline-flex;align-self:flex-start;">
+          <a href="/tours" class="btn-primary reveal d3" style="margin-top:3.25rem;display:inline-flex;align-self:flex-start;">
             View Available Dates
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
               <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -942,7 +942,7 @@
       <li><a href="historia.html">Our Story</a></li>
       <li><a href="ron.html">Our Rums</a></li>
       <li><a href="plaza.html">Plaza</a></li>
-      <li><a href="tours.html">Tours</a></li>
+      <li><a href="/tours">Tours</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </footer>
@@ -1132,7 +1132,7 @@
       "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
     document.head.appendChild(s);
     var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
-    var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['tours.html','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
+    var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['/tours','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
     var m=document.createElement('div');m.className='mobile-menu';
     var h='<button class="mobile-menu-close" aria-label="Close menu">&#10005;</button>';
     links.forEach(function(l){h+='<a href="'+l[0]+'">'+l[1]+'</a>';});
