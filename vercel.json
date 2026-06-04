@@ -55,6 +55,7 @@
   ],
   "rewrites": [
     { "source": "/maintenance", "destination": "/maintenance.html" },
+    { "source": "/age-restricted", "destination": "/age-restricted.html" },
     { "source": "/ron",      "destination": "/ron.html" },
     { "source": "/historia", "destination": "/historia.html" },
     { "source": "/tours",    "destination": "/tours.html" },

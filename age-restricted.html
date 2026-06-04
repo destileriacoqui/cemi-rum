@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Age Restricted | Destilería Coquí</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --cream:#F7F2E8; --ink:#1A1207; --amber:#8C3F16; --gold:#C49348; --muted:#7D6654;
+            --serif:'Cormorant Garamond',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; }
+    body { background:#120A04; color:var(--cream); font-family:var(--sans); font-weight:300;
+           min-height:100dvh; display:flex; flex-direction:column; }
+    main { flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center;
+           text-align:center; padding:6rem 1.75rem; }
+    .brand { font-family:var(--serif); font-size:clamp(1.6rem,4vw,2.2rem); letter-spacing:.02em;
+             color:var(--cream); margin-bottom:2.5rem; }
+    h1 { font-family:var(--serif); font-weight:300; font-size:clamp(2.2rem,6vw,4rem); line-height:1.08;
+         letter-spacing:-.02em; max-width:18ch; margin-bottom:1.5rem; }
+    h1 em { font-style:italic; color:var(--gold); }
+    p.lead { color:rgba(247,242,232,.7); font-size:1rem; line-height:1.7; max-width:46ch; margin-bottom:2.5rem; }
+    .links { display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; }
+    a.btn { display:inline-block; border:1px solid rgba(196,147,72,.5); color:var(--cream);
+            text-decoration:none; font-size:.68rem; letter-spacing:.22em; text-transform:uppercase;
+            padding:1rem 2rem; transition:background .3s ease, color .3s ease; }
+    a.btn:hover { background:var(--gold); color:#120A04; }
+    footer { padding:2rem 1.75rem 2.5rem; border-top:1px solid rgba(247,242,232,.08); }
+    .compliance-notice p { color:rgba(247,242,232,.4); font-size:.6rem; line-height:1.6;
+                           letter-spacing:.02em; max-width:60ch; margin:0 auto .4rem; text-align:center; }
+    .compliance-gov-warning { text-transform:uppercase; letter-spacing:.08em; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand">Destilería Coquí</div>
+    <h1>You must be of <em>legal drinking age</em> to access this website.</h1>
+    <p class="lead">Access to this site is restricted. If you reached this page by mistake, you can return and confirm your age, or leave the site.</p>
+    <div class="links">
+      <a class="btn" href="/" id="retryLink">Return &amp; verify age</a>
+      <a class="btn" href="https://www.google.com">Exit</a>
+    </div>
+  </main>
+  <footer data-compliance-footer></footer>
+  <script src="/js/alcohol-compliance.js"></script>
+  <script>
+    // Reaching this page clears any prior verification so the gate shows again on return.
+    if (window.AlcoholCompliance) {
+      window.AlcoholCompliance.clearVerified();
+      window.AlcoholCompliance.initFooterWarning();
+    }
+  </script>
+</body>
+</html>
