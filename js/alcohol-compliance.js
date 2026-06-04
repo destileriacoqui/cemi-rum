@@ -311,12 +311,12 @@
         '#coqui-age-gate .age-gate-exit:hover{color:#1A1207;}' +
         '#coqui-age-gate .age-gate-fine{margin-top:1.75rem;font-size:.6rem;line-height:1.6;' +
         'color:#9b8772;letter-spacing:.02em;}' +
-        '.compliance-notice{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(26,18,7,.12);}' +
-        '.compliance-notice p{font-size:.58rem;line-height:1.65;letter-spacing:.02em;' +
-        'color:rgba(26,18,7,.55);max-width:70ch;margin:0 auto .4rem;}' +
-        '.compliance-notice .compliance-gov-warning{text-transform:uppercase;letter-spacing:.07em;' +
-        'color:rgba(26,18,7,.72);}' +
-        '.compliance-notice .compliance-policy-links{margin-top:.55rem;}' +
+        '.compliance-notice{margin-top:1.5rem;padding-top:1.1rem;border-top:1px solid rgba(26,18,7,.12);text-align:right;}' +
+        '.compliance-notice p{font-size:.5rem;line-height:1.55;letter-spacing:.02em;' +
+        'color:rgba(26,18,7,.5);max-width:60ch;margin:0 0 .3rem auto;}' +
+        '.compliance-notice .compliance-gov-warning{text-transform:uppercase;letter-spacing:.06em;' +
+        'color:rgba(26,18,7,.66);}' +
+        '.compliance-notice .compliance-policy-links{margin-top:.5rem;}' +
         '.compliance-notice .compliance-policy-links a{color:rgba(140,63,22,.85);' +
         'text-decoration:underline;text-underline-offset:2px;}' +
         '.compliance-notice .compliance-policy-links a:hover{color:#8C3F16;}' +
