@@ -270,9 +270,58 @@
 
   /* ----------------------- BROWSER-ONLY: AGE GATE + UI ---------------------- */
   if (typeof document !== 'undefined') {
+    var stylesInjected = false;
+    function injectStyles() {
+      if (stylesInjected || document.getElementById('coqui-compliance-styles')) return;
+      stylesInjected = true;
+      var css =
+        '#coqui-age-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;' +
+        'justify-content:center;padding:1.5rem;background:rgba(10,6,2,.86);backdrop-filter:blur(8px);' +
+        '-webkit-backdrop-filter:blur(8px);font-family:"DM Sans",system-ui,sans-serif;}' +
+        '#coqui-age-gate .age-gate-card{background:#150d05;border:1px solid rgba(196,147,72,.28);' +
+        'max-width:30rem;width:100%;padding:clamp(2rem,5vw,3rem);text-align:center;color:#F7F2E8;' +
+        'box-shadow:0 30px 80px rgba(0,0,0,.5);}' +
+        '#coqui-age-gate .age-gate-brand{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;' +
+        'letter-spacing:.02em;margin-bottom:1.5rem;color:#F7F2E8;}' +
+        '#coqui-age-gate .age-gate-q{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;' +
+        'font-size:clamp(1.5rem,3.5vw,2rem);line-height:1.2;margin-bottom:1.75rem;}' +
+        '#coqui-age-gate .age-gate-actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}' +
+        '#coqui-age-gate .age-gate-btn{cursor:pointer;font-family:inherit;font-size:.66rem;letter-spacing:.2em;' +
+        'text-transform:uppercase;padding:.95rem 1.75rem;border:1px solid rgba(196,147,72,.5);background:transparent;' +
+        'color:#F7F2E8;transition:background .25s,color .25s;}' +
+        '#coqui-age-gate .age-gate-yes{background:#C49348;border-color:#C49348;color:#150d05;}' +
+        '#coqui-age-gate .age-gate-yes:hover{background:#d4a85e;}' +
+        '#coqui-age-gate .age-gate-no:hover{background:rgba(247,242,232,.08);}' +
+        '#coqui-age-gate .age-gate-dob-toggle{margin-top:1.5rem;background:none;border:none;cursor:pointer;' +
+        'color:rgba(196,147,72,.85);font-family:inherit;font-size:.62rem;letter-spacing:.14em;' +
+        'text-transform:uppercase;text-decoration:underline;text-underline-offset:3px;}' +
+        '#coqui-age-gate .age-gate-dob{margin-top:1.25rem;}' +
+        '#coqui-age-gate .age-gate-dob-fields{display:flex;gap:.6rem;justify-content:center;margin-bottom:1rem;}' +
+        '#coqui-age-gate .age-gate-dob input{width:5rem;text-align:center;padding:.7rem .5rem;background:#0e0803;' +
+        'border:1px solid rgba(247,242,232,.18);color:#F7F2E8;font-family:inherit;font-size:.9rem;}' +
+        '#coqui-age-gate .age-gate-dob input[name=year]{width:6.5rem;}' +
+        '#coqui-age-gate .age-gate-verify{width:100%;}' +
+        '#coqui-age-gate .age-gate-error{color:#e08a6a;font-size:.72rem;margin-top:.75rem;}' +
+        '#coqui-age-gate .age-gate-fine{margin-top:1.75rem;font-size:.58rem;line-height:1.6;' +
+        'color:rgba(247,242,232,.4);letter-spacing:.02em;}' +
+        '.compliance-notice{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(26,18,7,.12);}' +
+        '.compliance-notice p{font-size:.58rem;line-height:1.65;letter-spacing:.02em;' +
+        'color:rgba(26,18,7,.55);max-width:70ch;margin:0 auto .4rem;}' +
+        '.compliance-notice .compliance-gov-warning{text-transform:uppercase;letter-spacing:.07em;' +
+        'color:rgba(26,18,7,.72);}' +
+        '.compliance-product-block{margin:1.25rem 0;padding:1rem 1.1rem;border:1px solid rgba(140,63,22,.3);' +
+        'background:rgba(140,63,22,.04);font-size:.72rem;line-height:1.6;color:rgba(26,18,7,.72);}' +
+        '.compliance-card-label{display:block;margin:1.25rem 0 .25rem;font-size:.54rem;letter-spacing:.12em;' +
+        'text-transform:uppercase;color:#8C3F16;}';
+      var style = document.createElement('style');
+      style.id = 'coqui-compliance-styles';
+      style.textContent = css;
+      document.head.appendChild(style);
+    }
     // Inject the government warning + responsible-drinking notice into a footer
     // element with [data-compliance-footer], or append to <footer> if present.
     api.renderFooterWarning = function () {
+      injectStyles();
       var host = document.querySelector('[data-compliance-footer]') || document.querySelector('footer');
       if (!host || host.querySelector('.compliance-gov-warning')) return;
       var wrap = document.createElement('div');
@@ -295,6 +344,7 @@
       options = options || {};
       if (!options.force && isAgeVerified()) return;
       if (document.getElementById('coqui-age-gate')) return;
+      injectStyles();
 
       var required = getRequiredAlcoholAge();
       var overlay = document.createElement('div');

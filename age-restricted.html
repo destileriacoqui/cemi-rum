@@ -43,14 +43,16 @@
       <a class="btn" href="https://www.google.com">Exit</a>
     </div>
   </main>
-  <footer data-compliance-footer></footer>
+  <footer>
+    <div class="compliance-notice">
+      <p class="compliance-gov-warning">GOVERNMENT WARNING: According to the Surgeon General, alcoholic beverages should not be consumed during pregnancy because of the risk of birth defects. Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.</p>
+      <p>Alcohol consumption during pregnancy may cause serious harm, including fetal alcohol syndrome.</p>
+    </div>
+  </footer>
   <script src="/js/alcohol-compliance.js"></script>
   <script>
     // Reaching this page clears any prior verification so the gate shows again on return.
-    if (window.AlcoholCompliance) {
-      window.AlcoholCompliance.clearVerified();
-      window.AlcoholCompliance.initFooterWarning();
-    }
+    if (window.AlcoholCompliance) { window.AlcoholCompliance.clearVerified(); }
   </script>
 </body>
 </html>

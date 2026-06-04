@@ -1262,14 +1262,22 @@
                   <span class="ron-spec-value">${p.price}</span>
                 </div>
               </div>
+              <!-- Alcohol compliance block (verbatim mirror of AlcoholCompliance.copy.PRODUCT_DISCLAIMER) -->
+              <p class="compliance-card-label">Alcohol product. Legal drinking age required.</p>
+              <div class="compliance-product-block">
+                Alcohol product. Must be of legal drinking age to purchase. Valid government-issued photo ID required at pickup or delivery. Orders may be refused or refunded if ID cannot be verified. Availability, pricing, and pickup/shipping options may change without notice.
+              </div>
+              <!-- Online alcohol checkout is disabled (ALLOW_ALCOHOL_ONLINE_CHECKOUT=false).
+                   Direct purchase is replaced with pickup/availability requests. Routing +
+                   mandatory ID enforcement is wired in the cart/checkout phase. -->
               <div class="ron-actions">
-                <button type="button" class="btn-buy" data-add-cart>
-                  Add to Cart
+                <button type="button" class="btn-buy" data-add-cart data-cart-slug="${slug}">
+                  Request Pickup
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
                     <path d="M1 6.5H12M6.5 1L12 6.5L6.5 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
-                <button type="button" class="btn-amber" data-add-cart data-buy-now>Buy Now</button>
+                <a class="btn-amber" href="/contact">Check Availability</a>
               </div>
             </div>
             <div class="ron-stage">
@@ -1430,5 +1438,7 @@
     document.addEventListener('keydown',function(e){if(e.key==='Escape'){dd.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
   })();
   </script>
+  <script src="/js/alcohol-compliance.js"></script>
+  <script src="/js/compliance-init.js"></script>
 </body>
 </html>
