@@ -15,10 +15,27 @@
     const data = Object.fromEntries(new FormData(form));
     try {
       if (form.dataset.authForm === 'signup') {
+        const mm = parseInt(data.dob_mm, 10);
+        const dd = parseInt(data.dob_dd, 10);
+        const yyyy = parseInt(data.dob_yyyy, 10);
+        if (!mm || !dd || !yyyy || yyyy < 1900 || yyyy > new Date().getFullYear()) {
+          setMessage('Please enter a valid date of birth.', true);
+          return;
+        }
+        const AC = window.AlcoholCompliance;
+        const age = AC ? AC.calculateAge({ year: yyyy, month: mm, day: dd }) : null;
+        if (age === null) {
+          setMessage('Please enter a valid date of birth.', true);
+          return;
+        }
+        if (age < 18) {
+          setMessage('You must be at least 18 years old to create an account.', true);
+          return;
+        }
         const result = await api.signup({ email: data.email, password: data.password, fullName: data.full_name, phone: data.phone });
         if (!result.access_token) {
           confirmationEmail = data.email;
-          setMessage('Account created. Check your email to confirm your address, then log in.');
+          setMessage('Check your email to confirm your address, then log in. If you already have an account, try logging in instead.');
           if (resend) resend.hidden = false;
           form.reset();
           return;
