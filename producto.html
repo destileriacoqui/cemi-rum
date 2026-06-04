@@ -1168,7 +1168,7 @@
       if (plain.includes('Ron Coquí')) return plain.replace('Ron Coquí™ ', 'Ron Coquí<br><em>') + '.</em>';
       if (plain.includes('Pitorro')) return name.replace(' ', '<br><em>') + '.</em>';
       if (plain.includes('/')) return name.replace(' / ', '<br><em>/ ') + '.</em>';
-      return `${name}<br><em>${product.style}.</em>`;
+      return `${name}`;
     }
 
     function productOrigin(slug) {
