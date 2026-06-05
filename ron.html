@@ -99,7 +99,18 @@
       color: var(--muted); line-height: 1.9; max-width: 46ch;
     }
     .catalog-grid {
+      display: flex; flex-direction: column;
+    }
+    .rum-row {
       display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      padding: 2.5rem calc(50vw - 50%);
+    }
+    .rum-row--art-right {
+      background-size: auto 100%;
+      background-position: right center;
     }
 
     /* ─── CATEGORY DIVIDERS ──────────────────────────── */
@@ -131,14 +142,19 @@
     .prod-card:hover .prod-img { transform: translateY(-22px) scale(1.08); filter: drop-shadow(0 32px 46px rgba(26,18,7,0.28)); }
     .prod-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(247,242,232,0.98) 0%, rgba(247,242,232,0.72) 42%, rgba(247,242,232,0) 68%);
+      background: none;
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 1.75rem 1.65rem;
-      transform: translateY(62%);
+      transform: translateY(24%);
       opacity: 0;
       transition: transform 0.58s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
     }
     .prod-card:hover .prod-overlay { transform: translateY(0); opacity: 1; }
+    .prod-overlay-name, .prod-overlay-teaser, .prod-overlay-hint {
+      text-shadow:
+        0 0 4px #F7F2E8, 0 0 4px #F7F2E8, 0 0 4px #F7F2E8,
+        0 0 9px #F7F2E8, 0 0 9px #F7F2E8, 0 0 18px rgba(247,242,232,0.85);
+    }
     .prod-overlay-name {
       font-family: var(--serif); font-size: 1.35rem; font-weight: 300;
       color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.45rem;
@@ -185,17 +201,17 @@
       nav { padding: 1.5rem 2.5rem; }
       .catalog-inner { padding: 0 2.5rem; }
       .catalog-header { grid-template-columns: 1fr; gap: 2.5rem; }
-      .catalog-grid { grid-template-columns: repeat(2,1fr); }
+      .rum-row { grid-template-columns: repeat(2,1fr); }
       footer { flex-direction: column; gap: 2.25rem; padding: 3.25rem 2.5rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .catalog { padding: 9rem 0 11rem; }
-      .catalog-grid { grid-template-columns: repeat(2,1fr); gap: 0.75rem; }
+      .rum-row { grid-template-columns: repeat(2,1fr); gap: 0.75rem; }
     }
     @media (max-width: 520px) {
-      .catalog-grid { grid-template-columns: 1fr; }
+      .rum-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -236,7 +252,8 @@
           <span class="catalog-category-label">Ron Coqu&#xED;&#x2122;</span>
         </div>
 
-        <a href="/producto?id=ron-blanco" class="prod-card reveal" data-product="ron-blanco">
+        <div class="rum-row" style="background-image:url('img/rum-row-1.webp')">
+          <a href="/producto?id=ron-blanco" class="prod-card reveal" data-product="ron-blanco">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/ron-blanco-store-v3.webp" alt="Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
             <div class="prod-overlay">
@@ -250,8 +267,7 @@
             <span class="prod-base-type">White Rum</span>
           </div>
         </a>
-
-        <a href="/producto?id=ron-limon" class="prod-card reveal d1" data-product="ron-limon">
+          <a href="/producto?id=ron-limon" class="prod-card reveal d1" data-product="ron-limon">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/ron-limon-store.webp" alt="Ron Coqu&#xED;&#x2122; Lim&#xF3;n" loading="lazy">
             <div class="prod-overlay">
@@ -265,13 +281,15 @@
             <span class="prod-base-type">Citrus Rum</span>
           </div>
         </a>
+        </div>
 
         <!-- ── Pitorro® Original ────────────────────────── -->
         <div class="catalog-category">
           <span class="catalog-category-label"><span class="catalog-category-title">Pitorro<sup>®</sup> Original</span></span>
         </div>
 
-        <a href="/producto?id=pitorro-blanco" class="prod-card reveal" data-product="pitorro-blanco">
+        <div class="rum-row" style="background-image:url('img/rum-row-2.webp')">
+          <a href="/producto?id=pitorro-blanco" class="prod-card reveal" data-product="pitorro-blanco">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-blanco-store.webp" alt="Pitorro&#xAE; Blanco" loading="lazy">
             <div class="prod-overlay">
@@ -285,8 +303,7 @@
             <span class="prod-base-type">Traditional Pitorro®</span>
           </div>
         </a>
-
-        <a href="/producto?id=pitorro-coco-35" class="prod-card reveal d1" data-product="pitorro-coco-35">
+          <a href="/producto?id=pitorro-coco-35" class="prod-card reveal d1" data-product="pitorro-coco-35">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-coco-35-store-v2.webp" alt="Pitorro&#xAE; de Coco" loading="lazy">
             <div class="prod-overlay">
@@ -300,8 +317,7 @@
             <span class="prod-base-type">Coconut Pitorro®</span>
           </div>
         </a>
-
-        <a href="/producto?id=pitorro-coco-15" class="prod-card reveal d2" data-product="pitorro-coco-15">
+          <a href="/producto?id=pitorro-coco-15" class="prod-card reveal d2" data-product="pitorro-coco-15">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-coco-15-store.webp" alt="Pitorro&#xAE; Coco" loading="lazy">
             <div class="prod-overlay">
@@ -315,8 +331,10 @@
             <span class="prod-base-type">Coconut Pitorro®</span>
           </div>
         </a>
+        </div>
 
-        <a href="/producto?id=pitorro-cafe" class="prod-card reveal" data-product="pitorro-cafe">
+        <div class="rum-row" style="background-image:url('img/rum-row-3.webp')">
+          <a href="/producto?id=pitorro-cafe" class="prod-card reveal" data-product="pitorro-cafe">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-cafe-store.webp" alt="Pitorro&#xAE; Caf&#xe9;" loading="lazy">
             <div class="prod-overlay">
@@ -330,8 +348,7 @@
             <span class="prod-base-type">Coffee Pitorro®</span>
           </div>
         </a>
-
-        <a href="/producto?id=pitorro-tamarindo" class="prod-card reveal d1" data-product="pitorro-tamarindo">
+          <a href="/producto?id=pitorro-tamarindo" class="prod-card reveal d1" data-product="pitorro-tamarindo">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-tamarindo-store.webp" alt="Pitorro&#xAE; Tamarindo" loading="lazy">
             <div class="prod-overlay">
@@ -345,8 +362,7 @@
             <span class="prod-base-type">Tamarind Pitorro®</span>
           </div>
         </a>
-
-        <a href="/producto?id=pitorro-parcha" class="prod-card reveal d2" data-product="pitorro-parcha">
+          <a href="/producto?id=pitorro-parcha" class="prod-card reveal d2" data-product="pitorro-parcha">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-parcha-store.webp" alt="Pitorro&#xAE; Parcha" loading="lazy">
             <div class="prod-overlay">
@@ -360,8 +376,10 @@
             <span class="prod-base-type">Passion Fruit Pitorro®</span>
           </div>
         </a>
+        </div>
 
-        <a href="/producto?id=pitorro-pina" class="prod-card reveal" data-product="pitorro-pina">
+        <div class="rum-row" style="background-image:url('img/rum-row-4.webp')">
+          <a href="/producto?id=pitorro-pina" class="prod-card reveal" data-product="pitorro-pina">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-pina-store.webp" alt="Pitorro&#xAE; Pi&#xF1;a" loading="lazy">
             <div class="prod-overlay">
@@ -375,8 +393,7 @@
             <span class="prod-base-type">Pineapple Pitorro®</span>
           </div>
         </a>
-
-        <a href="/producto?id=pitorro-fresa" class="prod-card reveal d1" data-product="pitorro-fresa">
+          <a href="/producto?id=pitorro-fresa" class="prod-card reveal d1" data-product="pitorro-fresa">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-fresa-store.webp" alt="Pitorro&#xAE; Fresa" loading="lazy">
             <div class="prod-overlay">
@@ -390,8 +407,7 @@
             <span class="prod-base-type">Strawberry Pitorro®</span>
           </div>
         </a>
-
-        <a href="/producto?id=pitorro-frutas" class="prod-card reveal d2" data-product="pitorro-frutas">
+          <a href="/producto?id=pitorro-frutas" class="prod-card reveal d2" data-product="pitorro-frutas">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/pitorro-frutas-store.webp" alt="Pitorro&#xAE; Frutas" loading="lazy">
             <div class="prod-overlay">
@@ -405,13 +421,15 @@
             <span class="prod-base-type">Mixed Fruit Pitorro®</span>
           </div>
         </a>
+        </div>
 
         <!-- ── Pitorro® Blends ──────────────────────────── -->
         <div class="catalog-category">
           <span class="catalog-category-label"><span class="catalog-category-title">Pitorro<sup>®</sup> Blends</span></span>
         </div>
 
-        <a href="/producto?id=blend-coco-pina" class="prod-card reveal" data-product="blend-coco-pina">
+        <div class="rum-row" style="background-image:url('img/rum-row-5.webp')">
+          <a href="/producto?id=blend-coco-pina" class="prod-card reveal" data-product="blend-coco-pina">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/blend-coco-pina-store.webp" alt="Pitorro&#xAE; Blends Coco Pi&#xF1;a" loading="lazy">
             <div class="prod-overlay">
@@ -425,8 +443,7 @@
             <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
-
-        <a href="/producto?id=blend-coco-almendra" class="prod-card reveal d1" data-product="blend-coco-almendra">
+          <a href="/producto?id=blend-coco-almendra" class="prod-card reveal d1" data-product="blend-coco-almendra">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/blend-coco-almendra-store.webp" alt="Pitorro&#xAE; Blends Coco Almendra" loading="lazy">
             <div class="prod-overlay">
@@ -440,8 +457,7 @@
             <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
-
-        <a href="/producto?id=blend-fresa-pina" class="prod-card reveal d2" data-product="blend-fresa-pina">
+          <a href="/producto?id=blend-fresa-pina" class="prod-card reveal d2" data-product="blend-fresa-pina">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/blend-fresa-pina-store.webp" alt="Pitorro&#xAE; Blends Fresa Pi&#xF1;a" loading="lazy">
             <div class="prod-overlay">
@@ -455,8 +471,10 @@
             <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
+        </div>
 
-        <a href="/producto?id=blend-jengibre-coco" class="prod-card reveal" data-product="blend-jengibre-coco">
+        <div class="rum-row" style="background-image:url('img/rum-row-6.webp')">
+          <a href="/producto?id=blend-jengibre-coco" class="prod-card reveal" data-product="blend-jengibre-coco">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/blend-jengibre-coco-store.webp" alt="Pitorro&#xAE; Blends Jengibre Coco" loading="lazy">
             <div class="prod-overlay">
@@ -470,8 +488,7 @@
             <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
-
-        <a href="/producto?id=blend-mango-pina" class="prod-card reveal d1" data-product="blend-mango-pina">
+          <a href="/producto?id=blend-mango-pina" class="prod-card reveal d1" data-product="blend-mango-pina">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/blend-mango-pina-store.webp" alt="Pitorro&#xAE; Blends Mango Pi&#xF1;a" loading="lazy">
             <div class="prod-overlay">
@@ -485,8 +502,7 @@
             <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
-
-        <a href="/producto?id=blend-coco-fresa-pina" class="prod-card reveal d2" data-product="blend-coco-fresa-pina">
+          <a href="/producto?id=blend-coco-fresa-pina" class="prod-card reveal d2" data-product="blend-coco-fresa-pina">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/blend-coco-fresa-pina-store.webp" alt="Pitorro&#xAE; Blends Coco Fresa Pi&#xF1;a" loading="lazy">
             <div class="prod-overlay">
@@ -500,13 +516,15 @@
             <span class="prod-base-type">Pitorro® Blend</span>
           </div>
         </a>
+        </div>
 
         <!-- ── Carjaker's ───────────────────────────────── -->
         <div class="catalog-category">
           <span class="catalog-category-label">Carjaker&#x27;s</span>
         </div>
 
-        <a href="/producto?id=carjakers" class="prod-card reveal" data-product="carjakers">
+        <div class="rum-row rum-row--art-right" style="background-image:url('img/rum-row-7.webp')">
+          <a href="/producto?id=carjakers" class="prod-card reveal" data-product="carjakers">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/carjakers-store.webp" alt="Carjaker's Rum" loading="lazy">
             <div class="prod-overlay">
@@ -520,13 +538,15 @@
             <span class="prod-base-type">Overproof Rum · 120 Proof</span>
           </div>
         </a>
+        </div>
 
         <!-- ── Canecas ─────────────────────────────────── -->
         <div class="catalog-category">
           <span class="catalog-category-label">Canecas</span>
         </div>
 
-        <a href="/producto?id=caneca-blanco" class="prod-card reveal" data-product="caneca-blanco">
+        <div class="rum-row" style="background-image:url('img/rum-row-8.webp')">
+          <a href="/producto?id=caneca-blanco" class="prod-card reveal" data-product="caneca-blanco">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/caneca-blanco-store.webp" alt="Caneca Ron Coqu&#xED;&#x2122; Blanco" loading="lazy">
             <div class="prod-overlay">
@@ -540,8 +560,7 @@
             <span class="prod-base-type">Caneca &middot; 39% ABV</span>
           </div>
         </a>
-
-        <a href="/producto?id=caneca-limon" class="prod-card reveal d1" data-product="caneca-limon">
+          <a href="/producto?id=caneca-limon" class="prod-card reveal d1" data-product="caneca-limon">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/caneca-limon-store.webp" alt="Caneca Ron Coqu&#xED;&#x2122; Lim&#xF3;n" loading="lazy">
             <div class="prod-overlay">
@@ -555,13 +574,15 @@
             <span class="prod-base-type">Caneca &middot; 30% ABV</span>
           </div>
         </a>
+        </div>
 
         <!-- ── Pitorro® Miniatures ─────────────────────── -->
         <div class="catalog-category">
           <span class="catalog-category-label"><span class="catalog-category-title">Pitorro<sup>&#xAE;</sup> Miniatures</span></span>
         </div>
 
-        <a href="/producto?id=mini-blanco" class="prod-card reveal" data-product="mini-blanco">
+        <div class="rum-row" style="background-image:url('img/rum-row-9.webp')">
+          <a href="/producto?id=mini-blanco" class="prod-card reveal" data-product="mini-blanco">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/mini-blanco-store.webp" alt="Pitorro&#xAE; Miniature Blanco" loading="lazy">
             <div class="prod-overlay">
@@ -575,8 +596,7 @@
             <span class="prod-base-type">Miniature &middot; 39% ABV</span>
           </div>
         </a>
-
-        <a href="/producto?id=mini-coco" class="prod-card reveal d1" data-product="mini-coco">
+          <a href="/producto?id=mini-coco" class="prod-card reveal d1" data-product="mini-coco">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/mini-coco-store.webp" alt="Pitorro&#xAE; Miniature Coco" loading="lazy">
             <div class="prod-overlay">
@@ -590,8 +610,7 @@
             <span class="prod-base-type">Miniature &middot; 15% ABV</span>
           </div>
         </a>
-
-        <a href="/producto?id=mini-parcha" class="prod-card reveal d2" data-product="mini-parcha">
+          <a href="/producto?id=mini-parcha" class="prod-card reveal d2" data-product="mini-parcha">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/mini-parcha-store.webp" alt="Pitorro&#xAE; Miniature Parcha" loading="lazy">
             <div class="prod-overlay">
@@ -605,8 +624,10 @@
             <span class="prod-base-type">Miniature &middot; 35% ABV</span>
           </div>
         </a>
+        </div>
 
-        <a href="/producto?id=mini-tamarindo" class="prod-card reveal" data-product="mini-tamarindo">
+        <div class="rum-row" style="background-image:url('img/rum-row-10.webp')">
+          <a href="/producto?id=mini-tamarindo" class="prod-card reveal" data-product="mini-tamarindo">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/mini-tamarindo-store.webp" alt="Pitorro&#xAE; Miniature Tamarindo" loading="lazy">
             <div class="prod-overlay">
@@ -620,8 +641,7 @@
             <span class="prod-base-type">Miniature &middot; 35% ABV</span>
           </div>
         </a>
-
-        <a href="/producto?id=mini-cafe" class="prod-card reveal d1" data-product="mini-cafe">
+          <a href="/producto?id=mini-cafe" class="prod-card reveal d1" data-product="mini-cafe">
           <div class="prod-img-wrap">
             <img decoding="async" class="prod-img" src="img/mini-cafe-store.webp" alt="Pitorro&#xAE; Miniature Caf&#xE9;" loading="lazy">
             <div class="prod-overlay">
@@ -635,8 +655,9 @@
             <span class="prod-base-type">Miniature &middot; 35% ABV</span>
           </div>
         </a>
+        </div>
 
-      </div>
+            </div>
     </div>
   </section>
 
