@@ -4,7 +4,7 @@
   else root.COQUI_CATALOG = catalog;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   return {
-    'ron-blanco': { name: 'Ron Coquí Blanco', price: 13, image: 'img/ron-blanco-store-v2.webp' },
+    'ron-blanco': { name: 'Ron Coquí Blanco', price: 13, image: 'img/ron-blanco-store-v3.webp' },
     'ron-limon': { name: 'Ron Coquí Limón', price: 14, image: 'img/ron-limon-store.webp' },
     'pitorro-blanco': { name: 'Pitorro® Blanco', price: 19, image: 'img/pitorro-blanco-store.webp' },
     'pitorro-coco-35': { name: 'Pitorro® de Coco 35%', price: 25, image: 'img/pitorro-coco-35-store-v2.webp' },
