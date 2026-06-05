@@ -629,30 +629,88 @@
       font-family: var(--serif);
       font-style: italic;
     }
+    /* ── PRODUCT SHOWCASE (carousel) ─────────────────── */
     .ron-related-section {
-      padding: clamp(5rem, 8vw, 8rem) clamp(2rem, 6vw, 7rem);
-      background: var(--cream-mid);
-    }
-    .ron-related-section .related-grid {
-      max-width: 92rem;
-      margin: 0 auto;
-    }
-    .ron-related-section .related-heading,
-    .ron-related-section .product-eyebrow {
-      max-width: 92rem;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .ron-related-section .related-product {
-      background: #fffdf8;
-      border-radius: 0.45rem;
+      position: relative;
+      padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 5vw, 6rem) clamp(4rem, 7vw, 7rem);
+      background: var(--cream);
       overflow: hidden;
-      box-shadow: 0 1.4rem 3rem rgba(26,18,7,0.04);
     }
-    .ron-related-section .related-product img {
-      background: #fff;
-      height: 20rem;
-      padding: 2.2rem;
+    .showcase-bg {
+      position: absolute; inset: 0; z-index: 0;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .showcase-bg svg {
+      width: min(125vh, 1180px); height: auto; max-width: none;
+      color: var(--brown); opacity: 0.06;
+    }
+    .showcase-head, .showcase-carousel, .showcase-dots, .showcase-cta { position: relative; z-index: 2; }
+    .showcase-head { max-width: 92rem; margin: 0 auto 3rem; }
+    .showcase-head .related-heading { margin-bottom: 0; }
+
+    .showcase-carousel {
+      max-width: 96rem; margin: 0 auto;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .showcase-viewport { flex: 1; overflow: hidden; }
+    .showcase-track {
+      display: flex; gap: 1.5rem;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      will-change: transform;
+    }
+    .showcase-card {
+      flex: 0 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+      text-decoration: none; color: inherit; padding: 0.5rem 0.5rem 0;
+    }
+    .showcase-media {
+      width: 100%; height: clamp(15rem, 25vw, 21rem);
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .showcase-media img {
+      max-height: 100%; max-width: 70%; width: auto; object-fit: contain;
+      transform-origin: center bottom;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+      filter: drop-shadow(0 14px 26px rgba(26,18,7,0.10));
+    }
+    .showcase-card:hover .showcase-media img {
+      transform: translateY(-16px) scale(1.06);
+      filter: drop-shadow(0 28px 40px rgba(26,18,7,0.20));
+    }
+    .showcase-name {
+      margin-top: 1.7rem; text-align: center;
+      font-family: var(--sans); font-weight: 700;
+      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .showcase-arrow {
+      flex: 0 0 auto; width: 2.9rem; height: 2.9rem; border-radius: 50%;
+      border: 1px solid rgba(26,18,7,0.2); background: rgba(247,242,232,0.55);
+      color: var(--ink); cursor: pointer; font-family: var(--serif); font-size: 1.35rem; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .3s, color .3s, border-color .3s, opacity .3s;
+    }
+    .showcase-arrow:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+    .showcase-arrow:disabled { opacity: 0.22; cursor: default; }
+    .showcase-arrow:disabled:hover { background: rgba(247,242,232,0.55); color: var(--ink); border-color: rgba(26,18,7,0.2); }
+    .showcase-dots { display: flex; justify-content: center; gap: 0.55rem; margin-top: 2.6rem; }
+    .showcase-dots button {
+      width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%;
+      background: rgba(26,18,7,0.22); cursor: pointer; transition: background .3s, transform .3s;
+    }
+    .showcase-dots button[aria-current="true"] { background: var(--amber); transform: scale(1.3); }
+    .showcase-cta { text-align: center; margin-top: 3.25rem; }
+    .showcase-cta-link {
+      display: inline-block; font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); text-decoration: none;
+      padding-bottom: 0.45rem; border-bottom: 1px solid var(--amber);
+      transition: color .3s, border-color .3s;
+    }
+    .showcase-cta-link:hover { color: var(--amber); }
+    @media (max-width: 600px) {
+      .showcase-arrow { width: 2.4rem; height: 2.4rem; font-size: 1.1rem; }
+      .showcase-media img { max-width: 58%; }
     }
 
     /* ── RELATED PRODUCTS ─────────────────────────── */
@@ -678,6 +736,12 @@
     .related-product img {
       width: 100%; height: 18rem; object-fit: contain;
       padding: 1.2rem; background: var(--cream-mid);
+      transform-origin: center bottom;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+    }
+    .related-product:hover img {
+      transform: translateY(-16px) scale(1.07);
+      filter: drop-shadow(0 18px 30px rgba(26,18,7,0.20));
     }
     .related-info { display: flex; flex: 1; flex-direction: column; padding: 1.3rem; background: var(--cream); }
     .related-type { color: var(--amber); font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; }
@@ -1017,6 +1081,93 @@
       }).join('');
     }
 
+    // Showcase: short bold uppercase display name (e.g. "Ron Coquí™ Blanco" -> "COQUÍ BLANCO").
+    function showcaseName(name) {
+      return String(name || '')
+        .replace(/[™®]/g, '')
+        .replace(/\b\d+\s*%/g, '')
+        .replace(/\bRum\b/gi, '')
+        .replace(/^\s*Ron\s+/i, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toUpperCase();
+    }
+    // Showcase: more products than the 3-up related list, so the carousel has range.
+    function showcaseProducts(currentId) {
+      const group = PRODUCT_GROUPS.find(items => items.includes(currentId)) || [];
+      return [...group, ...Object.keys(PRODUCTS)]
+        .filter((slug, i, a) => slug !== currentId && PRODUCTS[slug] && a.indexOf(slug) === i)
+        .slice(0, 8);
+    }
+    function renderShowcaseCards(currentId) {
+      return showcaseProducts(currentId).map(slug => {
+        const related = PRODUCTS[slug];
+        const item = COQUI_CATALOG[slug] || {};
+        const label = showcaseName(item.name || related.name);
+        const alt = plainText(related.name);
+        return `
+          <a class="showcase-card" href="producto.html?id=${slug}" aria-label="${alt}">
+            <span class="showcase-media"><img decoding="async" loading="lazy" src="${related.img}" alt="${alt}"></span>
+            <span class="showcase-name">${label}</span>
+          </a>`;
+      }).join('');
+    }
+    // Smooth product carousel: 3 desktop / 2 tablet / 1 mobile, arrows + dots, clamped (never crops).
+    function initShowcaseCarousel() {
+      const car = document.querySelector('[data-carousel]');
+      if (!car) return;
+      const viewport = car.querySelector('.showcase-viewport');
+      const track = car.querySelector('.showcase-track');
+      const cards = Array.from(track.children);
+      const prevBtn = car.querySelector('.showcase-prev');
+      const nextBtn = car.querySelector('.showcase-next');
+      const dotsWrap = document.querySelector('[data-dots]');
+      let visible = 3, index = 0, cardW = 0, maxIndex = 0, gp = 24;
+
+      const visibleFor = () => { const w = window.innerWidth; return w <= 600 ? 1 : (w <= 1023 ? 2 : 3); };
+      function move() {
+        track.style.transform = 'translateX(' + (-index * (cardW + gp)) + 'px)';
+        if (prevBtn) prevBtn.disabled = index <= 0;
+        if (nextBtn) nextBtn.disabled = index >= maxIndex;
+        if (dotsWrap) {
+          const active = visible ? Math.round(index / visible) : 0;
+          Array.from(dotsWrap.children).forEach((d, i) => d.setAttribute('aria-current', i === active ? 'true' : 'false'));
+        }
+      }
+      function buildDots() {
+        if (!dotsWrap) return;
+        const on = cards.length > visible;
+        if (prevBtn) prevBtn.style.display = on ? '' : 'none';
+        if (nextBtn) nextBtn.style.display = on ? '' : 'none';
+        dotsWrap.innerHTML = '';
+        if (!on) { dotsWrap.style.display = 'none'; return; }
+        dotsWrap.style.display = 'flex';
+        const pages = Math.ceil(cards.length / visible);
+        for (let i = 0; i < pages; i++) {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('aria-label', 'Go to set ' + (i + 1));
+          b.addEventListener('click', () => { index = Math.min(i * visible, maxIndex); move(); });
+          dotsWrap.appendChild(b);
+        }
+      }
+      function layout() {
+        visible = Math.min(visibleFor(), cards.length);
+        gp = parseFloat(getComputedStyle(track).columnGap) || 24;
+        cardW = (viewport.clientWidth - gp * (visible - 1)) / visible;
+        cards.forEach(c => { c.style.width = cardW + 'px'; });
+        maxIndex = Math.max(0, cards.length - visible);
+        index = Math.min(index, maxIndex);
+        buildDots();
+        move();
+      }
+      if (prevBtn) prevBtn.addEventListener('click', () => { index = Math.max(0, index - visible); move(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { index = Math.min(maxIndex, index + visible); move(); });
+      let rT; window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(layout, 150); });
+      layout();
+      cards.forEach(c => { const img = c.querySelector('img'); if (img && !img.complete) img.addEventListener('load', layout, { once: true }); });
+    }
+
     const PRODUCT_ORIGINS = {
       'ron-blanco': 'Mayagüez',
       'ron-limon': 'Mayagüez',
@@ -1305,11 +1456,50 @@
           <!-- Cocktails temporarily removed for testing. To restore: re-add the
                ron-pour-section block (renderCocktailCards) and the renderRecipe call here. -->
 
-          <section class="ron-related-section">
-            <span class="product-eyebrow">Explore the collection</span>
-            <h2 class="related-heading">Our recommended rums</h2>
-            <div class="related-grid">
-              ${renderRelatedCards(slug)}
+          <section class="ron-related-section" aria-label="Explore the collection">
+            <div class="showcase-bg" aria-hidden="true">
+              <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="currentColor">
+                  <circle cx="300" cy="300" r="293" stroke-width="2"/>
+                  <circle cx="300" cy="300" r="252" stroke-width="3"/>
+                  <circle cx="300" cy="300" r="160" stroke-width="2" stroke-dasharray="1.5 11"/>
+                </g>
+                <path id="scSealPath" d="M300,300 m-272,0 a272,272 0 1,1 544,0 a272,272 0 1,1 -544,0" fill="none"/>
+                <text fill="currentColor" font-family="Cormorant Garamond, Georgia, serif" font-size="22" letter-spacing="7">
+                  <textPath href="#scSealPath" startOffset="0">&#183; DESTILER&#205;A COQU&#205; &#183; MAYAG&#220;EZ &#183; PUERTO RICO &#183; RON ARTESANAL </textPath>
+                </text>
+                <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <line x1="150" y1="432" x2="226" y2="300"/>
+                  <line x1="450" y1="432" x2="374" y2="300"/>
+                </g>
+                <g fill="currentColor">
+                  <ellipse cx="252" cy="346" rx="40" ry="27"/>
+                  <ellipse cx="348" cy="346" rx="40" ry="27"/>
+                  <ellipse cx="300" cy="332" rx="64" ry="60"/>
+                  <circle cx="300" cy="288" r="50"/>
+                  <circle cx="271" cy="259" r="25"/>
+                  <circle cx="329" cy="259" r="25"/>
+                  <ellipse cx="283" cy="392" rx="12" ry="19"/>
+                  <ellipse cx="317" cy="392" rx="12" ry="19"/>
+                </g>
+              </svg>
+            </div>
+            <div class="showcase-head">
+              <span class="product-eyebrow">Explore the collection</span>
+              <h2 class="related-heading">Our recommended rums</h2>
+            </div>
+            <div class="showcase-carousel" data-carousel>
+              <button type="button" class="showcase-arrow showcase-prev" aria-label="Previous products">&#8249;</button>
+              <div class="showcase-viewport">
+                <div class="showcase-track">
+                  ${renderShowcaseCards(slug)}
+                </div>
+              </div>
+              <button type="button" class="showcase-arrow showcase-next" aria-label="Next products">&#8250;</button>
+            </div>
+            <div class="showcase-dots" data-dots></div>
+            <div class="showcase-cta">
+              <a class="showcase-cta-link" href="ron.html">Explore Products</a>
             </div>
           </section>
         </main>`;
@@ -1353,6 +1543,7 @@
           setTimeout(() => { button.textContent = 'Add to Cart'; }, 1400);
         });
       });
+      initShowcaseCarousel();
     }
   </script>
   <!-- ─── MOBILE NAV (self-contained, consistent across pages) ─── -->

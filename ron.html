@@ -118,25 +118,27 @@
     .catalog-category-label::after { content: ''; flex: 1; height: 0.5px; background: var(--amber); opacity: 0.3; }
 
     /* ─── PRODUCT CARDS ───────────────────────────────── */
-    .prod-card { display: block; position: relative; overflow: hidden; cursor: pointer; background: transparent; text-decoration: none; color: inherit; }
+    .prod-card { display: block; position: relative; overflow: visible; cursor: pointer; background: transparent; text-decoration: none; color: inherit; }
     .prod-card:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
-    .prod-img-wrap { position: relative; overflow: hidden; aspect-ratio: 3/4; background: transparent; }
+    .prod-img-wrap { position: relative; overflow: visible; aspect-ratio: 3/4; background: transparent; }
     .prod-img {
       width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block;
       padding: 0.5rem 1.5rem 0;
-      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+      transform-origin: center bottom;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
       filter: drop-shadow(0 8px 24px rgba(26,18,7,0.10));
     }
-    .prod-card:hover .prod-img { transform: scale(1.04); }
+    .prod-card:hover .prod-img { transform: translateY(-22px) scale(1.08); filter: drop-shadow(0 32px 46px rgba(26,18,7,0.28)); }
     .prod-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(247,242,232,0.98) 0%, rgba(247,242,232,0.72) 42%, rgba(247,242,232,0) 68%);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 1.75rem 1.65rem;
       transform: translateY(62%);
-      transition: transform 0.58s cubic-bezier(0.16,1,0.3,1);
+      opacity: 0;
+      transition: transform 0.58s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
     }
-    .prod-card:hover .prod-overlay { transform: translateY(0); }
+    .prod-card:hover .prod-overlay { transform: translateY(0); opacity: 1; }
     .prod-overlay-name {
       font-family: var(--serif); font-size: 1.35rem; font-weight: 300;
       color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.45rem;
