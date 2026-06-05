@@ -638,12 +638,10 @@
     }
     .showcase-bg {
       position: absolute; inset: 0; z-index: 0;
-      display: flex; align-items: center; justify-content: center;
+      background: url('img/showcase-sugarcane-bg.webp') no-repeat center bottom;
+      background-size: cover;
+      opacity: 0.9;
       pointer-events: none;
-    }
-    .showcase-bg svg {
-      width: min(125vh, 1180px); height: auto; max-width: none;
-      color: var(--brown); opacity: 0.06;
     }
     .showcase-head, .showcase-carousel, .showcase-dots, .showcase-cta { position: relative; z-index: 2; }
     .showcase-head { max-width: 92rem; margin: 0 auto 3rem; }
@@ -1457,33 +1455,7 @@
                ron-pour-section block (renderCocktailCards) and the renderRecipe call here. -->
 
           <section class="ron-related-section" aria-label="Explore the collection">
-            <div class="showcase-bg" aria-hidden="true">
-              <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke="currentColor">
-                  <circle cx="300" cy="300" r="293" stroke-width="2"/>
-                  <circle cx="300" cy="300" r="252" stroke-width="3"/>
-                  <circle cx="300" cy="300" r="160" stroke-width="2" stroke-dasharray="1.5 11"/>
-                </g>
-                <path id="scSealPath" d="M300,300 m-272,0 a272,272 0 1,1 544,0 a272,272 0 1,1 -544,0" fill="none"/>
-                <text fill="currentColor" font-family="Cormorant Garamond, Georgia, serif" font-size="22" letter-spacing="7">
-                  <textPath href="#scSealPath" startOffset="0">&#183; DESTILER&#205;A COQU&#205; &#183; MAYAG&#220;EZ &#183; PUERTO RICO &#183; RON ARTESANAL </textPath>
-                </text>
-                <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-                  <line x1="150" y1="432" x2="226" y2="300"/>
-                  <line x1="450" y1="432" x2="374" y2="300"/>
-                </g>
-                <g fill="currentColor">
-                  <ellipse cx="252" cy="346" rx="40" ry="27"/>
-                  <ellipse cx="348" cy="346" rx="40" ry="27"/>
-                  <ellipse cx="300" cy="332" rx="64" ry="60"/>
-                  <circle cx="300" cy="288" r="50"/>
-                  <circle cx="271" cy="259" r="25"/>
-                  <circle cx="329" cy="259" r="25"/>
-                  <ellipse cx="283" cy="392" rx="12" ry="19"/>
-                  <ellipse cx="317" cy="392" rx="12" ry="19"/>
-                </g>
-              </svg>
-            </div>
+            <div class="showcase-bg" aria-hidden="true"></div>
             <div class="showcase-head">
               <span class="product-eyebrow">Explore the collection</span>
               <h2 class="related-heading">Our recommended rums</h2>
