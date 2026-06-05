@@ -346,6 +346,16 @@
       line-height: 1;
       color: var(--amber);
     }
+    .ron-composition {
+      margin-top: 1.5rem;
+      font-size: 0.78rem; font-weight: 300; letter-spacing: 0.02em;
+      color: var(--muted);
+    }
+    .ron-price-note {
+      margin-top: 1rem;
+      font-size: 0.72rem; font-weight: 300; line-height: 1.6; letter-spacing: 0.01em;
+      color: var(--muted);
+    }
     .ron-actions {
       display: flex;
       flex-wrap: wrap;
@@ -858,103 +868,103 @@
   <script>
     const PRODUCTS = {
       'ron-blanco': {
-        name: 'Ron Coquí™ Blanco', type: 'White Rum', abv: '39% ABV', price: '$13', style: 'Smooth & Clean',
+        name: 'Ron Coquí™ Blanco', type: 'Rum with Natural Flavors Added', abv: '39% ABV', price: '$13', style: 'Smooth & Clean',
         img: 'img/ron-blanco-store-v3.webp',
         desc: 'Our flagship white rum, distilled from pure Puerto Rican sugarcane and crafted for everyday enjoyment. Crisp, clean, and endlessly versatile. The base of countless island cocktails and a staple in Puerto Rican homes.',
         notes: [{ label:'Sugarcane', pct:90 },{ label:'Light Citrus', pct:72 },{ label:'Vanilla', pct:65 },{ label:'Floral', pct:58 },{ label:'Clean Finish', pct:84 }]
       },
       'ron-limon': {
-        name: 'Ron Coquí™ Limón', type: 'Citrus Rum', abv: '30% ABV', price: '$14', style: 'Citrus-Forward',
+        name: 'Ron Coquí™ Limón', type: 'Lemon Flavored Rum', abv: '30% ABV', price: '$14', style: 'Citrus-Forward',
         img: 'img/ron-limon-store.webp',
         desc: 'The bright personality of Puerto Rican limón captured in a bottle. Our Blanco base infused with the natural zest of island citrus, light, refreshing, and made for warm weather.',
         notes: [{ label:'Fresh Lemon', pct:94 },{ label:'Citrus Zest', pct:91 },{ label:'Light Cane', pct:67 },{ label:'Floral', pct:73 },{ label:'Crisp Finish', pct:80 }]
       },
       'pitorro-blanco': {
-        name: 'Pitorro<sup>®</sup> Blanco', type: 'Traditional Pitorro®', abv: '39% ABV', price: '$19', style: 'Bold & Authentic',
+        name: 'Pitorro<sup>®</sup> Blanco', type: 'Distilled Spirits Specialty', abv: '39% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$19', style: 'Bold & Authentic',
         img: 'img/pitorro-blanco-store.webp',
         desc: 'Puerto Rico\'s legendary moonshine, made legal. We fought to formalize the island\'s centuries-old tradition of Ron Caña and called it Pitorro<sup>®</sup>. Raw, bold, and unmistakably Puerto Rican, distilled the same way families have done it for generations.',
         notes: [{ label:'Raw Cane', pct:88 },{ label:'Earthy', pct:76 },{ label:'Tropical Fruit', pct:69 },{ label:'Bold Spirit', pct:83 },{ label:'Mineral', pct:61 }]
       },
       'pitorro-coco-35': {
-        name: 'Pitorro<sup>®</sup> de Coco', type: 'Coconut Pitorro® · 35% ABV', abv: '35% ABV', price: '$25', style: 'Tropical & Rich',
+        name: 'Pitorro<sup>®</sup> de Coco', type: 'Distilled Spirits Specialty', abv: '35% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$25', style: 'Tropical & Rich',
         img: 'img/pitorro-coco-35-store-v2.webp',
         desc: 'Our Pitorro® De Coco meets the lush sweetness of real Puerto Rican coconut. Rich, warm, and tropical through and through. Serve chilled or over ice, it needs nothing else.',
         notes: [{ label:'Fresh Coconut', pct:93 },{ label:'Sweet Cane', pct:86 },{ label:'Tropical', pct:91 },{ label:'Vanilla', pct:74 },{ label:'Smooth Finish', pct:79 }]
       },
       'pitorro-coco-15': {
-        name: 'Pitorro<sup>®</sup> Coco', type: 'Coconut Pitorro® · 15% ABV', abv: '15% ABV', price: '$19', style: 'Light & Tropical',
+        name: 'Pitorro<sup>®</sup> Coco', type: 'Distilled Spirits Specialty', abv: '15% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$19', style: 'Light & Tropical',
         img: 'img/pitorro-coco-15-store.webp',
         desc: 'A lighter, more approachable coconut Pitorro®. All the tropical sweetness of fresh Puerto Rican coconut with a gentler spirit, easy to enjoy any time of day.',
         notes: [{ label:'Fresh Coconut', pct:89 },{ label:'Sweetness', pct:84 },{ label:'Light Cane', pct:72 },{ label:'Tropical', pct:88 },{ label:'Soft Finish', pct:82 }]
       },
       'pitorro-cafe': {
-        name: 'Pitorro<sup>®</sup> Café', type: 'Coffee Pitorro®', abv: '35% ABV', price: '$19', style: 'Dark & Aromatic',
+        name: 'Pitorro<sup>®</sup> Café', type: 'Distilled Spirits Specialty', abv: '35% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$19', style: 'Dark & Aromatic',
         img: 'img/pitorro-cafe-store.webp',
         desc: 'Puerto Rico\'s two great traditions in a single bottle. Our traditional Pitorro® infused with locally-sourced Puerto Rican coffee, bold, aromatic, and deeply satisfying. For the coffee lover who runs bold.',
         notes: [{ label:'Coffee', pct:95 },{ label:'Dark Roast', pct:89 },{ label:'Cane Sugar', pct:72 },{ label:'Caramel', pct:80 },{ label:'Warm Spice', pct:67 }]
       },
       'pitorro-tamarindo': {
-        name: 'Pitorro<sup>®</sup> Tamarindo', type: 'Tamarind Pitorro®', abv: '35% ABV', price: '$25', style: 'Tropical & Tart',
+        name: 'Pitorro<sup>®</sup> Tamarindo', type: 'Distilled Spirits Specialty', abv: '15% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$25', style: 'Tropical & Tart',
         img: 'img/pitorro-tamarindo-store.webp',
         desc: 'Tangy tamarind and traditional Pitorro®, a bold, tart combination that\'s distinctly Caribbean. Lively on the palate with a long, earthy finish that lingers beautifully.',
         notes: [{ label:'Tamarind', pct:92 },{ label:'Sweet-Tart', pct:87 },{ label:'Tropical', pct:78 },{ label:'Raw Cane', pct:71 },{ label:'Long Finish', pct:76 }]
       },
       'pitorro-parcha': {
-        name: 'Pitorro<sup>®</sup> Parcha', type: 'Passion Fruit Pitorro®', abv: '35% ABV', price: '$25', style: 'Bright & Fruity',
+        name: 'Pitorro<sup>®</sup> Parcha', type: 'Distilled Spirits Specialty', abv: '15% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$25', style: 'Bright & Fruity',
         img: 'img/pitorro-parcha-store.webp',
         desc: 'Parcha, Puerto Rico\'s passion fruit, in every drop. Bright, aromatic, and tropical through and through. One of the most vibrant spirits in our lineup.',
         notes: [{ label:'Passion Fruit', pct:96 },{ label:'Tropical', pct:91 },{ label:'Floral', pct:80 },{ label:'Sweet Cane', pct:73 },{ label:'Vibrant Finish', pct:85 }]
       },
       'pitorro-pina': {
-        name: 'Pitorro<sup>®</sup> Piña', type: 'Pineapple Pitorro®', abv: '35% ABV', price: '$25', style: 'Sweet & Tropical',
+        name: 'Pitorro<sup>®</sup> Piña', type: 'Distilled Spirits Specialty', abv: '22% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$25', style: 'Sweet & Tropical',
         img: 'img/pitorro-pina-store.webp',
         desc: 'The sweetness of fresh pineapple and the kick of traditional Pitorro® in perfect balance. A tropical combination that\'s hard to resist and impossible to put down.',
         notes: [{ label:'Fresh Pineapple', pct:94 },{ label:'Tropical', pct:90 },{ label:'Sweet Cane', pct:78 },{ label:'Floral', pct:69 },{ label:'Juicy Finish', pct:83 }]
       },
       'pitorro-fresa': {
-        name: 'Pitorro<sup>®</sup> Fresa', type: 'Strawberry Pitorro®', abv: '35% ABV', price: '$25', style: 'Fresh & Fruity',
+        name: 'Pitorro<sup>®</sup> Fresa', type: 'Distilled Spirits Specialty', abv: '22% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$25', style: 'Fresh & Fruity',
         img: 'img/pitorro-fresa-store.webp',
         desc: 'Ripe strawberry infused into Puerto Rico\'s legendary spirit. Fresh, fruity, and unmistakably island, a crowd-pleaser that holds its own.',
         notes: [{ label:'Fresh Strawberry', pct:92 },{ label:'Fruity', pct:88 },{ label:'Sweetness', pct:82 },{ label:'Light Cane', pct:72 },{ label:'Berry Finish', pct:85 }]
       },
       'pitorro-frutas': {
-        name: 'Pitorro<sup>®</sup> Frutas', type: 'Mixed Fruit Pitorro®', abv: '35% ABV', price: '$25', style: 'Tropical Blend',
+        name: 'Pitorro<sup>®</sup> Frutas', type: 'Distilled Spirits Specialty', abv: '22% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$25', style: 'Tropical Blend',
         img: 'img/pitorro-frutas-store.webp',
         desc: 'A tropical medley of island fruits captured in traditional Pitorro®. Layered, vibrant, and endlessly refreshing, the spirit of Puerto Rico\'s fruit stands in every sip.',
         notes: [{ label:'Piña', pct:91 },{ label:'Papaya', pct:88 },{ label:'Mango', pct:84 },{ label:'Uva', pct:79 },{ label:'Tropical Finish', pct:81 }]
       },
       'blend-coco-pina': {
-        name: 'Coco Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Tropical Fusion',
+        name: 'Coco Piña', type: 'Flavored Rum', abv: '35% ABV', price: '$22', style: 'Tropical Fusion',
         img: 'img/blend-coco-pina-store.webp',
         desc: 'Coconut and pineapple, Puerto Rico\'s tropical duo, blended perfectly with traditional Pitorro®. Light, refreshing, and impossible to resist on a warm island afternoon.',
         notes: [{ label:'Coconut', pct:90 },{ label:'Pineapple', pct:88 },{ label:'Tropical', pct:92 },{ label:'Sweetness', pct:80 },{ label:'Refreshing Finish', pct:85 }]
       },
       'blend-coco-almendra': {
-        name: 'Coco Almendra', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Smooth & Nutty',
+        name: 'Coco Almendra', type: 'Flavored Rum', abv: '35% ABV', price: '$22', style: 'Smooth & Nutty',
         img: 'img/blend-coco-almendra-store.webp',
         desc: 'The creaminess of coconut with a warm almond finish. A smooth, indulgent blend that drinks beautifully on its own or over ice.',
         notes: [{ label:'Coconut', pct:88 },{ label:'Almond', pct:84 },{ label:'Creamy', pct:82 },{ label:'Sweet Cane', pct:74 },{ label:'Warm Finish', pct:79 }]
       },
       'blend-fresa-pina': {
-        name: 'Fresa Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Fruity & Bright',
+        name: 'Fresa Piña', type: 'Flavored Rum', abv: '35% ABV', price: '$22', style: 'Fruity & Bright',
         img: 'img/blend-fresa-pina-store.webp',
         desc: 'Strawberry and pineapple, two island fruits in one vibrant, fruity blend. Bright on the nose, refreshing on the palate, and easy on everything.',
         notes: [{ label:'Strawberry', pct:90 },{ label:'Pineapple', pct:87 },{ label:'Fruity', pct:88 },{ label:'Sweetness', pct:83 },{ label:'Bright Finish', pct:85 }]
       },
       'blend-jengibre-coco': {
-        name: 'Jengibre Coco', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Spiced & Tropical',
+        name: 'Jengibre Coco', type: 'Flavored Rum', abv: '35% ABV', price: '$22', style: 'Spiced & Tropical',
         img: 'img/blend-jengibre-coco-store.webp',
         desc: 'The warmth of ginger meeting the sweetness of tropical coconut in a beautifully balanced blend. Spiced enough to intrigue, smooth enough to keep you coming back.',
         notes: [{ label:'Ginger', pct:88 },{ label:'Coconut', pct:83 },{ label:'Warm Spice', pct:85 },{ label:'Tropical', pct:78 },{ label:'Spiced Finish', pct:82 }]
       },
       'blend-mango-pina': {
-        name: 'Mango Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Sweet & Tropical',
+        name: 'Mango Piña', type: 'Flavored Rum', abv: '35% ABV', price: '$22', style: 'Sweet & Tropical',
         img: 'img/blend-mango-pina-store.webp',
         desc: 'Juicy mango and bright pineapple in a sweet tropical Caribbean blend. Sunshine in a bottle, this one practically drinks itself.',
         notes: [{ label:'Mango', pct:93 },{ label:'Pineapple', pct:88 },{ label:'Sweet Tropical', pct:91 },{ label:'Floral', pct:72 },{ label:'Juicy Finish', pct:86 }]
       },
       'blend-coco-fresa-pina': {
-        name: 'Coco, Fresa y Piña', type: 'Pitorro<sup>®</sup> Blend', abv: '15% ABV', price: '$22', style: 'Tropical Trio',
+        name: 'Coco, Fresa y Piña', type: 'Flavored Rum', abv: '35% ABV', price: '$22', style: 'Tropical Trio',
         img: 'img/blend-coco-fresa-pina-store.webp',
         desc: 'Coconut, strawberry, and pineapple together, three island flavors in one indulgent, layered blend. Complex for a 15%, and one of our most beloved.',
         notes: [{ label:'Coconut', pct:87 },{ label:'Strawberry', pct:84 },{ label:'Pineapple', pct:86 },{ label:'Tropical', pct:91 },{ label:'Complex Finish', pct:82 }]
@@ -966,43 +976,43 @@
         notes: [{ label:'Intense Cane', pct:97 },{ label:'Raw Spirit', pct:94 },{ label:'Black Pepper', pct:82 },{ label:'Tropical Heat', pct:88 },{ label:'Bold Finish', pct:96 }]
       },
       'caneca-blanco': {
-        name: 'Caneca Ron Coquí™ Blanco', type: 'Caneca', abv: '39% ABV', price: '$3.25', style: 'Smooth & Clean',
+        name: 'Caneca Ron Coquí™ Blanco', type: 'Rum with Natural Flavors Added', abv: '39% ABV', price: '$3.25', style: 'Smooth & Clean',
         img: 'img/caneca-blanco-store.webp',
         desc: 'Our flagship white rum in a convenient caneca format. Same crisp, clean spirit, perfect for single servings and on-the-go enjoyment.',
         notes: [{ label:'Sugarcane', pct:90 },{ label:'Light Citrus', pct:72 },{ label:'Vanilla', pct:65 },{ label:'Floral', pct:58 },{ label:'Clean Finish', pct:84 }]
       },
       'caneca-limon': {
-        name: 'Caneca Ron Coquí™ Limón', type: 'Caneca', abv: '30% ABV', price: '$4', style: 'Citrus-Forward',
+        name: 'Caneca Ron Coquí™ Limón', type: 'Lemon Flavored Rum', abv: '30% ABV', price: '$4', style: 'Citrus-Forward',
         img: 'img/caneca-limon-store.webp',
         desc: 'Our citrus-forward Ron Coquí Limón in a convenient caneca format. The bright personality of Puerto Rican limón, light, refreshing, and ready to go.',
         notes: [{ label:'Fresh Lemon', pct:94 },{ label:'Citrus Zest', pct:91 },{ label:'Light Cane', pct:67 },{ label:'Floral', pct:73 },{ label:'Crisp Finish', pct:80 }]
       },
       'mini-blanco': {
-        name: 'Pitorro<sup>®</sup> Miniature Blanco', type: 'Miniature', abv: '39% ABV', price: '$3.25', style: 'Bold & Authentic',
+        name: 'Pitorro<sup>®</sup> Miniature Blanco', type: 'Distilled Spirits Specialty', abv: '15% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$3.25', style: 'Bold & Authentic',
         img: 'img/mini-blanco-store.webp',
         desc: 'Puerto Rico\'s legendary moonshine in a pocket-sized miniature. Same bold, authentic spirit, perfect for sampling or gifting.',
         notes: [{ label:'Raw Cane', pct:88 },{ label:'Earthy', pct:76 },{ label:'Tropical Fruit', pct:69 },{ label:'Bold Spirit', pct:83 },{ label:'Mineral', pct:61 }]
       },
       'mini-coco': {
-        name: 'Pitorro<sup>®</sup> Miniature Coco', type: 'Miniature', abv: '15% ABV', price: '$3.25', style: 'Light & Tropical',
+        name: 'Pitorro<sup>®</sup> Miniature Coco', type: 'Distilled Spirits Specialty', abv: '15% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$3.25', style: 'Light & Tropical',
         img: 'img/mini-coco-store.webp',
         desc: 'Our tropical coconut Pitorro® in a pocket-sized miniature. Sweet, smooth, and impossibly easy to enjoy.',
         notes: [{ label:'Fresh Coconut', pct:89 },{ label:'Sweetness', pct:84 },{ label:'Light Cane', pct:72 },{ label:'Tropical', pct:88 },{ label:'Soft Finish', pct:82 }]
       },
       'mini-parcha': {
-        name: 'Pitorro<sup>®</sup> Miniature Parcha', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Bright & Fruity',
+        name: 'Pitorro<sup>®</sup> Miniature Parcha', type: 'Distilled Spirits Specialty', abv: '35% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$3.25', style: 'Bright & Fruity',
         img: 'img/mini-parcha-store.webp',
         desc: 'Puerto Rico\'s passion fruit Pitorro® in a pocket-sized miniature. Bright, aromatic, and tropical, a taste of the island.',
         notes: [{ label:'Passion Fruit', pct:96 },{ label:'Tropical', pct:91 },{ label:'Floral', pct:80 },{ label:'Sweet Cane', pct:73 },{ label:'Vibrant Finish', pct:85 }]
       },
       'mini-tamarindo': {
-        name: 'Pitorro<sup>®</sup> Miniature Tamarindo', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Tropical & Tart',
+        name: 'Pitorro<sup>®</sup> Miniature Tamarindo', type: 'Distilled Spirits Specialty', abv: '15% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$3.25', style: 'Tropical & Tart',
         img: 'img/mini-tamarindo-store.webp',
         desc: 'Our tangy tamarind Pitorro® in a pocket-sized miniature. Bold, tart, and distinctly Caribbean.',
         notes: [{ label:'Tamarind', pct:92 },{ label:'Sweet-Tart', pct:87 },{ label:'Tropical', pct:78 },{ label:'Raw Cane', pct:71 },{ label:'Long Finish', pct:76 }]
       },
       'mini-cafe': {
-        name: 'Pitorro<sup>®</sup> Miniature Café', type: 'Miniature', abv: '35% ABV', price: '$3.25', style: 'Dark & Aromatic',
+        name: 'Pitorro<sup>®</sup> Miniature Café', type: 'Distilled Spirits Specialty', abv: '35% ABV', composition: '100% neutral spirits distilled from sugarcane', price: '$3.25', style: 'Dark & Aromatic',
         img: 'img/mini-cafe-store.webp',
         desc: 'Puerto Rico\'s coffee and Pitorro® tradition in a pocket-sized miniature. Bold, aromatic, and deeply satisfying.',
         notes: [{ label:'Coffee', pct:95 },{ label:'Dark Roast', pct:89 },{ label:'Cane Sugar', pct:72 },{ label:'Caramel', pct:80 },{ label:'Warm Spice', pct:67 }]
@@ -1411,6 +1421,8 @@
                   <span class="ron-spec-value">${p.price}</span>
                 </div>
               </div>
+              ${p.composition ? `<p class="ron-composition">${p.composition}</p>` : ''}
+              <p class="ron-price-note">Price shown excludes 11.5% Puerto Rico IVU. A flat $20 shipping fee applies to shipped orders (no fee for pickup). Applicable IVU and any shipping fee are itemized at checkout before payment.</p>
               <!-- Alcohol compliance block (verbatim mirror of AlcoholCompliance.copy.PRODUCT_DISCLAIMER) -->
               <p class="compliance-card-label">Alcohol product. Legal drinking age required.</p>
               <div class="compliance-product-block">

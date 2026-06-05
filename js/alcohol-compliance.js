@@ -108,6 +108,14 @@
       'Please enjoy responsibly. Made for responsible enjoyment by adults of ' +
       'legal drinking age. Do not drink and drive.',
 
+    // Statutory Government Warning (Alcoholic Beverage Labeling Act / 27 CFR Part 16).
+    // Verbatim — do not paraphrase. Rendered with "GOVERNMENT WARNING:" bold/uppercase.
+    GOVERNMENT_WARNING_BODY:
+      '(1) According to the Surgeon General, women should not drink alcoholic ' +
+      'beverages during pregnancy because of the risk of birth defects. ' +
+      '(2) Consumption of alcoholic beverages impairs your ability to drive a ' +
+      'car or operate machinery, and may cause health problems.',
+
     // Product detail compliance block (verbatim per owner spec).
     PRODUCT_DISCLAIMER:
       'Alcohol product. Must be of legal drinking age to purchase. Valid ' +
@@ -319,11 +327,12 @@
         '#coqui-age-gate .age-gate-exit:hover{color:#1A1207;}' +
         '#coqui-age-gate .age-gate-fine{margin-top:1.75rem;font-size:.6rem;line-height:1.6;' +
         'color:#9b8772;letter-spacing:.02em;}' +
-        '.compliance-notice{margin-top:1.5rem;padding-top:1.1rem;border-top:1px solid rgba(26,18,7,.12);text-align:right;}' +
+        '.compliance-notice{margin-top:0;padding:1.1rem clamp(1.5rem,5vw,4rem) 1.75rem;border-top:1px solid rgba(26,18,7,.12);text-align:right;}' +
         '.compliance-notice p{font-size:.5rem;line-height:1.55;letter-spacing:.02em;' +
         'color:rgba(26,18,7,.5);max-width:60ch;margin:0 0 .3rem auto;}' +
-        '.compliance-notice .compliance-gov-warning{text-transform:uppercase;letter-spacing:.06em;' +
-        'color:rgba(26,18,7,.66);}' +
+        '.compliance-notice .compliance-gov-warning{text-transform:none;font-size:.64rem;line-height:1.65;' +
+        'letter-spacing:.01em;color:rgba(26,18,7,.74);text-align:left;max-width:none;margin:0 0 .6rem;}' +
+        '.compliance-notice .compliance-gov-warning strong{font-weight:700;}' +
         '.compliance-notice .compliance-policy-links{margin-top:.5rem;}' +
         '.compliance-notice .compliance-policy-links a{color:rgba(140,63,22,.85);' +
         'text-decoration:underline;text-underline-offset:2px;}' +
@@ -341,11 +350,16 @@
     // element with [data-compliance-footer], or append to <footer> if present.
     api.renderFooterWarning = function () {
       injectStyles();
+      if (document.querySelector('.compliance-notice')) return; // already rendered on this page
       var host = document.querySelector('[data-compliance-footer]') || document.querySelector('footer');
-      if (!host || host.querySelector('.compliance-gov-warning')) return;
+      if (!host) return;
       var wrap = document.createElement('div');
       wrap.className = 'compliance-notice';
       var parts = [];
+      if (config.REQUIRE_PREGNANCY_WARNING) {
+        parts.push('<p class="compliance-gov-warning"><strong>GOVERNMENT WARNING:</strong> ' +
+          escapeHtml(copy.GOVERNMENT_WARNING_BODY) + '</p>');
+      }
       if (config.REQUIRE_RESPONSIBLE_DRINKING_NOTICE) {
         parts.push('<p class="compliance-responsible">' + escapeHtml(copy.RESPONSIBLE_DRINKING) + '</p>');
       }
@@ -356,7 +370,14 @@
           '<a href="/shipping-policy">Shipping &amp; Returns</a></p>');
       }
       wrap.innerHTML = parts.join('');
-      host.appendChild(wrap);
+      // For a real <footer> (often a flex row), insert as a full-width sibling so
+      // we don't squeeze the footer layout. For a dedicated [data-compliance-footer]
+      // container, append inside it.
+      if (host.tagName && host.tagName.toLowerCase() === 'footer' && host.parentNode) {
+        host.parentNode.insertBefore(wrap, host.nextSibling);
+      } else {
+        host.appendChild(wrap);
+      }
     };
 
     // Show the age gate modal. Resolves only when verified; redirects to
@@ -440,6 +461,10 @@
         document.addEventListener('DOMContentLoaded', api.renderFooterWarning);
       } else { api.renderFooterWarning(); }
     };
+
+    // Auto-render the Government Warning + responsible-drinking notice on every
+    // page that loads this script (idempotent — guarded against double-render).
+    api.initFooterWarning();
   }
 
   function escapeHtml(s) {
