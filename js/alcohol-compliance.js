@@ -298,13 +298,13 @@
       var css =
         '#coqui-age-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;' +
         'justify-content:center;padding:1.5rem;background:rgba(26,18,7,.62);backdrop-filter:blur(6px);' +
-        '-webkit-backdrop-filter:blur(6px);font-family:"Coqui TM", "Barlow Semi Condensed", "Arial Narrow", sans-serif;}' +
+        '-webkit-backdrop-filter:blur(6px);font-family:"Coqui TM", "Bellota Text", system-ui, sans-serif;}' +
         '#coqui-age-gate .age-gate-card{background:#F7F3EA;border:1px solid rgba(140,63,22,.25);' +
         'max-width:32rem;width:100%;padding:clamp(2.25rem,5vw,3.25rem);text-align:center;color:#1A1207;' +
         'box-shadow:0 40px 90px rgba(26,18,7,.45);}' +
-        '#coqui-age-gate .age-gate-brand{font-family:"Coqui TM", "Barlow Semi Condensed", "Arial Narrow", sans-serif;font-size:1.05rem;' +
+        '#coqui-age-gate .age-gate-brand{font-family:"Coqui TM", "Bellota Text", system-ui, sans-serif;font-size:1.05rem;' +
         'letter-spacing:.18em;text-transform:uppercase;color:#8C3F16;margin-bottom:1.5rem;}' +
-        '#coqui-age-gate .age-gate-q{font-family:"Coqui TM", "Barlow Semi Condensed", "Arial Narrow", sans-serif;font-weight:300;' +
+        '#coqui-age-gate .age-gate-q{font-family:"Coqui TM", "Bellota Text", system-ui, sans-serif;font-weight:300;' +
         'font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.08;letter-spacing:-.02em;color:#1A1207;margin-bottom:.9rem;}' +
         '#coqui-age-gate .age-gate-sub{font-size:.8rem;line-height:1.6;color:#7D6654;margin-bottom:1.75rem;}' +
         '#coqui-age-gate .age-gate-dob-fields{display:flex;gap:.6rem;justify-content:center;margin-bottom:1.1rem;}' +
