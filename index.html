@@ -21,8 +21,8 @@
       --gold:        #C49348;
       --brown:       #60422E;
       --muted:       #7D6654;
-      --serif: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
-      --sans:  'DM Sans', system-ui, sans-serif;
+      --serif: 'DM Sans', system-ui, sans-serif;
+      --sans:  'Fira Sans Condensed', 'Arial Narrow', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -153,7 +153,7 @@
       font-family: var(--serif);
       font-size: clamp(4.2rem, 8.5vw, 10rem);
       font-weight: 200; color: var(--cream);
-      line-height: 0.91; letter-spacing: -0.035em; margin-bottom: 2.5rem;
+      line-height: 0.91; letter-spacing: -0.02em; margin-bottom: 2.5rem;
     }
     .hero-h1 em { font-style: italic; color: var(--gold); }
     .hero-sub {
@@ -218,7 +218,7 @@
     /* ─── SECTION UTILITIES ──────────────────────────── */
     .eyebrow { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.38em; text-transform: uppercase; color: var(--amber); display: inline-flex; align-items: center; gap: 1.25rem; margin-bottom: 2.25rem; }
     .eyebrow::after { content: ''; width: 3rem; height: 0.5px; background: var(--amber); opacity: 0.65; flex-shrink: 0; }
-    .h2 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.03em; color: var(--ink); }
+    .h2 { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.02; letter-spacing: -0.02em; color: var(--ink); }
     .h2 em { font-style: italic; color: var(--amber); }
     .body-text { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.9; max-width: 52ch; }
 
@@ -263,7 +263,7 @@
     }
     .home-feature-title {
       font-family: var(--serif); font-size: clamp(4.2rem, 7vw, 9rem);
-      font-weight: 200; color: var(--cream); line-height: 0.9; letter-spacing: -0.042em;
+      font-weight: 200; color: var(--cream); line-height: 0.9; letter-spacing: -0.02em;
       margin-bottom: 2.75rem; max-width: 14ch;
     }
     /* Second word italic + gold - editorial premium treatment */
@@ -309,7 +309,7 @@
     .heritage-inner { position: relative; z-index: 1; max-width: 1380px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-rows: auto auto; gap: clamp(3.5rem, 8vw, 8rem) clamp(3.5rem, 8vw, 9rem); align-items: center; }
     .heritage-copy { padding: 1rem 0; }
     .heritage-kicker { display: block; color: var(--amber); font-size: 0.58rem; letter-spacing: 0.34em; text-transform: uppercase; margin-bottom: 1.6rem; }
-    .heritage-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.2vw, 7.5rem); font-weight: 300; line-height: 0.88; color: var(--ink); letter-spacing: -0.055em; max-width: 8ch; margin-bottom: 2.5rem; }
+    .heritage-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.2vw, 7.5rem); font-weight: 300; line-height: 0.88; color: var(--ink); letter-spacing: -0.02em; max-width: 8ch; margin-bottom: 2.5rem; }
     .heritage-title em { color: var(--amber); }
     .heritage-title .reg { font-size: 0.35em; vertical-align: super; line-height: 0; font-weight: 400; }
     .heritage-body { color: #6D5541; font-size: 0.92rem; line-height: 1.95; max-width: 47ch; margin-bottom: 2rem; }
@@ -330,7 +330,7 @@
     .barrel-object { position: relative; z-index: 2; width: min(92%, 34rem); aspect-ratio: 1.22; transform: translate3d(var(--barrel-x), var(--barrel-y), 0) rotateX(var(--barrel-rx)) rotateY(var(--barrel-ry)) rotate(-3deg); transition: transform 0.75s cubic-bezier(0.16,1,0.3,1); will-change: transform; filter: drop-shadow(0 1.35rem 1.3rem rgba(96,66,46,0.24)); }
     .barrel-object img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; border: 1px solid rgba(196,147,72,0.48); }
     .rum-copy { padding: 1rem 0; }
-    .rum-title { font-family: var(--serif); font-size: clamp(3.4rem, 5.6vw, 6.7rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.052em; color: var(--ink); max-width: 9ch; margin-bottom: 2.25rem; }
+    .rum-title { font-family: var(--serif); font-size: clamp(3.4rem, 5.6vw, 6.7rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.02em; color: var(--ink); max-width: 9ch; margin-bottom: 2.25rem; }
     .rum-title em { color: var(--amber); }
     .rum-facts { display: grid; gap: 1rem; margin: 2.25rem 0; }
     .rum-fact { padding-top: 1rem; border-top: 0.5px solid rgba(96,66,46,0.24); color: var(--brown); font-size: 0.76rem; letter-spacing: 0.11em; text-transform: uppercase; }
@@ -348,7 +348,7 @@
     .cellar-inner { position: relative; z-index: 2; max-width: 1440px; margin: 0 auto; padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 5vw, 5rem); }
     /* Top header area */
     .cellar-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: clamp(4rem, 7vw, 7rem); }
-    .cellar-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.5vw, 8rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); }
+    .cellar-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.5vw, 8rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.02em; color: var(--cream); }
     .cellar-title em { color: var(--gold); }
     .cellar-header-body { color: rgba(247,243,234,0.55); font-size: 0.92rem; line-height: 1.85; max-width: 42ch; }
     /* Center stage: barrel with specs placed around it */
@@ -446,7 +446,7 @@
     .award-item:last-child { border-right: none; }
     .award-score {
       font-family: var(--serif); font-size: 3.5rem; font-weight: 200; line-height: 1;
-      color: var(--cream); letter-spacing: -0.03em;
+      color: var(--cream); letter-spacing: -0.02em;
     }
     /* Score flashes gold → cream on scroll-in */
     .award-item.in .award-score {
@@ -497,7 +497,7 @@
     .event-modal-body { padding: 3rem 3.25rem 3.5rem; }
     .event-modal-type { font-size: 0.55rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 0.6rem; }
     .event-modal-date { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 1.5rem; }
-    .event-modal-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 200; color: var(--ink); line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .event-modal-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 200; color: var(--ink); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 1rem; }
     .event-modal-location { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
     .event-modal-location::before { content: ''; width: 1.5rem; height: 0.5px; background: var(--amber); flex-shrink: 0; }
     .event-modal-desc { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.95; max-width: 56ch; margin-bottom: 3rem; }
@@ -1124,7 +1124,7 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
       ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
-      ".mobile-menu a{font-family:var(--serif,'Fira Sans Condensed', 'Arial Narrow', sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a{font-family:var(--serif,'DM Sans', system-ui, sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
       ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F3EA;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+

@@ -19,8 +19,8 @@
       --gold:        #C49348;
       --brown:       #60422E;
       --muted:       #7D6654;
-      --serif: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
-      --sans:  'DM Sans', system-ui, sans-serif;
+      --serif: 'DM Sans', system-ui, sans-serif;
+      --sans:  'Fira Sans Condensed', 'Arial Narrow', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -129,7 +129,7 @@
       font-family: var(--serif);
       font-size: clamp(4.5rem, 9vw, 10.5rem);
       font-weight: 200; color: var(--cream);
-      line-height: 0.88; letter-spacing: -0.04em;
+      line-height: 0.88; letter-spacing: -0.02em;
     }
     .page-hero-h1 em { font-style: italic; color: var(--gold); display: block; }
     .page-hero-right {}
@@ -167,7 +167,7 @@
     .eyebrow::after { content: ''; width: 3rem; height: 0.5px; background: var(--amber); opacity: 0.65; flex-shrink: 0; }
     .h2 {
       font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 5.5rem);
-      font-weight: 300; line-height: 1.02; letter-spacing: -0.03em; color: var(--ink);
+      font-weight: 300; line-height: 1.02; letter-spacing: -0.02em; color: var(--ink);
     }
     .h2 em { font-style: italic; color: var(--amber); }
     .body-text { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.9; max-width: 52ch; }
@@ -271,7 +271,7 @@
     .plaza-space-num {
       font-family: var(--serif); font-size: 4rem; font-weight: 200;
       color: rgba(26,18,7,0.055); line-height: 1; display: block;
-      margin-bottom: -1.5rem; letter-spacing: -0.03em;
+      margin-bottom: -1.5rem; letter-spacing: -0.02em;
     }
     .plaza-space-name {
       font-family: var(--serif); font-size: 1.75rem; font-weight: 400;
@@ -294,7 +294,7 @@
     .private-events .eyebrow::after { background: var(--gold); }
     .private-events-h2 {
       font-family: var(--serif); font-size: clamp(3.3rem,6vw,7rem);
-      font-weight: 300; line-height: 0.92; letter-spacing: -0.045em;
+      font-weight: 300; line-height: 0.92; letter-spacing: -0.02em;
       color: var(--cream); margin-bottom: 2rem;
     }
     .private-events-h2 em { color: var(--gold); }
@@ -338,7 +338,7 @@
       font-family: var(--serif);
       font-size: clamp(2.4rem, 4vw, 4.2rem);
       font-weight: 300; line-height: 1.04;
-      letter-spacing: -0.03em; color: var(--ink);
+      letter-spacing: -0.02em; color: var(--ink);
       margin-bottom: 2.5rem;
     }
     .plaza-location-h2 em { font-style: italic; color: var(--amber); }
@@ -391,7 +391,7 @@
       font-family: var(--serif);
       font-size: clamp(2.6rem, 5vw, 5.5rem);
       font-weight: 200; line-height: 1.0;
-      letter-spacing: -0.035em; color: var(--ink);
+      letter-spacing: -0.02em; color: var(--ink);
     }
     .visit-cta-h2 em { font-style: italic; color: var(--amber); }
     .visit-cta-body { display: flex; flex-direction: column; gap: 2rem; }
@@ -706,7 +706,7 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
       ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
-      ".mobile-menu a{font-family:var(--serif,'Fira Sans Condensed', 'Arial Narrow', sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a{font-family:var(--serif,'DM Sans', system-ui, sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
       ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F3EA;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
