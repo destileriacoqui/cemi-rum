@@ -298,7 +298,7 @@
       var css =
         '#coqui-age-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;' +
         'justify-content:center;padding:1.5rem;background:rgba(26,18,7,.62);backdrop-filter:blur(6px);' +
-        '-webkit-backdrop-filter:blur(6px);font-family:"Fira Sans Condensed","Arial Narrow",sans-serif;}' +
+        '-webkit-backdrop-filter:blur(6px);font-family:"Barlow Semi Condensed","Arial Narrow",sans-serif;}' +
         '#coqui-age-gate .age-gate-card{background:#F7F3EA;border:1px solid rgba(140,63,22,.25);' +
         'max-width:32rem;width:100%;padding:clamp(2.25rem,5vw,3.25rem);text-align:center;color:#1A1207;' +
         'box-shadow:0 40px 90px rgba(26,18,7,.45);}' +
