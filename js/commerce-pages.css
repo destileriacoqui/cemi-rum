@@ -1,5 +1,5 @@
 @font-face{font-family:'Coqui TM';src:local('Arial'),local('Helvetica Neue'),local('Helvetica'),local('Roboto'),local('DejaVu Sans');unicode-range:U+2122;}
-:root{--cream:#F7F3EA;--white:#FFFFFF;--ink:#1A1207;--amber:#8C3F16;--gold:#C49348;--muted:#7D6654;--serif:'Coqui TM', 'Urbanist', system-ui, sans-serif;--sans:'Coqui TM', 'Urbanist', system-ui, sans-serif}
+:root{--cream:#F7F3EA;--white:#FFFFFF;--ink:#1A1207;--amber:#8C3F16;--gold:#C49348;--muted:#7D6654;--serif:'Coqui TM', 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;--sans:'Coqui TM', 'Barlow Semi Condensed', 'Arial Narrow', sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
 body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}

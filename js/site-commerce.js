@@ -83,7 +83,7 @@
     style.id = 'coqui-commerce-styles';
     style.textContent = `
       .commerce-nav{display:flex;align-items:center;gap:1rem;margin-left:1.35rem}
-      .commerce-nav a{font:300 .58rem/1 'Coqui TM', 'Urbanist',system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--muted,#7D6654);transition:color .3s ease}
+      .commerce-nav a{font:300 .58rem/1 'Coqui TM', 'Barlow Semi Condensed','Arial Narrow',sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--muted,#7D6654);transition:color .3s ease}
       .commerce-nav a:hover{color:var(--amber,#8C3F16)}
       .commerce-cart{display:flex;align-items:center;gap:.45rem}
       .commerce-cart b{display:grid;place-items:center;width:1.35rem;height:1.35rem;border-radius:50%;background:var(--amber,#8C3F16);color:#F7F2E8;font-size:.55rem;letter-spacing:0}
