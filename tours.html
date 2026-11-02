@@ -6,8 +6,9 @@
   <title>Tours | Destilería Coquí</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
+    @font-face{font-family:'Coqui TM';src:local('Arial'),local('Helvetica Neue'),local('Helvetica'),local('Roboto'),local('DejaVu Sans');unicode-range:U+2122;}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -18,8 +19,8 @@
       --amber:      #8C3F16;
       --gold:       #C49348;
       --muted:      #7D6654;
-      --serif: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
-      --sans:  'Fira Sans Condensed', 'Arial Narrow', sans-serif;
+      --serif: 'Coqui TM', 'Urbanist', system-ui, sans-serif;
+      --sans:  'Coqui TM', 'Urbanist', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -624,7 +625,7 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
       ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
-      ".mobile-menu a{font-family:var(--serif,'Fira Sans Condensed', 'Arial Narrow', sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a{font-family:var(--serif,'Coqui TM', 'Urbanist', system-ui, sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
       ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F3EA;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
