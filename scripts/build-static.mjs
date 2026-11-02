@@ -35,7 +35,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   if (rootExtensions.has(extname(entry.name).toLowerCase())) await copyFile(entry.name);
 }
 
-for (const directory of ['account', 'admin', 'auth', 'js']) {
+for (const directory of ['account', 'admin', 'auth', 'js', 'fonts']) {
   await copyDirectory(directory);
 }
 await copyDirectory('img', assetExtensions);
