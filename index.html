@@ -8,20 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Start fetching the hero video during HTML parse so it shows ASAP. -->
   <link rel="preload" as="video" href="hero-bg-lite.mp4" type="video/mp4">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:       #F7F2E8;
-      --cream-mid:   #EFE8D8;
+      --cream:       #F7F3EA;
+      --white:   #FFFFFF;
       --cream-dark:  #E7DAC9;
       --ink:         #1A1207;
       --amber:       #8C3F16;
       --gold:        #C49348;
       --brown:       #60422E;
       --muted:       #7D6654;
-      --serif: 'Cormorant Garamond', Georgia, serif;
+      --serif: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
       --sans:  'DM Sans', system-ui, sans-serif;
     }
 
@@ -68,7 +68,7 @@
       transition: background 0.55s ease, padding 0.45s ease, box-shadow 0.45s ease;
     }
     nav.scrolled {
-      background: rgba(247, 242, 232, 0.97);
+      background: rgba(247, 243, 234, 0.97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       padding: 1.25rem 4rem;
@@ -85,7 +85,7 @@
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(247,242,232,0.75);
+      color: rgba(247,243,234,0.75);
       text-decoration: none;
       transition: color 0.45s ease, opacity 0.3s ease;
       position: relative;
@@ -158,7 +158,7 @@
     .hero-h1 em { font-style: italic; color: var(--gold); }
     .hero-sub {
       font-size: 0.9rem; font-weight: 300;
-      color: rgba(247,242,232,0.62); max-width: 38ch; line-height: 1.9; margin-bottom: 3.5rem;
+      color: rgba(247,243,234,0.62); max-width: 38ch; line-height: 1.9; margin-bottom: 3.5rem;
     }
     .hero-actions { display: flex; align-items: center; gap: 2.5rem; }
     .hero-scroll-indicator {
@@ -167,11 +167,11 @@
     }
     .hero-scroll-indicator span {
       font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase;
-      color: rgba(247,242,232,0.38); writing-mode: vertical-rl;
+      color: rgba(247,243,234,0.38); writing-mode: vertical-rl;
     }
     .scroll-line {
       width: 0.5px; height: 4.5rem;
-      background: linear-gradient(to bottom, transparent, rgba(247,242,232,0.38));
+      background: linear-gradient(to bottom, transparent, rgba(247,243,234,0.38));
       animation: grow 2.4s cubic-bezier(0.16,1,0.3,1) infinite;
     }
     @keyframes grow {
@@ -209,11 +209,11 @@
     .btn-text {
       display: inline-flex; align-items: center; gap: 0.65rem;
       font-size: 0.67rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(247,242,232,0.58); text-decoration: none;
+      color: rgba(247,243,234,0.58); text-decoration: none;
       transition: color 0.35s ease, gap 0.35s cubic-bezier(0.16,1,0.3,1);
       border-bottom: 0.5px solid transparent; padding-bottom: 1px;
     }
-    .btn-text:hover { color: var(--cream); border-bottom-color: rgba(247,242,232,0.3); gap: 1.1rem; }
+    .btn-text:hover { color: var(--cream); border-bottom-color: rgba(247,243,234,0.3); gap: 1.1rem; }
 
     /* ─── SECTION UTILITIES ──────────────────────────── */
     .eyebrow { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.38em; text-transform: uppercase; color: var(--amber); display: inline-flex; align-items: center; gap: 1.25rem; margin-bottom: 2.25rem; }
@@ -269,13 +269,13 @@
     /* Second word italic + gold - editorial premium treatment */
     .home-feature-title em { font-style: italic; color: var(--gold); }
     .home-feature-body {
-      font-size: 0.9rem; font-weight: 300; color: rgba(247,242,232,0.65);
+      font-size: 0.9rem; font-weight: 300; color: rgba(247,243,234,0.65);
       line-height: 1.92; max-width: 50ch; margin-bottom: 3.75rem;
     }
     /* Ghost CTA with sliding fill - more tactile than a flat bg change */
     .home-feature-cta {
       display: inline-flex; align-items: center; gap: 1.1rem;
-      border: 0.5px solid rgba(247,242,232,0.28); color: var(--cream); background: transparent;
+      border: 0.5px solid rgba(247,243,234,0.28); color: var(--cream); background: transparent;
       padding: 1.15rem 2.85rem; font-family: var(--sans); font-size: 0.65rem; font-weight: 400;
       letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
       transition: border-color 0.45s ease, gap 0.4s cubic-bezier(0.16,1,0.3,1);
@@ -284,21 +284,21 @@
     .home-feature-cta::before {
       content: '';
       position: absolute; inset: 0;
-      background: rgba(247,242,232,0.1);
+      background: rgba(247,243,234,0.1);
       transform: scaleX(0);
       transform-origin: left center;
       transition: transform 0.52s cubic-bezier(0.16,1,0.3,1);
       pointer-events: none;
     }
     .home-feature-cta:hover::before { transform: scaleX(1); }
-    .home-feature-cta:hover { border-color: rgba(247,242,232,0.55); gap: 1.6rem; }
+    .home-feature-cta:hover { border-color: rgba(247,243,234,0.55); gap: 1.6rem; }
     .home-feature-cta svg { transition: transform 0.38s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; position: relative; }
     .home-feature-cta:hover svg { transform: translateX(6px); }
 
     /* ─── HOME HERITAGE: alternating editorial grid ──── */
     .heritage-grid {
       --barrel-x: 0px; --barrel-y: 0px; --barrel-rx: 0deg; --barrel-ry: 0deg;
-      position: relative; overflow: hidden; background: #F2E6D2;
+      position: relative; overflow: hidden; background: var(--white);
       padding: clamp(6rem, 10vw, 11rem) clamp(1.75rem, 6vw, 7rem);
     }
     .heritage-grid::before {
@@ -320,7 +320,7 @@
     .heritage-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 34%; filter: sepia(13%) saturate(0.88) contrast(1.04); transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
     .heritage-photo:hover img { transform: scale(1.04); }
     .heritage-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26,18,7,0.12), transparent 32%); }
-    .heritage-stamp { position: absolute; z-index: 2; right: 1.4rem; bottom: 1.4rem; width: 7rem; aspect-ratio: 1; border: 1px solid rgba(247,242,232,0.78); border-radius: 50%; display: grid; place-items: center; color: var(--cream); text-align: center; font-family: var(--serif); font-size: 1.35rem; line-height: 0.86; transform: rotate(-10deg); text-shadow: 0 1px 9px rgba(0,0,0,0.35); }
+    .heritage-stamp { position: absolute; z-index: 2; right: 1.4rem; bottom: 1.4rem; width: 7rem; aspect-ratio: 1; border: 1px solid rgba(247,243,234,0.78); border-radius: 50%; display: grid; place-items: center; color: var(--cream); text-align: center; font-family: var(--serif); font-size: 1.35rem; line-height: 0.86; transform: rotate(-10deg); text-shadow: 0 1px 9px rgba(0,0,0,0.35); }
     .heritage-stamp small { display: block; font-family: var(--sans); font-size: 0.36rem; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 0.4rem; }
     .barrel-frame { position: relative; min-height: clamp(25rem, 39vw, 35rem); display: grid; place-items: center; overflow: visible; isolation: isolate; }
     .barrel-frame::before { content: none; }
@@ -336,6 +336,9 @@
     .rum-fact { padding-top: 1rem; border-top: 0.5px solid rgba(96,66,46,0.24); color: var(--brown); font-size: 0.76rem; letter-spacing: 0.11em; text-transform: uppercase; }
 
     /* ─── HOME BARREL CELLAR: floating barrel stage ─── */
+    /* Section is parked (hidden) but kept for future reuse: remove the `hidden`
+       attribute on #cellarFeature in the markup to bring it back. */
+    .cellar-feature[hidden] { display: none !important; }
     .cellar-feature {
       --cellar-x: 0px; --cellar-y: 0px; --cellar-rx: 0deg; --cellar-ry: 0deg;
       position: relative; min-height: 100dvh; overflow: hidden; color: var(--cream);
@@ -347,14 +350,14 @@
     .cellar-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: clamp(4rem, 7vw, 7rem); }
     .cellar-title { font-family: var(--serif); font-size: clamp(3.8rem, 6.5vw, 8rem); font-weight: 300; line-height: 0.88; letter-spacing: -0.055em; color: var(--cream); }
     .cellar-title em { color: var(--gold); }
-    .cellar-header-body { color: rgba(247,242,232,0.55); font-size: 0.92rem; line-height: 1.85; max-width: 42ch; }
+    .cellar-header-body { color: rgba(247,243,234,0.55); font-size: 0.92rem; line-height: 1.85; max-width: 42ch; }
     /* Center stage: barrel with specs placed around it */
     .cellar-stage { position: relative; display: grid; place-items: center; min-height: clamp(30rem, 52vw, 44rem); }
     /* Specs positioned absolutely around the barrel */
     .cellar-spec { position: absolute; z-index: 4; max-width: 17rem; }
     .cellar-spec-title { color: var(--gold); font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.5rem); font-weight: 400; margin-bottom: 0.4rem; }
     .cellar-spec-line { width: 2.5rem; height: 0.5px; background: rgba(196,147,72,0.32); margin-bottom: 0.7rem; }
-    .cellar-spec-body { color: rgba(247,242,232,0.52); font-size: 0.82rem; line-height: 1.8; }
+    .cellar-spec-body { color: rgba(247,243,234,0.52); font-size: 0.82rem; line-height: 1.8; }
     /* Small gold glyph above each callout title. Inline-block follows the
        spec's text-align, so it sits on the barrel-facing side automatically. */
     .cellar-spec-icon { display: block; margin-bottom: 0.7rem; color: var(--gold); line-height: 0; }
@@ -394,13 +397,13 @@
     .cellar-barrel-img img { width: 100%; height: auto; display: block; }
     /* Bottom row */
     .cellar-bottom { display: flex; justify-content: space-between; align-items: flex-start; margin-top: clamp(4rem, 6vw, 6rem); gap: 3rem; }
-    .cellar-quote { font-family: var(--serif); font-size: clamp(1.3rem, 1.9vw, 1.75rem); line-height: 1.28; color: rgba(247,242,232,0.42); max-width: 22ch; flex-shrink: 0; }
-    .cellar-caption { color: rgba(247,242,232,0.28); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; text-align: right; max-width: 28ch; }
+    .cellar-quote { font-family: var(--serif); font-size: clamp(1.3rem, 1.9vw, 1.75rem); line-height: 1.28; color: rgba(247,243,234,0.42); max-width: 22ch; flex-shrink: 0; }
+    .cellar-caption { color: rgba(247,243,234,0.28); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; text-align: right; max-width: 28ch; }
     /* Mobile callouts fallback */
     .cellar-callouts-mobile { display: none; }
 
     /* ─── EVENTS ─── */
-    .events-section { padding: 14rem 0; background: var(--cream-mid); }
+    .events-section { padding: 14rem 0; background: var(--cream); }
     .events-inner { max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
     .events-header { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; margin-bottom: 5.5rem; }
     /* First card intentionally wider - breaks the generic equal-grid AI tell */
@@ -429,17 +432,17 @@
     .event-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,5,2,0.95) 0%, rgba(12,5,2,0.4) 50%, rgba(12,5,2,0.08) 100%); }
     .event-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 1.85rem; }
     .event-type { font-size: 0.54rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.6rem; opacity: 0.9; }
-    .event-date { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,242,232,0.38); display: block; margin-bottom: 0.55rem; }
+    .event-date { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(247,243,234,0.38); display: block; margin-bottom: 0.55rem; }
     .event-title { font-family: var(--serif); font-size: 1.4rem; font-weight: 300; color: var(--cream); line-height: 1.18; letter-spacing: -0.015em; margin-bottom: 1.2rem; }
-    .event-expand-hint { font-size: 0.54rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(247,242,232,0.28); display: flex; align-items: center; gap: 0.55rem; transition: color 0.35s ease, gap 0.35s cubic-bezier(0.16,1,0.3,1); }
-    .event-card:hover .event-expand-hint { color: rgba(247,242,232,0.72); gap: 0.9rem; }
+    .event-expand-hint { font-size: 0.54rem; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(247,243,234,0.28); display: flex; align-items: center; gap: 0.55rem; transition: color 0.35s ease, gap 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .event-card:hover .event-expand-hint { color: rgba(247,243,234,0.72); gap: 0.9rem; }
     .event-expand-hint svg { opacity: 0; transform: translateX(-5px); transition: opacity 0.35s ease, transform 0.35s ease; }
     .event-card:hover .event-expand-hint svg { opacity: 1; transform: translateX(0); }
 
     /* ─── AWARDS - dark ink statement strip ─── */
     .awards { background: var(--ink); padding: 8rem 0; }
     .awards-inner { max-width: 1300px; margin: 0 auto; padding: 0 4rem; display: grid; grid-template-columns: repeat(4, 1fr); }
-    .award-item { text-align: center; padding: 0 3.25rem; border-right: 0.5px solid rgba(247,242,232,0.07); display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+    .award-item { text-align: center; padding: 0 3.25rem; border-right: 0.5px solid rgba(247,243,234,0.07); display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
     .award-item:last-child { border-right: none; }
     .award-score {
       font-family: var(--serif); font-size: 3.5rem; font-weight: 200; line-height: 1;
@@ -456,10 +459,10 @@
     }
     .award-sep { width: 1.25rem; height: 0.5px; background: var(--gold); opacity: 0.6; transition: width 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease; }
     .award-item:hover .award-sep { width: 3rem; opacity: 0.9; }
-    .award-note { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,242,232,0.38); text-align: center; line-height: 1.7; }
+    .award-note { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,243,234,0.38); text-align: center; line-height: 1.7; }
 
     /* ─── TOURS ───── */
-    .tours-section { padding: 10rem 0; background: var(--cream-mid); }
+    .tours-section { padding: 10rem 0; background: var(--white); }
     .tours-inner { max-width: 1300px; margin: 0 auto; padding: 0 4rem; }
     .tours-split { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr); gap: 6rem; align-items: center; }
     .tours-text { display: flex; flex-direction: column; }
@@ -533,7 +536,7 @@
       .events-header { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
       .events-grid { grid-template-columns: repeat(2, 1fr); }
       .awards-inner { grid-template-columns: 1fr 1fr; padding: 2.5rem; }
-      .award-item { border-right: none; border-bottom: 0.5px solid rgba(247,242,232,0.07); padding: 2.25rem 1.25rem; }
+      .award-item { border-right: none; border-bottom: 0.5px solid rgba(247,243,234,0.07); padding: 2.25rem 1.25rem; }
       .tours-inner { padding: 0 2.5rem; }
       .tours-split { grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.68fr); gap: 3.5rem; }
       .tours-img-wrap { width: min(100%, 23rem); }
@@ -699,7 +702,9 @@
   </section>
 
   <!-- ─── HOME BARREL CELLAR: floating barrel stage ─── -->
-  <section class="cellar-feature" id="cellarFeature">
+  <!-- PARKED: hidden from the page but kept (markup, CSS, JS, img/coqui-oak-barrel-v2.webp)
+       for future reuse. Delete the `hidden` attribute below to show it again. -->
+  <section class="cellar-feature" id="cellarFeature" hidden aria-hidden="true">
     <div class="cellar-inner">
 
       <!-- Header: title + intro -->
@@ -1119,13 +1124,13 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
       ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
-      ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a{font-family:var(--serif,'Fira Sans Condensed', 'Arial Narrow', sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
-      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
+      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F3EA;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
       ".mobile-menu-sep{width:3rem;height:.5px;background:rgba(196,147,72,.4);margin:1rem 0;}"+
-      ".mobile-menu-account{font-size:1.4rem!important;color:rgba(247,242,232,.55)!important;}"+
-      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
+      ".mobile-menu-account{font-size:1.4rem!important;color:rgba(247,243,234,.55)!important;}"+
+      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,243,234,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
     document.head.appendChild(s);
     var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
     var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['/tours','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
@@ -1156,8 +1161,8 @@
       ".find-us-dd{position:absolute;bottom:calc(100% + .75rem);left:50%;transform:translateX(-50%) translateY(4px);background:rgba(26,18,7,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:.5rem .15rem;display:flex;flex-direction:column;gap:.05rem;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;white-space:nowrap;z-index:100;border-radius:2px;}"+
       ".find-us-dd.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}"+
       ".find-us-dd::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(26,18,7,.94);}"+
-      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,242,232,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
-      ".find-us-dd a:hover{color:#F7F2E8;background:rgba(247,242,232,.08);}";
+      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,243,234,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
+      ".find-us-dd a:hover{color:#F7F3EA;background:rgba(247,243,234,.08);}";
     document.head.appendChild(s);
     var li=document.createElement('li');li.className='find-us-wrap';
     li.innerHTML='<button class="find-us-btn" aria-expanded="false" aria-label="Get directions to Destilería Coquí">'+

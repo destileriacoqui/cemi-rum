@@ -6,20 +6,20 @@
   <title>Coquí Plaza | Destilería Coquí</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:       #F7F2E8;
-      --cream-mid:   #EFE8D8;
+      --cream:       #F7F3EA;
+      --white:   #FFFFFF;
       --cream-dark:  #E7DAC9;
       --ink:         #1A1207;
       --amber:       #8C3F16;
       --gold:        #C49348;
       --brown:       #60422E;
       --muted:       #7D6654;
-      --serif: 'Cormorant Garamond', Georgia, serif;
+      --serif: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
       --sans:  'DM Sans', system-ui, sans-serif;
     }
 
@@ -52,7 +52,7 @@
       transition: background 0.55s ease, padding 0.45s ease, box-shadow 0.45s ease;
     }
     nav.scrolled {
-      background: rgba(247, 242, 232, 0.97);
+      background: rgba(247, 243, 234, 0.97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       padding: 1.25rem 4rem;
@@ -68,7 +68,7 @@
     .nav-links a {
       font-size: 0.68rem; font-weight: 400;
       letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(247,242,232,0.75); text-decoration: none;
+      color: rgba(247,243,234,0.75); text-decoration: none;
       transition: color 0.45s ease;
     }
     .nav-links a:hover { color: var(--cream); }
@@ -102,7 +102,7 @@
     }
     .page-hero-bg::before {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 14rem;
-      background: linear-gradient(to bottom, transparent, rgba(247,242,232,0.12));
+      background: linear-gradient(to bottom, transparent, rgba(247,243,234,0.12));
       z-index: 1;
     }
     .page-hero-content {
@@ -135,7 +135,7 @@
     .page-hero-right {}
     .page-hero-sub {
       font-size: 0.92rem; font-weight: 300;
-      color: rgba(247,242,232,0.52); line-height: 1.9;
+      color: rgba(247,243,234,0.52); line-height: 1.9;
       max-width: 44ch; margin-bottom: 2.5rem;
     }
     .page-hero-scroll {
@@ -143,11 +143,11 @@
     }
     .page-hero-scroll span {
       font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase;
-      color: rgba(247,242,232,0.35);
+      color: rgba(247,243,234,0.35);
     }
     .scroll-line {
       width: 0.5px; height: 4.5rem;
-      background: linear-gradient(to bottom, transparent, rgba(247,242,232,0.35));
+      background: linear-gradient(to bottom, transparent, rgba(247,243,234,0.35));
       animation: grow 2.4s cubic-bezier(0.16,1,0.3,1) infinite;
     }
     @keyframes grow {
@@ -255,7 +255,7 @@
     }
     .plaza-panorama-sub {
       font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: rgba(247,242,232,0.42); padding-bottom: 0.3rem;
+      color: rgba(247,243,234,0.42); padding-bottom: 0.3rem;
     }
 
     /* ─── SPACES ──────────────────────────────────────── */
@@ -299,23 +299,23 @@
     }
     .private-events-h2 em { color: var(--gold); }
     .private-events-body {
-      color: rgba(247,242,232,0.62); font-size: 0.9rem;
+      color: rgba(247,243,234,0.62); font-size: 0.9rem;
       line-height: 1.95; max-width: 52ch;
     }
     .private-events-list {
       display: grid; grid-template-columns: 1fr 1fr;
-      border-top: 0.5px solid rgba(247,242,232,0.14);
+      border-top: 0.5px solid rgba(247,243,234,0.14);
     }
     .private-event-detail {
       padding: 1.65rem 1rem 1.65rem 0;
-      border-bottom: 0.5px solid rgba(247,242,232,0.14);
+      border-bottom: 0.5px solid rgba(247,243,234,0.14);
     }
-    .private-event-detail:nth-child(even) { padding-left: 1.25rem; border-left: 0.5px solid rgba(247,242,232,0.14); }
+    .private-event-detail:nth-child(even) { padding-left: 1.25rem; border-left: 0.5px solid rgba(247,243,234,0.14); }
     .private-event-label {
       display: block; color: var(--gold); font-size: 0.54rem;
       letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.55rem;
     }
-    .private-event-value { color: rgba(247,242,232,0.78); font-size: 0.83rem; line-height: 1.7; }
+    .private-event-value { color: rgba(247,243,234,0.78); font-size: 0.83rem; line-height: 1.7; }
     .private-events-call {
       display: inline-flex; align-items: center; gap: 1rem; margin-top: 2.25rem;
       color: var(--cream); text-decoration: none; font-size: 0.68rem;
@@ -378,7 +378,7 @@
 
     /* ─── VISIT CTA ───────────────────────────────────── */
     .visit-cta {
-      background: var(--cream-mid);
+      background: var(--white);
       border-top: 0.5px solid rgba(26,18,7,0.1);
       padding: 10rem 4rem;
     }
@@ -706,13 +706,13 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
       ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
-      ".mobile-menu a{font-family:var(--serif,'Cormorant Garamond',serif);font-size:2.4rem;font-weight:300;color:#F7F2E8;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a{font-family:var(--serif,'Fira Sans Condensed', 'Arial Narrow', sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
-      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F2E8;font-size:1.7rem;line-height:1;cursor:pointer;}"+
+      ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F3EA;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
       ".mobile-menu-sep{width:3rem;height:.5px;background:rgba(196,147,72,.4);margin:1rem 0;}"+
-      ".mobile-menu-account{font-size:1.4rem!important;color:rgba(247,242,232,.55)!important;}"+
-      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,242,232,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
+      ".mobile-menu-account{font-size:1.4rem!important;color:rgba(247,243,234,.55)!important;}"+
+      "@media(max-width:768px){.nav-toggle{display:flex;color:#1A1207;}nav .nav-logo{color:#1A1207!important;}#main-nav,nav{background:rgba(247,243,234,0.97)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 .5px 0 rgba(26,18,7,.08);}}";
     document.head.appendChild(s);
     var btn=document.createElement('button');btn.className='nav-toggle';btn.setAttribute('aria-label','Open menu');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.appendChild(btn);
     var links=[['historia.html','Our Story'],['ron.html','Our Rums'],['plaza.html','Plaza'],['/tours','Tours'],['index.html#eventos','Events'],['contact.html','Contact']];
@@ -743,8 +743,8 @@
       ".find-us-dd{position:absolute;bottom:calc(100% + .75rem);left:50%;transform:translateX(-50%) translateY(4px);background:rgba(26,18,7,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:.5rem .15rem;display:flex;flex-direction:column;gap:.05rem;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;white-space:nowrap;z-index:100;border-radius:2px;}"+
       ".find-us-dd.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}"+
       ".find-us-dd::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(26,18,7,.94);}"+
-      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,242,232,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
-      ".find-us-dd a:hover{color:#F7F2E8;background:rgba(247,242,232,.08);}";
+      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,243,234,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
+      ".find-us-dd a:hover{color:#F7F3EA;background:rgba(247,243,234,.08);}";
     document.head.appendChild(s);
     var li=document.createElement('li');li.className='find-us-wrap';
     li.innerHTML='<button class="find-us-btn" aria-expanded="false" aria-label="Get directions to Destilería Coquí">'+
