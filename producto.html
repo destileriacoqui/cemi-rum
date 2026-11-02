@@ -6,10 +6,10 @@
   <title>Product | Destilería Coquí</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    sup { font-size: 0.28em; vertical-align: super; line-height: 0; font-weight: 400; letter-spacing: 0; margin-left: -0.05em; }
+    sup { font-size: 0.28em; vertical-align: super; line-height: 0; font-weight: 300; letter-spacing: 0; margin-left: -0.05em; }
 
     :root {
       --cream:      #F7F3EA;
@@ -19,8 +19,8 @@
       --amber:      #8C3F16;
       --gold:       #C49348;
       --muted:      #7D6654;
-      --serif: 'DM Sans', system-ui, sans-serif;
-      --sans:  'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+      --serif: 'Fira Sans Condensed', 'Arial Narrow', sans-serif;
+      --sans:  'Fira Sans Condensed', 'Arial Narrow', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -47,7 +47,7 @@
     .nav-logo img { display: block; width: clamp(9rem, 13vw, 11.5rem); height: auto; }
     .nav-links { display: flex; gap: 2.75rem; list-style: none; }
     .nav-links a {
-      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+      font-size: 0.68rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--muted); text-decoration: none; transition: color 0.4s ease;
     }
     .nav-links a:hover { color: var(--ink); }
@@ -112,7 +112,7 @@
     .product-name {
       font-family: var(--serif);
       font-size: clamp(2.8rem, 5vw, 5.5rem);
-      font-weight: 200; color: var(--ink);
+      font-weight: 300; color: var(--ink);
       line-height: 0.95; letter-spacing: -0.02em;
       margin-bottom: 2.5rem;
     }
@@ -140,7 +140,7 @@
       color: var(--muted); display: block; margin-bottom: 0.45rem; opacity: 0.75;
     }
     .spec-val {
-      font-family: var(--serif); font-size: 1.45rem; font-weight: 200;
+      font-family: var(--serif); font-size: 1.45rem; font-weight: 300;
       color: var(--ink); line-height: 1.1;
     }
     .spec-val.price { color: var(--amber); font-size: 1.75rem; }
@@ -155,7 +155,7 @@
     }
     .tasting-inner { max-width: 540px; }
     .tasting-heading {
-      font-family: var(--serif); font-size: 2.2rem; font-weight: 200;
+      font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
       color: var(--ink); letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
@@ -189,7 +189,7 @@
     }
     .cta-text-head {
       font-family: var(--serif); font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-      font-weight: 200; color: var(--ink); letter-spacing: -0.025em;
+      font-weight: 300; color: var(--ink); letter-spacing: -0.025em;
       margin-bottom: 0.5rem;
     }
     .cta-text-sub { font-size: 0.78rem; color: var(--muted); }
@@ -197,7 +197,7 @@
       display: inline-flex; align-items: center; gap: 1rem;
       background: var(--amber); color: var(--cream);
       padding: 1.1rem 2.75rem;
-      font-family: var(--sans); font-size: 0.65rem; font-weight: 400;
+      font-family: var(--sans); font-size: 0.65rem; font-weight: 300;
       letter-spacing: 0.22em; text-transform: uppercase;
       text-decoration: none; white-space: nowrap;
       transition: background 0.35s ease;
@@ -209,7 +209,7 @@
       display: inline-flex; align-items: center; gap: 1rem;
       background: var(--ink); color: var(--cream);
       padding: 1.1rem 2.75rem;
-      font-family: var(--sans); font-size: 0.65rem; font-weight: 500;
+      font-family: var(--sans); font-size: 0.65rem; font-weight: 300;
       letter-spacing: 0.22em; text-transform: uppercase;
       text-decoration: none; white-space: nowrap;
       transition: background 0.35s ease, transform 0.15s ease;
@@ -710,7 +710,7 @@
     .showcase-dots button[aria-current="true"] { background: var(--amber); transform: scale(1.3); }
     .showcase-cta { text-align: center; margin-top: 3.25rem; }
     .showcase-cta-link {
-      display: inline-block; font-family: var(--sans); font-size: 0.62rem; font-weight: 500;
+      display: inline-block; font-family: var(--sans); font-size: 0.62rem; font-weight: 300;
       letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink); text-decoration: none;
       padding-bottom: 0.45rem; border-bottom: 1px solid var(--amber);
       transition: color .3s, border-color .3s;
@@ -729,7 +729,7 @@
     }
     .related-heading {
       font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.6rem);
-      font-weight: 200; letter-spacing: -0.02em; line-height: 1;
+      font-weight: 300; letter-spacing: -0.02em; line-height: 1;
       margin-bottom: 2.5rem;
     }
     .related-grid {
@@ -753,7 +753,7 @@
     }
     .related-info { display: flex; flex: 1; flex-direction: column; padding: 1.3rem; background: var(--cream); }
     .related-type { color: var(--amber); font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; }
-    .related-name { margin-top: 0.45rem; font: 400 1.55rem/1.05 var(--serif); }
+    .related-name { margin-top: 0.45rem; font:300 1.55rem/1.05 var(--serif); }
     .related-price { margin-top: 0.65rem; color: var(--muted); font-size: 0.78rem; }
     .related-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; padding-top: 1.15rem; }
     .related-actions .btn-buy, .related-actions .btn-amber { padding: 0.82rem 1rem; font-size: 0.55rem; letter-spacing: 0.16em; }
@@ -765,7 +765,7 @@
       padding: 4rem 2rem;
     }
     .not-found h1 {
-      font-family: var(--serif); font-size: 3.5rem; font-weight: 200;
+      font-family: var(--serif); font-size: 3.5rem; font-weight: 300;
       color: var(--ink); margin-bottom: 1rem;
     }
     .not-found p { color: var(--muted); margin-bottom: 2.5rem; }
@@ -1542,7 +1542,7 @@
       ".nav-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}"+
       ".mobile-menu{position:fixed;inset:0;z-index:10000;background:rgba(20,10,4,0.975);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;opacity:0;pointer-events:none;transition:opacity .45s ease;}"+
       ".mobile-menu.open{opacity:1;pointer-events:auto;}"+
-      ".mobile-menu a{font-family:var(--serif,'DM Sans', system-ui, sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
+      ".mobile-menu a{font-family:var(--serif,'Fira Sans Condensed', 'Arial Narrow', sans-serif);font-size:2.4rem;font-weight:300;color:#F7F3EA;text-decoration:none;letter-spacing:-.01em;padding:.5rem 0;transition:color .3s ease;}"+
       ".mobile-menu a:hover{color:#C49348;}"+
       ".mobile-menu-close{position:absolute;top:1.3rem;right:1.6rem;width:2.5rem;height:2.5rem;background:none;border:none;color:#F7F3EA;font-size:1.7rem;line-height:1;cursor:pointer;}"+
       "body.menu-open{overflow:hidden;}"+
@@ -1574,12 +1574,12 @@
     var fl=document.querySelector('.footer-links'); if(!fl||document.querySelector('.find-us-wrap')) return;
     var s=document.createElement('style');
     s.textContent=".find-us-wrap{position:relative;}"+
-      ".find-us-btn{display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;cursor:pointer;font-family:var(--sans,system-ui,sans-serif);font-size:.65rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#7D6654);text-decoration:none;transition:color .35s ease;padding:0;line-height:1;}"+
+      ".find-us-btn{display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;cursor:pointer;font-family:var(--sans,system-ui,sans-serif);font-size:.65rem;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#7D6654);text-decoration:none;transition:color .35s ease;padding:0;line-height:1;}"+
       ".find-us-btn:hover{color:var(--ink,#1A1207);}"+
       ".find-us-dd{position:absolute;bottom:calc(100% + .75rem);left:50%;transform:translateX(-50%) translateY(4px);background:rgba(26,18,7,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:.5rem .15rem;display:flex;flex-direction:column;gap:.05rem;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;white-space:nowrap;z-index:100;border-radius:2px;}"+
       ".find-us-dd.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}"+
       ".find-us-dd::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(26,18,7,.94);}"+
-      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,243,234,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
+      ".find-us-dd a{display:flex;align-items:center;gap:.5rem;padding:.45rem .95rem;font-family:var(--sans,system-ui,sans-serif);font-size:.58rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,243,234,.68);text-decoration:none;transition:color .2s ease,background .2s ease;border-radius:1px;}"+
       ".find-us-dd a:hover{color:#F7F3EA;background:rgba(247,243,234,.08);}";
     document.head.appendChild(s);
     var li=document.createElement('li');li.className='find-us-wrap';
