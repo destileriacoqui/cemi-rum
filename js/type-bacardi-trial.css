@@ -1,0 +1,39 @@
+/* TRIAL: Bacardi-style typography (measured from bacardi.com main.min.css).
+   Bacardi uses Fira Sans Condensed everywhere:
+     headings  Bold 700, UPPERCASE, line-height .96-1.04, letter-spacing -2px
+               hero ~72px desktop, section titles ~48-56px
+     subheads  Medium 500
+     body      Regular 400, 16px desktop / 14px mobile, line-height 1.5
+     labels    Medium 500, UPPERCASE, letter-spacing ~.67-.88px
+   Loaded last on every page with !important so it can be removed in one step
+   (delete this file and its <link> tags) to return to the previous look. */
+
+/* Base: everything Regular */
+body, body * { font-weight: 400 !important; }
+body { font-size: 16px; line-height: 1.5; }
+p, li { line-height: 1.5 !important; }
+section p { font-size: 1rem !important; }
+@media (max-width: 767px) { section p { font-size: 0.875rem !important; } }
+
+/* Labels, nav, buttons: Medium caps, tight tracking */
+nav a, button,
+[class*="kicker"], [class*="eyebrow"], [class*="btn"], [class*="cta"],
+[class*="-link"], [class*="label"], [class*="tag"] {
+  font-weight: 500 !important;
+  letter-spacing: 0.055em !important;
+}
+
+/* Headings: Bold caps, tight */
+h1, h2 {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+  letter-spacing: -0.02em !important;
+}
+h1 em, h2 em, h1 i, h2 i { font-style: normal !important; font-weight: 700 !important; }
+h1 sup, h2 sup { font-weight: 400 !important; }
+h1 { font-size: clamp(3rem, 5.2vw, 4.5rem) !important; line-height: 0.96 !important; }
+h2 { font-size: clamp(2.25rem, 3.9vw, 3.5rem) !important; line-height: 1.04 !important; max-width: none !important; }
+h3 { font-weight: 500 !important; letter-spacing: 0 !important; font-style: normal !important; }
+h3 em { font-style: normal !important; }
+strong, b { font-weight: 700 !important; }
